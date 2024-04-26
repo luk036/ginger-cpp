@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ginger/rootfinding.hpp file | Ginger</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">Ginger</a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li>
+              <a href="pages.html">Pages</a>
+              <ol>
+                <li><a href="about.html">About</a></li>
+              </ol>
+            </li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="dir_33b11cd8a9ca736fc4e15b7819865541.html">ginger</a>/</span>rootfinding.hpp <span class="m-thin">file</span>
+        </h1>
+        <p><span></span></p>
+        <nav class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#nested-classes">Classes</a></li>
+                <li><a href="#typedef-members">Typedefs</a></li>
+                <li><a href="#func-members">Functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classOptions.html" class="m-doc">Options</a>
+            </dt>
+            <dd><a href="classOptions.html" class="m-doc">Options</a>.</dd>
+          </dl>
+        </section>
+        <section id="typedef-members">
+          <h2><a href="#typedef-members">Typedefs</a></h2>
+          <dl class="m-doc">
+            <dt id="a361bdeffc33f8976a1a9652bcf480edc">
+              using <a href="#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc-self">Vec2</a> = <a href="classnumeric_1_1Vector2.html" class="m-doc">numeric::<wbr />Vector2</a>&lt;double&gt;
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2bbca40cbb62889bf8f52d848133fba7">
+              using <a href="#a2bbca40cbb62889bf8f52d848133fba7" class="m-doc-self">Mat2</a> = <a href="classnumeric_1_1Matrix2.html" class="m-doc">numeric::<wbr />Matrix2</a>&lt;<a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&gt;
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a08b40b6a19b0b89e0e473d77c0d3fb69" class="m-doc">initial_guess</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt; coeffs) -&gt; std::vector&lt; Vec2 &gt; -&gt; auto</span>
+            </dt>
+            <dd>Initial guess for the parallel Bairstow method.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0427aa9643759c3320b425c17a5e138c" class="m-doc">pbairstow_even</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              std::vector&lt;<a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&gt;&amp; vrs,
+              const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt; -&gt; auto</span>
+            </dt>
+            <dd>Multi-threading Bairstow&#x27;s method (even degree only)</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa05afc70e0a790f77aae8d4155d04cc9" class="m-doc">horner</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt;&amp; coeffs1,
+              std::size_t degree,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2 -&gt; auto</span>
+            </dt>
+            <dd>Horner&#x27;s rule.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0a241f80ca028f09e7510fae9ab148b7" class="m-doc">suppress</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void -&gt; auto</span>
+            </dt>
+            <dd>zero suppression</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a845095322475734a4a4c17a61da1a505" class="m-doc">suppress2</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void -&gt; auto</span>
+            </dt>
+            <dd>zero suppression</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6f6614d3ea6830460ccd31f6fbe7ec68" class="m-doc">makeadjoint</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Mat2 -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afc8471d6f94a1e238d908108dd0b1da7" class="m-doc">delta</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Vec2 -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5fb6b64b00eb4ba2e61a6983121e77a7" class="m-doc">horner_eval</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt; coeffs1,
+              std::size_t degree,
+              const double&amp; z) -&gt; double -&gt; auto</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a08b40b6a19b0b89e0e473d77c0d3fb69"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a08b40b6a19b0b89e0e473d77c0d3fb69" class="m-doc-self">initial_guess</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt; coeffs) -&gt; std::vector&lt; Vec2 &gt;</span></span>
+            </h3>
+            <p>Initial guess for the parallel Bairstow method.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>coeffs is a vector of doubles that represents the coefficients of a polynomial.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The function <code>initial_guess</code> returns a vector of <code>Vec2</code> objects.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The <code>initial_guess</code> function calculates the initial values for the parallel Bairstow method for finding the roots of a real polynomial.</p>
+          </div></section>
+          <section class="m-doc-details" id="a0427aa9643759c3320b425c17a5e138c"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0427aa9643759c3320b425c17a5e138c" class="m-doc-self">pbairstow_even</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              std::vector&lt;<a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&gt;&amp; vrs,
+              const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt;</span></span>
+            </h3>
+            <p>Multi-threading Bairstow&#x27;s method (even degree only)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of the polynomial. Each element of the vector corresponds to the coefficient of a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 + 2</td>
+                </tr>
+                <tr>
+                  <td>vrs&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td><code>vrs</code> is a vector of iterates, which represents the initial guesses for the roots of the polynomial. The Bairstow&#x27;s method will update these iterates iteratively until the desired tolerance is reached or the maximum number of iterations is reached.</td>
+                </tr>
+                <tr>
+                  <td>options&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The <code>options</code> parameter is an object of type <code><a href="classOptions.html" class="m-doc">Options</a></code> which contains the maximum number of iterations (<code>max_iters</code>) and the tolerance (<code>tolerance</code>). These options are used to control the convergence criteria for the Bairstow&#x27;s method.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The function <code>pbairstow_even</code> returns a <code>std::pair&lt;unsigned int, bool&gt;</code>. The first element of the pair represents the number of iterations performed, and the second element represents whether the method converged to a solution within the specified tolerance.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The <code>pbairstow_even</code> function implements Bairstow&#x27;s method for finding the roots of a real polynomial with an even degree using multi-threading.</p>
+          </div></section>
+          <section class="m-doc-details" id="aa05afc70e0a790f77aae8d4155d04cc9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa05afc70e0a790f77aae8d4155d04cc9" class="m-doc-self">horner</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt;&amp; coeffs1,
+              std::size_t degree,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2</span></span>
+            </h3>
+            <p>Horner&#x27;s rule.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">coeffs1&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td>coeffs1 is a reference to a vector of doubles. It is used to store the coefficients of a polynomial.</td>
+                </tr>
+                <tr>
+                  <td>degree&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The parameter <code>degree</code> represents the size of the vector <code>coeffs1</code>. It indicates the number of elements in the vector <code>coeffs1</code>.</td>
+                </tr>
+                <tr>
+                  <td>vr&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>vr is a Vec2 object, which represents a 2D vector. It has two components, vr.x() and vr.y(), which are used in the calculations inside the horner function.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>a Vec2 object.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Horner&#x27;s rule is a method for evaluating a polynomial of degree degree at a given point x. It involves rewriting the polynomial as a nested multiplication and addition of the form:</p><p>P(x) = a_0 + x(a_1 + x(a_2 + ... + x(a_{degree-1} + x(a_n))...))</p><p>This form allows for efficient evaluation of the polynomial at a given point x using only degree multiplications and degree additions. Horner&#x27;s rule is commonly used in numerical methods for polynomial evaluation and interpolation.</p>
+          </div></section>
+          <section class="m-doc-details" id="a0a241f80ca028f09e7510fae9ab148b7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a241f80ca028f09e7510fae9ab148b7" class="m-doc-self">suppress</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void</span></span>
+            </h3>
+            <p>zero suppression</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vA&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>vA1&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>vri&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>vrj&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+<p>zero suppression is a technique used in the Bairstow method to find the coefficients of the linear remainder of a deflated polynomial without explicitly constructing the deflated polynomial. The goal of zero suppression is to perform the Bairstow process without the need for complex arithmetic within iterations. The technique involves finding the coefficients of the linear remainder of the deflated polynomial using the coefficients of the linear remainder of the original polynomial and the known factor of the original polynomial.</p>
+          </div></section>
+          <section class="m-doc-details" id="a845095322475734a4a4c17a61da1a505"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a845095322475734a4a4c17a61da1a505" class="m-doc-self">suppress2</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void</span></span>
+            </h3>
+            <p>zero suppression</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vA&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>vA1&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>vri&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>vrj&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+<p>zero suppression is a technique used in the Bairstow method to find the coefficients of the linear remainder of a deflated polynomial without explicitly constructing the deflated polynomial. The goal of zero suppression is to perform the Bairstow process without the need for complex arithmetic within iterations. The technique involves finding the coefficients of the linear remainder of the deflated polynomial using the coefficients of the linear remainder of the original polynomial and the known factor of the original polynomial.</p>
+          </div></section>
+          <section class="m-doc-details" id="a6f6614d3ea6830460ccd31f6fbe7ec68"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6f6614d3ea6830460ccd31f6fbe7ec68" class="m-doc-self">makeadjoint</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Mat2</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vr&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>A constant reference to a Vec2 object, representing the vector vr.</td>
+                </tr>
+                <tr>
+                  <td>vp&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>vp is a vector with two components, vp.x() and vp.y().</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>a <code>Mat2</code> object.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The function &quot;makeadjoint&quot; takes in a vector vr and a vector vp, and returns a 2x2 matrix where the elements are calculated based on the values of vr and vp.</p>
+          </div></section>
+          <section class="m-doc-details" id="afc8471d6f94a1e238d908108dd0b1da7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afc8471d6f94a1e238d908108dd0b1da7" class="m-doc-self">delta</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Vec2</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vA&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>A vector of type Vec2.</td>
+                </tr>
+                <tr>
+                  <td>vr&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>A vector representing the direction of rotation.</td>
+                </tr>
+                <tr>
+                  <td>vp&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The parameter <code>vp</code> is a <code>Vec2</code> object that is passed by rvalue reference.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>a Vec2 object.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The function calculates the delta value using the given parameters.</p>
+          </div></section>
+          <section class="m-doc-details" id="a5fb6b64b00eb4ba2e61a6983121e77a7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5fb6b64b00eb4ba2e61a6983121e77a7" class="m-doc-self">horner_eval</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt; coeffs1,
+              std::size_t degree,
+              const double&amp; z) -&gt; double</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">coeffs1&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td>A vector of coefficients for a polynomial, where the coefficient at index i corresponds to the term with degree i.</td>
+                </tr>
+                <tr>
+                  <td>degree&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The degree parameter represents the degree of the polynomial. It indicates the highest power of the variable in the polynomial equation.</td>
+                </tr>
+                <tr>
+                  <td>z&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The parameter <code>z</code> is a constant value that is used as the input to the polynomial function being evaluated.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>a double value.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The function <code>horner_eval</code> evaluates a polynomial using Horner&#x27;s method.</p>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>Ginger. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
