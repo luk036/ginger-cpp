@@ -4,11 +4,11 @@
 
 #include <ginger/autocorr.hpp>     // for extract_autocorr, initial_autocorr
 #include <ginger/rootfinding.hpp>  // for horner, Options
-#include <utility>                   // for pair
-#include <vector>                    // for vector
+#include <utility>                 // for pair
+#include <vector>                  // for vector
 
+#include "fmt/format.h"        // for print
 #include "ginger/vector2.hpp"  // for vector2
-#include "fmt/format.h"          // for print
 
 TEST_CASE("test FIR") {
     // auto vA = vec2{0.1, 1.2};

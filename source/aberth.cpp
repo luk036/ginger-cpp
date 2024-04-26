@@ -1,13 +1,13 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
+#include <cmath>                   // for acos, cos, sin
+#include <complex>                 // for complex, operator*, operator+
+#include <future>                  // for future
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Options
-#include <cmath>                     // for acos, cos, sin
-#include <complex>                   // for complex, operator*, operator+
-#include <future>                    // for future
-#include <numeric>                   // for accumulate, partial_sum
-#include <utility>                   // for pair
-#include <vector>                    // for vector, vector<>::reference, __v...
+#include <numeric>                 // for accumulate, partial_sum
+#include <utility>                 // for pair
+#include <vector>                  // for vector, vector<>::reference, __v...
 
 using std::cos;
 using std::sin;
@@ -86,15 +86,15 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
  * roots of the polynomial. The function will update these values iteratively to converge to the
  * actual roots.
  * @param[in] options The `options` parameter is an object of type `Options` that contains the
- * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control the
- * convergence criteria for the Aberth-Ehrlich method.
+ * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control
+ * the convergence criteria for the Aberth-Ehrlich method.
  *
  * @return The `aberth` function returns a `std::pair<unsigned int, bool>`. The first element of the
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &options = Options())
-    -> std::pair<unsigned int, bool> {
+auto aberth(const vector<double> &coeffs, vector<Complex> &zs,
+            const Options &options = Options()) -> std::pair<unsigned int, bool> {
     const auto m = zs.size();
     const auto degree = coeffs.size() - 1;  // degree, assume even
     const auto rr = fun::Robin<size_t>(m);
@@ -149,8 +149,8 @@ auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &op
  * roots of the polynomial. The function will update these values iteratively to converge to the
  * actual roots.
  * @param[in] options The `options` parameter is an object of type `Options` that contains the
- * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control the
- * convergence criteria for the Aberth-Ehrlich method.
+ * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control
+ * the convergence criteria for the Aberth-Ehrlich method.
  *
  * @return The `aberth` function returns a `std::pair<unsigned int, bool>`. The first element of the
  * pair represents the number of iterations performed, and the second element represents whether the

@@ -4,8 +4,8 @@
 
 #include <vector>
 
+#include "fmt/format.h"            // for print
 #include "ginger/vector2_ref.hpp"  // for Vector2
-#include "fmt/format.h"              // for print
 
 TEST_CASE("test vector2") {
     auto h = std::vector<double>{1.0, 2.0, 3.0, 4.0};

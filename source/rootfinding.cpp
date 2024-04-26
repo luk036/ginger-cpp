@@ -1,10 +1,10 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
+#include <cmath>                   // for abs, acos, cos, pow
+#include <cstddef>                 // for size_t
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
-#include <cmath>                     // for abs, acos, cos, pow
-#include <cstddef>                   // for size_t
 // #include <functional>                // for __base
 // #include <future>                    // for future
 // #include <thread>                    // for thread
@@ -80,7 +80,7 @@ auto suppress2(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
     auto s = vp.y();
     const auto m_adjoint = Mat2{Vec2{s, -p}, Vec2{-p * vrj.y(), p * vrj.x() + s}};
     const auto e = m_adjoint.det();
-    vA1 *= e; // e may tend to zero
+    vA1 *= e;  // e may tend to zero
     vA1 -= m_adjoint.mdot(vA);
     vA *= e;
 }
@@ -129,8 +129,8 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  * roots of the polynomial. The Bairstow's method will update these iterates iteratively until the
  * desired tolerance is reached or the maximum number of iterations is reached.
  * @param[in] options The `options` parameter is an object of type `Options` which contains the
- * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options are used to
- * control the convergence criteria for the Bairstow's method.
+ * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options are
+ * used to control the convergence criteria for the Bairstow's method.
  *
  * @return The function `pbairstow_even` returns a `std::pair<unsigned int, bool>`. The first
  * element of the pair represents the number of iterations performed, and the second element

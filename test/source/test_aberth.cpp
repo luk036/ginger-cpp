@@ -4,8 +4,8 @@
 
 #include <ginger/aberth.hpp>       // for aberth, initial_aberth
 #include <ginger/rootfinding.hpp>  // for Options
-#include <utility>                   // for pair
-#include <vector>                    // for vector
+#include <utility>                 // for pair
+#include <vector>                  // for vector
 
 #include "fmt/format.h"  // for print
 
