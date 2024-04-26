@@ -1,11 +1,11 @@
 #include <fmt/format.h>
-#include <greeter/greeter.h>
+#include <ginger/greeter.h>
 
-using namespace greeter;
+using namespace ginger;
 
-Greeter::Greeter(std::string _name) : name(std::move(_name)) {}
+Ginger::Ginger(std::string _name) : name(std::move(_name)) {}
 
-std::string Greeter::greet(LanguageCode lang) const {
+std::string Ginger::greet(LanguageCode lang) const {
   switch (lang) {
     default:
     case LanguageCode::EN:

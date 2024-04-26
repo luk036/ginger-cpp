@@ -1,21 +1,21 @@
 #include <doctest/doctest.h>
-#include <greeter/greeter.h>
-#include <greeter/version.h>
+#include <ginger/greeter.h>
+#include <ginger/version.h>
 
 #include <string>
 
-TEST_CASE("Greeter") {
-  using namespace greeter;
+TEST_CASE("Ginger") {
+  using namespace ginger;
 
-  Greeter greeter("Tests");
+  Ginger ginger("Tests");
 
-  CHECK(greeter.greet(LanguageCode::EN) == "Hello, Tests!");
-  CHECK(greeter.greet(LanguageCode::DE) == "Hallo Tests!");
-  CHECK(greeter.greet(LanguageCode::ES) == "¡Hola Tests!");
-  CHECK(greeter.greet(LanguageCode::FR) == "Bonjour Tests!");
+  CHECK(ginger.greet(LanguageCode::EN) == "Hello, Tests!");
+  CHECK(ginger.greet(LanguageCode::DE) == "Hallo Tests!");
+  CHECK(ginger.greet(LanguageCode::ES) == "¡Hola Tests!");
+  CHECK(ginger.greet(LanguageCode::FR) == "Bonjour Tests!");
 }
 
-TEST_CASE("Greeter version") {
-  static_assert(std::string_view(GREETER_VERSION) == std::string_view("1.0"));
-  CHECK(std::string(GREETER_VERSION) == std::string("1.0"));
+TEST_CASE("Ginger version") {
+  static_assert(std::string_view(GINGER_VERSION) == std::string_view("1.0"));
+  CHECK(std::string(GINGER_VERSION) == std::string("1.0"));
 }
