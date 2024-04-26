@@ -1,7 +1,6 @@
 [![Actions Status](https://github.com/luk036/ginger-cpp/workflows/MacOS/badge.svg)](https://github.com/luk036/ginger-cpp/actions)
 [![Actions Status](https://github.com/luk036/ginger-cpp/workflows/Windows/badge.svg)](https://github.com/luk036/ginger-cpp/actions)
 [![Actions Status](https://github.com/luk036/ginger-cpp/workflows/Ubuntu/badge.svg)](https://github.com/luk036/ginger-cpp/actions)
-[![Actions Status](https://github.com/luk036/ginger-cpp/workflows/Style/badge.svg)](https://github.com/luk036/ginger-cpp/actions)
 [![Actions Status](https://github.com/luk036/ginger-cpp/workflows/Install/badge.svg)](https://github.com/luk036/ginger-cpp/actions)
 [![codecov](https://codecov.io/gh/luk036/ginger-cpp/branch/master/graph/badge.svg)](https://codecov.io/gh/luk036/ginger-cpp)
 
@@ -13,7 +12,7 @@
 
 Polynomial root-finding algorithms (parallelizable) in C++.
 
-## Features
+## ✨ Features
 
 - [Modern CMake practices](https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/)
 - Suited for single header libraries and projects of any scale
@@ -33,8 +32,8 @@ Polynomial root-finding algorithms (parallelizable) in C++.
 
 - Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
 - Replace all occurrences of "Ginger" in the relevant CMakeLists.txt with the name of your project
-  - Capitalization matters here: `Ginger` means the name of the project, while `ginger` is used in file names.
-  - Remember to rename the `include/ginger` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
+  - Capitalization matters here: `Ginger` means the name of the project, while `bairstow` is used in file names.
+  - Remember to rename the `include/bairstow` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
 - Replace the source files with your own
 - For header-only libraries: see the comments in [CMakeLists.txt](CMakeLists.txt)
 - Add [your project's codecov token](https://docs.codecov.io/docs/quick-start) to your project's github secrets under `CODECOV_TOKEN`
@@ -43,7 +42,7 @@ Polynomial root-finding algorithms (parallelizable) in C++.
 Eventually, you can remove any unused files, such as the standalone directory or irrelevant github workflows for your project.
 Feel free to replace the License with one suited for your project.
 
-To cleanly separate the library and subproject code, the outer `CMakeList.txt` only defines the library itself while the tests and other subprojects are self-contained in their own directories. 
+To cleanly separate the library and subproject code, the outer `CMakeList.txt` only defines the library itself while the tests and other subprojects are self-contained in their own directories.
 During development it is usually convenient to [build all subprojects at once](#build-everything-at-once).
 
 ### Build and run the standalone target
@@ -65,7 +64,7 @@ cmake -S test -B build/test
 cmake --build build/test
 CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
 
-# or simply call the executable: 
+# or simply call the executable:
 ./build/test/GingerTests
 ```
 
@@ -90,7 +89,7 @@ See [Format.cmake](https://github.com/TheLartians/Format.cmake) for details.
 These dependencies can be easily installed using pip.
 
 ```bash
-pip install clang-format==14.0.6 cmake_format==0.6.11 pyyaml
+pip install clang-format==18.1.2 cmake_format==0.6.13 pyyaml
 ```
 
 ### Build the documentation
@@ -166,7 +165,7 @@ Use this as the main directory for best IDE support.
 > I see you are using `GLOB` to add source files in CMakeLists.txt. Isn't that evil?
 
 Glob is considered bad because any changes to the source file structure [might not be automatically caught](https://cmake.org/cmake/help/latest/command/file.html#filesystem) by CMake's builders and you will need to manually invoke CMake on changes.
-  I personally prefer the `GLOB` solution for its simplicity, but feel free to change it to explicitly listing sources.
+I personally prefer the `GLOB` solution for its simplicity, but feel free to change it to explicitly listing sources.
 
 > I want create additional targets that depend on my library. Should I modify the main CMakeLists to include them?
 
@@ -204,4 +203,4 @@ Perhaps the [MiniCppStarter](https://github.com/TheLartians/MiniCppStarter) is s
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=luk036/ginger-cpp,cpp-best-practices/gui_starter_template,filipdutescu/modern-cpp-template&type=Date)](https://star-history.com/#luk036/ginger-cpp&cpp-best-practices/gui_starter_template&filipdutescu/modern-cpp-template&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=TheLartians/ModernCppStarter,cpp-best-practices/gui_starter_template,filipdutescu/modern-cpp-template&type=Date)](https://star-history.com/#TheLartians/ModernCppStarter&cpp-best-practices/gui_starter_template&filipdutescu/modern-cpp-template&Date)
