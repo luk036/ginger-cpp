@@ -6,8 +6,8 @@
 #include "matrix2.hpp"
 #include "vector2.hpp"
 
-using Vec2 = numeric::Vector2<double>;
-using Mat2 = numeric::Matrix2<Vec2>;
+using Vec2 = ginger::Vector2<double>;
+using Mat2 = ginger::Matrix2<Vec2>;
 
 /**
  * @brief Options

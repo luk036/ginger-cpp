@@ -1,5 +1,3 @@
-set_languages("c++17")
-
 add_rules("mode.debug", "mode.release", "mode.coverage")
 add_requires("doctest", {alias = "doctest"})
 add_requires("fmt", {alias = "fmt"})
@@ -17,12 +15,14 @@ elseif is_plat("windows") then
 end
 
 target("Ginger")
+    set_languages("c++14")
     set_kind("static")
     add_includedirs("include", {public = true})
     add_files("source/*.cpp")
     add_packages("fmt")
 
 target("test_ginger")
+    set_languages("c++17")
     set_kind("binary")
     add_deps("Ginger")
     add_files("test/source/*.cpp")
@@ -33,6 +33,7 @@ target("test_ginger")
     end
 
 target("test_fir")
+    set_languages("c++17")
     set_kind("binary")
     add_deps("Ginger")
     add_files("bench/BM_fir.cpp")
@@ -43,6 +44,7 @@ target("test_fir")
     end
 
 target("test_autocorr")
+    set_languages("c++17")
     set_kind("binary")
     add_deps("Ginger")
     add_files("bench/BM_autocorr.cpp")
@@ -53,6 +55,7 @@ target("test_autocorr")
     end
 
 target("test_aberth")
+    set_languages("c++17")
     set_kind("binary")
     add_deps("Ginger")
     add_files("bench/BM_aberth.cpp")

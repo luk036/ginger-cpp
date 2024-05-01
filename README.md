@@ -32,8 +32,8 @@ Polynomial root-finding algorithms (parallelizable) in C++.
 
 - Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
 - Replace all occurrences of "Ginger" in the relevant CMakeLists.txt with the name of your project
-  - Capitalization matters here: `Ginger` means the name of the project, while `bairstow` is used in file names.
-  - Remember to rename the `include/bairstow` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
+  - Capitalization matters here: `Ginger` means the name of the project, while `ginger` is used in file names.
+  - Remember to rename the `include/ginger` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
 - Replace the source files with your own
 - For header-only libraries: see the comments in [CMakeLists.txt](CMakeLists.txt)
 - Add [your project's codecov token](https://docs.codecov.io/docs/quick-start) to your project's github secrets under `CODECOV_TOKEN`
@@ -144,7 +144,7 @@ Additional arguments can be passed to the analyzers by setting the `CLANG_TIDY_A
 
 Ccache can be enabled by configuring with `-DUSE_CCACHE=<ON | OFF>`.
 
-## FAQ
+## ❓ FAQ
 
 > Can I use this for header-only libraries?
 

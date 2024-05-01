@@ -72,10 +72,10 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
                 for (auto j : rr.exclude(i)) {  // exclude i
                     const auto vrj = vrs[j];    // make a copy, don't reference!
                     suppress(vA, vA1, vri, vrj);
-                    const auto vrjn = numeric::Vector2<double>(-vrj.x(), 1.0) / vrj.y();
+                    const auto vrjn = ginger::Vector2<double>(-vrj.x(), 1.0) / vrj.y();
                     suppress(vA, vA1, vri, vrjn);
                 }
-                const auto vrin = numeric::Vector2<double>(-vri.x(), 1.0) / vri.y();
+                const auto vrin = ginger::Vector2<double>(-vri.x(), 1.0) / vri.y();
                 suppress(vA, vA1, vri, vrin);
 
                 vrs[i] -= delta(vA, vri, std::move(vA1));  // Gauss-Seidel fashion

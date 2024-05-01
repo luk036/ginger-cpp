@@ -10,7 +10,7 @@
 #include "ginger/vector2.hpp"  // for Vector2
 #include "fmt/format.h"          // for print
 
-using namespace numeric;
+using namespace ginger;
 
 TEST_CASE("test delta1()") {
     const auto vri = Vector2(-2.0, 0.0);
@@ -145,7 +145,7 @@ TEST_CASE("test horner_eval") {
 
 TEST_CASE("test horner") {
     auto h = std::vector<double>{1.0, 2.0, 3.0, 4.0};
-    auto v = numeric::Vector2(1.0, 2.0);
+    auto v = ginger::Vector2(1.0, 2.0);
     auto vA = horner(h, 3, v);
     CHECK(vA.x() == 8.0);
     CHECK(vA.y() == 10.0);
@@ -161,19 +161,19 @@ TEST_CASE("test root-finding 1") {
     auto h = std::vector<double>{5., 2., 9., 6., 2.};
     auto vrs = initial_guess(h);
     // fmt::print(vrs);
-    fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
+    // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
     auto coeffs1 = h;
-    auto N = coeffs1.size() - 1;
-    auto vAh = horner(coeffs1, N, vrs[1]);
-    fmt::print("{}, {}\n", vAh.x(), vAh.y());
+    // auto N = coeffs1.size() - 1;
+    // auto vAh = horner(coeffs1, N, vrs[1]);
+    // fmt::print("{}, {}\n", vAh.x(), vAh.y());
     // fmt::print(coeffs1);
-    auto vA1h = horner(coeffs1, N - 2, vrs[1]);
-    fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
+    // auto vA1h = horner(coeffs1, N - 2, vrs[1]);
+    // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
     auto result = pbairstow_even(h, vrs, Options());
     auto niter = result.first;
     auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // fmt::print("{}, {}\n", niter, found);
 
     REQUIRE(found);
     CHECK(niter <= 11);
@@ -185,21 +185,21 @@ TEST_CASE("test root-finding 2") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_guess(h);
     // fmt::print(vrs);
-    fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
+    // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
     auto coeffs1 = h;
-    auto N = coeffs1.size() - 1;
-    auto vAh = horner(coeffs1, N, vrs[1]);
-    fmt::print("{}, {}\n", vAh.x(), vAh.y());
+    // auto N = coeffs1.size() - 1;
+    // auto vAh = horner(coeffs1, N, vrs[1]);
+    // fmt::print("{}, {}\n", vAh.x(), vAh.y());
     // fmt::print(coeffs1);
-    auto vA1h = horner(coeffs1, N - 2, vrs[1]);
-    fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
+    // auto vA1h = horner(coeffs1, N - 2, vrs[1]);
+    // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
     auto options = Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_even(h, vrs, options);
     auto niter = result.first;
     auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // fmt::print("{}, {}\n", niter, found);
 
     REQUIRE(found);
     CHECK(niter <= 13);
@@ -216,21 +216,21 @@ TEST_CASE("test root-finding FIR") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_guess(h);
     // fmt::print(vrs);
-    fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
+    // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
     auto coeffs1 = h;
-    auto N = coeffs1.size() - 1;
-    auto vAh = horner(coeffs1, N, vrs[1]);
-    fmt::print("{}, {}\n", vAh.x(), vAh.y());
+    // auto N = coeffs1.size() - 1;
+    // auto vAh = horner(coeffs1, N, vrs[1]);
+    // fmt::print("{}, {}\n", vAh.x(), vAh.y());
     // fmt::print(coeffs1);
-    auto vA1h = horner(coeffs1, N - 2, vrs[1]);
-    fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
+    // auto vA1h = horner(coeffs1, N - 2, vrs[1]);
+    // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
     auto options = Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_even(h, vrs, options);
     auto niter = result.first;
-    auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // auto found = result.second;
+    // fmt::print("{}, {}\n", niter, found);
 
     CHECK(niter <= 14);
     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);

@@ -1,15 +1,12 @@
 #pragma once
 
-#include <cmath>
-#include <utility>  // import std::move
-
 #if __cpp_constexpr >= 201304
 #    define CONSTEXPR14 constexpr
 #else
 #    define CONSTEXPR14 inline
 #endif
 
-namespace numeric {
+namespace ginger {
 
     /**
      * @brief Vector2
@@ -304,4 +301,4 @@ namespace numeric {
             return out;
         }
     };
-}  // namespace numeric
+}  // namespace ginger

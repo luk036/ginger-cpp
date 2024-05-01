@@ -27,26 +27,26 @@ TEST_CASE("test FIR") {
         0.0097864,   0.00681596,  0.00380494,  0.00134667,  -0.00023823, -0.00094597, -0.00196191};
     auto vrs = initial_autocorr(r);
     // fmt::print(vrs);
-    fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
+    // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
     auto coeffs1 = r;
-    auto N = coeffs1.size() - 1;
-    auto vAh = horner(coeffs1, N, vrs[1]);
-    fmt::print("{}, {}\n", vAh.x(), vAh.y());
+    // auto N = coeffs1.size() - 1;
+    // auto vAh = horner(coeffs1, N, vrs[1]);
+    // fmt::print("{}, {}\n", vAh.x(), vAh.y());
     // fmt::print(coeffs1);
-    auto vA1h = horner(coeffs1, N - 2, vrs[1]);
-    fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
+    // auto vA1h = horner(coeffs1, N - 2, vrs[1]);
+    // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
     auto options = Options();
     options.tolerance = 1e-5;
     auto result = pbairstow_autocorr(r, vrs, options);
-    auto niter = result.first;
+    // auto niter = result.first;
     auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // fmt::print("{}, {}\n", niter, found);
+    REQUIRE(found);
 
     for (auto &vr : vrs) {
-        extract_autocorr(vr);
+        // extract_autocorr(vr);
         fmt::print("{}, {}\n", vr.x(), vr.y());
     }
 
-    CHECK(found);
 }

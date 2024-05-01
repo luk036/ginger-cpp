@@ -14,8 +14,8 @@ TEST_CASE("test aberth 1") {
     auto zs = initial_aberth(h);
     auto result = aberth(h, zs, Options());
     auto niter = result.first;
-    auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // auto found = result.second;
+    // fmt::print("{}, {}\n", niter, found);
 
     CHECK(niter <= 11);
     // fmt::print([find_rootq(-r[0], -r[1]) for r : zs]);
@@ -28,8 +28,8 @@ TEST_CASE("test aberth 2") {
     options.tolerance = 1e-12;
     auto result = aberth(h, zs, options);
     auto niter = result.first;
-    auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // auto found = result.second;
+    // fmt::print("{}, {}\n", niter, found);
 
     CHECK(niter <= 13);
     // fmt::print([find_rootq(-r[0], -r[1]) for r : zs]);
@@ -50,8 +50,8 @@ TEST_CASE("test aberth FIR") {
     options.tolerance = 1e-8;
     auto result = aberth(r, zs, options);
     auto niter = result.first;
-    auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // auto found = result.second;
+    // fmt::print("{}, {}\n", niter, found);
 
     CHECK(niter <= 12);
     // fmt::print([find_rootq(-r[0], -r[1]) for r : zs]);
@@ -64,7 +64,7 @@ TEST_CASE("test horners method") {
     options.tolerance = 1e-8;
     auto result = aberth(r, zs, options);
     auto niter = result.first;
-    auto found = result.second;
-    fmt::print("{}, {}\n", niter, found);
+    // auto found = result.second;
+    // fmt::print("{}, {}\n", niter, found);
     CHECK(niter <= 12);
 }

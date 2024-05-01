@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <utility>  // import std::move
+#include "vector2.hpp"
 
 #if __cpp_constexpr >= 201304
 #    define CONSTEXPR14 constexpr
@@ -9,16 +10,33 @@
 #    define CONSTEXPR14 inline
 #endif
 
-namespace numeric {
+static double global_vector2_ref_dummy = 0.0;
+
+namespace ginger {
 
     /**
      * @brief Vector2Ref
      *
      */
     class Vector2Ref {
+
       public:
         double &_x;
         double &_y;
+
+        /**
+         * @brief Construct a new Vector2Ref object
+         *
+         * The function constructs a new Vector2Ref object with given x and y values.
+         *
+         * @param[in] x The parameter `x` is of type `double&&`, which means it is a forwarding
+         * reference. It can accept any type, and it is passed as an rvalue reference. This allows
+         * the constructor to efficiently move or forward the value of `x` into the `_x` member
+         * variable.
+         * @param[in] y The parameter "y" is the y-coordinate of the Vector2Ref object. It
+         * represents the vertical position of the vector in a 2D coordinate system.
+         */
+        constexpr Vector2Ref() noexcept : _x{global_vector2_ref_dummy}, _y{global_vector2_ref_dummy} {}
 
         /**
          * @brief Construct a new Vector2Ref object
@@ -95,7 +113,7 @@ namespace numeric {
          *
          * @return a reference to a Vector2Ref object.
          */
-        CONSTEXPR14 auto operator+=(const Vector2Ref &other) -> Vector2Ref & {
+        CONSTEXPR14 auto operator+=(const Vector2<double, double> &other) -> Vector2Ref & {
             this->_x += other.x();
             this->_y += other.y();
             return *this;
@@ -112,7 +130,7 @@ namespace numeric {
          *
          * @return a reference to a Vector2Ref object.
          */
-        CONSTEXPR14 auto operator-=(const Vector2Ref &other) -> Vector2Ref & {
+        CONSTEXPR14 auto operator-=(const Vector2<double, double> &other) -> Vector2Ref & {
             this->_x -= other.x();
             this->_y -= other.y();
             return *this;
@@ -149,6 +167,20 @@ namespace numeric {
             return *this;
         }
 
+        /**
+         * The function multiplies a Vector2 object by a scalar value.
+         *
+         * @tparam R
+         * @param[in] x A Vector2 object of type T1 and T2.
+         * @param[in] alpha The parameter `alpha` is a scalar value that will be used to multiply
+         * each component of the `Vector2` object `x`.
+         *
+         * @return a Vector2 object.
+         */
+        CONSTEXPR14 auto operator*(const double &alpha) const -> Vector2<double, double> {
+            return Vector2<double, double>{this->x() * alpha, this->y() * alpha};
+        }
+
         ///@}
 
         /**
@@ -169,4 +201,4 @@ namespace numeric {
             return out;
         }
     };
-}  // namespace numeric
+}  // namespace ginger

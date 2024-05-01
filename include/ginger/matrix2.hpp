@@ -10,7 +10,7 @@
 #    define CONSTEXPR14 inline
 #endif
 
-namespace numeric {
+namespace ginger {
     /**
      * @brief Matrix2
      *
@@ -199,8 +199,8 @@ namespace numeric {
          * @return Vector2<U1, U2>
          */
         template <typename U1, typename U2>  //
-        constexpr auto mdot(const Vector2<U1, U2> &other) const -> Vector2<U1, U2> {
-            return {this->_x.dot(other), this->_y.dot(other)};
+        constexpr auto mdot(const Vector2<U1, U2> &other) const -> T1 {
+            return T1{this->_x.dot(other), this->_y.dot(other)};
         }
 
         /**
@@ -217,4 +217,4 @@ namespace numeric {
 
         ///@}
     };
-}  // namespace numeric
+}  // namespace ginger
