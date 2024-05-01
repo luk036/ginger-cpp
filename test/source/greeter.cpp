@@ -4,14 +4,14 @@
 #include <string>
 
 TEST_CASE("Ginger") {
-  using namespace ginger;
+    using namespace ginger;
 
-  Ginger ginger("Tests");
+    Ginger ginger("Tests");
 
-  CHECK(ginger.greet(LanguageCode::EN) == "Hello, Tests!");
-  CHECK(ginger.greet(LanguageCode::DE) == "Hallo Tests!");
-  CHECK(ginger.greet(LanguageCode::ES) == "¡Hola Tests!");
-  CHECK(ginger.greet(LanguageCode::FR) == "Bonjour Tests!");
+    CHECK(ginger.greet(LanguageCode::EN) == "Hello, Tests!");
+    CHECK(ginger.greet(LanguageCode::DE) == "Hallo Tests!");
+    CHECK(ginger.greet(LanguageCode::ES) == "¡Hola Tests!");
+    CHECK(ginger.greet(LanguageCode::FR) == "Bonjour Tests!");
 }
 
 // TEST_CASE("Ginger version") {

@@ -2,7 +2,7 @@
 
 #include <ginger/autocorr.hpp>     // for initial_autocorr, pbairstow_auto...
 #include <ginger/rootfinding.hpp>  // for Options, initial_guess, pbairsto...
-#include <vector>                    // for vector
+#include <vector>                  // for vector
 
 static const auto global_r = std::vector<double>{
     -0.00196191, -0.00094597, -0.00023823, 0.00134667,  0.00380494,  0.00681596,  0.0097864,

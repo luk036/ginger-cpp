@@ -2,7 +2,7 @@
 
 #include <ginger/autocorr.hpp>     // for initial_autocorr, pbairstow_auto...
 #include <ginger/rootfinding.hpp>  // for Options, initial_guess, pbairsto...
-#include <vector>                    // for vector
+#include <vector>                  // for vector
 
 auto run_autocorr() {
     auto r = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};

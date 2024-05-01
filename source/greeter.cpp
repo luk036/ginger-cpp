@@ -1,5 +1,5 @@
-#include <ginger/greeter.h>
 #include <fmt/format.h>
+#include <ginger/greeter.h>
 
 using namespace ginger;
 
