@@ -1,15 +1,15 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
 #include <cmath>                   // for acos, cos, sin
+#include <cmath>                   // for acos, cos, sin
 #include <complex>                 // for complex, operator*, operator+
+#include <complex>                 // for complex, operator*, operator+
+#include <future>                  // for future
 #include <future>                  // for future
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Options
-#include <cmath>                     // for acos, cos, sin
-#include <complex>                   // for complex, operator*, operator+
-#include <future>                    // for future
-#include <utility>                   // for pair
-#include <vector>                    // for vector, vector<>::reference, __v...
+#include <utility>                 // for pair
+#include <vector>                  // for vector, vector<>::reference, __v...
 
 using std::cos;
 using std::sin;

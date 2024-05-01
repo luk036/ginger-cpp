@@ -5,11 +5,11 @@
 
 #include <ginger/bairstow.hpp>     // for horner, initial_guess, pbairstow...
 #include <ginger/rootfinding.hpp>  // for horner, initial_guess, pbairstow...
-#include <utility>                   // for pair
-#include <vector>  // for vector
+#include <utility>                 // for pair
+#include <vector>                  // for vector
 
+#include "fmt/format.h"        // for print
 #include "ginger/vector2.hpp"  // for Vector2
-#include "fmt/format.h"          // for print
 
 using namespace ginger;
 
@@ -42,7 +42,7 @@ TEST_CASE("test horner_rule 1") {
     auto coeffs1 = coeffs;
     std::vector<Vec2Ref> vcoeffs;
     for (auto i = 0U; i < degree; ++i) {
-        vcoeffs.emplace_back(Vec2Ref{coeffs1[i], coeffs1[i+1]});
+        vcoeffs.emplace_back(Vec2Ref{coeffs1[i], coeffs1[i + 1]});
     }
 
     auto vA = horner_ref(coeffs1, vcoeffs, degree, v);
@@ -54,7 +54,6 @@ TEST_CASE("test horner_rule 1") {
     CHECK_EQ(vA2.x(), 8.0);
     CHECK_EQ(vA2.y(), 10.0);
 
-    
     CHECK_EQ(coeffs1, coeffs2);
 }
 
@@ -66,7 +65,7 @@ TEST_CASE("test horner_rule 2") {
     auto coeffs1 = coeffs;
     std::vector<Vec2Ref> vcoeffs;
     for (auto i = 0U; i < degree; ++i) {
-        vcoeffs.emplace_back(Vec2Ref{coeffs1[i], coeffs1[i+1]});
+        vcoeffs.emplace_back(Vec2Ref{coeffs1[i], coeffs1[i + 1]});
     }
     auto vA = horner_ref(coeffs1, vcoeffs, degree, vr);
     auto vA1 = horner_ref(coeffs1, vcoeffs, degree - 2, vr);

@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <utility>  // import std::move
+
 #include "vector2.hpp"
 
 #if __cpp_constexpr >= 201304
@@ -19,7 +20,6 @@ namespace ginger {
      *
      */
     class Vector2Ref {
-
       public:
         double &_x;
         double &_y;
@@ -36,7 +36,8 @@ namespace ginger {
          * @param[in] y The parameter "y" is the y-coordinate of the Vector2Ref object. It
          * represents the vertical position of the vector in a 2D coordinate system.
          */
-        constexpr Vector2Ref() noexcept : _x{global_vector2_ref_dummy}, _y{global_vector2_ref_dummy} {}
+        constexpr Vector2Ref() noexcept
+            : _x{global_vector2_ref_dummy}, _y{global_vector2_ref_dummy} {}
 
         /**
          * @brief Construct a new Vector2Ref object

@@ -48,5 +48,4 @@ TEST_CASE("test FIR") {
         // extract_autocorr(vr);
         fmt::print("{}, {}\n", vr.x(), vr.y());
     }
-
 }

@@ -11,10 +11,9 @@
 #    define M_PI 3.14159265358979323846264338327950288
 #endif
 
-
 // static double dummy_x = 0.0;
 // static double dummy_y = 0.0;
-// static const Vec2Ref dummy_ref(dummy_x, dummy_y); 
+// static const Vec2Ref dummy_ref(dummy_x, dummy_y);
 
 /**
  * The function `horner` implements the Horner's method for evaluating a
@@ -31,7 +30,7 @@
  * @return a Vec2 object.
  */
 auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeffs, size_t degree,
-                 const Vec2 &vr) -> Vec2Ref {
+                const Vec2 &vr) -> Vec2Ref {
     auto itr0 = coeffs.begin();
     auto itr1 = std::next(vcoeffs.begin());
     for (auto i = 0U; i != degree - 1; ++i, ++itr0, ++itr1) {
@@ -63,12 +62,12 @@ auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeffs, size
  * represents whether the method converged to a solution within the specified tolerance.
  */
 auto bairstow(const std::vector<double> &coeffs, Vec2 &vr,
-                   const Options &options = Options()) -> std::pair<unsigned int, bool> {
+              const Options &options = Options()) -> std::pair<unsigned int, bool> {
     auto coeffs1 = coeffs;
     const auto degree = coeffs1.size() - 1;  // degree, assume even
     std::vector<Vec2Ref> vcoeffs1;
     for (auto i = 0U; i < degree; ++i) {
-        vcoeffs1.emplace_back(Vec2Ref{coeffs1[i], coeffs1[i+1]});
+        vcoeffs1.emplace_back(Vec2Ref{coeffs1[i], coeffs1[i + 1]});
     }
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
