@@ -16,9 +16,9 @@ using namespace ginger;
 // TEST_CASE("test delta_ref") {
 //     double x1 = 3;
 //     double y1 = 3;
-//     const auto vri = Vector2(-2.0, 0.0);
-//     const auto vrj = Vector2(4.0, 5.0);
-//     const auto vrk = Vector2(3.0, 7.0);
+//     const auto vri = Vector2<double>(-2.0, 0.0);
+//     const auto vrj = Vector2<double>(4.0, 5.0);
+//     const auto vrk = Vector2<double>(3.0, 7.0);
 //     const auto vpj = vri - vrj;
 //     const auto vpk = vri - vrk;
 
@@ -35,7 +35,7 @@ using namespace ginger;
 // }
 
 TEST_CASE("test horner_rule 1") {
-    const auto v = ginger::Vector2(1.0, 2.0);
+    const auto v = ginger::Vector2<double>(1.0, 2.0);
     const auto coeffs = std::vector<double>{1.0, 2.0, 3.0, 4.0};
     const auto degree = coeffs.size() - 1;
 
@@ -58,7 +58,7 @@ TEST_CASE("test horner_rule 1") {
 }
 
 TEST_CASE("test horner_rule 2") {
-    const auto vr = ginger::Vector2(1.0, 2.0);
+    const auto vr = ginger::Vector2<double>(1.0, 2.0);
     const auto coeffs = std::vector<double>{5.0, 2.0, 9.0, 6.0, 2.0};
     const auto degree = coeffs.size() - 1;
 
