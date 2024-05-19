@@ -55,8 +55,7 @@ TEST_CASE("test suppress 2") {
     const auto vrk = Vector2<double>(3.0, 7.0);
     const auto vrl = Vector2<double>(3.0, 7.0);
 
-    auto vA = 
-    Vector2<double>(3.0, 3.0);
+    auto vA = Vector2<double>(3.0, 3.0);
     auto vA1 = Vector2<double>(1.0, 2.0);
 
     suppress(vA, vA1, vri, vrj);

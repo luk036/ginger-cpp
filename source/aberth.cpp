@@ -1,10 +1,7 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
 #include <cmath>                   // for acos, cos, sin
-#include <cmath>                   // for acos, cos, sin
 #include <complex>                 // for complex, operator*, operator+
-#include <complex>                 // for complex, operator*, operator+
-#include <future>                  // for future
 #include <future>                  // for future
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Options
@@ -90,8 +87,8 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-auto aberth(const vector<double> &coeffs, vector<Complex> &zs,
-            const Options &options = Options()) -> std::pair<unsigned int, bool> {
+auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &options = Options())
+    -> std::pair<unsigned int, bool> {
     const auto m = zs.size();
     const auto degree = coeffs.size() - 1;  // degree, assume even
     const auto rr = fun::Robin<size_t>(m);
