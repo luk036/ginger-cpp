@@ -61,8 +61,8 @@ extern auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeff
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  */
-extern auto bairstow(const std::vector<double> &coeffs, Vec2 &vr, const Options &options)
-    -> std::pair<unsigned int, bool>;
+extern auto bairstow(const std::vector<double> &coeffs, Vec2 &vr,
+                     const Options &options) -> std::pair<unsigned int, bool>;
 
 /**
  * The function "makeadjoint" takes in a vector vr and a vector vp, and returns a 2x2 matrix where
