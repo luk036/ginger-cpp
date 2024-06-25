@@ -56,7 +56,7 @@ inline ThreadPool::ThreadPool(size_t threads) : stop(false) {
 }
 
 // add new work item to the pool
-template <class F, class... Args> auto ThreadPool::enqueue(F &&f, Args &&...args)
+template <class F, class... Args> inline auto ThreadPool::enqueue(F &&f, Args &&...args)
 #if __cplusplus >= 201703L
     -> std::future<typename std::invoke_result<F, Args...>::type>
 #else

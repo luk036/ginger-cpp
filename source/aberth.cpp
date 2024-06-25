@@ -179,10 +179,12 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
                 return tol_i;
             }));
         }
-        for (auto &&result : results) {
-            auto &&res = result.get();
-            if (tolerance < res) {
-                tolerance = res;
+        for (auto &result : results) {
+            if (result.valid()) {
+                auto &&res = result.get();
+                if (tolerance < res) {
+                    tolerance = res;
+                }
             }
         }
         if (tolerance < options.tolerance) {
