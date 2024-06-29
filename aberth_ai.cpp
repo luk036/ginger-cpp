@@ -1,5 +1,3 @@
-#include <rayon/iter/par_iter.h>
-
 #include <algorithm>
 #include <cmath>
 #include <complex>

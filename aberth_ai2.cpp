@@ -13,7 +13,6 @@ static const double TWO_PI = 6.283185307179586476925286766559;  // M_PI * 2
 struct Options {
     size_t max_iters;
     double tolerance;
-    // ... fields and methods ...
 };
 
 auto horner_eval_f(const std::vector<double>& coeffs, double zval) -> double {
