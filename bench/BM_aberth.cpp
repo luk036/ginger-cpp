@@ -1,8 +1,7 @@
 #include <benchmark/benchmark.h>  // for BENCHMARK, State, BENCHMARK_MAIN
 
 #include <ginger/aberth.hpp>
-#include <ginger/rootfinding.hpp>  // for Options, initial_guess, pbairsto...
-#include <vector>                  // for vector
+#include <ginger/config.hpp>  // for Options
 
 static const auto global_r = std::vector<double>{
     -0.00196191, -0.00094597, -0.00023823, 0.00134667,  0.00380494,  0.00681596,  0.0097864,

@@ -1,12 +1,12 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
-#include <cmath>                   // for acos, cos, sin
-#include <complex>                 // for complex, operator*, operator+
-#include <future>                  // for future
-#include <ginger/robin.hpp>        // for Robin
-#include <ginger/rootfinding.hpp>  // for Options
-#include <utility>                 // for pair
-#include <vector>                  // for vector, vector<>::reference, __v...
+#include <cmath>    // for acos, cos, sin
+#include <complex>  // for complex, operator*, operator+
+#include <future>   // for future
+#include <ginger/config.hpp>
+#include <ginger/robin.hpp>  // for Robin
+#include <utility>           // for pair
+#include <vector>            // for vector, vector<>::reference, __v...
 
 using std::cos;
 using std::sin;
@@ -14,7 +14,7 @@ using std::vector;
 using Complex = std::complex<double>;
 
 /**
- * The function `horner_eval_g` is implementing the Horner's method for
+ * The function `horner_eval_c` is implementing the Horner's method for
  * evaluating a polynomial at a given point.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
@@ -23,13 +23,31 @@ using Complex = std::complex<double>;
  * @param[in] z
  * @return Tp
  */
-template <typename C, typename Tp> inline auto horner_eval_g(const C &coeffs, const Tp &z) -> Tp {
-    auto itr = coeffs.cbegin();
-    auto res = Tp(*itr++);
-    for (; itr != coeffs.cend(); ++itr) {
-        res = res * z + *itr;
+inline auto horner_eval_c(const std::vector<double> &coeffs,
+                          const std::complex<double> &zval) -> std::complex<double> {
+    std::complex<double> result(0.0, 0.0);
+    for (auto coeff : coeffs) {
+        result = result * zval + coeff;
     }
-    return res;
+    return result;
+}
+
+/**
+ * The function `horner_eval_c` is implementing the Horner's method for
+ * evaluating a polynomial at a given point.
+ *
+ * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
+ * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
+ * highest degree term and ending with the constant term.
+ * @param[in] z
+ * @return Tp
+ */
+inline auto horner_eval_f(const std::vector<double> &coeffs, const double &zval) -> double {
+    double result(0.0);
+    for (auto coeff : coeffs) {
+        result = result * zval + coeff;
+    }
+    return result;
 }
 
 /**
@@ -50,7 +68,7 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
 
     const auto degree = coeffs.size() - 1;
     const auto c = -coeffs[1] / (double(degree) * coeffs[0]);
-    const auto Pc = horner_eval_g(coeffs, c);
+    const auto Pc = horner_eval_f(coeffs, c);
     const auto re = std::pow(Complex(-Pc), 1.0 / double(degree));
     const auto k = TWO_PI / double(degree);
     auto z0s = vector<Complex>{};
@@ -97,23 +115,24 @@ auto aberth(const vector<double> &coeffs, vector<Complex> &zs,
         coeffs1[i] = double(degree - i) * coeffs[i];
     }
 
+    auto aberth_job = [&](size_t i) -> double {
+        const auto zi = zs[i];
+        const auto P = horner_eval_c(coeffs, zi);
+        const auto tol_i = std::abs(P);
+        auto P1 = horner_eval_c(coeffs1, zi);
+        for (auto j : rr.exclude(i)) {
+            P1 -= P / (zi - zs[j]);
+        }
+        zs[i] -= P / P1;  // Gauss-Seidel fashion
+        return tol_i;
+    };
+
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         vector<std::future<double>> results;
 
         for (auto i = 0U; i != m; ++i) {
-            auto do_core = [&, i]() -> double {
-                const auto &zi = zs[i];
-                const auto P = horner_eval_g(coeffs, zi);
-                const auto tol_i = std::abs(P);
-                auto P1 = horner_eval_g(coeffs1, zi);
-                for (auto j : rr.exclude(i)) {
-                    P1 -= P / (zi - zs[j]);
-                }
-                zs[i] -= P / P1;  // Gauss-Seidel fashion
-                return tol_i;
-            };
-            auto res = do_core();
+            auto res = aberth_job(i);
             if (tolerance < res) {
                 tolerance = res;
             }
@@ -162,29 +181,29 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
         coeffs1[i] = double(degree - i) * coeffs[i];
     }
 
+    auto aberth_job = [&](size_t i) -> double {
+        const auto zi = zs[i];
+        const auto P = horner_eval_c(coeffs, zi);
+        const auto tol_i = std::abs(P);
+        auto P1 = horner_eval_c(coeffs1, zi);
+        for (auto j : rr.exclude(i)) {
+            P1 -= P / (zi - zs[j]);
+        }
+        zs[i] -= P / P1;  // Gauss-Seidel fashion
+        return tol_i;
+    };
+
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         vector<std::future<double>> results;
 
         for (auto i = 0U; i != m; ++i) {
-            results.emplace_back(pool.enqueue([&, i]() -> double {
-                const auto &zi = zs[i];
-                const auto P = horner_eval_g(coeffs, zi);
-                const auto tol_i = std::abs(P);
-                auto P1 = horner_eval_g(coeffs1, zi);
-                for (auto j : rr.exclude(i)) {
-                    P1 -= P / (zi - zs[j]);
-                }
-                zs[i] -= P / P1;  // Gauss-Seidel fashion
-                return tol_i;
-            }));
+            results.emplace_back(pool.enqueue(aberth_job, i));
         }
         for (auto &result : results) {
-            if (result.valid()) {
-                auto &&res = result.get();
-                if (tolerance < res) {
-                    tolerance = res;
-                }
+            auto &&res = result.get();
+            if (tolerance < res) {
+                tolerance = res;
             }
         }
         if (tolerance < options.tolerance) {

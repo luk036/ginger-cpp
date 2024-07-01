@@ -3,12 +3,13 @@
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
 #include <ginger/autocorr.hpp>     // for extract_autocorr, initial_autocorr
+#include <ginger/config.hpp>       // for Options
 #include <ginger/rootfinding.hpp>  // for horner, Options
 #include <utility>                 // for pair
 #include <vector>                  // for vector
 
-#include "fmt/format.h"        // for print
-#include "ginger/vector2.hpp"  // for vector2
+// #include "fmt/format.h"        // for print
+// #include "ginger/vector2.hpp"  // for vector2
 
 TEST_CASE("test auto-corr 1") {
     // auto vA = vec2{0.1, 1.2};
@@ -36,10 +37,10 @@ TEST_CASE("test auto-corr 1") {
     auto found = result.second;
     // fmt::print("{}, {}\n", niter, found);
     REQUIRE(found);
-    for (auto &vr : vrs) {
-        // extract_autocorr(vr);
-        fmt::print("{}, {}\n", vr.x(), vr.y());
-    }
+    // for (auto &vr : vrs) {
+    //     // extract_autocorr(vr);
+    //     fmt::print("{}, {}\n", vr.x(), vr.y());
+    // }
 
     CHECK(niter <= 21);
 
@@ -80,10 +81,10 @@ TEST_CASE("test autocorr FIR") {
     // fmt::print("{}, {}\n", niter, found);
     REQUIRE(found);
 
-    for (auto &vr : vrs) {
-        // extract_autocorr(vr);
-        fmt::print("{}, {}\n", vr.x(), vr.y());
-    }
+    // for (auto &vr : vrs) {
+    //     // extract_autocorr(vr);
+    //     fmt::print("{}, {}\n", vr.x(), vr.y());
+    // }
 
     // CHECK(niter <= 346);
 

@@ -1,14 +1,13 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
-#include <cmath>                   // for abs, acos, cos, pow
-#include <cstddef>                 // for size_t
-#include <functional>              // for __base
-#include <future>                  // for future
+#include <cmath>    // for abs, acos, cos, pow
+#include <cstddef>  // for size_t
+#include <future>   // for future
+#include <ginger/config.hpp>
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
 #include <thread>                  // for thread
-#include <type_traits>             // for move
 #include <utility>                 // for pair
 #include <vector>                  // for vector, vector<>::reference, __v...
 

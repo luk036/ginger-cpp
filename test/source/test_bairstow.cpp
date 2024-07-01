@@ -4,11 +4,12 @@
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
 #include <ginger/bairstow.hpp>     // for horner, initial_guess, pbairstow...
+#include <ginger/config.hpp>       // for Options
 #include <ginger/rootfinding.hpp>  // for horner, initial_guess, pbairstow...
-#include <utility>                 // for pair
-#include <vector>                  // for vector
+// #include <utility>                 // for pair
+#include <vector>  // for vector
 
-#include "fmt/format.h"        // for print
+// #include "fmt/format.h"        // for print
 #include "ginger/vector2.hpp"  // for Vector2
 
 using namespace ginger;

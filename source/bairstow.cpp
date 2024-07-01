@@ -1,6 +1,7 @@
-#include <cmath>                   // for abs, acos, cos, pow
-#include <cstddef>                 // for size_t
-#include <ginger/bairstow.hpp>     // for operator-, Vector2Ref
+#include <cmath>                // for abs, acos, cos, pow
+#include <cstddef>              // for size_t
+#include <ginger/bairstow.hpp>  // for operator-, Vector2Ref
+#include <ginger/config.hpp>
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
 #include <iterator>                // for back_inserter

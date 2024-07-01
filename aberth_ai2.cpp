@@ -48,14 +48,10 @@ std::vector<std::complex<double>> initial_aberth(const std::vector<double>& coef
 }
 
 double aberth_job(const std::vector<double>& coeffs, size_t i, std::complex<double>& zi,
-                  bool& converged, const std::vector<std::complex<double>>& zsc,
+                  const std::vector<std::complex<double>>& zsc,
                   const std::vector<double>& coeffs1) {
     std::complex<double> pp = horner_eval_c(coeffs, zi);
     double tol_i = std::abs(pp);  // Using l1_norm equivalent for simplicity
-    if (tol_i < 1e-15) {
-        converged = true;
-        return 0.0;
-    }
     std::complex<double> pp1 = horner_eval_c(coeffs1, zi);
     for (size_t j = 0; j < zsc.size(); ++j) {
         if (i != j) {
@@ -74,19 +70,15 @@ std::pair<int, bool> aberth(const std::vector<double>& coeffs,
     for (size_t i = 0; i < degree; ++i) {
         coeffs1[i] = coeffs[i] * (degree - i);
     }
-    std::vector<bool> converged(m_zs, false);
 
     for (size_t niter = 0; niter < options.max_iters; ++niter) {
         double tolerance = 0.0;
 
         for (size_t i = 0; i < m_zs; ++i) {
-            if (converged[i]) continue;
             std::complex<double> zi = zs[i];
-            bool local_converged;
-            double tol_i = aberth_job(coeffs, i, zi, local_converged, zs, coeffs1);
+            double tol_i = aberth_job(coeffs, i, zi, zs, coeffs1);
             if (tol_i > tolerance) tolerance = tol_i;
             zs[i] = zi;
-            converged[i] = local_converged;
         }
         if (tolerance < options.tolerance) return {niter, true};
     }

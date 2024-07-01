@@ -1,6 +1,7 @@
 #include <benchmark/benchmark.h>  // for BENCHMARK, State, BENCHMARK_MAIN
 
 #include <ginger/autocorr.hpp>     // for initial_autocorr, pbairstow_auto...
+#include <ginger/config.hpp>       // for Options
 #include <ginger/rootfinding.hpp>  // for Options, initial_guess, pbairsto...
 #include <vector>                  // for vector
 
