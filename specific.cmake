@@ -8,7 +8,14 @@ CPMAddPackage(
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-set(SPECIFIC_LIBS Threads::Threads fmt::fmt)
+CPMAddPackage(
+  NAME LdsGen
+  GIT_TAG 1.0.3
+  GITHUB_REPOSITORY luk036/lds-gen-cpp
+  OPTIONS "INSTALL_ONLY YES" # create an installable target
+)
+
+set(SPECIFIC_LIBS LdsGen::LdsGen Threads::Threads fmt::fmt)
 
 # cpmaddpackage( NAME GSL GITHUB_REPOSITORY "microsoft/GSL" GIT_TAG "v4.0.0" GIT_SHALLOW ON )
 

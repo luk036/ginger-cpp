@@ -17,6 +17,7 @@ end
 target("Ginger")
     set_languages("c++14")
     set_kind("static")
+    add_includedirs("../lds-gen-cpp/include", {public = true})
     add_includedirs("include", {public = true})
     add_files("source/*.cpp")
     add_packages("fmt")
