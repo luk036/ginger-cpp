@@ -25,14 +25,14 @@
  */
 auto initial_autocorr(const std::vector<double> &coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
-    const auto re = std::pow(std::abs(coeffs[degree]), 1.0 / double(degree));
+    const auto radius = std::pow(std::abs(coeffs[degree]), 1.0 / double(degree));
 
     degree /= 2;
     const auto k = M_PI / double(degree);
-    const auto m = re * re;
+    const auto m = radius * radius;
     auto vr0s = std::vector<Vec2>{};
     for (auto i = 1U; i < degree; i += 2) {
-        vr0s.emplace_back(Vec2{2 * re * std::cos(k * double(i)), -m});
+        vr0s.emplace_back(Vec2{2 * radius * std::cos(k * double(i)), -m});
     }
     return vr0s;
 }
@@ -63,11 +63,11 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
         for (auto i = 0U; i != M; ++i) {
             results.emplace_back(pool.enqueue([&, i]() {
                 auto coeffs1 = coeffs;
-                const auto N = coeffs.size() - 1;  // degree, assume even
+                const auto degree = coeffs.size() - 1;  // degree, assume even
                 const auto &vri = vrs[i];
-                auto vA = horner(coeffs1, N, vri);
+                auto vA = horner(coeffs1, degree, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                auto vA1 = horner(coeffs1, N - 2, vri);
+                auto vA1 = horner(coeffs1, degree - 2, vri);
                 for (auto j : rr.exclude(i)) {  // exclude i
                     const auto vrj = vrs[j];    // make a copy, don't reference!
                     suppress(vA, vA1, vri, vrj);

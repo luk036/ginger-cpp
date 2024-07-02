@@ -97,19 +97,19 @@ auto suppress2(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
  * @return The function `initial_guess` returns a vector of `Vec2` objects.
  */
 auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
-    auto N = coeffs.size() - 1;
-    const auto c = -coeffs[1] / (double(N) * coeffs[0]);
-    const auto Pc = horner_eval(std::move(coeffs), N, c);
-    const auto re = std::pow(std::abs(Pc), 1.0 / double(N));
-    N /= 2;
-    N *= 2;  // make even
-    const auto k = M_PI / double(N);
-    const auto m = c * c + re * re;
+    auto degree = coeffs.size() - 1;
+    const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
+    const auto poly_c = horner_eval(std::move(coeffs), degree, center);
+    const auto radius = std::pow(std::abs(poly_c), 1.0 / double(degree));
+    degree /= 2;
+    degree *= 2;  // make even
+    const auto k = M_PI / double(degree);
+    const auto m = center * center + radius * radius;
     auto vr0s = std::vector<Vec2>{};
-    for (auto i = 1U; i < N; i += 2) {
-        const auto temp = re * std::cos(k * i);
-        auto r0 = 2 * (c + temp);
-        auto t0 = -(m + 2 * c * temp);
+    for (auto i = 1U; i < degree; i += 2) {
+        const auto temp = radius * std::cos(k * i);
+        auto r0 = 2 * (center + temp);
+        auto t0 = -(m + 2 * center * temp);
         vr0s.emplace_back(Vec2{r0, t0});
     }
     return vr0s;

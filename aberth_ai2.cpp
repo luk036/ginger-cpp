@@ -35,14 +35,14 @@ auto horner_eval_c(const std::vector<double>& coeffs,
 std::vector<std::complex<double>> initial_aberth(const std::vector<double>& coeffs) {
     size_t degree = coeffs.size() - 1;
     double center = -coeffs[1] / (coeffs[0] * degree);
-    double Pc = horner_eval_f(coeffs, center);
-    std::complex<double> re(-Pc, 0.0);
-    re = std::pow(re, 1.0 / degree);
+    double poly_c = horner_eval_f(coeffs, center);
+    std::complex<double> radius(-poly_c, 0.0);
+    radius = std::pow(radius, 1.0 / degree);
     double k = TWO_PI / degree;
     std::vector<std::complex<double>> roots;
     for (size_t idx = 0; idx < degree; ++idx) {
         double theta = k * (0.25 + idx);
-        roots.push_back(center + re * std::complex<double>(cos(theta), sin(theta)));
+        roots.push_back(center + radius * std::complex<double>(cos(theta), sin(theta)));
     }
     return roots;
 }

@@ -26,8 +26,8 @@ static const auto TWO_PI = 2.0 * std::acos(-1.0);
  * @param[in] z
  * @return Tp
  */
-inline auto horner_eval_c(const std::vector<double> &coeffs, const std::complex<double> &zval)
-    -> std::complex<double> {
+inline auto horner_eval_c(const std::vector<double> &coeffs,
+                          const std::complex<double> &zval) -> std::complex<double> {
     std::complex<double> result(0.0, 0.0);
     for (auto coeff : coeffs) {
         result = result * zval + coeff;
@@ -70,7 +70,7 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;
     const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
     const auto p_center = horner_eval_f(coeffs, center);
-    const auto radius = std::pow(std::fabs(p_center), 1.0 / degree);
+    const auto radius = std::pow(std::fabs(p_center), 1.0 / double(degree));
     auto z0s = vector<Complex>{};
     auto c_gen = ldsgen::Circle(2);
     for (auto i = 0U; i != degree; ++i) {
@@ -106,8 +106,8 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &options = Options())
-    -> std::pair<unsigned int, bool> {
+auto aberth(const vector<double> &coeffs, vector<Complex> &zs,
+            const Options &options = Options()) -> std::pair<unsigned int, bool> {
     const auto m = zs.size();
     const auto degree = coeffs.size() - 1;  // degree, assume even
     const auto rr = fun::Robin<size_t>(m);
@@ -231,7 +231,7 @@ auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;  // assume even
     const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
     const auto poly_c = horner_eval_f(coeffs, center);
-    auto radius = std::pow(std::fabs(poly_c), 1.0 / degree);
+    auto radius = std::pow(std::fabs(poly_c), 1.0 / double(degree));
     if (std::abs(radius) > 1.0) {
         radius = 1.0 / radius;
     }

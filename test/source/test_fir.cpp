@@ -30,11 +30,11 @@ TEST_CASE("test FIR") {
     // fmt::print(vrs);
     // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
     auto coeffs1 = r;
-    // auto N = coeffs1.size() - 1;
-    // auto vAh = horner(coeffs1, N, vrs[1]);
+    // auto degree = coeffs1.size() - 1;
+    // auto vAh = horner(coeffs1, degree, vrs[1]);
     // fmt::print("{}, {}\n", vAh.x(), vAh.y());
     // fmt::print(coeffs1);
-    // auto vA1h = horner(coeffs1, N - 2, vrs[1]);
+    // auto vA1h = horner(coeffs1, degree - 2, vrs[1]);
     // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
     auto options = Options();

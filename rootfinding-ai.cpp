@@ -143,11 +143,11 @@ Vector2 horner(const std::vector<double> &coeffs, int degree, const Vector2 &vr)
 
 std::vector<Vector2> initial_guess(const std::vector<double> &coeffs) {
     int degree = coeffs.size() - 1;
-    double centroid = -coeffs[1] / (degree * coeffs[0]);
+    double center = -coeffs[1] / (degree * coeffs[0]);
 
-    double Pc = horner_eval(coeffs, degree, centroid);
-    double reff = std::pow(std::abs(Pc), 1.0 / degree);
-    double m = centroid * centroid + reff * reff;
+    double poly_c = horner_eval(coeffs, degree, center);
+    double radius = std::pow(std::abs(poly_c), 1.0 / degree);
+    double m = center * center + radius * radius;
     std::vector<Vector2> vr0s;
     degree /= 2;
     degree *= 2;
@@ -155,9 +155,9 @@ std::vector<Vector2> initial_guess(const std::vector<double> &coeffs) {
     VdCorput vgen(2);
     vgen.reseed(1);
     for (int i = 1; i < degree; i += 2) {
-        double temp = reff * std::cos(PI * vgen.pop());
-        double r0 = 2 * (centroid + temp);
-        double t0 = m + 2 * centroid * temp;
+        double temp = radius * std::cos(PI * vgen.pop());
+        double r0 = 2 * (center + temp);
+        double t0 = m + 2 * center * temp;
         vr0s.emplace_back(r0, -t0);
     }
     return vr0s;
@@ -167,7 +167,7 @@ std::pair<std::vector<Vector2>, int, bool> pbairstow_even(const std::vector<doub
                                                           const std::vector<Vector2> &vrs,
                                                           const Options &options = Options()) {
     int M = vrs.size();
-    int N = coeffs.size() - 1;
+    int degree = coeffs.size() - 1;
     std::vector<bool> converged(M, false);
     Robin robin(M);
     for (int niter = 0; niter < options.max_iters; niter++) {
@@ -178,13 +178,13 @@ std::pair<std::vector<Vector2>, int, bool> pbairstow_even(const std::vector<doub
                 continue;
             }
             std::vector<double> coeffs1(coeffs);
-            Vector2 vA = horner(coeffs1, N, vrs[i]);
+            Vector2 vA = horner(coeffs1, degree, vrs[i]);
             double tol_i = std::max(std::abs(vA.x), std::abs(vA.y));
             if (tol_i < options.tol_ind) {
                 converged[i] = true;
                 continue;
             }
-            Vector2 vA1 = horner(coeffs1, N - 2, vrs[i]);
+            Vector2 vA1 = horner(coeffs1, degree - 2, vrs[i]);
             tolerance = std::max(tol_i, tolerance);
 
             for (int j : robin.exclude_list) {
