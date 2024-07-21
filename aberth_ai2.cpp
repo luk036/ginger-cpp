@@ -23,8 +23,8 @@ auto horner_eval_f(const std::vector<double>& coeffs, double zval) -> double {
     return result;
 }
 
-auto horner_eval_c(const std::vector<double>& coeffs,
-                   const std::complex<double>& zval) -> std::complex<double> {
+auto horner_eval_c(const std::vector<double>& coeffs, const std::complex<double>& zval)
+    -> std::complex<double> {
     std::complex<double> result(0.0, 0.0);
     for (auto coeff : coeffs) {
         result = result * zval + coeff;
