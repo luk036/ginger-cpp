@@ -14,7 +14,7 @@ using std::sin;
 using std::vector;
 using Complex = std::complex<double>;
 
-static const auto TWO_PI = 2.0 * std::acos(-1.0);
+// static const auto TWO_PI = 2.0 * std::acos(-1.0);
 
 /**
  * The function `horner_eval_c` is implementing the Horner's method for
