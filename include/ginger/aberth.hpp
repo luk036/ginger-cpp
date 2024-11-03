@@ -116,8 +116,8 @@ extern auto initial_aberth_autocorr(const std::vector<double> &coeffs)
  * method converged to a solution within the specified tolerance.
  */
 extern auto aberth_autocorr(const std::vector<double> &coeffs,
-                            std::vector<std::complex<double>> &zs, const Options &options)
-    -> std::pair<unsigned int, bool>;
+                            std::vector<std::complex<double>> &zs,
+                            const Options &options) -> std::pair<unsigned int, bool>;
 
 /**
  * @brief Multi-threading Aberth-Ehrlich method (specifically for auto-correlation functions)
@@ -145,5 +145,5 @@ extern auto aberth_autocorr(const std::vector<double> &coeffs,
  * method converged to a solution within the specified tolerance.
  */
 extern auto aberth_autocorr_mt(const std::vector<double> &coeffs,
-                               std::vector<std::complex<double>> &zs, const Options &options)
-    -> std::pair<unsigned int, bool>;
+                               std::vector<std::complex<double>> &zs,
+                               const Options &options) -> std::pair<unsigned int, bool>;
