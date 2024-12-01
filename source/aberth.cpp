@@ -26,8 +26,8 @@ using Complex = std::complex<double>;
  * @param[in] z
  * @return Tp
  */
-inline auto horner_eval_c(const std::vector<double> &coeffs,
-                          const std::complex<double> &zval) -> std::complex<double> {
+inline auto horner_eval_c(const std::vector<double> &coeffs, const std::complex<double> &zval)
+    -> std::complex<double> {
     std::complex<double> result(0.0, 0.0);
     for (auto coeff : coeffs) {
         result = result * zval + coeff;
@@ -106,8 +106,8 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-auto aberth(const vector<double> &coeffs, vector<Complex> &zs,
-            const Options &options = Options()) -> std::pair<unsigned int, bool> {
+auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &options = Options())
+    -> std::pair<unsigned int, bool> {
     const auto m = zs.size();
     const auto degree = coeffs.size() - 1;  // degree, assume even
     const auto rr = fun::Robin<size_t>(m);
