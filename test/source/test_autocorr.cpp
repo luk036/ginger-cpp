@@ -1,15 +1,14 @@
 // import numpy as np
 // -*- coding: utf-8 -*-
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
+#include <fmt/format.h>       // for print
 
 #include <ginger/autocorr.hpp>     // for extract_autocorr, initial_autocorr
 #include <ginger/config.hpp>       // for Options
 #include <ginger/rootfinding.hpp>  // for horner, Options
+#include <ginger/vector2.hpp>      // for vector2
 #include <utility>                 // for pair
 #include <vector>                  // for vector
-
-// #include "fmt/format.h"        // for print
-// #include "ginger/vector2.hpp"  // for vector2
 
 TEST_CASE("test auto-corr 1") {
     // auto vA = vec2{0.1, 1.2};
@@ -36,11 +35,11 @@ TEST_CASE("test auto-corr 1") {
     auto niter = result.first;
     auto found = result.second;
     // fmt::print("{}, {}\n", niter, found);
+    for (auto &vr : vrs) {
+        extract_autocorr(vr);
+        fmt::print("{}, {}\n", vr.x(), vr.y());
+    }
     REQUIRE(found);
-    // for (auto &vr : vrs) {
-    //     // extract_autocorr(vr);
-    //     fmt::print("{}, {}\n", vr.x(), vr.y());
-    // }
 
     CHECK(niter <= 21);
 
