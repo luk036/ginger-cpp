@@ -236,3 +236,121 @@ TEST_CASE("test root-finding FIR") {
     CHECK(niter <= 14);
     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 }
+
+TEST_CASE("Polynomial Root Finding") {
+    SUBCASE("Initial Guess") {
+        std::vector<double> coeffs = {10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
+        auto vrs = initial_guess(coeffs);
+        
+        CHECK(vrs.size() == 4); // For degree 8 polynomial
+        for (const auto& vr : vrs) {
+            CHECK(vr.x() != 0.0);
+            CHECK(vr.y() != 0.0);
+        }
+    }
+
+    SUBCASE("Horner Evaluation") {
+        std::vector<double> coeffs = {1.0, 2.0, 3.0}; // x^2 + 2x + 3
+        double z = 2.0;
+        double result = horner_eval(coeffs, 2, z);
+        CHECK(result == doctest::Approx(z*z + 2.0*z + 3.0));
+    }
+
+    SUBCASE("Matrix Operations") {
+        Vec2 vr(1.0, 2.0);
+        Vec2 vp(3.0, 4.0);
+        
+        SUBCASE("Make Adjoint") {
+            Mat2 adj = makeadjoint(vr, vp);
+            CHECK(adj.x().x() == doctest::Approx(4.0));
+            CHECK(adj.x().y() == doctest::Approx(-3.0));
+            CHECK(adj.y().x() == doctest::Approx(-6.0));
+            CHECK(adj.y().y() == doctest::Approx(7.0));
+        }
+
+        SUBCASE("Delta Calculation") {
+            Vec2 vA(1.0, 2.0);
+            Vec2 dt = delta(vA, vr, vp);
+            CHECK(dt.x() != 0.0);
+            CHECK(dt.y() != 0.0);
+        }
+    }
+
+    SUBCASE("Suppression Functions") {
+        Vec2 vA(3.0, 3.0);
+        Vec2 vA1(1.0, 2.0);
+        Vec2 vri(-2.0, 0.0);
+        Vec2 vrj(4.0, 5.0);
+        
+        SUBCASE("Original Suppress") {
+            Vec2 vA_copy = vA;
+            Vec2 vA1_copy = vA1;
+            suppress(vA_copy, vA1_copy, vri, vrj);
+            CHECK(vA_copy.x() != vA.x());
+            CHECK(vA_copy.y() != vA.y());
+            CHECK(vA1_copy.x() != vA1.x());
+            CHECK(vA1_copy.y() != vA1.y());
+        }
+
+        SUBCASE("Suppress2") {
+            Vec2 vA_copy = vA;
+            Vec2 vA1_copy = vA1;
+            suppress2(vA_copy, vA1_copy, vri, vrj);
+            CHECK(vA_copy.x() != vA.x());
+            CHECK(vA_copy.y() != vA.y());
+            CHECK(vA1_copy.x() != vA1.x());
+            CHECK(vA1_copy.y() != vA1.y());
+        }
+    }
+
+    SUBCASE("Bairstow's Method") {
+        std::vector<double> coeffs = {10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
+        auto vrs = initial_guess(coeffs);
+        Options options;
+        options.max_iters = 100;
+        options.tolerance = 1e-12;
+        
+        SUBCASE("Convergence") {
+            auto [niter, found] = pbairstow_even(coeffs, vrs, options);
+            CHECK(niter > 0);
+            CHECK(found == true);
+            
+            // Verify roots by evaluating polynomial
+            for (const auto& vr : vrs) {
+                std::vector<double> coeffs_copy = coeffs;
+                auto val = horner(coeffs_copy, coeffs.size()-1, vr);
+                CHECK(val.x() == doctest::Approx(0.0).epsilon(1e-6));
+                CHECK(val.y() == doctest::Approx(0.0).epsilon(1e-6));
+            }
+        }
+
+        SUBCASE("Max Iterations") {
+            options.max_iters = 1;
+            auto [niter, found] = pbairstow_even(coeffs, vrs, options);
+            CHECK(niter == 1);
+            CHECK(found == false);
+        }
+    }
+}
+
+// TEST_CASE("Edge Cases") {
+//     SUBCASE("Zero Polynomial") {
+//         std::vector<double> coeffs = {0.0, 0.0, 0.0};
+//         auto vrs = initial_guess(coeffs);
+//         CHECK(vrs.empty()); // Should handle zero polynomial
+//         
+//         Options options;
+//         auto [niter, found] = pbairstow_even(coeffs, vrs, options);
+//         CHECK(found == true); // Technically correct for zero polynomial
+//     }
+//
+//     SUBCASE("Constant Polynomial") {
+//         std::vector<double> coeffs = {5.0};
+//         auto vrs = initial_guess(coeffs);
+//         CHECK(vrs.empty()); // No roots to find
+//         
+//         Options options;
+//         auto [niter, found] = pbairstow_even(coeffs, vrs, options);
+//         CHECK(found == true); // No iterations needed
+//     }
+// }
