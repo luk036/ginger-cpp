@@ -147,7 +147,7 @@ namespace ginger {
          * @return a reference to a Vector2 object.
          */
         template <typename U1, typename U2>
-        CONSTEXPR14 auto operator+=(const Vector2<U1, U2> &other) -> Vector2<T1, T2> & {
+        inline auto operator+=(const Vector2<U1, U2> &other) -> Vector2<T1, T2> & {
             this->_x += other.x();
             this->_y += other.y();
             return *this;
@@ -165,7 +165,7 @@ namespace ginger {
          * @return a reference to a Vector2 object.
          */
         template <typename U1, typename U2>  //
-        CONSTEXPR14 auto operator-=(const Vector2<U1, U2> &other) -> Vector2<T1, T2> & {
+        inline auto operator-=(const Vector2<U1, U2> &other) -> Vector2<T1, T2> & {
             this->_x -= other.x();
             this->_y -= other.y();
             return *this;
@@ -179,7 +179,7 @@ namespace ginger {
          *
          * @return The `operator*=` function returns a reference to the modified `Vector2` object.
          */
-        template <typename R> CONSTEXPR14 auto operator*=(const R &alpha) -> Vector2<T1, T2> & {
+        template <typename R> inline auto operator*=(const R &alpha) -> Vector2<T1, T2> & {
             this->_x *= alpha;
             this->_y *= alpha;
             return *this;
@@ -194,7 +194,7 @@ namespace ginger {
          *
          * @return a reference to the current instance of the Vector2 class.
          */
-        template <typename R> CONSTEXPR14 auto operator/=(const R &alpha) -> Vector2<T1, T2> & {
+        template <typename R> inline auto operator/=(const R &alpha) -> Vector2<T1, T2> & {
             this->_x /= alpha;
             this->_y /= alpha;
             return *this;
