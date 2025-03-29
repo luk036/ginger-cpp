@@ -58,31 +58,21 @@
             <li>
               Reference
               <ul>
-                <li><a href="#nested-classes">Classes</a></li>
                 <li><a href="#typedef-members">Typedefs</a></li>
                 <li><a href="#func-members">Functions</a></li>
               </ul>
             </li>
           </ul>
         </nav>
-        <section id="nested-classes">
-          <h2><a href="#nested-classes">Classes</a></h2>
-          <dl class="m-doc">
-            <dt>
-              class <a href="classOptions.html" class="m-doc">Options</a>
-            </dt>
-            <dd><a href="classOptions.html" class="m-doc">Options</a>.</dd>
-          </dl>
-        </section>
         <section id="typedef-members">
           <h2><a href="#typedef-members">Typedefs</a></h2>
           <dl class="m-doc">
-            <dt id="a361bdeffc33f8976a1a9652bcf480edc">
-              using <a href="#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc-self">Vec2</a> = <a href="classnumeric_1_1Vector2.html" class="m-doc">numeric::<wbr />Vector2</a>&lt;double&gt;
+            <dt id="ae19467d9b2dbbd57d23a49734c6354b8">
+              using <a href="#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc-self">Vec2</a> = <a href="classginger_1_1Vector2.html" class="m-doc">ginger::<wbr />Vector2</a>&lt;double&gt;
             </dt>
             <dd><span></span></dd>
-            <dt id="a2bbca40cbb62889bf8f52d848133fba7">
-              using <a href="#a2bbca40cbb62889bf8f52d848133fba7" class="m-doc-self">Mat2</a> = <a href="classnumeric_1_1Matrix2.html" class="m-doc">numeric::<wbr />Matrix2</a>&lt;<a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&gt;
+            <dt id="a09dcc1516e32f64b1b52dad53b675f08">
+              using <a href="#a09dcc1516e32f64b1b52dad53b675f08" class="m-doc-self">Mat2</a> = <a href="classginger_1_1Matrix2.html" class="m-doc">ginger::<wbr />Matrix2</a>&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -96,39 +86,39 @@
             <dd>Initial guess for the parallel Bairstow method.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a0427aa9643759c3320b425c17a5e138c" class="m-doc">pbairstow_even</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
-              std::vector&lt;<a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&gt;&amp; vrs,
+              std::vector&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;&amp; vrs,
               const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt; -&gt; auto</span>
             </dt>
             <dd>Multi-threading Bairstow&#x27;s method (even degree only)</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aa05afc70e0a790f77aae8d4155d04cc9" class="m-doc">horner</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt;&amp; coeffs1,
               std::size_t degree,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2 -&gt; auto</span>
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2 -&gt; auto</span>
             </dt>
             <dd>Horner&#x27;s rule.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a0a241f80ca028f09e7510fae9ab148b7" class="m-doc">suppress</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
-              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0a241f80ca028f09e7510fae9ab148b7" class="m-doc">suppress</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vrj) -&gt; void -&gt; auto</span>
             </dt>
             <dd>zero suppression</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a845095322475734a4a4c17a61da1a505" class="m-doc">suppress2</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
-              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a845095322475734a4a4c17a61da1a505" class="m-doc">suppress2</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vrj) -&gt; void -&gt; auto</span>
             </dt>
             <dd>zero suppression</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6f6614d3ea6830460ccd31f6fbe7ec68" class="m-doc">makeadjoint</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Mat2 -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6f6614d3ea6830460ccd31f6fbe7ec68" class="m-doc">makeadjoint</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vp) -&gt; Mat2 -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#afc8471d6f94a1e238d908108dd0b1da7" class="m-doc">delta</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Vec2 -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#afc8471d6f94a1e238d908108dd0b1da7" class="m-doc">delta</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vp) -&gt; Vec2 -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
@@ -168,7 +158,7 @@
           <section class="m-doc-details" id="a0427aa9643759c3320b425c17a5e138c"><div>
             <h3>
               <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0427aa9643759c3320b425c17a5e138c" class="m-doc-self">pbairstow_even</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
-              std::vector&lt;<a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&gt;&amp; vrs,
+              std::vector&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;&amp; vrs,
               const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt;</span></span>
             </h3>
             <p>Multi-threading Bairstow&#x27;s method (even degree only)</p>
@@ -179,15 +169,15 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of the polynomial. Each element of the vector corresponds to the coefficient of a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 + 2</td>
+                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of the polynomial. Each element of the vector corresponds to the coefficient of a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2 @param[in, out] vrs</code>vrs<code>is a vector of iterates, which represents the initial guesses for the roots of the polynomial. The Bairstow&#x27;s method will update these iterates iteratively until the desired tolerance is reached or the maximum number of iterations is reached. @param[in] options The</code>options<code>parameter is an object of type</code><a href="classOptions.html" class="m-doc">Options</a><code>which contains the maximum number of iterations (</code>max_iters<code>) and the tolerance (</code>tolerance`). These options are used to control the convergence criteria for the Bairstow&#x27;s method.</td>
                 </tr>
                 <tr>
-                  <td>vrs&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
-                  <td><code>vrs</code> is a vector of iterates, which represents the initial guesses for the roots of the polynomial. The Bairstow&#x27;s method will update these iterates iteratively until the desired tolerance is reached or the maximum number of iterations is reached.</td>
+                  <td>vrs</td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td>options&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The <code>options</code> parameter is an object of type <code><a href="classOptions.html" class="m-doc">Options</a></code> which contains the maximum number of iterations (<code>max_iters</code>) and the tolerance (<code>tolerance</code>). These options are used to control the convergence criteria for the Bairstow&#x27;s method.</td>
+                  <td>options</td>
+                  <td></td>
                 </tr>
               </tbody>
               <tfoot>
@@ -203,7 +193,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa05afc70e0a790f77aae8d4155d04cc9" class="m-doc-self">horner</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt;&amp; coeffs1,
               std::size_t degree,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2</span></span>
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2</span></span>
             </h3>
             <p>Horner&#x27;s rule.</p>
             <table class="m-table m-fullwidth m-flat">
@@ -235,10 +225,10 @@
           </div></section>
           <section class="m-doc-details" id="a0a241f80ca028f09e7510fae9ab148b7"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a241f80ca028f09e7510fae9ab148b7" class="m-doc-self">suppress</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
-              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void</span></span>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a241f80ca028f09e7510fae9ab148b7" class="m-doc-self">suppress</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vrj) -&gt; void</span></span>
             </h3>
             <p>zero suppression</p>
             <table class="m-table m-fullwidth m-flat">
@@ -268,10 +258,10 @@
           </div></section>
           <section class="m-doc-details" id="a845095322475734a4a4c17a61da1a505"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a845095322475734a4a4c17a61da1a505" class="m-doc-self">suppress2</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
-              <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA1,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vri,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vrj) -&gt; void</span></span>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a845095322475734a4a4c17a61da1a505" class="m-doc-self">suppress2</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA,
+              <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA1,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vri,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vrj) -&gt; void</span></span>
             </h3>
             <p>zero suppression</p>
             <table class="m-table m-fullwidth m-flat">
@@ -301,8 +291,8 @@
           </div></section>
           <section class="m-doc-details" id="a6f6614d3ea6830460ccd31f6fbe7ec68"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6f6614d3ea6830460ccd31f6fbe7ec68" class="m-doc-self">makeadjoint</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Mat2</span></span>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6f6614d3ea6830460ccd31f6fbe7ec68" class="m-doc-self">makeadjoint</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vp) -&gt; Mat2</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -329,9 +319,9 @@
           </div></section>
           <section class="m-doc-details" id="afc8471d6f94a1e238d908108dd0b1da7"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afc8471d6f94a1e238d908108dd0b1da7" class="m-doc-self">delta</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vA,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="autocorr_8hpp.html#a361bdeffc33f8976a1a9652bcf480edc" class="m-doc">Vec2</a>&amp; vp) -&gt; Vec2</span></span>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afc8471d6f94a1e238d908108dd0b1da7" class="m-doc-self">delta</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vA,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
+              const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vp) -&gt; Vec2</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -438,7 +428,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>Ginger. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>Ginger. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

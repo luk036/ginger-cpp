@@ -67,28 +67,44 @@
           <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae369a1ef218f017489f1452ed612605d" class="m-doc">initial_aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs) -&gt; std::vector&lt; std::complex&lt; double &gt;&gt; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5c5c50733648df730b08a40ff722ef44" class="m-doc">initial_aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs) -&gt; std::vector&lt; std::complex&lt; double &gt; &gt; -&gt; auto</span>
             </dt>
             <dd>Initial guess for the Aberth-Ehrlich method.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a35d14b897d27346427aeb5698f5262a3" class="m-doc">aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              <span class="m-doc-wrap-bumper">auto <a href="#af0cac5c6ba43595a41de39de555c7d99" class="m-doc">aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
               std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
               const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt; -&gt; auto</span>
             </dt>
             <dd>Single-threading Aberth-Ehrlich method.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aa1ccf8955fb3f2393788864bf6bdf31d" class="m-doc">aberth_mt</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              <span class="m-doc-wrap-bumper">auto <a href="#ab66a6467b74408207e476c6d753ec943" class="m-doc">aberth_mt</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
               std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
               const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt; -&gt; auto</span>
             </dt>
             <dd>Multi-threading Aberth-Ehrlich method.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3fc9220a314a82c23fc38205095cf872" class="m-doc">initial_aberth_autocorr</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs) -&gt; std::vector&lt; std::complex&lt; double &gt; &gt; -&gt; auto</span>
+            </dt>
+            <dd>Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0bf5d66cbba299da63d77a9a62318cbb" class="m-doc">aberth_autocorr</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
+              const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt; -&gt; auto</span>
+            </dt>
+            <dd>Single-threading Aberth-Ehrlich method (specifically for auto-correlation functions)</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0fa2c7fc1b8dfbe0ceb99b050cb430f7" class="m-doc">aberth_autocorr_mt</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
+              const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt; -&gt; auto</span>
+            </dt>
+            <dd>Multi-threading Aberth-Ehrlich method (specifically for auto-correlation functions)</dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="ae369a1ef218f017489f1452ed612605d"><div>
+          <section class="m-doc-details" id="a5c5c50733648df730b08a40ff722ef44"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae369a1ef218f017489f1452ed612605d" class="m-doc-self">initial_aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs) -&gt; std::vector&lt; std::complex&lt; double &gt;&gt;</span></span>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5c5c50733648df730b08a40ff722ef44" class="m-doc-self">initial_aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs) -&gt; std::vector&lt; std::complex&lt; double &gt; &gt;</span></span>
             </h3>
             <p>Initial guess for the Aberth-Ehrlich method.</p>
             <table class="m-table m-fullwidth m-flat">
@@ -110,9 +126,9 @@
             </table>
 <p>The <code>initial_aberth</code> function calculates the initial values for the Aberth-Ehrlich method for finding the roots of a polynomial.</p>
           </div></section>
-          <section class="m-doc-details" id="a35d14b897d27346427aeb5698f5262a3"><div>
+          <section class="m-doc-details" id="af0cac5c6ba43595a41de39de555c7d99"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a35d14b897d27346427aeb5698f5262a3" class="m-doc-self">aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af0cac5c6ba43595a41de39de555c7d99" class="m-doc-self">aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
               std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
               const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt;</span></span>
             </h3>
@@ -124,15 +140,15 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of a polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 + 2x +</td>
+                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of a polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2x + @param[in] zs</code>zs<code>is a vector of complex numbers representing the initial guesses for the roots of the polynomial. The function will update these values iteratively to converge to the actual roots. @param[in] options The</code>options<code>parameter is an object of type</code><a href="classOptions.html" class="m-doc">Options</a><code>that contains the maximum number of iterations (</code>max_iters<code>) and the tolerance (</code>tolerance`). These options control the convergence criteria for the Aberth-Ehrlich method.</td>
                 </tr>
                 <tr>
-                  <td>zs&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td><code>zs</code> is a vector of complex numbers representing the initial guesses for the roots of the polynomial. The function will update these values iteratively to converge to the actual roots.</td>
+                  <td>zs</td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td>options&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The <code>options</code> parameter is an object of type <code><a href="classOptions.html" class="m-doc">Options</a></code> that contains the maximum number of iterations (<code>max_iters</code>) and the tolerance (<code>tolerance</code>). These options control the convergence criteria for the Aberth-Ehrlich method.</td>
+                  <td>options</td>
+                  <td></td>
                 </tr>
               </tbody>
               <tfoot>
@@ -144,9 +160,9 @@
             </table>
 <p>The <code>aberth</code> function is a multi-threaded implementation of the Aberth-Ehrlich method for finding the roots of a polynomial.</p><p>Aberth&#x27;s method is a method for finding the roots of a polynomial that is robust but requires complex arithmetic even if the polynomial is real. This is because it starts with complex initial approximations.</p>
           </div></section>
-          <section class="m-doc-details" id="aa1ccf8955fb3f2393788864bf6bdf31d"><div>
+          <section class="m-doc-details" id="ab66a6467b74408207e476c6d753ec943"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa1ccf8955fb3f2393788864bf6bdf31d" class="m-doc-self">aberth_mt</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab66a6467b74408207e476c6d753ec943" class="m-doc-self">aberth_mt</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
               std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
               const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt;</span></span>
             </h3>
@@ -158,15 +174,107 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of a polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 + 2x +</td>
+                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of a polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2x + @param[in] zs</code>zs<code>is a vector of complex numbers representing the initial guesses for the roots of the polynomial. The function will update these values iteratively to converge to the actual roots. @param[in] options The</code>options<code>parameter is an object of type</code><a href="classOptions.html" class="m-doc">Options</a><code>that contains the maximum number of iterations (</code>max_iters<code>) and the tolerance (</code>tolerance`). These options control the convergence criteria for the Aberth-Ehrlich method.</td>
                 </tr>
                 <tr>
-                  <td>zs&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td><code>zs</code> is a vector of complex numbers representing the initial guesses for the roots of the polynomial. The function will update these values iteratively to converge to the actual roots.</td>
+                  <td>zs</td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td>options&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The <code>options</code> parameter is an object of type <code><a href="classOptions.html" class="m-doc">Options</a></code> that contains the maximum number of iterations (<code>max_iters</code>) and the tolerance (<code>tolerance</code>). These options control the convergence criteria for the Aberth-Ehrlich method.</td>
+                  <td>options</td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The <code>aberth</code> function returns a <code>std::pair&lt;unsigned int, bool&gt;</code>. The first element of the pair represents the number of iterations performed, and the second element represents whether the method converged to a solution within the specified tolerance.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The <code>aberth</code> function is a multi-threaded implementation of the Aberth-Ehrlich method for finding the roots of a polynomial.</p><p>Aberth&#x27;s method is a method for finding the roots of a polynomial that is robust but requires complex arithmetic even if the polynomial is real. This is because it starts with complex initial approximations.</p>
+          </div></section>
+          <section class="m-doc-details" id="a3fc9220a314a82c23fc38205095cf872"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3fc9220a314a82c23fc38205095cf872" class="m-doc-self">initial_aberth_autocorr</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs) -&gt; std::vector&lt; std::complex&lt; double &gt; &gt;</span></span>
+            </h3>
+            <p>Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The <code>coeffs</code> parameter is a vector of doubles that represents the coefficients of a polynomial.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The function <code>initial_aberth</code> returns a vector of Complex numbers.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The <code>initial_aberth</code> function calculates the initial values for the Aberth-Ehrlich method for finding the roots of a polynomial.</p>
+          </div></section>
+          <section class="m-doc-details" id="a0bf5d66cbba299da63d77a9a62318cbb"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0bf5d66cbba299da63d77a9a62318cbb" class="m-doc-self">aberth_autocorr</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
+              const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt;</span></span>
+            </h3>
+            <p>Single-threading Aberth-Ehrlich method (specifically for auto-correlation functions)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of a polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2x + @param[in] zs</code>zs<code>is a vector of complex numbers representing the initial guesses for the roots of the polynomial. The function will update these values iteratively to converge to the actual roots. @param[in] options The</code>options<code>parameter is an object of type</code><a href="classOptions.html" class="m-doc">Options</a><code>that contains the maximum number of iterations (</code>max_iters<code>) and the tolerance (</code>tolerance`). These options control the convergence criteria for the Aberth-Ehrlich method.</td>
+                </tr>
+                <tr>
+                  <td>zs</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>options</td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The <code>aberth</code> function returns a <code>std::pair&lt;unsigned int, bool&gt;</code>. The first element of the pair represents the number of iterations performed, and the second element represents whether the method converged to a solution within the specified tolerance.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The <code>aberth</code> function is a multi-threaded implementation of the Aberth-Ehrlich method for finding the roots of a polynomial.</p><p>Aberth&#x27;s method is a method for finding the roots of a polynomial that is robust but requires complex arithmetic even if the polynomial is real. This is because it starts with complex initial approximations.</p>
+          </div></section>
+          <section class="m-doc-details" id="a0fa2c7fc1b8dfbe0ceb99b050cb430f7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0fa2c7fc1b8dfbe0ceb99b050cb430f7" class="m-doc-self">aberth_autocorr_mt</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs,
+              std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs,
+              const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt;</span></span>
+            </h3>
+            <p>Multi-threading Aberth-Ehrlich method (specifically for auto-correlation functions)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The <code>coeffs</code> parameter is a vector representing the coefficients of a polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2x + @param[in] zs</code>zs<code>is a vector of complex numbers representing the initial guesses for the roots of the polynomial. The function will update these values iteratively to converge to the actual roots. @param[in] options The</code>options<code>parameter is an object of type</code><a href="classOptions.html" class="m-doc">Options</a><code>that contains the maximum number of iterations (</code>max_iters<code>) and the tolerance (</code>tolerance`). These options control the convergence criteria for the Aberth-Ehrlich method.</td>
+                </tr>
+                <tr>
+                  <td>zs</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>options</td>
+                  <td></td>
                 </tr>
               </tbody>
               <tfoot>
@@ -223,7 +331,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>Ginger. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>Ginger. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>
