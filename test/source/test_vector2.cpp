@@ -24,7 +24,6 @@ TEST_CASE("test vector2") {
     // CHECK(vA.y() == 10.0);
 }
 
-
 TEST_CASE("Vector2 Construction") {
     SUBCASE("Default construction") {
         ginger::Vector2<int> v;
@@ -52,13 +51,13 @@ TEST_CASE("Vector2 Operations") {
     ginger::Vector2<double> v3(1.5, 2.5);
 
     SUBCASE("Dot product") {
-        CHECK(v1.dot(v2) == doctest::Approx(3*5 + 4*6));
-        CHECK(v1.dot(v3) == doctest::Approx(3*1.5 + 4*2.5));
+        CHECK(v1.dot(v2) == doctest::Approx(3 * 5 + 4 * 6));
+        CHECK(v1.dot(v3) == doctest::Approx(3 * 1.5 + 4 * 2.5));
     }
 
     SUBCASE("Cross product") {
-        CHECK(v1.cross(v2) == doctest::Approx(3*6 - 4*5));
-        CHECK(v1.cross(v3) == doctest::Approx(3*2.5 - 1.5*4));
+        CHECK(v1.cross(v2) == doctest::Approx(3 * 6 - 4 * 5));
+        CHECK(v1.cross(v3) == doctest::Approx(3 * 2.5 - 1.5 * 4));
     }
 
     SUBCASE("Negation") {

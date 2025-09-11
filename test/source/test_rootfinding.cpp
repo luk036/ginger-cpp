@@ -241,8 +241,8 @@ TEST_CASE("Polynomial Root Finding") {
     SUBCASE("Initial Guess") {
         std::vector<double> coeffs = {10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
         auto vrs = initial_guess(coeffs);
-        
-        CHECK(vrs.size() == 4); // For degree 8 polynomial
+
+        CHECK(vrs.size() == 4);  // For degree 8 polynomial
         for (const auto& vr : vrs) {
             CHECK(vr.x() != 0.0);
             CHECK(vr.y() != 0.0);
@@ -250,16 +250,16 @@ TEST_CASE("Polynomial Root Finding") {
     }
 
     SUBCASE("Horner Evaluation") {
-        std::vector<double> coeffs = {1.0, 2.0, 3.0}; // x^2 + 2x + 3
+        std::vector<double> coeffs = {1.0, 2.0, 3.0};  // x^2 + 2x + 3
         double z = 2.0;
         double result = horner_eval(coeffs, 2, z);
-        CHECK(result == doctest::Approx(z*z + 2.0*z + 3.0));
+        CHECK(result == doctest::Approx(z * z + 2.0 * z + 3.0));
     }
 
     SUBCASE("Matrix Operations") {
         Vec2 vr(1.0, 2.0);
         Vec2 vp(3.0, 4.0);
-        
+
         SUBCASE("Make Adjoint") {
             Mat2 adj = makeadjoint(vr, vp);
             CHECK(adj.x().x() == doctest::Approx(4.0));
@@ -281,7 +281,7 @@ TEST_CASE("Polynomial Root Finding") {
         Vec2 vA1(1.0, 2.0);
         Vec2 vri(-2.0, 0.0);
         Vec2 vrj(4.0, 5.0);
-        
+
         SUBCASE("Original Suppress") {
             Vec2 vA_copy = vA;
             Vec2 vA1_copy = vA1;
@@ -309,16 +309,16 @@ TEST_CASE("Polynomial Root Finding") {
         Options options;
         options.max_iters = 100;
         options.tolerance = 1e-12;
-        
+
         SUBCASE("Convergence") {
             auto [niter, found] = pbairstow_even(coeffs, vrs, options);
             CHECK(niter > 0);
             CHECK(found == true);
-            
+
             // Verify roots by evaluating polynomial
             for (const auto& vr : vrs) {
                 std::vector<double> coeffs_copy = coeffs;
-                auto val = horner(coeffs_copy, coeffs.size()-1, vr);
+                auto val = horner(coeffs_copy, coeffs.size() - 1, vr);
                 CHECK(val.x() == doctest::Approx(0.0).epsilon(1e-6));
                 CHECK(val.y() == doctest::Approx(0.0).epsilon(1e-6));
             }
@@ -338,7 +338,7 @@ TEST_CASE("Polynomial Root Finding") {
 //         std::vector<double> coeffs = {0.0, 0.0, 0.0};
 //         auto vrs = initial_guess(coeffs);
 //         CHECK(vrs.empty()); // Should handle zero polynomial
-//         
+//
 //         Options options;
 //         auto [niter, found] = pbairstow_even(coeffs, vrs, options);
 //         CHECK(found == true); // Technically correct for zero polynomial
@@ -348,7 +348,7 @@ TEST_CASE("Polynomial Root Finding") {
 //         std::vector<double> coeffs = {5.0};
 //         auto vrs = initial_guess(coeffs);
 //         CHECK(vrs.empty()); // No roots to find
-//         
+//
 //         Options options;
 //         auto [niter, found] = pbairstow_even(coeffs, vrs, options);
 //         CHECK(found == true); // No iterations needed

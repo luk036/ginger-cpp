@@ -5,15 +5,15 @@
 // #include <vector>
 
 // #include "fmt/format.h"        // for print
-#include <ginger/vector2.hpp>  // for Vector2
 #include <ginger/matrix2.hpp>  // for Matrix2
+#include <ginger/vector2.hpp>  // for Vector2
 
 TEST_CASE("Matrix2 Construction") {
     SUBCASE("Value construction") {
         ginger::Vector2<int> row1(1, 2);
         ginger::Vector2<int> row2(3, 4);
         ginger::Matrix2<ginger::Vector2<int>> m(std::move(row1), std::move(row2));
-        
+
         CHECK(m.x().x() == 1);
         CHECK(m.x().y() == 2);
         CHECK(m.y().x() == 3);
@@ -25,7 +25,7 @@ TEST_CASE("Matrix2 Operations") {
     ginger::Vector2<int> row1(1, 2);
     ginger::Vector2<int> row2(3, 4);
     ginger::Matrix2<ginger::Vector2<int>> m1(std::move(row1), std::move(row2));
-    
+
     ginger::Vector2<int> row3(5, 6);
     ginger::Vector2<int> row4(7, 8);
     ginger::Matrix2<ginger::Vector2<int>> m2(std::move(row3), std::move(row4));
@@ -94,7 +94,7 @@ TEST_CASE("Matrix2 Operations") {
         auto lm2 = m / 2.0;
         CHECK(lm2.x().x() == doctest::Approx(1.0));
         CHECK(lm2.x().y() == doctest::Approx(2.0));
-        
+
         CHECK(lm2.y().x() == doctest::Approx(3.0));
         CHECK(lm2.y().y() == doctest::Approx(4.0));
 
@@ -115,8 +115,8 @@ TEST_CASE("Matrix2 Vector Operations") {
 
     SUBCASE("Matrix-vector multiplication") {
         auto result = m.mdot(v);
-        CHECK(result.x() == 1*5 + 2*6);
-        CHECK(result.y() == 3*5 + 4*6);
+        CHECK(result.x() == 1 * 5 + 2 * 6);
+        CHECK(result.y() == 3 * 5 + 4 * 6);
     }
 }
 
@@ -125,16 +125,16 @@ TEST_CASE("Matrix2 Determinant") {
         ginger::Vector2<int> row1(3, 4);
         ginger::Vector2<int> row2(5, 6);
         ginger::Matrix2<ginger::Vector2<int>> m(std::move(row1), std::move(row2));
-        
-        CHECK(m.det() == doctest::Approx(3*6 - 4*5));
+
+        CHECK(m.det() == doctest::Approx(3 * 6 - 4 * 5));
     }
 
     SUBCASE("Double matrix") {
         ginger::Vector2<double> row1(1.5, 2.5);
         ginger::Vector2<double> row2(3.5, 4.5);
         ginger::Matrix2<ginger::Vector2<double>> m(std::move(row1), std::move(row2));
-        
-        CHECK(m.det() == doctest::Approx(1.5*4.5 - 2.5*3.5));
+
+        CHECK(m.det() == doctest::Approx(1.5 * 4.5 - 2.5 * 3.5));
     }
 }
 
