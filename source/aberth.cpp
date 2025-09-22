@@ -36,7 +36,7 @@ inline auto horner_eval_c(const std::vector<double> &coeffs, const std::complex<
 }
 
 /**
- * The function `horner_eval_c` is implementing the Horner's method for
+ * The function `horner_eval_f` is implementing the Horner's method for
  * evaluating a polynomial at a given point.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
@@ -81,125 +81,16 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
     return z0s;
 }
 
-/**
- * @brief Single-threading Aberth-Ehrlich method
- *
- * The `aberth` function is a multi-threaded implementation of the Aberth-Ehrlich method for finding
- * the roots of a polynomial.
- *
- * Aberth's method is a method for finding the roots of a polynomial that is
- * robust but requires complex arithmetic even if the polynomial is real. This
- * is because it starts with complex initial approximations.
- *
- * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
- * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
- * highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 +
- * 2x +
- * @param[in,out] zs `zs` is a vector of complex numbers representing the initial guesses for the
- * roots of the polynomial. The function will update these values iteratively to converge to the
- * actual roots.
- * @param[in] options The `options` parameter is an object of type `Options` that contains the
- * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control
- * the convergence criteria for the Aberth-Ehrlich method.
- *
- * @return The `aberth` function returns a `std::pair<unsigned int, bool>`. The first element of the
- * pair represents the number of iterations performed, and the second element represents whether the
- * method converged to a solution within the specified tolerance.
- */
-auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &options = Options())
+template <typename F>
+auto aberth_core(const vector<double> &coeffs, vector<Complex> &zs, const Options &options, F &&aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto m = zs.size();
-    const auto degree = coeffs.size() - 1;  // degree, assume even
-    const auto rr = fun::Robin<size_t>(m);
-    auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
-    }
-
-    auto aberth_job = [&](size_t i) -> double {
-        const auto zi = zs[i];
-        const auto P = horner_eval_c(coeffs, zi);
-        const auto tol_i = std::abs(P);
-        auto P1 = horner_eval_c(coeffs1, zi);
-        for (auto j : rr.exclude(i)) {
-            P1 -= P / (zi - zs[j]);
-        }
-        zs[i] -= P / P1;  // Gauss-Seidel fashion
-        return tol_i;
-    };
-
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
+        auto aberth_job = aberth_job_generator(coeffs, zs);
         vector<std::future<double>> results;
-
         for (auto i = 0U; i != m; ++i) {
-            auto res = aberth_job(i);
-            if (tolerance < res) {
-                tolerance = res;
-            }
-        }
-        if (tolerance < options.tolerance) {
-            return {niter, true};
-        }
-    }
-    return {options.max_iters, false};
-}
-
-/**
- * @brief Multi-threading Aberth-Ehrlich method
- *
- * The `aberth_mt` function is a multi-threaded implementation of the Aberth-Ehrlich method for
- * finding the roots of a polynomial.
- *
- * Aberth's method is a method for finding the roots of a polynomial that is
- * robust but requires complex arithmetic even if the polynomial is real. This
- * is because it starts with complex initial approximations.
- *
- * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
- * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
- * highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 +
- * 2x +
- * @param[in,out] zs `zs` is a vector of complex numbers representing the initial guesses for the
- * roots of the polynomial. The function will update these values iteratively to converge to the
- * actual roots.
- * @param[in] options The `options` parameter is an object of type `Options` that contains the
- * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control
- * the convergence criteria for the Aberth-Ehrlich method.
- *
- * @return The `aberth` function returns a `std::pair<unsigned int, bool>`. The first element of the
- * pair represents the number of iterations performed, and the second element represents whether the
- * method converged to a solution within the specified tolerance.
- */
-auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
-               const Options &options = Options()) -> std::pair<unsigned int, bool> {
-    ThreadPool pool(std::thread::hardware_concurrency());
-
-    const auto m = zs.size();
-    const auto degree = coeffs.size() - 1;  // degree, assume even
-    const auto rr = fun::Robin<size_t>(m);
-    auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
-    }
-
-    auto aberth_job = [&](size_t i) -> double {
-        const auto zi = zs[i];
-        const auto P = horner_eval_c(coeffs, zi);
-        const auto tol_i = std::abs(P);
-        auto P1 = horner_eval_c(coeffs1, zi);
-        for (auto j : rr.exclude(i)) {
-            P1 -= P / (zi - zs[j]);
-        }
-        zs[i] -= P / P1;  // Gauss-Seidel fashion
-        return tol_i;
-    };
-
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        vector<std::future<double>> results;
-
-        for (auto i = 0U; i != m; ++i) {
-            results.emplace_back(pool.enqueue(aberth_job, i));
+            results.emplace_back(aberth_job(i));
         }
         for (auto &result : results) {
             auto &&res = result.get();
@@ -214,17 +105,72 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
     return {options.max_iters, false};
 }
 
+auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &options = Options())
+    -> std::pair<unsigned int, bool> {
+    const auto degree = coeffs.size() - 1;
+    auto coeffs1 = vector<double>(degree);
+    for (auto i = 0U; i != degree; ++i) {
+        coeffs1[i] = double(degree - i) * coeffs[i];
+    }
+    const auto rr = fun::Robin<size_t>(zs.size());
+
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+        return [&](size_t i) {
+            const auto zi = zs_ref[i];
+            const auto P = horner_eval_c(coeffs, zi);
+            const auto tol_i = std::abs(P);
+            auto P1 = horner_eval_c(coeffs1, zi);
+            for (auto j : rr.exclude(i)) {
+                P1 -= P / (zi - zs_ref[j]);
+            }
+            zs_ref[i] -= P / P1;
+            return std::async(std::launch::deferred, [tol_i](){ return tol_i; });
+        };
+    };
+
+    return aberth_core(coeffs, zs, options, aberth_job_generator);
+}
+
+auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
+               const Options &options = Options()) -> std::pair<unsigned int, bool> {
+    ThreadPool pool(std::thread::hardware_concurrency());
+    const auto degree = coeffs.size() - 1;
+    auto coeffs1 = vector<double>(degree);
+    for (auto i = 0U; i != degree; ++i) {
+        coeffs1[i] = double(degree - i) * coeffs[i];
+    }
+    const auto rr = fun::Robin<size_t>(zs.size());
+
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+        return [&](size_t i) {
+            return pool.enqueue([&, i]() {
+                const auto zi = zs_ref[i];
+                const auto P = horner_eval_c(coeffs, zi);
+                const auto tol_i = std::abs(P);
+                auto P1 = horner_eval_c(coeffs1, zi);
+                for (auto j : rr.exclude(i)) {
+                    P1 -= P / (zi - zs_ref[j]);
+                }
+                zs_ref[i] -= P / P1;
+                return tol_i;
+            });
+        };
+    };
+
+    return aberth_core(coeffs, zs, options, aberth_job_generator);
+}
+
 /**
  * @brief Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)
  *
- * The `initial_aberth` function calculates the initial values for the Aberth-Ehrlich method for
+ * The `initial_aberth_autocorr` function calculates the initial values for the Aberth-Ehrlich method for
  * finding the roots of a polynomial.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
  * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
  * highest degree term and ending with the constant term.
  *
- * @return The function `initial_aberth` returns a vector of Complex numbers representing the
+ * @return The function `initial_aberth_autocorr` returns a vector of Complex numbers representing the
  * initial guesses for the roots of the polynomial.
  */
 auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
@@ -245,127 +191,16 @@ auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
     return z0s;
 }
 
-/**
- * @brief Single-threading Aberth-Ehrlich method (specifically for auto-correlation functions)
- *
- * The `aberth` function is a multi-threaded implementation of the Aberth-Ehrlich method for finding
- * the roots of a polynomial.
- *
- * Aberth's method is a method for finding the roots of a polynomial that is
- * robust but requires complex arithmetic even if the polynomial is real. This
- * is because it starts with complex initial approximations.
- *
- * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
- * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
- * highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 +
- * 2x +
- * @param[in,out] zs `zs` is a vector of complex numbers representing the initial guesses for the
- * roots of the polynomial. The function will update these values iteratively to converge to the
- * actual roots.
- * @param[in] options The `options` parameter is an object of type `Options` that contains the
- * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control
- * the convergence criteria for the Aberth-Ehrlich method.
- *
- * @return The `aberth` function returns a `std::pair<unsigned int, bool>`. The first element of the
- * pair represents the number of iterations performed, and the second element represents whether the
- * method converged to a solution within the specified tolerance.
- */
-auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
-                     const Options &options = Options()) -> std::pair<unsigned int, bool> {
+template <typename F>
+auto aberth_autocorr_core(const vector<double> &coeffs, vector<Complex> &zs, const Options &options, F &&aberth_job_generator)
+    -> std::pair<unsigned int, bool> {
     const auto m = zs.size();
-    const auto degree = coeffs.size() - 1;  // degree, assume even
-    const auto rr = fun::Robin<size_t>(m);
-    auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
-    }
-
-    auto aberth_autocorr_job = [&](size_t i) -> double {
-        const auto zi = zs[i];
-        const auto P = horner_eval_c(coeffs, zi);
-        const auto tol_i = std::abs(P);
-        auto P1 = horner_eval_c(coeffs1, zi);
-        for (auto j : rr.exclude(i)) {
-            P1 -= P / (zi - zs[j]);
-            P1 -= P / (zi - 1.0 / zs[j]);
-        }
-        zs[i] -= P / P1;  // Gauss-Seidel fashion
-        return tol_i;
-    };
-
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
+        auto aberth_job = aberth_job_generator(coeffs, zs);
         vector<std::future<double>> results;
-
         for (auto i = 0U; i != m; ++i) {
-            auto res = aberth_autocorr_job(i);
-            if (tolerance < res) {
-                tolerance = res;
-            }
-        }
-        if (tolerance < options.tolerance) {
-            return {niter, true};
-        }
-    }
-    return {options.max_iters, false};
-}
-
-/**
- * @brief Multi-threading Aberth-Ehrlich method (specifically for auto-correlation functions)
- *
- * The `aberth_mt` function is a multi-threaded implementation of the Aberth-Ehrlich method for
- * finding the roots of a polynomial.
- *
- * Aberth's method is a method for finding the roots of a polynomial that is
- * robust but requires complex arithmetic even if the polynomial is real. This
- * is because it starts with complex initial approximations.
- *
- * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
- * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
- * highest degree term and ending with the constant term. For example, if the polynomial is `3x^2 +
- * 2x +
- * @param[in,out] zs `zs` is a vector of complex numbers representing the initial guesses for the
- * roots of the polynomial. The function will update these values iteratively to converge to the
- * actual roots.
- * @param[in] options The `options` parameter is an object of type `Options` that contains the
- * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options control
- * the convergence criteria for the Aberth-Ehrlich method.
- *
- * @return The `aberth` function returns a `std::pair<unsigned int, bool>`. The first element of the
- * pair represents the number of iterations performed, and the second element represents whether the
- * method converged to a solution within the specified tolerance.
- */
-auto aberth_autocorr_mt(const vector<double> &coeffs, vector<Complex> &zs,
-                        const Options &options = Options()) -> std::pair<unsigned int, bool> {
-    ThreadPool pool(std::thread::hardware_concurrency());
-
-    const auto m = zs.size();
-    const auto degree = coeffs.size() - 1;  // degree, assume even
-    const auto rr = fun::Robin<size_t>(m);
-    auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
-    }
-
-    auto aberth_autocorr_job = [&](size_t i) -> double {
-        const auto zi = zs[i];  // copy instead of reference
-        const auto P = horner_eval_c(coeffs, zi);
-        const auto tol_i = std::abs(P);
-        auto P1 = horner_eval_c(coeffs1, zi);
-        for (auto j : rr.exclude(i)) {
-            P1 -= P / (zi - zs[j]);
-            P1 -= P / (zi - 1.0 / zs[j]);
-        }
-        zs[i] -= P / P1;  // Gauss-Seidel fashion
-        return tol_i;
-    };
-
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        vector<std::future<double>> results;
-
-        for (auto i = 0U; i != m; ++i) {
-            results.emplace_back(pool.enqueue(aberth_autocorr_job, i));
+            results.emplace_back(aberth_job(i));
         }
         for (auto &result : results) {
             auto &&res = result.get();
@@ -378,4 +213,61 @@ auto aberth_autocorr_mt(const vector<double> &coeffs, vector<Complex> &zs,
         }
     }
     return {options.max_iters, false};
+}
+
+auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
+                     const Options &options = Options()) -> std::pair<unsigned int, bool> {
+    const auto degree = coeffs.size() - 1;
+    auto coeffs1 = vector<double>(degree);
+    for (auto i = 0U; i != degree; ++i) {
+        coeffs1[i] = double(degree - i) * coeffs[i];
+    }
+    const auto rr = fun::Robin<size_t>(zs.size());
+
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+        return [&](size_t i) {
+            const auto zi = zs_ref[i];
+            const auto P = horner_eval_c(coeffs, zi);
+            const auto tol_i = std::abs(P);
+            auto P1 = horner_eval_c(coeffs1, zi);
+            for (auto j : rr.exclude(i)) {
+                P1 -= P / (zi - zs_ref[j]);
+                P1 -= P / (zi - 1.0 / zs_ref[j]);
+            }
+            zs_ref[i] -= P / P1;
+            return std::async(std::launch::deferred, [tol_i](){ return tol_i; });
+        };
+    };
+
+    return aberth_autocorr_core(coeffs, zs, options, aberth_job_generator);
+}
+
+auto aberth_autocorr_mt(const vector<double> &coeffs, vector<Complex> &zs,
+                        const Options &options = Options()) -> std::pair<unsigned int, bool> {
+    ThreadPool pool(std::thread::hardware_concurrency());
+    const auto degree = coeffs.size() - 1;
+    auto coeffs1 = vector<double>(degree);
+    for (auto i = 0U; i != degree; ++i) {
+        coeffs1[i] = double(degree - i) * coeffs[i];
+    }
+    const auto rr = fun::Robin<size_t>(zs.size());
+
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+        return [&](size_t i) {
+            return pool.enqueue([&, i]() {
+                const auto zi = zs_ref[i];
+                const auto P = horner_eval_c(coeffs, zi);
+                const auto tol_i = std::abs(P);
+                auto P1 = horner_eval_c(coeffs1, zi);
+                for (auto j : rr.exclude(i)) {
+                    P1 -= P / (zi - zs_ref[j]);
+                    P1 -= P / (zi - 1.0 / zs_ref[j]);
+                }
+                zs_ref[i] -= P / P1;
+                return tol_i;
+            });
+        };
+    };
+
+    return aberth_autocorr_core(coeffs, zs, options, aberth_job_generator);
 }
