@@ -6,10 +6,6 @@
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
-// #include <functional>                // for __base
-// #include <future>                    // for future
-// #include <thread>                    // for thread
-// #include <type_traits>               // for move
 #include <utility>  // for pair
 #include <vector>   // for vector, vector<>::reference, __v...
 

@@ -35,6 +35,8 @@ target("test_ginger")
         add_syslinks("pthread")
         -- target:add("links", "pthread", "m", "dl")
     end
+    add_tests("default")
+
 
 target("test_fir")
     set_languages("c++17")

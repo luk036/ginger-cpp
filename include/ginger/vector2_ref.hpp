@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cmath>
-#include <utility>  // import std::move
-
 #include "vector2.hpp"
 
 #if __cpp_constexpr >= 201304
