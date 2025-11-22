@@ -25,6 +25,20 @@ using Complex = std::complex<double>;
  * highest degree term and ending with the constant term.
  * @param[in] z
  * @return Tp
+ *
+ * ```svgbob
+ *        coeffs[0]      coeffs[1]      coeffs[2]                 coeffs[n-1]    coeffs[n]
+ *     +-----------> + -----------> + -----------> + ... + -----------> + --------->
+ *     |             |              |              |                   |            |
+ *     |    z       v    z         v    z         v                   v    z       v    z
+ *     +---> [x] --> +---> [x] --> +---> [x] --> +---> ... ----> +---> [x] --> +---> [x] --> result
+ *           |                    |              |                           |              |
+ *           +---------------------              +---------------------------+              |
+ *           |                                   |                                        |
+ *           +------------------------------------+----------------------------------------+
+ *
+ * P(x) = coeffs[0]*x^n + coeffs[1]*x^(n-1) + ... + coeffs[n-1]*x + coeffs[n]
+ * ```
  */
 inline auto horner_eval_c(const std::vector<double> &coeffs, const std::complex<double> &zval)
     -> std::complex<double> {
@@ -65,6 +79,26 @@ inline auto horner_eval_f(const std::vector<double> &coeffs, const double &zval)
  *
  * @return The function `initial_aberth` returns a vector of Complex numbers representing the
  * initial guesses for the roots of the polynomial.
+ *
+ * ```svgbob
+ *        center
+ *          *
+ *         /|\
+ *        / | \ radius
+ *       /  |  \
+ *      *   |   *
+ *     /    |    \
+ *    *----------*----------> real
+ *     \    |    /
+ *      *   |   *
+ *       \  |  /
+ *        \ | / 
+ *         \|/
+ *          *
+ *         imag
+ * 
+ * Initial points distributed on a circle around center
+ * ```
  */
 auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;
@@ -172,6 +206,29 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
  *
  * @return The function `initial_aberth_autocorr` returns a vector of Complex numbers representing the
  * initial guesses for the roots of the polynomial.
+ *
+ * ```svgbob
+ * For auto-correlation functions:
+ * 
+ *        center
+ *          *
+ *         /|\
+ *        / | \ radius (limited to 1/radius if > 1)
+ *       /  |  \
+ *      *   |   *
+ *     /    |    \
+ *    *----------*----------> real
+ *     \    |    /
+ *      *   |   *
+ *       \  |  /
+ *        \ | / 
+ *         \|/
+ *          *
+ *         imag
+ * 
+ * Initial points distributed on a circle around center, with radius adjustment
+ * for auto-correlation specific properties
+ * ```
  */
 auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;  // assume even

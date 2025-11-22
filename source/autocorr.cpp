@@ -22,6 +22,27 @@
  * @param[in] coeffs The parameter `coeffs` is a vector of doubles.
  *
  * @return The function `initial_autocorr` returns a vector of `Vec2` objects.
+ *
+ * ```svgbob
+ * For auto-correlation functions:
+ * 
+ * Initial values distributed as:
+ * 
+ *        real
+ *         |
+ *         |
+ *   *-----+-----*-----> 
+ *   |     |     |
+ *   |     |     | radius^2
+ *   |     |     |
+ *   *-----+-----*
+ *         |
+ *         v
+ *        imag
+ * 
+ * Where radius = |coeffs[degree]|^(1/degree)
+ * Points placed at specific positions for auto-correlation property
+ * ```
  */
 auto initial_autocorr(const std::vector<double> &coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
@@ -49,6 +70,29 @@ auto initial_autocorr(const std::vector<double> &coeffs) -> std::vector<Vec2> {
  * @param[in,out] vrs vector of iterates
  * @param[in] options maximum iterations and tolorance
  * @return std::pair<unsigned int, bool>
+ *
+ * ```svgbob
+ * Bairstow's method iterative process for auto-correlation:
+ *
+ * For each iterate vr_i, the process is:
+ *
+ *  coeffs +--------+ P(vr_i) 
+ *         | horner |------>
+ *         |        | P'(vr_i) 
+ *         +--------+------>
+ *              |
+ *              v
+ *         +--------+ 
+ *         | update | vr_i^(k+1) = vr_i^(k) - [P(vr_i^(k)) / P'(vr_i^(k))]
+ *         | vr_i   | considering other roots vr_j (j ≠ i) and special auto-correlation terms
+ *         +--------+
+ *              |
+ *              v
+ *         vr_i^(k+1)
+ *
+ * Parallel computation across all iterates vr_0, vr_1, ..., vr_n
+ * Special handling for auto-correlation property: process both vr_j and (1/vr_j)
+ * ```
  */
 auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
                         const Options &options = Options()) -> std::pair<unsigned int, bool> {
@@ -106,6 +150,28 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
  * @param[in,out] vr The parameter `vr` is of type `Vec2`, which is a custom
  * class representing a 2D vector. It contains two components, `x` and `y`,
  * which are accessed using the `x()` and `y()` member functions respectively.
+ *
+ * ```svgbob
+ * Root extraction process:
+ *
+ * Input: vr = (r, q) representing x^2 - r*x - q
+ * 
+ * Calculate: 
+ *   h = r/2
+ *   d = h^2 + q
+ * 
+ *       d >= 0?  ----->  yes  --------->   calculate real roots
+ *          |                                  a1 = h + sign(h)*sqrt(d)
+ *         no                                 a2 = -q / a1
+ *          |                              check if |a1| > 1 or |a2| > 1
+ *          v                              if so, replace with 1/a1 or 1/a2
+ *    complex roots                        update vr = (a1+a2, -a1*a2)
+ *    check if |q| > 1
+ *    if so, transform
+ *    vr = (-r/q, 1/q)
+ *    
+ * Output: updated vr
+ * ```
  */
 void extract_autocorr(Vec2 &vr) {
     const auto &r = vr.x();

@@ -30,6 +30,31 @@
  * horner function.
  *
  * @return a Vec2 object.
+ *
+ * ```svgbob
+ * Horner's method for polynomial evaluation:
+ *
+ * For polynomial P(x) = a_n*x^n + a_(n-1)*x^(n-1) + ... + a_1*x + a_0
+ *
+ * The algorithm proceeds as:
+ * t = 0
+ * for i = 0 to n-1:
+ *   t = t + coeffs[i] * vr.x()  // accumulate x coefficient
+ *   t = t + coeffs[i] * vr.y()  // accumulate y coefficient (for quadratic factor)
+ *
+ * coeffs[0]     coeffs[1]     coeffs[2]               coeffs[n-2]    coeffs[n-1]
+ * +-----------> +-----------> +-----------> + ... + -----------> + --------->
+ * |             |             |                      |            |
+ * |    vr.x()   v    vr.x()   v                      v    vr.x()   v    vr.x()
+ * +---> [x] --> +---> [x] --> +---> [...] --> ... +---> [x] --> +---> [x] -->
+ * |             |             |                      |            |
+ * |    vr.y()   v    vr.y()   v                      v    vr.y()   v    vr.y()
+ * +---> [x] --> +---> [x] --> +---> [...] --> ... +---> [x] --> +---> [x] -->
+ * |             |             |                      |            |
+ * +-------------+-------------+----------------------+------------+-----------> Vec2 result
+ *
+ * Where each step modifies the coefficients in place
+ * ```
  */
 auto horner(std::vector<double> &coeffs1, size_t degree, const Vec2 &vr) -> Vec2 {
     auto itr0 = coeffs1.begin();
@@ -52,6 +77,32 @@ auto horner(std::vector<double> &coeffs1, size_t degree, const Vec2 &vr) -> Vec2
  * @param[in, out] vA1 vA1 is a reference to a Vec2 object.
  * @param[in] vri A vector representing the position of point i.
  * @param[in] vrj The parameter `vrj` represents a `Vec2` object.
+ *
+ * ```svgbob
+ * Suppression step in root-finding:
+ *
+ * Given two root approximations vri and vrj, suppress the influence of vrj on vri
+ *
+ *    vri = (r_i, q_i)  <-- current root approximation
+ *         |
+ *         |  vp = vri - vrj  (difference vector)
+ *         v
+ *      +--------+    Calculate adjoint matrix and determinant
+ *      | adjoint|----> m_adjoint = [[s, -p], [-p*vri.y, p*vri.x+s]]
+ *      | matrix |                 where p=vp.x, s=vp.y
+ *      +--------+ 
+ *         |
+ *         v
+ *      +--------+    Apply matrix transformation to update vA, vA1
+ *      | update |----> vA, vA1 = transformed values
+ *      | vA, vA1|
+ *      +--------+
+ *         |
+ *         v
+ *    Updated vA, vA1 without influence from vrj
+ *
+ * This process removes the contribution of root vrj from the evaluation at vri
+ * ```
  */
 auto suppress(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
     const auto vp = vri - vrj;
@@ -67,13 +118,39 @@ auto suppress(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
 }
 
 /**
- * The function `suppress` calculates and updates the values of `vA` and `vA1`
+ * The function `suppress2` calculates and updates the values of `vA` and `vA1`
  * based on the given input vectors `vri` and `vrj`.
  *
  * @param[in, out] vA A reference to a Vec2 object representing vector A.
  * @param[in, out] vA1 vA1 is a reference to a Vec2 object.
  * @param[in] vri A vector representing the position of point i.
  * @param[in] vrj The parameter `vrj` represents a `Vec2` object.
+ *
+ * ```svgbob
+ * Alternative suppression step in root-finding:
+ *
+ * This version uses vrj in the adjoint calculation instead of vri
+ *
+ *    vri = (r_i, q_i), vrj = (r_j, q_j)  <-- root approximations
+ *         |
+ *         |  vp = vri - vrj  (difference vector)
+ *         v
+ *      +--------+    Calculate adjoint matrix using vrj instead of vri
+ *      | adjoint|----> m_adjoint = [[s, -p], [-p*vrj.y, p*vrj.x+s]]
+ *      | matrix |                 where p=vp.x, s=vp.y
+ *      +--------+ 
+ *         |
+ *         v
+ *      +--------+    Scale and adjust vA, vA1 values
+ *      | update |----> vA *= e, vA1 *= e, vA1 -= m_adjoint.mdot(vA)
+ *      | vA, vA1|
+ *      +--------+
+ *         |
+ *         v
+ *    Updated vA, vA1 with alternative suppression method
+ *
+ * Specialized variant for specific root-finding scenarios
+ * ```
  */
 auto suppress2(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
     const auto vp = vri - vrj;
@@ -95,6 +172,29 @@ auto suppress2(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
  * @param[in] coeffs coeffs is a vector of doubles that represents the coefficients of a polynomial.
  *
  * @return The function `initial_guess` returns a vector of `Vec2` objects.
+ *
+ * ```svgbob
+ * Initial guess calculation for Bairstow's method:
+ *
+ *                    center
+ *                      *
+ *                     /|\
+ *                    / | \ radius
+ *                   /  |  \
+ *    (-2*radius,-m) *   |   * (2*radius,-m)
+ *                   \  |  /
+ *                    \ | /
+ *                     \|/
+ *                      *
+ *                     (0,-m)
+ *
+ * Where:
+ * - center = -coeffs[1] / (degree * coeffs[0])
+ * - radius = |P(center)|^(1/degree)
+ * - m = center^2 + radius^2
+ * - Points placed at (2*(center + radius*cos(θ)), -(m + 2*center*radius*cos(θ)))
+ * - θ values: π*i/degree for odd i from 1 to degree-1
+ * ```
  */
 auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
@@ -136,6 +236,35 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  * @return The function `pbairstow_even` returns a `std::pair<unsigned int, bool>`. The first
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
+ *
+ * ```svgbob
+ * Parallel Bairstow's method iterative process:
+ *
+ * For each iterate vr_i, the process is:
+ *
+ *  coeffs +--------+ P(vr_i) 
+ *         | horner |------>
+ *         |        | P'(vr_i) 
+ *         +--------+------>
+ *              |
+ *              v
+ *         +--------+     For each other iterate vr_j (j ≠ i):
+ *         |suppress|----> Remove vr_j's influence on vr_i
+ *         |        |     (apply suppress transformation)
+ *         +--------+
+ *              |
+ *              v
+ *         +--------+ 
+ *         | update | vr_i^(k+1) = vr_i^(k) - delta(P(vr_i), vr_i, P'(vr_i))
+ *         | vr_i   | considering all other roots vr_j (j ≠ i)
+ *         +--------+
+ *              |
+ *              v
+ *         vr_i^(k+1)
+ *
+ * All iterates updated in parallel using thread pool
+ * Convergence check across all iterates simultaneously
+ * ```
  */
 auto pbairstow_even(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
                     const Options &options = Options()) -> std::pair<unsigned int, bool> {
