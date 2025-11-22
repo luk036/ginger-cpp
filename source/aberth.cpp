@@ -9,8 +9,6 @@
 #include <utility>  // for pair
 #include <vector>   // for vector, vector<>::reference, __v...
 
-using std::cos;
-using std::sin;
 using std::vector;
 using Complex = std::complex<double>;
 
