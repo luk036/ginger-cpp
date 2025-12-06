@@ -90,11 +90,11 @@ inline auto horner_eval_f(const std::vector<double> &coeffs, const double &zval)
  *     \    |    /
  *      *   |   *
  *       \  |  /
- *        \ | / 
+ *        \ | /
  *         \|/
  *          *
  *         imag
- * 
+ *
  * Initial points distributed on a circle around center
  * ```
  */
@@ -207,7 +207,7 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
  *
  * ```svgbob
  * For auto-correlation functions:
- * 
+ *
  *        center
  *          *
  *         /|\
@@ -219,11 +219,11 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
  *     \    |    /
  *      *   |   *
  *       \  |  /
- *        \ | / 
+ *        \ | /
  *         \|/
  *          *
  *         imag
- * 
+ *
  * Initial points distributed on a circle around center, with radius adjustment
  * for auto-correlation specific properties
  * ```

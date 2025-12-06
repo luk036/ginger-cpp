@@ -25,13 +25,13 @@
  *
  * ```svgbob
  * For auto-correlation functions:
- * 
+ *
  * Initial values distributed as:
- * 
+ *
  *        real
  *         |
  *         |
- *   *-----+-----*-----> 
+ *   *-----+-----*----->
  *   |     |     |
  *   |     |     | radius^2
  *   |     |     |
@@ -39,7 +39,7 @@
  *         |
  *         v
  *        imag
- * 
+ *
  * Where radius = |coeffs[degree]|^(1/degree)
  * Points placed at specific positions for auto-correlation property
  * ```
@@ -76,13 +76,13 @@ auto initial_autocorr(const std::vector<double> &coeffs) -> std::vector<Vec2> {
  *
  * For each iterate vr_i, the process is:
  *
- *  coeffs +--------+ P(vr_i) 
+ *  coeffs +--------+ P(vr_i)
  *         | horner |------>
- *         |        | P'(vr_i) 
+ *         |        | P'(vr_i)
  *         +--------+------>
  *              |
  *              v
- *         +--------+ 
+ *         +--------+
  *         | update | vr_i^(k+1) = vr_i^(k) - [P(vr_i^(k)) / P'(vr_i^(k))]
  *         | vr_i   | considering other roots vr_j (j ≠ i) and special auto-correlation terms
  *         +--------+
@@ -155,11 +155,11 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
  * Root extraction process:
  *
  * Input: vr = (r, q) representing x^2 - r*x - q
- * 
- * Calculate: 
+ *
+ * Calculate:
  *   h = r/2
  *   d = h^2 + q
- * 
+ *
  *       d >= 0?  ----->  yes  --------->   calculate real roots
  *          |                                  a1 = h + sign(h)*sqrt(d)
  *         no                                 a2 = -q / a1
@@ -169,7 +169,7 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
  *    check if |q| > 1
  *    if so, transform
  *    vr = (-r/q, 1/q)
- *    
+ *
  * Output: updated vr
  * ```
  */

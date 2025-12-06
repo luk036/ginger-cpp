@@ -86,7 +86,7 @@ auto horner(std::vector<double> &coeffs1, size_t degree, const Vec2 &vr) -> Vec2
  *      +--------+    Calculate adjoint matrix and determinant
  *      | adjoint|----> m_adjoint = [[s, -p], [-p*vri.y, p*vri.x+s]]
  *      | matrix |                 where p=vp.x, s=vp.y
- *      +--------+ 
+ *      +--------+
  *         |
  *         v
  *      +--------+    Apply matrix transformation to update vA, vA1
@@ -134,7 +134,7 @@ auto suppress(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
  *      +--------+    Calculate adjoint matrix using vrj instead of vri
  *      | adjoint|----> m_adjoint = [[s, -p], [-p*vrj.y, p*vrj.x+s]]
  *      | matrix |                 where p=vp.x, s=vp.y
- *      +--------+ 
+ *      +--------+
  *         |
  *         v
  *      +--------+    Scale and adjust vA, vA1 values
@@ -238,9 +238,9 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  *
  * For each iterate vr_i, the process is:
  *
- *  coeffs +--------+ P(vr_i) 
+ *  coeffs +--------+ P(vr_i)
  *         | horner |------>
- *         |        | P'(vr_i) 
+ *         |        | P'(vr_i)
  *         +--------+------>
  *              |
  *              v
@@ -250,7 +250,7 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  *         +--------+
  *              |
  *              v
- *         +--------+ 
+ *         +--------+
  *         | update | vr_i^(k+1) = vr_i^(k) - delta(P(vr_i), vr_i, P'(vr_i))
  *         | vr_i   | considering all other roots vr_j (j ≠ i)
  *         +--------+
