@@ -160,8 +160,8 @@ inline auto delta(const Vec2 &vA, const Vec2 &vr, const Vec2 &vp) -> Vec2 {
  */
 inline auto horner_eval(std::vector<double> coeffs1, std::size_t degree, const double &z)
     -> double {
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i + 1] += coeffs1[i] * z;
+    for (auto idx = 0U; idx != degree; ++idx) {
+        coeffs1[idx + 1] += coeffs1[idx] * z;
     }
     return coeffs1[degree];
 }

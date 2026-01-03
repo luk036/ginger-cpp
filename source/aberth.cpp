@@ -116,13 +116,13 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
 template <typename F>
 auto aberth_core(const vector<double> &coeffs, vector<Complex> &zs, const Options &options, F &&aberth_job_generator)
     -> std::pair<unsigned int, bool> {
-    const auto m = zs.size();
+    const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         auto aberth_job = aberth_job_generator(coeffs, zs);
         vector<std::future<double>> results;
-        for (auto i = 0U; i != m; ++i) {
-            results.emplace_back(aberth_job(i));
+        for (auto idx = 0U; idx != num_roots; ++idx) {
+            results.emplace_back(aberth_job(idx));
         }
         for (auto &result : results) {
             auto &&res = result.get();
@@ -141,21 +141,21 @@ auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &op
     -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
+    for (auto idx = 0U; idx != degree; ++idx) {
+        coeffs1[idx] = double(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t i) {
-            const auto zi = zs_ref[i];
+        return [&](size_t idx) {
+            const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
             auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto j : rr.exclude(i)) {
-                P1 -= P / (zi - zs_ref[j]);
+            for (auto jdx : rr.exclude(idx)) {
+                P1 -= P / (zi - zs_ref[jdx]);
             }
-            zs_ref[i] -= P / P1;
+            zs_ref[idx] -= P / P1;
             return std::async(std::launch::deferred, [tol_i](){ return tol_i; });
         };
     };
@@ -168,22 +168,22 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
     ThreadPool pool(std::thread::hardware_concurrency());
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
+    for (auto idx = 0U; idx != degree; ++idx) {
+        coeffs1[idx] = double(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t i) {
-            return pool.enqueue([&, i]() {
-                const auto zi = zs_ref[i];
+        return [&](size_t idx) {
+            return pool.enqueue([&, idx]() {
+                const auto zi = zs_ref[idx];
                 const auto P = horner_eval_c(coeffs, zi);
                 const auto tol_i = std::abs(P);
                 auto P1 = horner_eval_c(coeffs1, zi);
-                for (auto j : rr.exclude(i)) {
-                    P1 -= P / (zi - zs_ref[j]);
+                for (auto jdx : rr.exclude(idx)) {
+                    P1 -= P / (zi - zs_ref[jdx]);
                 }
-                zs_ref[i] -= P / P1;
+                zs_ref[idx] -= P / P1;
                 return tol_i;
             });
         };
@@ -249,13 +249,13 @@ auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
 template <typename F>
 auto aberth_autocorr_core(const vector<double> &coeffs, vector<Complex> &zs, const Options &options, F &&aberth_job_generator)
     -> std::pair<unsigned int, bool> {
-    const auto m = zs.size();
+    const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         auto aberth_job = aberth_job_generator(coeffs, zs);
         vector<std::future<double>> results;
-        for (auto i = 0U; i != m; ++i) {
-            results.emplace_back(aberth_job(i));
+        for (auto idx = 0U; idx != num_roots; ++idx) {
+            results.emplace_back(aberth_job(idx));
         }
         for (auto &result : results) {
             auto &&res = result.get();
@@ -274,22 +274,22 @@ auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
                      const Options &options = Options()) -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
+    for (auto idx = 0U; idx != degree; ++idx) {
+        coeffs1[idx] = double(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t i) {
-            const auto zi = zs_ref[i];
+        return [&](size_t idx) {
+            const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
             auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto j : rr.exclude(i)) {
-                P1 -= P / (zi - zs_ref[j]);
-                P1 -= P / (zi - 1.0 / zs_ref[j]);
+            for (auto jdx : rr.exclude(idx)) {
+                P1 -= P / (zi - zs_ref[jdx]);
+                P1 -= P / (zi - 1.0 / zs_ref[jdx]);
             }
-            zs_ref[i] -= P / P1;
+            zs_ref[idx] -= P / P1;
             return std::async(std::launch::deferred, [tol_i](){ return tol_i; });
         };
     };
@@ -302,23 +302,23 @@ auto aberth_autocorr_mt(const vector<double> &coeffs, vector<Complex> &zs,
     ThreadPool pool(std::thread::hardware_concurrency());
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
-    for (auto i = 0U; i != degree; ++i) {
-        coeffs1[i] = double(degree - i) * coeffs[i];
+    for (auto idx = 0U; idx != degree; ++idx) {
+        coeffs1[idx] = double(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t i) {
-            return pool.enqueue([&, i]() {
-                const auto zi = zs_ref[i];
+        return [&](size_t idx) {
+            return pool.enqueue([&, idx]() {
+                const auto zi = zs_ref[idx];
                 const auto P = horner_eval_c(coeffs, zi);
                 const auto tol_i = std::abs(P);
                 auto P1 = horner_eval_c(coeffs1, zi);
-                for (auto j : rr.exclude(i)) {
-                    P1 -= P / (zi - zs_ref[j]);
-                    P1 -= P / (zi - 1.0 / zs_ref[j]);
+                for (auto jdx : rr.exclude(idx)) {
+                    P1 -= P / (zi - zs_ref[jdx]);
+                    P1 -= P / (zi - 1.0 / zs_ref[jdx]);
                 }
-                zs_ref[i] -= P / P1;
+                zs_ref[idx] -= P / P1;
                 return tol_i;
             });
         };

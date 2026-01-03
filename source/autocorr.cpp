@@ -98,22 +98,22 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
                         const Options &options = Options()) -> std::pair<unsigned int, bool> {
     ThreadPool pool(std::thread::hardware_concurrency());
 
-    const auto M = vrs.size();
-    const auto rr = fun::Robin<size_t>(M);
+    const auto num_roots = vrs.size();
+    const auto rr = fun::Robin<size_t>(num_roots);
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         std::vector<std::future<double>> results;
-        for (auto i = 0U; i != M; ++i) {
-            results.emplace_back(pool.enqueue([&, i]() {
+        for (auto idx = 0U; idx != num_roots; ++idx) {
+            results.emplace_back(pool.enqueue([&, idx]() {
                 auto coeffs1 = coeffs;
                 const auto degree = coeffs.size() - 1;  // degree, assume even
-                const auto &vri = vrs[i];
+                const auto &vri = vrs[idx];
                 auto vA = horner(coeffs1, degree, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
                 auto vA1 = horner(coeffs1, degree - 2, vri);
-                for (auto j : rr.exclude(i)) {  // exclude i
-                    const auto vrj = vrs[j];    // make a copy, don't reference!
+                for (auto jdx : rr.exclude(idx)) {  // exclude idx
+                    const auto vrj = vrs[jdx];    // make a copy, don't reference!
                     suppress(vA, vA1, vri, vrj);
                     const auto vrjn = ginger::Vector2<double>(-vrj.x(), 1.0) / vrj.y();
                     suppress(vA, vA1, vri, vrjn);
@@ -121,7 +121,7 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
                 const auto vrin = ginger::Vector2<double>(-vri.x(), 1.0) / vri.y();
                 suppress(vA, vA1, vri, vrin);
 
-                vrs[i] -= delta(vA, vri, std::move(vA1));  // Gauss-Seidel fashion
+                vrs[idx] -= delta(vA, vri, std::move(vA1));  // Gauss-Seidel fashion
                 return tol_i;
             }));
         }

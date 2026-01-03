@@ -56,11 +56,11 @@ auto horner(std::vector<double> &coeffs1, size_t degree, const Vec2 &vr) -> Vec2
     auto itr0 = coeffs1.begin();
     auto itr1 = std::next(itr0);
     auto itr2 = std::next(itr1);
-    for (auto i = 0U; i != degree - 1; ++i, ++itr0, ++itr1, ++itr2) {
+    for (auto idx = 0U; idx != degree - 1; ++idx, ++itr0, ++itr1, ++itr2) {
         *itr1 += *itr0 * vr.x();
         *itr2 += *itr0 * vr.y();
-        // coeffs1[i + 1] += coeffs1[i] * vr.x();
-        // coeffs1[i + 2] += coeffs1[i] * vr.y();
+        // coeffs1[idx + 1] += coeffs1[idx] * vr.x();
+        // coeffs1[idx + 2] += coeffs1[idx] * vr.y();
     }
     return Vec2{coeffs1[degree - 1], coeffs1[degree]};
 }
@@ -266,26 +266,26 @@ auto pbairstow_even(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
                     const Options &options = Options()) -> std::pair<unsigned int, bool> {
     ThreadPool pool(std::thread::hardware_concurrency());
 
-    const auto M = vrs.size();
-    const auto rr = fun::Robin<size_t>(M);
+    const auto num_roots = vrs.size();
+    const auto rr = fun::Robin<size_t>(num_roots);
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         std::vector<std::future<double>> results;
 
-        for (auto i = 0U; i != M; ++i) {
-            results.emplace_back(pool.enqueue([&coeffs, &vrs, &rr, i]() {
+        for (auto idx = 0U; idx != num_roots; ++idx) {
+            results.emplace_back(pool.enqueue([&coeffs, &vrs, &rr, idx]() {
                 const auto degree = coeffs.size() - 1;  // degree, assume even
-                const auto &vri = vrs[i];
+                const auto &vri = vrs[idx];
                 auto coeffs1 = coeffs;
                 auto vA = horner(coeffs1, degree, vri);
                 auto vA1 = horner(coeffs1, degree - 2, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                for (auto j : rr.exclude(i)) {
-                    const auto vrj = vrs[j];  // make a copy, don't reference!
+                for (auto jdx : rr.exclude(idx)) {
+                    const auto vrj = vrs[jdx];  // make a copy, don't reference!
                     suppress(vA, vA1, vri, vrj);
                 }
-                vrs[i] -= delta(vA, vri, vA1);  // Gauss-Seidel fashion
+                vrs[idx] -= delta(vA, vri, vA1);  // Gauss-Seidel fashion
                 return tol_i;
             }));
         }

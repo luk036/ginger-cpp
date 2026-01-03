@@ -9,11 +9,11 @@ TEST_CASE("stress test aberth_mt with high-degree polynomial") {
     // Generate a high-degree polynomial with random coefficients
     const int degree = 100;
     std::vector<double> h(degree + 1);
-    std::mt19937_64 rng(std::chrono::system_clock::now().time_since_epoch().count());
+    std::mt19937_64 rng(static_cast<unsigned long>(std::chrono::system_clock::now().time_since_epoch().count()));
     std::uniform_real_distribution<double> dist(-10.0, 10.0);
 
     for (int i = 0; i <= degree; ++i) {
-        h[i] = dist(rng);
+        h[static_cast<size_t>(i)] = dist(rng);
     }
 
     // Set options for Aberth method
