@@ -104,7 +104,7 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
     const auto p_center = horner_eval_f(coeffs, center);
     const auto radius = std::pow(std::fabs(p_center), 1.0 / double(degree));
     auto z0s = vector<Complex>{};
-    auto c_gen = ldsgen::Circle(2);
+    ldsgen::Circle c_gen(2);
     for (auto i = 0U; i != degree; ++i) {
         auto res = c_gen.pop();
         auto z0 = center + radius * Complex{res[1], res[0]};
@@ -113,8 +113,8 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
     return z0s;
 }
 
-template <typename F>
-auto aberth_core(const vector<double> &coeffs, vector<Complex> &zs, const Options &options, F &&aberth_job_generator)
+template <typename F> auto aberth_core(const vector<double> &coeffs, vector<Complex> &zs,
+                                       const Options &options, F &&aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -146,7 +146,7 @@ auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &op
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
         return [&](size_t idx) {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
@@ -156,7 +156,7 @@ auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &op
                 P1 -= P / (zi - zs_ref[jdx]);
             }
             zs_ref[idx] -= P / P1;
-            return std::async(std::launch::deferred, [tol_i](){ return tol_i; });
+            return std::async(std::launch::deferred, [tol_i]() { return tol_i; });
         };
     };
 
@@ -173,7 +173,7 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
         return [&](size_t idx) {
             return pool.enqueue([&, idx]() {
                 const auto zi = zs_ref[idx];
@@ -195,15 +195,15 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
 /**
  * @brief Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)
  *
- * The `initial_aberth_autocorr` function calculates the initial values for the Aberth-Ehrlich method for
- * finding the roots of a polynomial.
+ * The `initial_aberth_autocorr` function calculates the initial values for the Aberth-Ehrlich
+ * method for finding the roots of a polynomial.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
  * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
  * highest degree term and ending with the constant term.
  *
- * @return The function `initial_aberth_autocorr` returns a vector of Complex numbers representing the
- * initial guesses for the roots of the polynomial.
+ * @return The function `initial_aberth_autocorr` returns a vector of Complex numbers representing
+ * the initial guesses for the roots of the polynomial.
  *
  * ```svgbob
  * For auto-correlation functions:
@@ -237,7 +237,7 @@ auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
         radius = 1.0 / radius;
     }
     auto z0s = vector<Complex>{};
-    auto c_gen = ldsgen::Circle(2);
+    ldsgen::Circle c_gen(2);
     for (auto i = 0U; i != degree / 2; ++i) {
         auto res = c_gen.pop();
         auto z0 = center + radius * Complex{res[1], res[0]};
@@ -246,8 +246,8 @@ auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
     return z0s;
 }
 
-template <typename F>
-auto aberth_autocorr_core(const vector<double> &coeffs, vector<Complex> &zs, const Options &options, F &&aberth_job_generator)
+template <typename F> auto aberth_autocorr_core(const vector<double> &coeffs, vector<Complex> &zs,
+                                                const Options &options, F &&aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -279,7 +279,7 @@ auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
         return [&](size_t idx) {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
@@ -290,7 +290,7 @@ auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
                 P1 -= P / (zi - 1.0 / zs_ref[jdx]);
             }
             zs_ref[idx] -= P / P1;
-            return std::async(std::launch::deferred, [tol_i](){ return tol_i; });
+            return std::async(std::launch::deferred, [tol_i]() { return tol_i; });
         };
     };
 
@@ -307,7 +307,7 @@ auto aberth_autocorr_mt(const vector<double> &coeffs, vector<Complex> &zs,
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
+    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
         return [&](size_t idx) {
             return pool.enqueue([&, idx]() {
                 const auto zi = zs_ref[idx];
