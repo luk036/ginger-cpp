@@ -1,92 +1,91 @@
 add_rules("mode.debug", "mode.release", "mode.coverage")
-add_requires("doctest", {alias = "doctest"})
-add_requires("fmt", {alias = "fmt"})
-add_requires("benchmark", {alias = "benchmark"})
+add_requires("doctest", { alias = "doctest" })
+add_requires("fmt", { alias = "fmt" })
+add_requires("benchmark", { alias = "benchmark" })
+add_requires("spdlog", { alias = "spdlog" })
 
 if is_mode("coverage") then
-    add_cxflags("-ftest-coverage", "-fprofile-arcs", {force = true})
+	add_cxflags("-ftest-coverage", "-fprofile-arcs", { force = true })
 end
 
 if is_plat("linux") then
-    set_warnings("all", "error")
-    add_cxflags("-Wconversion", {force = true})
-    add_cxflags("-Wno-unused-command-line-argument", {force = true})
-    -- Check if we're on Termux/Android
-    local termux_prefix = os.getenv("PREFIX")
-    if termux_prefix then
-        add_sysincludedirs(termux_prefix .. "/include/c++/v1", {public = true})
-        add_sysincludedirs(termux_prefix .. "/include", {public = true})
-    end
+	set_warnings("all", "error")
+	add_cxflags("-Wconversion", { force = true })
+	add_cxflags("-Wno-unused-command-line-argument", { force = true })
+	-- Check if we're on Termux/Android
+	local termux_prefix = os.getenv("PREFIX")
+	if termux_prefix then
+		add_sysincludedirs(termux_prefix .. "/include/c++/v1", { public = true })
+		add_sysincludedirs(termux_prefix .. "/include", { public = true })
+	end
 elseif is_plat("windows") then
-    add_cxflags("/EHsc /W4 /WX", {force = true})
+	add_cxflags("/EHsc /W4 /WX", { force = true })
 end
 
 target("Ginger")
-    set_languages("c++14")
-    set_kind("static")
-    add_includedirs("../lds-gen-cpp/include", {public = true})
-    add_includedirs("include", {public = true})
-    add_files("source/*.cpp")
-    add_packages("fmt")
+set_languages("c++14")
+set_kind("static")
+add_includedirs("../lds-gen-cpp/include", { public = true })
+add_includedirs("include", { public = true })
+add_files("source/*.cpp")
+add_packages("fmt", "spdlog")
 
 target("test_ginger")
-    set_languages("c++17")
-    set_kind("binary")
-    add_deps("Ginger")
-    add_files("test/source/*.cpp")
-    add_packages("doctest", "fmt")
-    if is_plat("linux", "macosx") then
-        add_syslinks("pthread")
-        -- target:add("links", "pthread", "m", "dl")
-    end
-    add_tests("default")
-    -- Check if rapidcheck was downloaded by CMake
-    local rapidcheck_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-src")
-    local rapidcheck_lib_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-build")
-    if is_plat("windows") then
-        rapidcheck_lib_dir = path.join(rapidcheck_lib_dir, "Release")
-    end
-    if os.isdir(rapidcheck_dir) and os.isdir(rapidcheck_lib_dir) then
-        add_includedirs(path.join(rapidcheck_dir, "include"))
-        add_linkdirs(rapidcheck_lib_dir)
-        add_links("rapidcheck")
-        add_defines("RAPIDCHECK_H")
-    end
-
+set_languages("c++17")
+set_kind("binary")
+add_deps("Ginger")
+add_files("test/source/*.cpp")
+add_packages("doctest", "fmt", "spdlog")
+if is_plat("linux", "macosx") then
+	add_syslinks("pthread")
+	-- target:add("links", "pthread", "m", "dl")
+end
+add_tests("default")
+-- Check if rapidcheck was downloaded by CMake
+local rapidcheck_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-src")
+local rapidcheck_lib_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-build")
+if is_plat("windows") then
+	rapidcheck_lib_dir = path.join(rapidcheck_lib_dir, "Release")
+end
+if os.isdir(rapidcheck_dir) and os.isdir(rapidcheck_lib_dir) then
+	add_includedirs(path.join(rapidcheck_dir, "include"))
+	add_linkdirs(rapidcheck_lib_dir)
+	add_links("rapidcheck")
+	add_defines("RAPIDCHECK_H")
+end
 
 target("test_fir")
-    set_languages("c++17")
-    set_kind("binary")
-    add_deps("Ginger")
-    add_files("bench/BM_fir.cpp")
-    add_packages("benchmark", "fmt")
-    if is_plat("linux", "macosx") then
-        add_syslinks("pthread")
-        -- target:add("links", "pthread", "m", "dl")
-    end
+set_languages("c++17")
+set_kind("binary")
+add_deps("Ginger")
+add_files("bench/BM_fir.cpp")
+add_packages("benchmark", "fmt", "spdlog")
+if is_plat("linux", "macosx") then
+	add_syslinks("pthread")
+	-- target:add("links", "pthread", "m", "dl")
+end
 
 target("test_autocorr")
-    set_languages("c++17")
-    set_kind("binary")
-    add_deps("Ginger")
-    add_files("bench/BM_autocorr.cpp")
-    add_packages("benchmark", "fmt")
-    if is_plat("linux", "macosx") then
-        add_syslinks("pthread")
-        -- target:add("links", "pthread", "m", "dl")
-    end
+set_languages("c++17")
+set_kind("binary")
+add_deps("Ginger")
+add_files("bench/BM_autocorr.cpp")
+add_packages("benchmark", "fmt", "spdlog")
+if is_plat("linux", "macosx") then
+	add_syslinks("pthread")
+	-- target:add("links", "pthread", "m", "dl")
+end
 
 target("test_aberth")
-    set_languages("c++17")
-    set_kind("binary")
-    add_deps("Ginger")
-    add_files("bench/BM_aberth.cpp")
-    add_packages("benchmark", "fmt")
-    if is_plat("linux", "macosx") then
-        add_syslinks("pthread")
-        -- target:add("links", "pthread", "m", "dl")
-    end
-
+set_languages("c++17")
+set_kind("binary")
+add_deps("Ginger")
+add_files("bench/BM_aberth.cpp")
+add_packages("benchmark", "fmt", "spdlog")
+if is_plat("linux", "macosx") then
+	add_syslinks("pthread")
+	-- target:add("links", "pthread", "m", "dl")
+end
 
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
@@ -155,4 +154,3 @@ target("test_aberth")
 --
 -- @endcode
 --
-

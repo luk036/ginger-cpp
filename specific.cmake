@@ -15,7 +15,16 @@ CPMAddPackage(
   OPTIONS "INSTALL_ONLY YES" # create an installable target
 )
 
-set(SPECIFIC_LIBS LdsGen::LdsGen Threads::Threads fmt::fmt)
+
+# Add spdlog for logging functionality
+CPMAddPackage(
+  NAME spdlog
+  GIT_TAG v1.12.0
+  GITHUB_REPOSITORY gabime/spdlog
+  OPTIONS "SPDLOG_INSTALL YES" # create an installable target
+)
+
+set(SPECIFIC_LIBS LdsGen::LdsGen Threads::Threads fmt::fmt spdlog::spdlog)
 
 # cpmaddpackage( NAME GSL GITHUB_REPOSITORY "microsoft/GSL" GIT_TAG "v4.0.0" GIT_SHALLOW ON )
 
@@ -29,3 +38,4 @@ set(SPECIFIC_LIBS LdsGen::LdsGen Threads::Threads fmt::fmt)
 # find_package(Microsoft.GSL CONFIG REQUIRED)
 
 # set(SPECIFIC_LIBS fmt::fmt Microsoft.GSL::GSL)
+
