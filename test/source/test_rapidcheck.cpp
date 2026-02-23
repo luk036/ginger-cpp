@@ -40,7 +40,7 @@ void test_quadratic_polynomial() {
 }
 
 void test_horner_consistency() {
-    auto degree = *rc::gen::inRange(2, 10);
+    auto degree = static_cast<size_t>(*rc::gen::inRange(2, 10));
     std::vector<double> coeffs;
     coeffs.reserve(degree + 1);
     for (size_t i = 0; i <= degree; ++i) {
@@ -62,7 +62,7 @@ void test_horner_consistency() {
 }
 
 void test_initial_guess_count() {
-    auto degree = *rc::gen::inRange(1, 10);
+    auto degree = static_cast<size_t>(*rc::gen::inRange(1, 10));
     std::vector<double> coeffs(degree + 1);
     coeffs[0] = *rc::gen::nonZero<double>();
     for (size_t i = 1; i <= degree; ++i) {
@@ -71,7 +71,7 @@ void test_initial_guess_count() {
     
     auto initial = initial_aberth(coeffs);
     
-    RC_ASSERT(initial.size() == static_cast<size_t>(degree));
+    RC_ASSERT(initial.size() == degree);
 }
 
 void test_options_defaults() {
@@ -81,7 +81,7 @@ void test_options_defaults() {
 }
 
 void test_bairstow_initial_guess() {
-    auto degree = *rc::gen::inRange(2, 7) * 2;
+    auto degree = static_cast<size_t>(*rc::gen::inRange(2, 7) * 2);
     
     std::vector<double> coeffs(degree + 1);
     coeffs[0] = *rc::gen::nonZero<double>();
@@ -95,7 +95,7 @@ void test_bairstow_initial_guess() {
 }
 
 void test_roots_of_unity() {
-    auto n = *rc::gen::inRange(2, 10);
+    auto n = static_cast<size_t>(*rc::gen::inRange(2, 10));
     
     std::vector<double> coeffs(n + 1);
     coeffs[0] = 1.0;
@@ -118,7 +118,7 @@ void test_roots_of_unity() {
 }
 
 void test_autocorr_conjugate_pairs() {
-    auto degree = *rc::gen::inRange(2, 6);
+    auto degree = static_cast<size_t>(*rc::gen::inRange(2, 6));
     
     std::vector<double> coeffs(degree + 1);
     coeffs[0] = 1.0;
@@ -149,7 +149,7 @@ void test_autocorr_conjugate_pairs() {
 }
 
 void test_polynomial_at_roots() {
-    auto degree = *rc::gen::inRange(2, 5);
+    auto degree = static_cast<size_t>(*rc::gen::inRange(2, 5));
     std::vector<double> coeffs;
     coeffs.reserve(degree + 1);
     for (size_t i = 0; i <= degree; ++i) {
