@@ -2,7 +2,9 @@ add_rules("mode.debug", "mode.release", "mode.coverage")
 add_requires("doctest", { alias = "doctest" })
 add_requires("fmt", { alias = "fmt" })
 add_requires("benchmark", { alias = "benchmark" })
-add_requires("spdlog", { alias = "spdlog" })
+add_requires("spdlog", { alias = "spdlog", configs = { fmt_external = true } })
+
+
 
 if is_mode("coverage") then
 	add_cxflags("-ftest-coverage", "-fprofile-arcs", { force = true })
@@ -20,10 +22,12 @@ if is_plat("linux") then
 	end
 elseif is_plat("windows") then
 	add_cxflags("/EHsc /W4 /WX", { force = true })
+	add_ldflags("/FORCE:MULTIPLE", { force = true })
+	add_defines("_SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING")
 end
 
 target("Ginger")
-set_languages("c++14")
+set_languages("c++17")
 set_kind("static")
 add_includedirs("../lds-gen-cpp/include", { public = true })
 add_includedirs("include", { public = true })
