@@ -67,10 +67,7 @@ namespace ginger {
         /**
          * The dot function calculates the dot product of two 2D vectors.
          *
-         * @tparam U1
-         * @tparam U2
-         * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref<U1,
-         * U2>.
+         * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref.
          *
          * @return The `dot` function is returning the dot product of two vectors, which is a scalar
          * value of type `double`.
@@ -83,10 +80,7 @@ namespace ginger {
          * The cross product of two 2D vectors is calculated by multiplying their x and y components
          * and subtracting the result.
          *
-         * @tparam U1
-         * @tparam U2
-         * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref<U1,
-         * U2>.
+         * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref.
          *
          * @return The function `cross` returns the result of the cross product between the current
          * vector and the `other` vector. The result is of type `double`.
@@ -101,13 +95,10 @@ namespace ginger {
         ///@{
 
         /**
-         * The function `operator+=` adds the components of another Vector2Ref object to the current
+         * The function `operator+=` adds the components of another Vector2 object to the current
          * Vector2Ref object and returns a reference to the updated object.
          *
-         * @tparam U1
-         * @tparam U2
-         * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref<U1,
-         * U2>.
+         * @param[in] other The parameter "other" is a reference to an object of type Vector2<double, double>.
          *
          * @return a reference to a Vector2Ref object.
          */
@@ -118,13 +109,10 @@ namespace ginger {
         }
 
         /**
-         * The function subtracts the x and y components of another Vector2Ref object from the
+         * The function subtracts the x and y components of another Vector2 object from the
          * current Vector2Ref object.
          *
-         * @tparam U1
-         * @tparam U2
-         * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref<U1,
-         * U2>.
+         * @param[in] other The parameter "other" is a reference to an object of type Vector2<double, double>.
          *
          * @return a reference to a Vector2Ref object.
          */

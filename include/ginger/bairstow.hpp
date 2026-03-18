@@ -26,15 +26,16 @@ class Options;
  * x using only degree multiplications and degree additions. Horner's rule is commonly
  * used in numerical methods for polynomial evaluation and interpolation.
  *
- * @param[in, out] coeffs1 coeffs1 is a reference to a vector of doubles. It is used to
+ * @param[in, out] coeffs coeffs is a reference to a vector of doubles. It is used to
  * store the coefficients of a polynomial.
- * @param[in] degree The parameter `degree` represents the size of the vector `coeffs1`. It
- * indicates the number of elements in the vector `coeffs1`.
+ * @param[in, out] vcoeffs vcoeffs is a reference to a vector of Vec2Ref objects.
+ * @param[in] degree The parameter `degree` represents the size of the vector `coeffs`. It
+ * indicates the number of elements in the vector `coeffs`.
  * @param[in] vr vr is a Vec2 object, which represents a 2D vector. It has two
  * components, vr.x() and vr.y(), which are used in the calculations inside the
  * horner function.
  *
- * @return a Vec2 object.
+ * @return a Vec2Ref object.
  */
 extern auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeffs,
                        std::size_t degree, const Vec2 &vr) -> Vec2Ref;
@@ -82,9 +83,9 @@ inline auto makeadjoint_ref(const Vec2 &vr, const Vec2Ref &vp) -> Mat2 {
 /**
  * The function calculates the delta value using the given parameters.
  *
- * @param[in] vA A vector of type Vec2.
+ * @param[in] vA A vector of type Vec2Ref.
  * @param[in] vr A vector representing the direction of rotation.
- * @param[in] vp The parameter `vp` is a `Vec2` object that is passed by rvalue reference.
+ * @param[in] vp The parameter `vp` is a `Vec2Ref` object that is passed by const reference.
  *
  * @return a Vec2 object.
  */
