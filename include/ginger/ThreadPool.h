@@ -11,15 +11,56 @@
 #include <thread>
 #include <vector>
 
+/**
+ * @brief ThreadPool
+ *
+ * A simple thread pool implementation that allows tasks to be enqueued and
+ * executed asynchronously by a fixed number of worker threads.
+ *
+ * The pool creates a specified number of worker threads at construction.
+ * Tasks can be enqueued using the enqueue() method, which returns a std::future
+ * that can be used to retrieve the result or wait for completion.
+ *
+ * @note The pool will automatically shut down when destroyed, waiting for
+ * all pending tasks to complete.
+ */
 class ThreadPool {
   public:
+    /**
+     * @brief Construct a new ThreadPool
+     *
+     * Creates a thread pool with the specified number of worker threads.
+     *
+     * @param threads The number of worker threads to create
+     */
     ThreadPool(size_t);
+    
+    /**
+     * @brief Enqueue a new task to the thread pool
+     *
+     * Adds a new work item to the pool's task queue. The task will be executed
+     * by one of the worker threads.
+     *
+     * @tparam F The callable type of the task
+     * @tparam Args The argument types for the task
+     * @param f The callable to execute
+     * @param args The arguments to pass to the callable
+     * @return A std::future containing the result of the task
+     * @throws std::runtime_error if enqueue is called after the pool has been stopped
+     */
     template <class F, class... Args> auto enqueue(F &&f, Args &&...args)
 #if __cplusplus >= 201703L
         -> std::future<typename std::invoke_result<F, Args...>::type>;
 #else
         -> std::future<typename std::result_of<F(Args...)>::type>;
 #endif
+    
+    /**
+     * @brief Destroy the ThreadPool
+     *
+     * Stops the pool and waits for all worker threads to complete their current tasks.
+     * All pending tasks in the queue will be executed before the threads terminate.
+     */
     ~ThreadPool();
 
   private:

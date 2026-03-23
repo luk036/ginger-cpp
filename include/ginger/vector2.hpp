@@ -11,6 +11,10 @@ namespace ginger {
     /**
      * @brief Vector2
      *
+     * A template class representing a 2D vector with x and y components.
+     *
+     * @tparam T1 The type of the x component
+     * @tparam T2 The type of the y component (defaults to T1)
      */
     template <typename T1, typename T2 = T1> class Vector2 {
       public:
