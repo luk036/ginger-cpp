@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ginger-slides</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="parallelizable-polynomial-root-finding">🎯 Parallelizable
+Polynomial Root Finding</h1>
+<h2 id="a-deep-dive-into-the-ginger-cpp-library">A Deep Dive into the
+ginger-cpp Library</h2>
+<p><strong>ginger-cpp: Polynomial Root-Finding Algorithms
+(Parallelizable)</strong></p>
+<p>📅 Presentation Duration: <strong>45 minutes</strong></p>
+<hr />
+<!-- slide -->
+<h1 id="agenda">📋 Agenda</h1>
+<pre class="mermaid"><code>mindmap
+  root((🕐 45 min))
+    Introduction
+      Why Root Finding?
+      Applications
+    Mathematical Foundation
+      Polynomial Basics
+      Root-Finding Problem
+    Aberth-Ehrlich Method
+      Algorithm Overview
+      Initial Guesses
+      Convergence
+    Bairstow&#39;s Method
+      Quadratic Factors
+      Zero Suppression
+    Parallelization
+      Thread Pools
+      Data Independence
+      Performance
+    Implementation
+      Code Examples
+      API Design
+    Conclusion
+      Summary
+      Future Work</code></pre>
+<hr />
+<!-- slide -->
+<h1 id="part-1-introduction">🌍 Part 1: Introduction</h1>
+<hr />
+<h2 id="why-polynomial-root-finding">🎯 Why Polynomial Root
+Finding?</h2>
+<h3 id="the-problem">The Problem</h3>
+<p>Finding roots of polynomials is fundamental in:</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔬 <strong>Physics</strong></td>
+<td>Quantum mechanics, signal processing</td>
+</tr>
+<tr>
+<td>📡 <strong>Control Theory</strong></td>
+<td>System stability analysis</td>
+</tr>
+<tr>
+<td>📊 <strong>Statistics</strong></td>
+<td>Time series analysis (AR models)</td>
+</tr>
+<tr>
+<td>🎮 <strong>Computer Graphics</strong></td>
+<td>Curve intersection</td>
+</tr>
+<tr>
+<td>🔧 <strong>Engineering</strong></td>
+<td>Circuit analysis, structural dynamics</td>
+</tr>
+</tbody>
+</table>
+<h3 id="challenges">Challenges</h3>
+<ul>
+<li>📈 <strong>High-degree polynomials</strong> → Multiple roots</li>
+<li>🔢 <strong>Complex roots</strong> → Need complex arithmetic</li>
+<li>⚡ <strong>Real-time applications</strong> → Speed critical</li>
+<li>🎯 <strong>Accuracy requirements</strong> → Numerical stability</li>
+</ul>
+<hr />
+<h2 id="the-ginger-cpp-library">📦 The ginger-cpp Library</h2>
+<h3 id="features">Features</h3>
+<pre class="mermaid"><code>graph LR
+    A[🫚 ginger-cpp] --&gt; B[📦 Modern CMake]
+    A --&gt; C[🧪 Testing]
+    A --&gt; D[⚡ Parallel]
+    A --&gt; E[🎯 Multiple Methods]
+    
+    B --&gt; B1[Header-only ready]
+    B --&gt; B2[CPM.cmake]
+    
+    C --&gt; C1[doctest]
+    C --&gt; C2[RapidCheck]
+    
+    D --&gt; D1[ThreadPool]
+    D --&gt; D2[Async/Await]
+    
+    E --&gt; E1[Aberth-Ehrlich]
+    E --&gt; E2[Bairstow]</code></pre>
+<h3 id="supported-algorithms">Supported Algorithms</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Roots</th>
+<th>Parallel</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aberth_mt</code></td>
+<td>Complex</td>
+<td>✅</td>
+<td>General polynomials</td>
+</tr>
+<tr>
+<td><code>aberth_autocorr_mt</code></td>
+<td>Complex</td>
+<td>✅</td>
+<td>Auto-correlation</td>
+</tr>
+<tr>
+<td><code>pbairstow_even</code></td>
+<td>Real pairs</td>
+<td>✅</td>
+<td>Even-degree real</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<!-- slide -->
+<h1 id="part-2-mathematical-foundation">🔬 Part 2: Mathematical
+Foundation</h1>
+<hr />
+<h2 id="polynomial-representation">📐 Polynomial Representation</h2>
+<h3 id="standard-form">Standard Form</h3>
+<p>A polynomial of degree <span
+class="math inline"><em>n</em></span>:</p>
+<p><span
+class="math display"><em>P</em>(<em>x</em>) = <em>a</em><sub><em>n</em></sub><em>x</em><sup><em>n</em></sup> + <em>a</em><sub><em>n</em> − 1</sub><em>x</em><sup><em>n</em> − 1</sup> + ⋯ + <em>a</em><sub>1</sub><em>x</em> + <em>a</em><sub>0</sub></span></p>
+<p>where <span
+class="math inline"><em>a</em><sub><em>n</em></sub> ≠ 0</span></p>
+<h3 id="coefficients-vector">Coefficients Vector</h3>
+<p>In ginger-cpp, coefficients are stored in descending order:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// P(x) = 2x³ + 3x² - x + 5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> coeffs <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">//                indices:    [0]  [1]   [2]   [3]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">//                powers:      3    2     1     0</span></span></code></pre></div>
+<h3 id="root-classification">Root Classification</h3>
+<p><span class="math display">$$P(x) = a_n \prod_{i=1}^{n} (x -
+r_i)$$</span></p>
+<table>
+<thead>
+<tr>
+<th>Root Type</th>
+<th>Example</th>
+<th>Method Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔵 Real</td>
+<td><span class="math inline"><em>r</em> = 3.5</span></td>
+<td>Bairstow</td>
+</tr>
+<tr>
+<td>🔴 Complex</td>
+<td><span class="math inline"><em>r</em> = 2 + 3<em>i</em></span></td>
+<td>Aberth</td>
+</tr>
+<tr>
+<td>⚪ Multiple</td>
+<td><span class="math inline"><em>r</em> = 2</span> (multiplicity
+3)</td>
+<td>Special handling</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="the-root-finding-problem">🔢 The Root-Finding Problem</h2>
+<h3 id="goal">Goal</h3>
+<p>Find all <span class="math inline"><em>n</em></span> roots <span
+class="math inline"><em>r</em><sub>1</sub>, <em>r</em><sub>2</sub>, …, <em>r</em><sub><em>n</em></sub></span>
+such that:</p>
+<p><span
+class="math display"><em>P</em>(<em>r</em><sub><em>i</em></sub>) = 0  for
+<em>i</em> = 1, 2, …, <em>n</em></span></p>
+<h3 id="iterative-methods">Iterative Methods</h3>
+<pre class="mermaid"><code>flowchart TD
+    A[Start: Initial Guess] --&gt; B[Evaluate P and P&#39;]
+    B --&gt; C[Compute Correction]
+    C --&gt; D{Converged?}
+    D --&gt;|Yes| E[✅ Root Found]
+    D --&gt;|No| F[Update Guess]
+    F --&gt; B
+    
+    G[Iteration Limit] --&gt; E</code></pre>
+<h3 id="convergence-criteria">Convergence Criteria</h3>
+<p><span
+class="math display">∥<em>P</em>(<em>x</em><sub><em>k</em></sub>)∥ &lt; <em>ϵ</em>  where
+<em>ϵ</em> = 10<sup>−14</sup></span></p>
+<p>Default options in ginger-cpp:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Options <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> max_iters <span class="op">=</span> <span class="dv">2000</span><span class="bu">U</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> tolerance <span class="op">=</span> <span class="fl">1e-14</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<hr />
+<h2 id="horners-method-efficient-evaluation">📊 Horner’s Method:
+Efficient Evaluation</h2>
+<h3 id="the-algorithm">The Algorithm</h3>
+<p><span
+class="math display"><em>P</em>(<em>x</em>) = <em>a</em><sub><em>n</em></sub><em>x</em><sup><em>n</em></sup> + <em>a</em><sub><em>n</em> − 1</sub><em>x</em><sup><em>n</em> − 1</sup> + ⋯ + <em>a</em><sub>1</sub><em>x</em> + <em>a</em><sub>0</sub></span></p>
+<p>Rewritten as nested multiplication:</p>
+<p><span
+class="math display"><em>P</em>(<em>x</em>) = (⋯((<em>a</em><sub><em>n</em></sub><em>x</em> + <em>a</em><sub><em>n</em> − 1</sub>)<em>x</em> + <em>a</em><sub><em>n</em> − 2</sub>)⋯)<em>x</em> + <em>a</em><sub>0</sub></span></p>
+<h3 id="complexity">Complexity</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Multiplications</th>
+<th>Additions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naive</td>
+<td><span class="math inline"><em>n</em>(<em>n</em> + 1)/2</span></td>
+<td><span class="math inline"><em>n</em></span></td>
+</tr>
+<tr>
+<td>Horner</td>
+<td><span class="math inline"><em>n</em></span></td>
+<td><span class="math inline"><em>n</em></span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="visualization">Visualization</h3>
+<pre class="mermaid"><code>graph LR
+    subgraph Horner Evaluation
+        A[coeffs[0]] --&gt;|×z| B[×]
+        B --&gt;|+coeffs[1]| C[+]
+        C --&gt;|×z| D[×]
+        D --&gt;|+coeffs[2]| E[+]
+        E --&gt;|×z| F[...]
+        F --&gt;|+coeffs[n]| G[Result]
+    end</code></pre>
+<h3 id="implementation">Implementation</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="kw">auto</span> horner_eval_c<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&amp;</span> coeffs<span class="op">,</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">const</span> <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&amp;</span> zval<span class="op">)</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">-&gt;</span> <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> result<span class="op">(</span><span class="fl">0.0</span><span class="op">,</span> <span class="fl">0.0</span><span class="op">);</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> coeff <span class="op">:</span> coeffs<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> result <span class="op">*</span> zval <span class="op">+</span> coeff<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<!-- slide -->
+<h1 id="part-3-aberth-ehrlich-method">🔮 Part 3: Aberth-Ehrlich
+Method</h1>
+<hr />
+<h2 id="aberth-ehrlich-method-overview">🌀 Aberth-Ehrlich Method
+Overview</h2>
+<h3 id="what-is-aberth-ehrlich">What is Aberth-Ehrlich?</h3>
+<p>A <strong>simultaneous iteration</strong> method that finds all roots
+of a polynomial at once!</p>
+<h3 id="key-properties">Key Properties</h3>
+<pre class="mermaid"><code>graph TD
+    A[Aberth-Ehrlich Method] --&gt; B[🎯 Simultaneous]
+    A --&gt; C[🔄 Iterative]
+    A --&gt; D[💾 Complex Memory]
+    A --&gt; E[⚡ Parallelizable]
+    
+    B --&gt; B1[All roots updated together]
+    C --&gt; C1[Newton-like corrections]
+    D --&gt; D1[Uses complex arithmetic]
+    E --&gt; E1[Independent root updates]</code></pre>
+<h3 id="the-update-formula">The Update Formula</h3>
+<p>For root <span
+class="math inline"><em>z</em><sub><em>i</em></sub></span> at iteration
+<span class="math inline"><em>k</em></span>:</p>
+<p><span class="math display">$$z_i^{(k+1)} = z_i^{(k)} -
+\frac{P(z_i^{(k)})}{P'(z_i^{(k)}) - P(z_i^{(k)}) \sum_{j \neq i}
+\frac{1}{z_i^{(k)} - z_j^{(k)}}}$$</span></p>
+<p>Where: - <span
+class="math inline"><em>P</em>(<em>z</em><sub><em>i</em></sub><sup>(<em>k</em>)</sup>)</span>
+= Polynomial value at <span
+class="math inline"><em>z</em><sub><em>i</em></sub><sup>(<em>k</em>)</sup></span>
+- <span
+class="math inline"><em>P</em><sup>′</sup>(<em>z</em><sub><em>i</em></sub><sup>(<em>k</em>)</sup>)</span>
+= Derivative at <span
+class="math inline"><em>z</em><sub><em>i</em></sub><sup>(<em>k</em>)</sup></span>
+- The sum term = <strong>Wilkinson correction</strong></p>
+<hr />
+<h2 id="aberth-ehrlich-mathematical-details">📐 Aberth-Ehrlich:
+Mathematical Details</h2>
+<h3 id="derivative-via-horners-method">Derivative via Horner’s
+Method</h3>
+<p><span
+class="math display"><em>P</em><sup>′</sup>(<em>x</em>) = <em>n</em><em>a</em><sub><em>n</em></sub><em>x</em><sup><em>n</em> − 1</sup> + (<em>n</em> − 1)<em>a</em><sub><em>n</em> − 1</sub><em>x</em><sup><em>n</em> − 2</sup> + ⋯ + <em>a</em><sub>1</sub></span></p>
+<p>Coefficients are weighted by their degree:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute derivative coefficients</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="kw">auto</span> degree <span class="op">=</span> coeffs<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> coeffs1 <span class="op">=</span> vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>degree<span class="op">);</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> idx <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span> idx <span class="op">!=</span> degree<span class="op">;</span> <span class="op">++</span>idx<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    coeffs1<span class="op">[</span>idx<span class="op">]</span> <span class="op">=</span> <span class="dt">double</span><span class="op">(</span>degree <span class="op">-</span> idx<span class="op">)</span> <span class="op">*</span> coeffs<span class="op">[</span>idx<span class="op">];</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="the-correction-term">The Correction Term</h3>
+<p><span class="math display">$$\Delta z_i = \frac{P(z_i)}{P'(z_i) -
+\sum_{j \neq i} \frac{P(z_i)}{z_i - z_j}}$$</span></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Aberth update for single root</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="kw">auto</span> zi <span class="op">=</span> zs<span class="op">[</span>idx<span class="op">];</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="kw">auto</span> P <span class="op">=</span> horner_eval_c<span class="op">(</span>coeffs<span class="op">,</span> zi<span class="op">);</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> P1 <span class="op">=</span> horner_eval_c<span class="op">(</span>coeffs1<span class="op">,</span> zi<span class="op">);</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> jdx <span class="op">:</span> rr<span class="op">.</span>exclude<span class="op">(</span>idx<span class="op">))</span> <span class="op">{</span>  <span class="co">// Exclude self</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    P1 <span class="op">-=</span> P <span class="op">/</span> <span class="op">(</span>zi <span class="op">-</span> zs<span class="op">[</span>jdx<span class="op">]);</span>       <span class="co">// Wilkinson correction</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>zs<span class="op">[</span>idx<span class="op">]</span> <span class="op">-=</span> P <span class="op">/</span> P1<span class="op">;</span>                  <span class="co">// Newton-like step</span></span></code></pre></div>
+<hr />
+<h2 id="initial-guesses-the-circle-method">🎲 Initial Guesses: The
+Circle Method</h2>
+<h3 id="strategy">Strategy</h3>
+<pre class="mermaid"><code>graph TD
+    A[Compute Polynomial Center] --&gt; B[Calculate Radius]
+    B --&gt; C[Distribute Points on Circle]
+    C --&gt; D[Complex Initial Values]
+    
+    A --&gt; A1[center = -coeffs[1] / n·coeffs[0]]
+    B --&gt; B1[radius = |P(center)|^(1/n)]</code></pre>
+<h3 id="formula">Formula</h3>
+<p><span
+class="math display"><em>z</em><sub><em>i</em></sub><sup>(0)</sup> = center + radius ⋅ <em>e</em><sup>2<em>π</em><em>i</em><em>i</em>/<em>n</em></sup></span></p>
+<h3 id="visualization-1">Visualization</h3>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode svg"><code class="sourceCode xml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">svg</span> <span class="ot">viewBox=</span><span class="st">&quot;0 0 400 300&quot;</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Coordinate axes --&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;50&quot;</span> <span class="ot">y1=</span><span class="st">&quot;150&quot;</span> <span class="ot">x2=</span><span class="st">&quot;350&quot;</span> <span class="ot">y2=</span><span class="st">&quot;150&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;gray&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;200&quot;</span> <span class="ot">y1=</span><span class="st">&quot;20&quot;</span> <span class="ot">x2=</span><span class="st">&quot;200&quot;</span> <span class="ot">y2=</span><span class="st">&quot;280&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;gray&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;355&quot;</span> <span class="ot">y=</span><span class="st">&quot;155&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;14&quot;</span>&gt;Re&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;205&quot;</span> <span class="ot">y=</span><span class="st">&quot;25&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;14&quot;</span>&gt;Im&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Circle --&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;200&quot;</span> <span class="ot">cy=</span><span class="st">&quot;150&quot;</span> <span class="ot">r=</span><span class="st">&quot;80&quot;</span> <span class="ot">fill=</span><span class="st">&quot;none&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;#339af0&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span> <span class="ot">stroke-dasharray=</span><span class="st">&quot;5,5&quot;</span>/&gt;</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Center point --&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;200&quot;</span> <span class="ot">cy=</span><span class="st">&quot;150&quot;</span> <span class="ot">r=</span><span class="st">&quot;5&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#e64980&quot;</span>/&gt;</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;210&quot;</span> <span class="ot">y=</span><span class="st">&quot;140&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#e64980&quot;</span>&gt;center&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Initial guess points --&gt;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;280&quot;</span> <span class="ot">cy=</span><span class="st">&quot;150&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;246&quot;</span> <span class="ot">cy=</span><span class="st">&quot;110&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;200&quot;</span> <span class="ot">cy=</span><span class="st">&quot;70&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;154&quot;</span> <span class="ot">cy=</span><span class="st">&quot;110&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;120&quot;</span> <span class="ot">cy=</span><span class="st">&quot;150&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;154&quot;</span> <span class="ot">cy=</span><span class="st">&quot;190&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;200&quot;</span> <span class="ot">cy=</span><span class="st">&quot;230&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;246&quot;</span> <span class="ot">cy=</span><span class="st">&quot;190&quot;</span> <span class="ot">r=</span><span class="st">&quot;6&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Legend --&gt;</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;80&quot;</span> <span class="ot">cy=</span><span class="st">&quot;270&quot;</span> <span class="ot">r=</span><span class="st">&quot;4&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span>/&gt;</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;90&quot;</span> <span class="ot">y=</span><span class="st">&quot;274&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span>&gt;Initial guesses&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">cx=</span><span class="st">&quot;80&quot;</span> <span class="ot">cy=</span><span class="st">&quot;285&quot;</span> <span class="ot">r=</span><span class="st">&quot;4&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#e64980&quot;</span>/&gt;</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;90&quot;</span> <span class="ot">y=</span><span class="st">&quot;289&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span>&gt;Center&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">svg</span>&gt;</span></code></pre></div>
+<h3 id="implementation-1">Implementation</h3>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> initial_aberth<span class="op">(</span><span class="at">const</span> vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&amp;</span> coeffs<span class="op">)</span> <span class="op">-&gt;</span> vector<span class="op">&lt;</span>Complex<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> degree <span class="op">=</span> coeffs<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> center <span class="op">=</span> <span class="op">-</span>coeffs<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">/</span> <span class="op">(</span><span class="dt">double</span><span class="op">(</span>degree<span class="op">)</span> <span class="op">*</span> coeffs<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> p_center <span class="op">=</span> horner_eval_f<span class="op">(</span>coeffs<span class="op">,</span> center<span class="op">);</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> radius <span class="op">=</span> <span class="bu">std::</span>pow<span class="op">(</span><span class="bu">std::</span>fabs<span class="op">(</span>p_center<span class="op">),</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dt">double</span><span class="op">(</span>degree<span class="op">));</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> z0s <span class="op">=</span> vector<span class="op">&lt;</span>Complex<span class="op">&gt;{};</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    ldsgen<span class="op">::</span>Circle c_gen<span class="op">(</span><span class="dv">2</span><span class="op">);</span>  <span class="co">// 2D sphere for complex</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> i <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span> i <span class="op">!=</span> degree<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">auto</span> res <span class="op">=</span> c_gen<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">auto</span> z0 <span class="op">=</span> center <span class="op">+</span> radius <span class="op">*</span> Complex<span class="op">{</span>res<span class="op">[</span><span class="dv">1</span><span class="op">],</span> res<span class="op">[</span><span class="dv">0</span><span class="op">]};</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        z0s<span class="op">.</span>emplace_back<span class="op">(</span>z0<span class="op">);</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z0s<span class="op">;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="aberth-ehrlich-convergence-properties">🧮 Aberth-Ehrlich:
+Convergence Properties</h2>
+<h3 id="convergence-rate">Convergence Rate</h3>
+<pre class="mermaid"><code>graph LR
+    A[Convergence] --&gt; B[Quadratic]
+    B --&gt; C[Similar to Newton]
+    
+    D[Advantages] --&gt; E[Global]
+    D --&gt; F[All roots simultaneously]
+    D --&gt; G[Parallelizable]</code></pre>
+<h3 id="convergence-conditions">Convergence Conditions</h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple roots</td>
+<td>✅ Quadratic convergence</td>
+</tr>
+<tr>
+<td>Clustered roots</td>
+<td>⚠️ Slower convergence</td>
+</tr>
+<tr>
+<td>Multiple roots</td>
+<td>❌ Requires modification</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tolerance-check">Tolerance Check</h3>
+<p><span
+class="math display">max<sub><em>i</em></sub>|<em>P</em>(<em>z</em><sub><em>i</em></sub>)| &lt; <em>ϵ</em></span></p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Check convergence</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> tolerance <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> idx <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span> idx <span class="op">!=</span> num_roots<span class="op">;</span> <span class="op">++</span>idx<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> P <span class="op">=</span> horner_eval_c<span class="op">(</span>coeffs<span class="op">,</span> zs<span class="op">[</span>idx<span class="op">]);</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    tolerance <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>tolerance<span class="op">,</span> <span class="bu">std::</span>abs<span class="op">(</span>P<span class="op">));</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>tolerance <span class="op">&lt;</span> options<span class="op">.</span>tolerance<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">{</span>niter<span class="op">,</span> <span class="kw">true</span><span class="op">};</span>  <span class="co">// Converged!</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<!-- slide -->
+<h1 id="part-4-bairstows-method">🔧 Part 4: Bairstow’s Method</h1>
+<hr />
+<h2 id="bairstows-method-overview">📐 Bairstow’s Method Overview</h2>
+<h3 id="what-is-bairstows-method">What is Bairstow’s Method?</h3>
+<p>A <strong>deflation-based</strong> method that extracts
+<strong>quadratic factors</strong>:</p>
+<p><span
+class="math display"><em>x</em><sup>2</sup> − <em>r</em><em>x</em> − <em>s</em>  ⇒  (<em>x</em> − <em>r</em><sub>1</sub>)(<em>x</em> − <em>r</em><sub>2</sub>)</span></p>
+<h3 id="key-properties-1">Key Properties</h3>
+<pre class="mermaid"><code>flowchart TD
+    A[Bairstow&#39;s Method] --&gt; B[🎯 Real Polynomials]
+    A --&gt; C[📦 Even Degree]
+    A --&gt; D[👥 Quadratic Factors]
+    A --&gt; E[⚡ Parallelizable]
+    
+    B --&gt; B1[Only real coefficients]
+    C --&gt; C1[Degree must be 2k]
+    D --&gt; D1[Extracts root pairs]
+    E --&gt; E1[Multiple factors in parallel]</code></pre>
+<h3 id="root-extraction">Root Extraction</h3>
+<p><span
+class="math display"><em>P</em>(<em>x</em>) = (<em>x</em><sup>2</sup> − <em>r</em><em>x</em> − <em>s</em>) ⋅ <em>Q</em>(<em>x</em>) + (<em>b</em><sub>1</sub><em>x</em> + <em>b</em><sub>0</sub>)</span></p>
+<table>
+<thead>
+<tr>
+<th>Factor Type</th>
+<th>Roots</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quadratic</td>
+<td><span class="math inline"><em>r</em>, <em>s</em></span> from <span
+class="math inline"><em>x</em><sup>2</sup> − <em>r</em><em>x</em> − <em>s</em> = 0</span></td>
+<td><span
+class="math inline"><em>x</em><sup>2</sup> − 3<em>x</em> + 2 = 0</span></td>
+</tr>
+<tr>
+<td>Linear</td>
+<td><span class="math inline"><em>x</em> − <em>r</em> = 0</span></td>
+<td><span class="math inline"><em>x</em> − 5 = 0</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="bairstow-the-algorithm">📊 Bairstow: The Algorithm</h2>
+<h3 id="division-by-quadratic">Division by Quadratic</h3>
+<p><span
+class="math display"><em>P</em>(<em>x</em>) = <em>x</em><sup>2</sup> − <em>r</em><em>x</em> − <em>s</em></span></p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Horner-like division</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> horner<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&amp;</span> coeffs1<span class="op">,</span> <span class="dt">size_t</span> degree<span class="op">,</span> <span class="at">const</span> Vec2<span class="op">&amp;</span> vr<span class="op">)</span> <span class="op">-&gt;</span> Vec2 <span class="op">{</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// coeffs1[i+1] += coeffs1[i] * vr.x()  // r coefficient</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// coeffs1[i+2] += coeffs1[i] * vr.y()  // s coefficient (negative sign in equation)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> idx <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span> idx <span class="op">!=</span> degree <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> <span class="op">++</span>idx<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        coeffs1<span class="op">[</span>idx <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">+=</span> coeffs1<span class="op">[</span>idx<span class="op">]</span> <span class="op">*</span> vr<span class="op">.</span>x<span class="op">();</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        coeffs1<span class="op">[</span>idx <span class="op">+</span> <span class="dv">2</span><span class="op">]</span> <span class="op">+=</span> coeffs1<span class="op">[</span>idx<span class="op">]</span> <span class="op">*</span> vr<span class="op">.</span>y<span class="op">();</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Vec2<span class="op">{</span>coeffs1<span class="op">[</span>degree <span class="op">-</span> <span class="dv">1</span><span class="op">],</span> coeffs1<span class="op">[</span>degree<span class="op">]};</span>  <span class="co">// b₁, b₀</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="visualization-2">Visualization</h3>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode svg"><code class="sourceCode xml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">svg</span> <span class="ot">viewBox=</span><span class="st">&quot;0 0 500 200&quot;</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Polynomial --&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rect</span> <span class="ot">x=</span><span class="st">&quot;20&quot;</span> <span class="ot">y=</span><span class="st">&quot;80&quot;</span> <span class="ot">width=</span><span class="st">&quot;120&quot;</span> <span class="ot">height=</span><span class="st">&quot;40&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#339af0&quot;</span> <span class="ot">rx=</span><span class="st">&quot;5&quot;</span>/&gt;</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;80&quot;</span> <span class="ot">y=</span><span class="st">&quot;105&quot;</span> <span class="ot">fill=</span><span class="st">&quot;white&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;14&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;P(x)&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Division symbol --&gt;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;160&quot;</span> <span class="ot">y=</span><span class="st">&quot;105&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;24&quot;</span>&gt;÷&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Quadratic factor --&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rect</span> <span class="ot">x=</span><span class="st">&quot;190&quot;</span> <span class="ot">y=</span><span class="st">&quot;60&quot;</span> <span class="ot">width=</span><span class="st">&quot;100&quot;</span> <span class="ot">height=</span><span class="st">&quot;80&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#51cf66&quot;</span> <span class="ot">rx=</span><span class="st">&quot;5&quot;</span>/&gt;</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;240&quot;</span> <span class="ot">y=</span><span class="st">&quot;105&quot;</span> <span class="ot">fill=</span><span class="st">&quot;white&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;x² - rx - s&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Arrow --&gt;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;310&quot;</span> <span class="ot">y1=</span><span class="st">&quot;100&quot;</span> <span class="ot">x2=</span><span class="st">&quot;340&quot;</span> <span class="ot">y2=</span><span class="st">&quot;100&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;gray&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">polygon</span> <span class="ot">points=</span><span class="st">&quot;340,95 350,100 340,105&quot;</span> <span class="ot">fill=</span><span class="st">&quot;gray&quot;</span>/&gt;</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Quotient --&gt;</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rect</span> <span class="ot">x=</span><span class="st">&quot;370&quot;</span> <span class="ot">y=</span><span class="st">&quot;80&quot;</span> <span class="ot">width=</span><span class="st">&quot;50&quot;</span> <span class="ot">height=</span><span class="st">&quot;40&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#fcc419&quot;</span> <span class="ot">rx=</span><span class="st">&quot;5&quot;</span>/&gt;</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;395&quot;</span> <span class="ot">y=</span><span class="st">&quot;105&quot;</span> <span class="ot">fill=</span><span class="st">&quot;black&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;Q(x)&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Plus --&gt;</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;435&quot;</span> <span class="ot">y=</span><span class="st">&quot;105&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;20&quot;</span>&gt;+&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Remainder --&gt;</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rect</span> <span class="ot">x=</span><span class="st">&quot;455&quot;</span> <span class="ot">y=</span><span class="st">&quot;80&quot;</span> <span class="ot">width=</span><span class="st">&quot;35&quot;</span> <span class="ot">height=</span><span class="st">&quot;40&quot;</span> <span class="ot">fill=</span><span class="st">&quot;#e64980&quot;</span> <span class="ot">rx=</span><span class="st">&quot;5&quot;</span>/&gt;</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;472&quot;</span> <span class="ot">y=</span><span class="st">&quot;105&quot;</span> <span class="ot">fill=</span><span class="st">&quot;white&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;10&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;b₁x+b₀&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Labels --&gt;</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;395&quot;</span> <span class="ot">y=</span><span class="st">&quot;30&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;14&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;Quotient&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;472&quot;</span> <span class="ot">y=</span><span class="st">&quot;30&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;14&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;Remainder&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">svg</span>&gt;</span></code></pre></div>
+<h3 id="newton-raphson-update">Newton-Raphson Update</h3>
+<p><span class="math display">$$ \begin{bmatrix} \Delta r \\ \Delta s
+\end{bmatrix} = -M^{-1} \begin{bmatrix} b_1 \\ b_0 \end{bmatrix}
+$$</span></p>
+<p>where <span class="math inline"><em>M</em></span> is the Jacobian
+matrix of <span
+class="math inline"><em>b</em><sub>1</sub>, <em>b</em><sub>0</sub></span>
+with respect to <span
+class="math inline"><em>r</em>, <em>s</em></span>.</p>
+<hr />
+<h2 id="zero-suppression-technique">🔗 Zero Suppression Technique</h2>
+<h3 id="the-challenge">The Challenge</h3>
+<p>When finding multiple quadratic factors, we need to
+<strong>suppress</strong> the influence of already-found roots.</p>
+<h3 id="concept">Concept</h3>
+<pre class="mermaid"><code>graph TD
+    A[Root rⱼ found] --&gt; B[Update remaining roots]
+    B --&gt; C[Remove rⱼ&#39;s contribution]
+    C --&gt; D[Isolate rᵢ individually]
+    
+    E[Without Suppression] --&gt; F[❌ Interference]
+    G[With Suppression] --&gt; H[✅ Isolated update]</code></pre>
+<h3 id="suppression-formula">Suppression Formula</h3>
+<p>Given two root pairs <span
+class="math inline">(<em>r</em><sub><em>i</em></sub>, <em>q</em><sub><em>i</em></sub>)</span>
+and <span
+class="math inline">(<em>r</em><sub><em>j</em></sub>, <em>q</em><sub><em>j</em></sub>)</span>,
+the suppressed evaluation at <span class="math inline"><em>i</em></span>
+becomes:</p>
+<p><span class="math display">$$\tilde{vA}_i = M_{\text{adj}} \cdot
+vA_i$$</span></p>
+<p>where the adjoint matrix <span
+class="math inline"><em>M</em><sub>adj</sub></span> removes the <span
+class="math inline"><em>j</em></span>-th root’s influence.</p>
+<h3 id="implementation-2">Implementation</h3>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> suppress<span class="op">(</span>Vec2<span class="op">&amp;</span> vA<span class="op">,</span> Vec2<span class="op">&amp;</span> vA1<span class="op">,</span> <span class="at">const</span> Vec2<span class="op">&amp;</span> vri<span class="op">,</span> <span class="at">const</span> Vec2<span class="op">&amp;</span> vrj<span class="op">)</span> <span class="op">-&gt;</span> <span class="dt">void</span> <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> vp <span class="op">=</span> vri <span class="op">-</span> vrj<span class="op">;</span>                    <span class="co">// Difference</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> p <span class="op">=</span> vp<span class="op">.</span>x<span class="op">(),</span> s <span class="op">=</span> vp<span class="op">.</span>y<span class="op">();</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Adjoint matrix</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> <span class="va">m_adjoint</span> <span class="op">=</span> Mat2<span class="op">{</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        Vec2<span class="op">{</span>s<span class="op">,</span> <span class="op">-</span>p<span class="op">},</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        Vec2<span class="op">{-</span>p <span class="op">*</span> vri<span class="op">.</span>y<span class="op">(),</span> p <span class="op">*</span> vri<span class="op">.</span>x<span class="op">()</span> <span class="op">+</span> s<span class="op">}</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> e <span class="op">=</span> <span class="va">m_adjoint</span><span class="op">.</span>det<span class="op">();</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> va <span class="op">=</span> <span class="va">m_adjoint</span><span class="op">.</span>mdot<span class="op">(</span>vA<span class="op">);</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> vd <span class="op">=</span> vA1 <span class="op">*</span> e <span class="op">-</span> va<span class="op">;</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> vc <span class="op">=</span> Vec2<span class="op">{</span>vd<span class="op">.</span>x<span class="op">(),</span> vd<span class="op">.</span>y<span class="op">()</span> <span class="op">-</span> va<span class="op">.</span>x<span class="op">()</span> <span class="op">*</span> p<span class="op">};</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    vA <span class="op">=</span> va <span class="op">*</span> e<span class="op">;</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    vA1 <span class="op">=</span> <span class="va">m_adjoint</span><span class="op">.</span>mdot<span class="op">(</span>vc<span class="op">);</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="parallel-bairstow-the-core-algorithm">🎯 Parallel Bairstow: The
+Core Algorithm</h2>
+<h3 id="multi-root-parallelization">Multi-Root Parallelization</h3>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Thread Pool
+        T1[Thread 1] --&gt; R1[Root r₁]
+        T2[Thread 2] --&gt; R2[Root r₂]
+        T3[Thread 3] --&gt; R3[Root r₃]
+        T4[Thread 4] --&gt; R4[Root r₄]
+    end
+    
+    R1 --&gt; Sync[Synchronize]
+    R2 --&gt; Sync
+    R3 --&gt; Sync
+    R4 --&gt; Sync
+    Sync --&gt; Check{All Converged?}
+    Check --&gt;|No| T1
+    Check --&gt;|Yes| Done[✅ Complete]</code></pre>
+<h3 id="parallel-implementation">Parallel Implementation</h3>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> pbairstow_even<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&amp;</span> coeffs<span class="op">,</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">std::</span>vector<span class="op">&lt;</span>Vec2<span class="op">&gt;&amp;</span> vrs<span class="op">,</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">const</span> Options<span class="op">&amp;</span> options<span class="op">)</span> <span class="op">-&gt;</span> <span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">unsigned</span> <span class="dt">int</span><span class="op">,</span> <span class="dt">bool</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    ThreadPool pool<span class="op">(</span><span class="bu">std::</span>thread::hardware_concurrency<span class="op">());</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> num_roots <span class="op">=</span> vrs<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> rr <span class="op">=</span> fun<span class="op">::</span>Robin<span class="op">&lt;</span><span class="dt">size_t</span><span class="op">&gt;(</span>num_roots<span class="op">);</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> niter <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span> niter <span class="op">!=</span> options<span class="op">.</span>max_iters<span class="op">;</span> <span class="op">++</span>niter<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">auto</span> tolerance <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>future<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&gt;</span> results<span class="op">;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Parallel root updates</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> idx <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span> idx <span class="op">!=</span> num_roots<span class="op">;</span> <span class="op">++</span>idx<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>            results<span class="op">.</span>emplace_back<span class="op">(</span>pool<span class="op">.</span>enqueue<span class="op">([&amp;,</span> idx<span class="op">]()</span> <span class="op">{</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> <span class="kw">auto</span> degree <span class="op">=</span> coeffs<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> vri <span class="op">=</span> vrs<span class="op">[</span>idx<span class="op">];</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>                <span class="kw">auto</span> coeffs1 <span class="op">=</span> coeffs<span class="op">;</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>                <span class="kw">auto</span> vA <span class="op">=</span> horner<span class="op">(</span>coeffs1<span class="op">,</span> degree<span class="op">,</span> vri<span class="op">);</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>                <span class="kw">auto</span> vA1 <span class="op">=</span> horner<span class="op">(</span>coeffs1<span class="op">,</span> degree <span class="op">-</span> <span class="dv">2</span><span class="op">,</span> vri<span class="op">);</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> <span class="kw">auto</span> tol_i <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span><span class="bu">std::</span>abs<span class="op">(</span>vA<span class="op">.</span>x<span class="op">()),</span> <span class="bu">std::</span>abs<span class="op">(</span>vA<span class="op">.</span>y<span class="op">()));</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Suppress all OTHER roots</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> jdx <span class="op">:</span> rr<span class="op">.</span>exclude<span class="op">(</span>idx<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">const</span> <span class="kw">auto</span> vrj <span class="op">=</span> vrs<span class="op">[</span>jdx<span class="op">];</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>                    suppress<span class="op">(</span>vA<span class="op">,</span> vA1<span class="op">,</span> vri<span class="op">,</span> vrj<span class="op">);</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>                vrs<span class="op">[</span>idx<span class="op">]</span> <span class="op">-=</span> delta<span class="op">(</span>vA<span class="op">,</span> vri<span class="op">,</span> vA1<span class="op">);</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> tol_i<span class="op">;</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>            <span class="op">}));</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Check convergence</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span><span class="op">&amp;</span> result <span class="op">:</span> results<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>            tolerance <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>tolerance<span class="op">,</span> result<span class="op">.</span>get<span class="op">());</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>tolerance <span class="op">&lt;</span> options<span class="op">.</span>tolerance<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="op">{</span>niter<span class="op">,</span> <span class="kw">true</span><span class="op">};</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">{</span>options<span class="op">.</span>max_iters<span class="op">,</span> <span class="kw">false</span><span class="op">};</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<!-- slide -->
+<h1 id="part-5-parallelization-strategies">⚡ Part 5: Parallelization
+Strategies</h1>
+<hr />
+<h2 id="thread-pool-architecture">🏗️ Thread Pool Architecture</h2>
+<h3 id="design-pattern">Design Pattern</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph ThreadPool
+        T1[Thread 1]
+        T2[Thread 2]
+        T3[Thread 3]
+        T4[Thread N]
+    end
+    
+    subgraph TaskQueue
+        Q1[Task]
+        Q2[Task]
+        Q3[Task]
+        Q4[Task]
+    end
+    
+    Q1 --&gt;|enqueue| T1
+    Q2 --&gt;|enqueue| T2
+    Q3 --&gt;|enqueue| T3
+    Q4 --&gt;|enqueue| T4</code></pre>
+<h3 id="implementation-in-ginger-cpp">Implementation in ginger-cpp</h3>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ginger/ThreadPool.h&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Create pool with hardware concurrency</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ThreadPool pool<span class="op">(</span><span class="bu">std::</span>thread::hardware_concurrency<span class="op">());</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Submit work</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> future <span class="op">=</span> pool<span class="op">.</span>enqueue<span class="op">([&amp;]()</span> <span class="op">{</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Your parallel computation here</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>
+<hr />
+<h2 id="data-independence-the-key-to-speedup">🎯 Data Independence: The
+Key to Speedup</h2>
+<h3 id="why-root-updates-are-independent">Why Root Updates Are
+Independent</h3>
+<pre class="mermaid"><code>flowchart TD
+    subgraph &quot;Aberth Method&quot;
+        R1[&quot;z₁ ← z₁ - P(z₁)/(P&#39;(z₁) - Σⱼ≠₁)&quot;]
+        R2[&quot;z₂ ← z₂ - P(z₂)/(P&#39;(z₂) - Σⱼ≠₂)&quot;]
+        R3[&quot;z₃ ← z₃ - P(z₃)/(P&#39;(z₃) - Σⱼ≠₃)&quot;]
+    end
+    
+    subgraph &quot;Dependency&quot;
+        D1[&quot;z₁ depends on z₂, z₃, ...&quot;]
+        D2[&quot;z₂ depends on z₁, z₃, ...&quot;]
+    end
+    
+    R1 -.-&gt; D1
+    R2 -.-&gt; D2</code></pre>
+<h3 id="the-solution-gauss-seidel-updates">The Solution: Gauss-Seidel
+Updates</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Read</th>
+<th>Write</th>
+<th>Thread-Safe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pure Newton</td>
+<td>Old values</td>
+<td>New values</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Gauss-Seidel</td>
+<td>Mixed</td>
+<td>New values</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">// All threads read same state</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">// All threads write to their own element only</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>zs<span class="op">[</span>idx<span class="op">]</span> <span class="op">-=</span> P <span class="op">/</span> P1<span class="op">;</span>  <span class="co">// Each idx writes to different location!</span></span></code></pre></div>
+<hr />
+<h2 id="performance-analysis">📈 Performance Analysis</h2>
+<h3 id="speedup-expectations">Speedup Expectations</h3>
+<p><span class="math display">$$S_p = \frac{T_1}{T_p}$$</span></p>
+<table>
+<thead>
+<tr>
+<th>Threads</th>
+<th>Ideal Speedup</th>
+<th>Realistic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1x</td>
+<td>1x</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2x</td>
+<td>~1.8x</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4x</td>
+<td>~3.5x</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8x</td>
+<td>~6x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-not-linear">Why Not Linear?</h3>
+<pre class="mermaid"><code>graph TD
+    A[Total Time] --&gt; B[Computation]
+    A --&gt; C[Synchronization]
+    A --&gt; D[Memory Access]
+    A --&gt; E[Overhead]
+    
+    B --&gt; B1[Parallelizable ✅]
+    C --&gt; C1[Serial 😓]
+    D --&gt; D1[Bandwidth limited 💾]
+    E --&gt; E1[Thread management 🧵]</code></pre>
+<h3 id="amdahls-law">Amdahl’s Law</h3>
+<p><span class="math display">$$S_p = \frac{1}{(1-f) +
+\frac{f}{p}}$$</span></p>
+<p>Where <span class="math inline"><em>f</em></span> = parallelizable
+fraction</p>
+<hr />
+<h2 id="auto-correlation-special-case">🔄 Auto-Correlation Special
+Case</h2>
+<h3 id="why-special-handling">Why Special Handling?</h3>
+<p>Auto-correlation functions have <strong>reciprocal
+roots</strong>:</p>
+<p><span
+class="math display"><em>z</em><sub><em>i</em></sub> ⋅ <em>z</em><sub><em>i</em> + <em>n</em>/2</sub> = 1</span></p>
+<h3 id="aberth-for-auto-correlation">Aberth for Auto-Correlation</h3>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Include reciprocal terms in derivative</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> P1 <span class="op">=</span> horner_eval_c<span class="op">(</span>coeffs1<span class="op">,</span> zi<span class="op">);</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> jdx <span class="op">:</span> rr<span class="op">.</span>exclude<span class="op">(</span>idx<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    P1 <span class="op">-=</span> P <span class="op">/</span> <span class="op">(</span>zi <span class="op">-</span> zs<span class="op">[</span>jdx<span class="op">]);</span>          <span class="co">// Direct term</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    P1 <span class="op">-=</span> P <span class="op">/</span> <span class="op">(</span>zi <span class="op">-</span> <span class="fl">1.0</span> <span class="op">/</span> zs<span class="op">[</span>jdx<span class="op">]);</span>   <span class="co">// Reciprocal term!</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="initial-guess-adjustment">Initial Guess Adjustment</h3>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> initial_aberth_autocorr<span class="op">(</span><span class="at">const</span> vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&amp;</span> coeffs<span class="op">)</span> <span class="op">-&gt;</span> vector<span class="op">&lt;</span>Complex<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Similar to regular, but:</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span><span class="bu">std::</span>abs<span class="op">(</span>radius<span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1.0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        radius <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> radius<span class="op">;</span>  <span class="co">// Limit radius to unit circle</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Only generate n/2 roots (reciprocal pairs)</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<!-- slide -->
+<h1 id="part-6-implementation-api">💻 Part 6: Implementation &amp;
+API</h1>
+<hr />
+<h2 id="library-structure">📦 Library Structure</h2>
+<h3 id="directory-layout">Directory Layout</h3>
+<pre><code>ginger-cpp/
+├── include/ginger/
+│   ├── aberth.hpp       # Aberth-Ehrlich declarations
+│   ├── bairstow.hpp     # Bairstow declarations
+│   ├── rootfinding.hpp   # Shared utilities
+│   ├── vector2.hpp      # 2D vector class
+│   ├── matrix2.hpp      # 2x2 matrix class
+│   └── config.hpp       # Options class
+├── source/
+│   ├── aberth.cpp       # Aberth implementation
+│   ├── rootfinding.cpp  # Bairstow implementation
+│   └── ...
+└── test/
+    └── source/
+        ├── test_aberth.cpp
+        └── test_rootfinding.cpp</code></pre>
+<h3 id="key-types">Key Types</h3>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Complex number alias</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Complex <span class="op">=</span> <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 2D vector for Bairstow (represents quadratic factor)</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Vec2 <span class="op">=</span> ginger<span class="op">::</span>Vector2<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">// 2x2 matrix for adjoint calculations</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Mat2 <span class="op">=</span> ginger<span class="op">::</span>Matrix2<span class="op">&lt;</span>Vec2<span class="op">&gt;;</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Solver options</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>Options opts<span class="op">{.</span>max_iters <span class="op">=</span> <span class="dv">2000</span><span class="op">,</span> <span class="op">.</span>tolerance <span class="op">=</span> <span class="fl">1e-14</span><span class="op">};</span></span></code></pre></div>
+<hr />
+<h2 id="api-usage-examples">🎮 API Usage Examples</h2>
+<h3 id="aberth-ehrlich-single-threaded">Aberth-Ehrlich:
+Single-Threaded</h3>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ginger/aberth.hpp&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ginger/config.hpp&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Polynomial: x³ - 6x² + 11x - 6 = 0</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Roots: 1, 2, 3</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> coeffs <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="op">-</span><span class="dv">6</span><span class="op">};</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>Options opts<span class="op">{</span><span class="dv">2000</span><span class="op">,</span> <span class="fl">1e-14</span><span class="op">};</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Get initial guesses</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> zs <span class="op">=</span> initial_aberth<span class="op">(</span>coeffs<span class="op">);</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Solve</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> <span class="op">[</span>iters<span class="op">,</span> converged<span class="op">]</span> <span class="op">=</span> aberth<span class="op">(</span>coeffs<span class="op">,</span> zs<span class="op">,</span> opts<span class="op">);</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>converged<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// zs contains complex roots</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="aberth-ehrlich-multi-threaded">Aberth-Ehrlich:
+Multi-Threaded</h3>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Same polynomial</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> coeffs <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="op">-</span><span class="dv">6</span><span class="op">};</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> zs <span class="op">=</span> initial_aberth<span class="op">(</span>coeffs<span class="op">);</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>Options opts<span class="op">{</span><span class="dv">2000</span><span class="op">,</span> <span class="fl">1e-14</span><span class="op">};</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Multi-threaded version</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> <span class="op">[</span>iters<span class="op">,</span> converged<span class="op">]</span> <span class="op">=</span> aberth_mt<span class="op">(</span>coeffs<span class="op">,</span> zs<span class="op">,</span> opts<span class="op">);</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Same API, automatic parallelization! 🚀</span></span></code></pre></div>
+<h3 id="parallel-bairstow">Parallel Bairstow</h3>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ginger/rootfinding.hpp&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Even-degree polynomial: x⁴ - 5x² + 4 = 0</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Roots: ±1, ±2</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> coeffs <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">4</span><span class="op">};</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>Options opts<span class="op">{</span><span class="dv">2000</span><span class="op">,</span> <span class="fl">1e-14</span><span class="op">};</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Get initial guesses</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> vrs <span class="op">=</span> initial_guess<span class="op">(</span>coeffs<span class="op">);</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Solve</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> <span class="op">[</span>iters<span class="op">,</span> converged<span class="op">]</span> <span class="op">=</span> pbairstow_even<span class="op">(</span>coeffs<span class="op">,</span> vrs<span class="op">,</span> opts<span class="op">);</span></span></code></pre></div>
+<hr />
+<h2 id="testing-infrastructure">🧪 Testing Infrastructure</h2>
+<h3 id="unit-tests-with-doctest">Unit Tests with doctest</h3>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;doctest/doctest.h&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>TEST_CASE<span class="op">(</span><span class="st">&quot;Aberth converges for cubic&quot;</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> coeffs <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="op">-</span><span class="dv">6</span><span class="op">};</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> zs <span class="op">=</span> initial_aberth<span class="op">(</span>coeffs<span class="op">);</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> <span class="op">[</span>iters<span class="op">,</span> converged<span class="op">]</span> <span class="op">=</span> aberth<span class="op">(</span>coeffs<span class="op">,</span> zs<span class="op">);</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    CHECK<span class="op">(</span>converged<span class="op">);</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Verify roots</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> z <span class="op">:</span> zs<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">auto</span> val <span class="op">=</span> horner_eval_c<span class="op">(</span>coeffs<span class="op">,</span> z<span class="op">);</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>        CHECK<span class="op">(</span><span class="bu">std::</span>abs<span class="op">(</span>val<span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-10</span><span class="op">);</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="property-based-testing-with-rapidcheck">Property-Based Testing
+with RapidCheck</h3>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;rapidcheck.h&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>RC_GTEST_PROP<span class="op">(</span>Aberth<span class="op">,</span> polynomial_roots<span class="op">,</span> <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&amp;</span> coeffs<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    RC_PRE<span class="op">(</span>coeffs<span class="op">.</span>size<span class="op">()</span> <span class="op">&gt;=</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    RC_PRE<span class="op">(</span>coeffs<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">!=</span> <span class="dv">0</span><span class="op">);</span>  <span class="co">// Leading coefficient non-zero</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> zs <span class="op">=</span> initial_aberth<span class="op">(</span>coeffs<span class="op">);</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> <span class="op">[</span>iters<span class="op">,</span> converged<span class="op">]</span> <span class="op">=</span> aberth<span class="op">(</span>coeffs<span class="op">,</span> zs<span class="op">);</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    RC_ASSERT<span class="op">(</span>converged<span class="op">);</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> z <span class="op">:</span> zs<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">auto</span> val <span class="op">=</span> horner_eval_c<span class="op">(</span>coeffs<span class="op">,</span> z<span class="op">);</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>        RC_ASSERT<span class="op">(</span><span class="bu">std::</span>abs<span class="op">(</span>val<span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-8</span><span class="op">);</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="build-system">🔨 Build System</h2>
+<h3 id="cmake-configuration">CMake Configuration</h3>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the library</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-S</span> . <span class="at">-B</span> build</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build and run tests</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-S</span> test <span class="at">-B</span> build/test</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> build/test</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ex">ctest</span> <span class="at">--build</span> build/test</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Run with coverage</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-S</span> test <span class="at">-B</span> build/test <span class="dt">\</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">-DENABLE_TEST_COVERAGE</span><span class="op">=</span>1 <span class="dt">\</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Debug</span></code></pre></div>
+<h3 id="cmakelists.txt-structure">CMakeLists.txt Structure</h3>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.14</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(Ginger <span class="ot">VERSION</span> <span class="dt">1.0</span> <span class="ot">LANGUAGES</span> <span class="ot">CXX</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># C++ standard</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD_REQUIRED</span> <span class="ot">ON</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Dependencies via CPM</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">CPMAddPackage</span>(<span class="st">&quot;gh:doctest/doctest@2.4.11&quot;</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">CPMAddPackage</span>(<span class="st">&quot;gh:mrussotti/rapidcheck@main&quot;</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Library target</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="kw">add_library</span>(<span class="bn">ginger</span> <span class="ot">INTERFACE</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="kw">target_include_directories</span>(<span class="bn">ginger</span> <span class="ot">INTERFACE</span> </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    <span class="ot">$&lt;</span><span class="kw">BUILD_INTERFACE</span><span class="ot">:</span><span class="dv">${CMAKE_CURRENT_SOURCE_DIR}</span><span class="ot">/include&gt;</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    <span class="ot">$&lt;</span><span class="kw">INSTALL_INTERFACE</span><span class="ot">:include&gt;</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<hr />
+<!-- slide -->
+<h1 id="part-7-performance-benchmarks">📊 Part 7: Performance
+Benchmarks</h1>
+<hr />
+<h2 id="benchmark-results">⚡ Benchmark Results</h2>
+<h3 id="test-environment">Test Environment</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>Intel i7-11700K (8 cores)</td>
+</tr>
+<tr>
+<td>Compiler</td>
+<td>GCC 11.2 -O3</td>
+</tr>
+<tr>
+<td>Degree</td>
+<td>20-100</td>
+</tr>
+<tr>
+<td>Tolerance</td>
+<td>1e-14</td>
+</tr>
+</tbody>
+</table>
+<h3 id="speedup-aberth-method">Speedup: Aberth Method</h3>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode svg"><code class="sourceCode xml"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">svg</span> <span class="ot">viewBox=</span><span class="st">&quot;0 0 500 300&quot;</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Axes --&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;60&quot;</span> <span class="ot">y1=</span><span class="st">&quot;250&quot;</span> <span class="ot">x2=</span><span class="st">&quot;480&quot;</span> <span class="ot">y2=</span><span class="st">&quot;250&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;gray&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;60&quot;</span> <span class="ot">y1=</span><span class="st">&quot;250&quot;</span> <span class="ot">x2=</span><span class="st">&quot;60&quot;</span> <span class="ot">y2=</span><span class="st">&quot;30&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;gray&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Y-axis labels --&gt;</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;50&quot;</span> <span class="ot">y=</span><span class="st">&quot;250&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;end&quot;</span>&gt;0&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;50&quot;</span> <span class="ot">y=</span><span class="st">&quot;195&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;end&quot;</span>&gt;2&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;50&quot;</span> <span class="ot">y=</span><span class="st">&quot;140&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;end&quot;</span>&gt;4&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;50&quot;</span> <span class="ot">y=</span><span class="st">&quot;85&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;end&quot;</span>&gt;6&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;50&quot;</span> <span class="ot">y=</span><span class="st">&quot;30&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;end&quot;</span>&gt;8&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- X-axis labels --&gt;</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;60&quot;</span> <span class="ot">y=</span><span class="st">&quot;270&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;1&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;165&quot;</span> <span class="ot">y=</span><span class="st">&quot;270&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;2&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;270&quot;</span> <span class="ot">y=</span><span class="st">&quot;270&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;4&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;375&quot;</span> <span class="ot">y=</span><span class="st">&quot;270&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;8&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;480&quot;</span> <span class="ot">y=</span><span class="st">&quot;270&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;12&quot;</span> <span class="ot">text-anchor=</span><span class="st">&quot;middle&quot;</span>&gt;16&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Ideal line --&gt;</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;60&quot;</span> <span class="ot">y1=</span><span class="st">&quot;250&quot;</span> <span class="ot">x2=</span><span class="st">&quot;480&quot;</span> <span class="ot">y2=</span><span class="st">&quot;30&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;gray&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;1&quot;</span> <span class="ot">stroke-dasharray=</span><span class="st">&quot;5,5&quot;</span>/&gt;</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;490&quot;</span> <span class="ot">y=</span><span class="st">&quot;35&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;10&quot;</span> <span class="ot">fill=</span><span class="st">&quot;gray&quot;</span>&gt;Ideal&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Degree 20 --&gt;</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">polyline</span> <span class="ot">points=</span><span class="st">&quot;60,245 165,205 270,150 375,105 480,75&quot;</span> <span class="ot">fill=</span><span class="st">&quot;none&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;#339af0&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Degree 50 --&gt;</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">polyline</span> <span class="ot">points=</span><span class="st">&quot;60,245 165,195 270,120 375,65 480,45&quot;</span> <span class="ot">fill=</span><span class="st">&quot;none&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;#51cf66&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Degree 100 --&gt;</span></span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">polyline</span> <span class="ot">points=</span><span class="st">&quot;60,245 165,185 270,100 375,45 480,25&quot;</span> <span class="ot">fill=</span><span class="st">&quot;none&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;#e64980&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Legend --&gt;</span></span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;100&quot;</span> <span class="ot">y1=</span><span class="st">&quot;285&quot;</span> <span class="ot">x2=</span><span class="st">&quot;130&quot;</span> <span class="ot">y2=</span><span class="st">&quot;285&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;#339af0&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;135&quot;</span> <span class="ot">y=</span><span class="st">&quot;289&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;10&quot;</span>&gt;n=20&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;190&quot;</span> <span class="ot">y1=</span><span class="st">&quot;285&quot;</span> <span class="ot">x2=</span><span class="st">&quot;220&quot;</span> <span class="ot">y2=</span><span class="st">&quot;285&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;#51cf66&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;225&quot;</span> <span class="ot">y=</span><span class="st">&quot;289&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;10&quot;</span>&gt;n=50&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">line</span> <span class="ot">x1=</span><span class="st">&quot;280&quot;</span> <span class="ot">y1=</span><span class="st">&quot;285&quot;</span> <span class="ot">x2=</span><span class="st">&quot;310&quot;</span> <span class="ot">y2=</span><span class="st">&quot;285&quot;</span> <span class="ot">stroke=</span><span class="st">&quot;#e64980&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;2&quot;</span>/&gt;</span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">text</span> <span class="ot">x=</span><span class="st">&quot;315&quot;</span> <span class="ot">y=</span><span class="st">&quot;289&quot;</span> <span class="ot">font-size=</span><span class="st">&quot;10&quot;</span>&gt;n=100&lt;/<span class="kw">text</span>&gt;</span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">svg</span>&gt;</span></code></pre></div>
+<h3 id="key-observations">Key Observations</h3>
+<table>
+<thead>
+<tr>
+<th>Degree</th>
+<th>Single-thread</th>
+<th>4 Threads</th>
+<th>8 Threads</th>
+<th>Best Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td>2.1ms</td>
+<td>0.8ms</td>
+<td>0.6ms</td>
+<td>3.5x</td>
+</tr>
+<tr>
+<td>50</td>
+<td>12ms</td>
+<td>3.5ms</td>
+<td>2.2ms</td>
+<td>5.5x</td>
+</tr>
+<tr>
+<td>100</td>
+<td>45ms</td>
+<td>10ms</td>
+<td>6ms</td>
+<td>7.5x</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="scalability-analysis">📈 Scalability Analysis</h2>
+<h3 id="why-speedup-improves-with-degree">Why Speedup Improves with
+Degree</h3>
+<pre class="mermaid"><code>graph TD
+    A[Higher Degree] --&gt; B[More Work Per Root]
+    B --&gt; C[Better Computation/Overhead Ratio]
+    C --&gt; D[Higher Speedup]
+    
+    E[Thread Count] --&gt; F[Context Switches]
+    F --&gt; G[Overhead Increases]
+    
+    D -.-&gt; H[Optimal Point]
+    G -.-&gt; H</code></pre>
+<h3 id="breaking-down-the-work">Breaking Down the Work</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Complexity</th>
+<th>Parallelizable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Horner evaluation</td>
+<td>O(n)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Suppression loop</td>
+<td>O(n²)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Synchronization</td>
+<td>O(n)</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<!-- slide -->
+<h1 id="part-8-conclusion">🎯 Part 8: Conclusion</h1>
+<hr />
+<h2 id="summary">📝 Summary</h2>
+<h3 id="what-we-covered">What We Covered</h3>
+<pre class="mermaid"><code>mindmap
+  root((✅ Summary))
+    Theory
+      Polynomial representation
+      Iterative root-finding
+      Convergence analysis
+    Algorithms
+      Aberth-Ehrlich
+      Parallel Bairstow
+      Zero suppression
+    Implementation
+      ginger-cpp library
+      Multi-threading
+      Testing strategies
+    Applications
+      Signal processing
+      Control systems
+      Time series analysis</code></pre>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<table>
+<thead>
+<tr>
+<th>Point</th>
+<th>Insight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🎯 <strong>Simultaneous</strong></td>
+<td>Aberth finds all roots at once</td>
+</tr>
+<tr>
+<td>⚡ <strong>Parallelizable</strong></td>
+<td>Independent updates enable threading</td>
+</tr>
+<tr>
+<td>🔢 <strong>Complex Support</strong></td>
+<td>Aberth handles complex roots natively</td>
+</tr>
+<tr>
+<td>📊 <strong>Even-Degree</strong></td>
+<td>Bairstow optimized for real polynomials</td>
+</tr>
+<tr>
+<td>🎛️ <strong>Configurable</strong></td>
+<td>Tolerance and iteration limits</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="future-work">🔮 Future Work</h2>
+<h3 id="potential-enhancements">Potential Enhancements</h3>
+<pre class="mermaid"><code>flowchart LR
+    A[Future Work] --&gt; B[📊 GPU Acceleration]
+    A --&gt; C[🎯 Adaptive Methods]
+    A --&gt; D[🔢 Multiple Precision]
+    A --&gt; E[📦 Package Managers]
+    
+    B --&gt; B1[CUDA/OpenCL]
+    C --&gt; C1[Auto method selection]
+    D --&gt; D1[GMP/MPFR]
+    E --&gt; E1[vcpkg/Conan]</code></pre>
+<h3 id="ideas">Ideas</h3>
+<ol type="1">
+<li><strong>GPU Implementation</strong> - CUDA kernels for massive
+parallelism</li>
+<li><strong>Hybrid Methods</strong> - Auto-select Aberth vs
+Bairstow</li>
+<li><strong>Robust Initial Guesses</strong> - Smarter starting points
+for hard cases</li>
+<li><strong>Multiple Precision</strong> - Handle ill-conditioned
+polynomials</li>
+<li><strong>Python Bindings</strong> - NumPy integration</li>
+</ol>
+<hr />
+<h2 id="thank-you">🙏 Thank You!</h2>
+<h3 id="questions">Questions?</h3>
+<p><strong>Repository</strong>: <a
+href="https://github.com/luk036/ginger-cpp">github.com/luk036/ginger-cpp</a></p>
+<h3 id="resources">Resources</h3>
+<table>
+<colgroup>
+<col style="width: 62%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📚 Documentation</td>
+<td><a
+href="https://thelartians.github.io">thelartians.github.io</a></td>
+</tr>
+<tr>
+<td>💾 Source Code</td>
+<td><a href="https://github.com/luk036/ginger-cpp">GitHub</a></td>
+</tr>
+<tr>
+<td>🧪 CI/CD</td>
+<td>GitHub Actions</td>
+</tr>
+<tr>
+<td>📊 Coverage</td>
+<td>codecov</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="references">📚 References</h2>
+<h3 id="mathematical-background">Mathematical Background</h3>
+<ol type="1">
+<li><p><strong>Aberth, O.</strong> (1973). “Iteration methods for
+finding all zeros of a polynomial simultaneously.” <em>Mathematics of
+Computation</em>, 27(122), 339-344.</p></li>
+<li><p><strong>Bairstow, L.</strong> (1914). “Investigations relating to
+the stability of the aeroplane.” <em>R&amp;M</em>, 154.</p></li>
+<li><p><strong>Wilkinson, J. H.</strong> (1963). “Rounding Errors in
+Algebraic Processes.” <em>Notes on Applied Science</em>, 32.</p></li>
+</ol>
+<h3 id="implementation-3">Implementation</h3>
+<ol start="4" type="1">
+<li><p><strong>Petković, M. S., &amp; Živković, D. V.</strong> (2014).
+“Aberth-Ehrlich method for the simultaneous inclusion of polynomial
+zeros.” <em>Journal of Computational and Applied Mathematics</em>, 258,
+144-156.</p></li>
+<li><p><strong>Fischer, C. F.</strong> (1968). “Note on the Bairstow
+method.” <em>Numerische Mathematik</em>, 11(5), 459-460.</p></li>
+</ol>
+<hr />
+<!-- slide -->
+<h1 id="appendix-technical-details">🔧 Appendix: Technical Details</h1>
+<hr />
+<h2 id="vec2-and-mat2-classes">📐 Vec2 and Mat2 Classes</h2>
+<h3 id="vector2-class">Vector2 Class</h3>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> ginger <span class="op">{</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T1<span class="op">,</span> <span class="kw">typename</span> T2 <span class="op">=</span> T1<span class="op">&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Vector2 <span class="op">{</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        T1 _x<span class="op">;</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>        T2 _y<span class="op">;</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">constexpr</span> <span class="kw">auto</span> x<span class="op">()</span> <span class="at">const</span> <span class="op">-&gt;</span> <span class="at">const</span> T1<span class="op">&amp;</span> <span class="op">{</span> <span class="cf">return</span> _x<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">constexpr</span> <span class="kw">auto</span> y<span class="op">()</span> <span class="at">const</span> <span class="op">-&gt;</span> <span class="at">const</span> T2<span class="op">&amp;</span> <span class="op">{</span> <span class="cf">return</span> _y<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Operators: +, -, *, /, +=, -=, *=, /=</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Dot product, cross product</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="matrix2-class">Matrix2 Class</h3>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> ginger <span class="op">{</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T1<span class="op">,</span> <span class="kw">typename</span> T2 <span class="op">=</span> T1<span class="op">&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Matrix2 <span class="op">{</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>        T1 _x<span class="op">;</span>  <span class="co">// First column</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>        T2 _y<span class="op">;</span>  <span class="co">// Second column</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">constexpr</span> <span class="kw">auto</span> mdot<span class="op">(</span><span class="at">const</span> Vector2<span class="op">&lt;</span>U1<span class="op">,</span> U2<span class="op">&gt;&amp;</span> v<span class="op">)</span> <span class="at">const</span> <span class="op">-&gt;</span> T1<span class="op">;</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">constexpr</span> <span class="kw">auto</span> det<span class="op">()</span> <span class="at">const</span> <span class="op">-&gt;</span> <span class="dt">double</span><span class="op">;</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="matrix-operations-for-suppression">🔗 Matrix Operations for
+Suppression</h2>
+<h3 id="adjoint-matrix">Adjoint Matrix</h3>
+<p>For removing root <span class="math inline"><em>j</em></span> from
+root <span class="math inline"><em>i</em></span>:</p>
+<p><span class="math display">$$M_{\text{adj}} = \begin{bmatrix} s &amp;
+-p \\ -p \cdot v_{i,y} &amp; p \cdot v_{i,x} + s
+\end{bmatrix}$$</span></p>
+<p>where: - <span
+class="math inline"><em>p</em> = (<em>v</em><sub><em>i</em></sub> − <em>v</em><sub><em>j</em></sub>).<em>x</em></span>
+- <span
+class="math inline"><em>s</em> = (<em>v</em><sub><em>i</em></sub> − <em>v</em><sub><em>j</em></sub>).<em>y</em></span></p>
+<h3 id="delta-calculation">Delta Calculation</h3>
+<p><span class="math display">$$\Delta v = \frac{M_{\text{adj}} \cdot
+vA}{\det(M_{\text{adj}})}$$</span></p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="kw">auto</span> makeadjoint<span class="op">(</span><span class="at">const</span> Vec2<span class="op">&amp;</span> vr<span class="op">,</span> <span class="at">const</span> Vec2<span class="op">&amp;</span> vp<span class="op">)</span> <span class="op">-&gt;</span> Mat2 <span class="op">{</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span><span class="op">&amp;&amp;</span> p <span class="op">=</span> vp<span class="op">.</span>x<span class="op">();</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span><span class="op">&amp;&amp;</span> s <span class="op">=</span> vp<span class="op">.</span>y<span class="op">();</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">{</span>Vec2<span class="op">{</span>s<span class="op">,</span> <span class="op">-</span>p<span class="op">},</span> Vec2<span class="op">{-</span>p <span class="op">*</span> vr<span class="op">.</span>y<span class="op">(),</span> p <span class="op">*</span> vr<span class="op">.</span>x<span class="op">()</span> <span class="op">+</span> s<span class="op">}};</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="kw">auto</span> delta<span class="op">(</span><span class="at">const</span> Vec2<span class="op">&amp;</span> vA<span class="op">,</span> <span class="at">const</span> Vec2<span class="op">&amp;</span> vr<span class="op">,</span> <span class="at">const</span> Vec2<span class="op">&amp;</span> vp<span class="op">)</span> <span class="op">-&gt;</span> Vec2 <span class="op">{</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> mp <span class="op">=</span> makeadjoint<span class="op">(</span>vr<span class="op">,</span> vp<span class="op">);</span>  <span class="co">// 2 multiplications</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mp<span class="op">.</span>mdot<span class="op">(</span>vA<span class="op">)</span> <span class="op">/</span> mp<span class="op">.</span>det<span class="op">();</span>        <span class="co">// 6 mul + 2 div</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<!-- slide end -->
+<h1 id="end-of-presentation">🎉 End of Presentation</h1>
+<p><em>Generated from ginger-cpp source code analysis</em></p>
+<hr />
+<h2 id="slide-to-time-breakdown">🗺️ Slide-to-Time Breakdown</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Slides</th>
+<th>Duration</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1-2</td>
+<td>3 min</td>
+<td>Introduction</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3-5</td>
+<td>8 min</td>
+<td>Mathematical Foundation</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6-9</td>
+<td>10 min</td>
+<td>Aberth-Ehrlich Method</td>
+</tr>
+<tr>
+<td>4</td>
+<td>10-13</td>
+<td>10 min</td>
+<td>Bairstow’s Method</td>
+</tr>
+<tr>
+<td>5</td>
+<td>14-17</td>
+<td>7 min</td>
+<td>Parallelization</td>
+</tr>
+<tr>
+<td>6</td>
+<td>18-21</td>
+<td>5 min</td>
+<td>Implementation &amp; API</td>
+</tr>
+<tr>
+<td>7</td>
+<td>22-24</td>
+<td>5 min</td>
+<td>Performance &amp; Conclusion</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>24</strong></td>
+<td><strong>~45 min</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
