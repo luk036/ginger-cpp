@@ -6,8 +6,8 @@
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
-#include <utility>  // for pair
-#include <vector>   // for vector, vector<>::reference, __v...
+#include <utility>                 // for pair
+#include <vector>                  // for vector, vector<>::reference, __v...
 
 #ifndef M_PI
 #    define M_PI 3.14159265358979323846264338327950288
@@ -52,7 +52,7 @@
  * Where each step modifies the coefficients in place
  * ```
  */
-auto horner(std::vector<double> &coeffs1, size_t degree, const Vec2 &vr) -> Vec2 {
+auto horner(std::vector<double>& coeffs1, size_t degree, const Vec2& vr) -> Vec2 {
     auto itr0 = coeffs1.begin();
     auto itr1 = std::next(itr0);
     auto itr2 = std::next(itr1);
@@ -100,7 +100,7 @@ auto horner(std::vector<double> &coeffs1, size_t degree, const Vec2 &vr) -> Vec2
  * This process removes the contribution of root vrj from the evaluation at vri
  * ```
  */
-auto suppress(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
+auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
     const auto vp = vri - vrj;
     const auto p = vp.x();
     const auto s = vp.y();
@@ -148,7 +148,7 @@ auto suppress(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
  * Specialized variant for specific root-finding scenarios
  * ```
  */
-auto suppress2(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void {
+auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
     const auto vp = vri - vrj;
     auto p = vp.x();
     auto s = vp.y();
@@ -262,8 +262,8 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  * Convergence check across all iterates simultaneously
  * ```
  */
-auto pbairstow_even(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
-                    const Options &options = Options()) -> std::pair<unsigned int, bool> {
+auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                    const Options& options = Options()) -> std::pair<unsigned int, bool> {
     ThreadPool pool(std::thread::hardware_concurrency());
 
     const auto num_roots = vrs.size();
@@ -276,7 +276,7 @@ auto pbairstow_even(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
         for (auto idx = 0U; idx != num_roots; ++idx) {
             results.emplace_back(pool.enqueue([&coeffs, &vrs, &rr, idx]() {
                 const auto degree = coeffs.size() - 1;  // degree, assume even
-                const auto &vri = vrs[idx];
+                const auto& vri = vrs[idx];
                 auto coeffs1 = coeffs;
                 auto vA = horner(coeffs1, degree, vri);
                 auto vA1 = horner(coeffs1, degree - 2, vri);
@@ -289,8 +289,8 @@ auto pbairstow_even(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
                 return tol_i;
             }));
         }
-        for (auto &&result : results) {
-            auto &&res = result.get();
+        for (auto&& result : results) {
+            auto&& res = result.get();
             if (tolerance < res) {
                 tolerance = res;
             }

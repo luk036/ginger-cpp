@@ -46,7 +46,7 @@ auto run_fir_pbairstow() -> std::pair<unsigned int, bool> {
  *
  * @param[in,out] state
  */
-static void FIR_Autocorr(benchmark::State &state) {
+static void FIR_Autocorr(benchmark::State& state) {
     while (state.KeepRunning()) {
         auto result = run_fir_autocorr();
         benchmark::DoNotOptimize(result);
@@ -61,7 +61,7 @@ BENCHMARK(FIR_Autocorr);
  *
  * @param[in,out] state
  */
-static void FIR_PBairstow(benchmark::State &state) {
+static void FIR_PBairstow(benchmark::State& state) {
     while (state.KeepRunning()) {
         auto result = run_fir_pbairstow();
         benchmark::DoNotOptimize(result);

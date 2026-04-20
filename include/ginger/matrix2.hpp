@@ -32,21 +32,21 @@ namespace ginger {
          * @param[in] x The first column vector
          * @param[in] y The second column vector
          */
-        constexpr Matrix2(T1 &&x, T2 &&y) noexcept : _x{std::move(x)}, _y{std::move(y)} {}
+        constexpr Matrix2(T1&& x, T2&& y) noexcept : _x{std::move(x)}, _y{std::move(y)} {}
 
         /**
          * @brief Get the first column vector
          *
          * @return constexpr const T1& Reference to the first column vector
          */
-        constexpr auto x() const -> const T1 & { return this->_x; }
+        constexpr auto x() const -> const T1& { return this->_x; }
 
         /**
          * @brief Get the second column vector
          *
          * @return constexpr const T2& Reference to the second column vector
          */
-        constexpr auto y() const -> const T2 & { return this->_y; }
+        constexpr auto y() const -> const T2& { return this->_y; }
 
         // /**
         //  * @brief Construct a new Matrix2 object
@@ -77,7 +77,7 @@ namespace ginger {
          * @return Matrix2<T1, T2>& Reference to this matrix
          */
         template <typename U1, typename U2>
-        CONSTEXPR14 auto operator+=(const Matrix2<U1, U2> &other) -> Matrix2<T1, T2> & {
+        CONSTEXPR14 auto operator+=(const Matrix2<U1, U2>& other) -> Matrix2<T1, T2>& {
             this->_x += other.x();
             this->_y += other.y();
             return *this;
@@ -92,7 +92,7 @@ namespace ginger {
          * @return Matrix2<T1, T2>& Reference to this matrix
          */
         template <typename U1, typename U2>  //
-        CONSTEXPR14 auto operator-=(const Matrix2<U1, U2> &other) -> Matrix2<T1, T2> & {
+        CONSTEXPR14 auto operator-=(const Matrix2<U1, U2>& other) -> Matrix2<T1, T2>& {
             this->_x -= other.x();
             this->_y -= other.y();
             return *this;
@@ -105,7 +105,7 @@ namespace ginger {
          * @param[in] alpha
          * @return Matrix2<T1, T2>&
          */
-        template <typename R> CONSTEXPR14 auto operator*=(const R &alpha) -> Matrix2<T1, T2> & {
+        template <typename R> CONSTEXPR14 auto operator*=(const R& alpha) -> Matrix2<T1, T2>& {
             this->_x *= alpha;
             this->_y *= alpha;
             return *this;
@@ -118,7 +118,7 @@ namespace ginger {
          * @param[in] alpha The scalar value
          * @return Matrix2<T1, T2>& Reference to this matrix
          */
-        template <typename R> CONSTEXPR14 auto operator/=(const R &alpha) -> Matrix2<T1, T2> & {
+        template <typename R> CONSTEXPR14 auto operator/=(const R& alpha) -> Matrix2<T1, T2>& {
             this->_x /= alpha;
             this->_y /= alpha;
             return *this;
@@ -134,7 +134,7 @@ namespace ginger {
          * @return Matrix2<T1, T2> The result matrix
          */
         template <typename U1, typename U2>  //
-        friend constexpr auto operator+(Matrix2<T1, T2> x, const Matrix2<U1, U2> &y)
+        friend constexpr auto operator+(Matrix2<T1, T2> x, const Matrix2<U1, U2>& y)
             -> Matrix2<T1, T2> {
             return std::move(x) += y;
         }
@@ -149,7 +149,7 @@ namespace ginger {
          * @return Matrix2<T1, T2> The result matrix
          */
         template <typename U1, typename U2>  //
-        friend constexpr auto operator-(Matrix2<T1, T2> x, const Matrix2<U1, U2> &y)
+        friend constexpr auto operator-(Matrix2<T1, T2> x, const Matrix2<U1, U2>& y)
             -> Matrix2<T1, T2> {
             return std::move(x) -= y;
         }
@@ -162,7 +162,7 @@ namespace ginger {
          * @param[in] alpha The scalar value
          * @return Matrix2<T1, T2> The result matrix
          */
-        template <typename R> friend constexpr auto operator*(Matrix2<T1, T2> x, const R &alpha)
+        template <typename R> friend constexpr auto operator*(Matrix2<T1, T2> x, const R& alpha)
             -> Matrix2<T1, T2> {
             return x *= alpha;
         }
@@ -175,7 +175,7 @@ namespace ginger {
          * @param[in] x The matrix
          * @return Matrix2<T1, T2> The result matrix
          */
-        template <typename R> friend constexpr auto operator*(const R &alpha, Matrix2<T1, T2> x)
+        template <typename R> friend constexpr auto operator*(const R& alpha, Matrix2<T1, T2> x)
             -> Matrix2<T1, T2> {
             return x *= alpha;
         }
@@ -188,7 +188,7 @@ namespace ginger {
          * @param[in] alpha The scalar value
          * @return Matrix2<T1, T2> The result matrix
          */
-        template <typename R> friend constexpr auto operator/(Matrix2<T1, T2> x, const R &alpha)
+        template <typename R> friend constexpr auto operator/(Matrix2<T1, T2> x, const R& alpha)
             -> Matrix2<T1, T2> {
             return x /= alpha;
         }
@@ -204,7 +204,7 @@ namespace ginger {
          * @return T1 The resulting vector (as column vector type)
          */
         template <typename U1, typename U2>  //
-        constexpr auto mdot(const Vector2<U1, U2> &other) const -> T1 {
+        constexpr auto mdot(const Vector2<U1, U2>& other) const -> T1 {
             return T1{this->_x.dot(other), this->_y.dot(other)};
         }
 

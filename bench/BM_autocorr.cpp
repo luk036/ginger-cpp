@@ -28,7 +28,7 @@ auto run_pbairstow() {
  *
  * @param[in,out] state
  */
-static void Autocorr(benchmark::State &state) {
+static void Autocorr(benchmark::State& state) {
     while (state.KeepRunning()) {
         run_autocorr();
     }
@@ -42,7 +42,7 @@ BENCHMARK(Autocorr);
  *
  * @param[in,out] state
  */
-static void PBairstow(benchmark::State &state) {
+static void PBairstow(benchmark::State& state) {
     while (state.KeepRunning()) {
         run_pbairstow();
     }

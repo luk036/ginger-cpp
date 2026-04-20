@@ -35,7 +35,7 @@ TEST_CASE("test auto-corr 1") {
     auto niter = result.first;
     auto found = result.second;
     // fmt::print("{}, {}\n", niter, found);
-    for (auto &vr : vrs) {
+    for (auto& vr : vrs) {
         extract_autocorr(vr);
         fmt::print("{}, {}\n", vr.x(), vr.y());
     }

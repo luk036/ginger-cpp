@@ -67,7 +67,7 @@ namespace ginger {
          * @tparam U2
          * @param[in] other The parameter "other" is a reference to another Vector2 object.
          */
-        template <typename U1, typename U2> constexpr explicit Vector2(const Vector2<U1, U2> &other)
+        template <typename U1, typename U2> constexpr explicit Vector2(const Vector2<U1, U2>& other)
             : _x(other.x()), _y(other.y()) {}
 
         /**
@@ -75,14 +75,14 @@ namespace ginger {
          *
          * @return a reference to a constant object of type T1.
          */
-        constexpr auto x() const noexcept -> const T1 & { return this->_x; }
+        constexpr auto x() const noexcept -> const T1& { return this->_x; }
 
         /**
          * The function `y()` returns a reference to a constant value of type `T2`.
          *
          * @return a reference to a constant object of type T2.
          */
-        constexpr auto y() const noexcept -> const T2 & { return this->_y; }
+        constexpr auto y() const noexcept -> const T2& { return this->_y; }
 
         // /**
         //  * @brief
@@ -105,7 +105,7 @@ namespace ginger {
          * value of type `double`.
          */
         template <typename U1, typename U2>  //
-        constexpr auto dot(const Vector2<U1, U2> &other) const -> double {
+        constexpr auto dot(const Vector2<U1, U2>& other) const -> double {
             return this->_x * other._x + this->_y * other._y;
         }
 
@@ -122,7 +122,7 @@ namespace ginger {
          * vector and the `other` vector. The result is of type `double`.
          */
         template <typename U1, typename U2>  //
-        constexpr auto cross(const Vector2<U1, U2> &other) const -> double {
+        constexpr auto cross(const Vector2<U1, U2>& other) const -> double {
             return this->_x * other._y - other._x * this->_y;
         }
 
@@ -150,8 +150,8 @@ namespace ginger {
          *
          * @return a reference to a Vector2 object.
          */
-        template <typename U1, typename U2>
-        inline auto operator+=(const Vector2<U1, U2> &other) -> Vector2<T1, T2> & {
+        template <typename U1, typename U2> inline auto operator+=(const Vector2<U1, U2>& other)
+            -> Vector2<T1, T2>& {
             this->_x += other.x();
             this->_y += other.y();
             return *this;
@@ -169,7 +169,7 @@ namespace ginger {
          * @return a reference to a Vector2 object.
          */
         template <typename U1, typename U2>  //
-        inline auto operator-=(const Vector2<U1, U2> &other) -> Vector2<T1, T2> & {
+        inline auto operator-=(const Vector2<U1, U2>& other) -> Vector2<T1, T2>& {
             this->_x -= other.x();
             this->_y -= other.y();
             return *this;
@@ -183,7 +183,7 @@ namespace ginger {
          *
          * @return The `operator*=` function returns a reference to the modified `Vector2` object.
          */
-        template <typename R> inline auto operator*=(const R &alpha) -> Vector2<T1, T2> & {
+        template <typename R> inline auto operator*=(const R& alpha) -> Vector2<T1, T2>& {
             this->_x *= alpha;
             this->_y *= alpha;
             return *this;
@@ -198,7 +198,7 @@ namespace ginger {
          *
          * @return a reference to the current instance of the Vector2 class.
          */
-        template <typename R> inline auto operator/=(const R &alpha) -> Vector2<T1, T2> & {
+        template <typename R> inline auto operator/=(const R& alpha) -> Vector2<T1, T2>& {
             this->_x /= alpha;
             this->_y /= alpha;
             return *this;
@@ -217,7 +217,7 @@ namespace ginger {
          * @return a Vector2 object.
          */
         template <typename U1, typename U2>  //
-        friend constexpr auto operator+(Vector2<T1, T2> x, const Vector2<U1, U2> &y)
+        friend constexpr auto operator+(Vector2<T1, T2> x, const Vector2<U1, U2>& y)
             -> Vector2<T1, T2> {
             return x += y;
         }
@@ -235,7 +235,7 @@ namespace ginger {
          * @return a Vector2 object.
          */
         template <typename U1, typename U2>  //
-        friend constexpr auto operator-(Vector2<T1, T2> x, const Vector2<U1, U2> &y)
+        friend constexpr auto operator-(Vector2<T1, T2> x, const Vector2<U1, U2>& y)
             -> Vector2<T1, T2> {
             return x -= y;
         }
@@ -250,7 +250,7 @@ namespace ginger {
          *
          * @return a Vector2 object.
          */
-        template <typename R> friend constexpr auto operator*(Vector2<T1, T2> x, const R &alpha)
+        template <typename R> friend constexpr auto operator*(Vector2<T1, T2> x, const R& alpha)
             -> Vector2<T1, T2> {
             return x *= alpha;
         }
@@ -265,7 +265,7 @@ namespace ginger {
          *
          * @return a Vector2 object.
          */
-        template <typename R> friend constexpr auto operator*(const R &alpha, Vector2<T1, T2> x)
+        template <typename R> friend constexpr auto operator*(const R& alpha, Vector2<T1, T2> x)
             -> Vector2<T1, T2> {
             return x *= alpha;
         }
@@ -280,7 +280,7 @@ namespace ginger {
          *
          * @return a Vector2 object.
          */
-        template <typename R> friend constexpr auto operator/(Vector2<T1, T2> x, const R &alpha)
+        template <typename R> friend constexpr auto operator/(Vector2<T1, T2> x, const R& alpha)
             -> Vector2<T1, T2> {
             return x /= alpha;
         }
@@ -299,8 +299,8 @@ namespace ginger {
          *
          * @return The return type of the `operator<<` function is `Stream&`.
          */
-        template <class Stream> friend auto operator<<(Stream &out, const Vector2<T1, T2> &vec)
-            -> Stream & {
+        template <class Stream> friend auto operator<<(Stream& out, const Vector2<T1, T2>& vec)
+            -> Stream& {
             out << "{" << vec.x() << ", " << vec.y() << "}";
             return out;
         }

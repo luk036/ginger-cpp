@@ -23,7 +23,8 @@ class Options;
  * The `initial_guess` function calculates the initial values for the parallel Bairstow method for
  * finding the roots of a real polynomial.
  *
- * @param[in] coeffs coeffs is a vector of doubles that represents the coefficients of a polynomial. The vector is passed by value.
+ * @param[in] coeffs coeffs is a vector of doubles that represents the coefficients of a polynomial.
+ * The vector is passed by value.
  *
  * @return The function `initial_guess` returns a vector of `Vec2` objects.
  */
@@ -51,8 +52,8 @@ extern auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2>;
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  */
-extern auto pbairstow_even(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
-                           const Options &options) -> std::pair<unsigned int, bool>;
+extern auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                           const Options& options) -> std::pair<unsigned int, bool>;
 
 /**
  * @brief Horner's rule
@@ -77,7 +78,7 @@ extern auto pbairstow_even(const std::vector<double> &coeffs, std::vector<Vec2> 
  *
  * @return a Vec2 object.
  */
-extern auto horner(std::vector<double> &coeffs1, std::size_t degree, const Vec2 &vr) -> Vec2;
+extern auto horner(std::vector<double>& coeffs1, std::size_t degree, const Vec2& vr) -> Vec2;
 
 /**
  * @brief zero suppression
@@ -96,7 +97,7 @@ extern auto horner(std::vector<double> &coeffs1, std::size_t degree, const Vec2 
  * @param[in] vri
  * @param[in] vrj
  */
-extern auto suppress(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void;
+extern auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void;
 
 /**
  * @brief zero suppression
@@ -115,7 +116,7 @@ extern auto suppress(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> v
  * @param[in] vri
  * @param[in] vrj
  */
-extern auto suppress2(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> void;
+extern auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void;
 
 /**
  * The function "makeadjoint" takes in a vector vr and a vector vp, and returns a 2x2 matrix where
@@ -126,9 +127,9 @@ extern auto suppress2(Vec2 &vA, Vec2 &vA1, const Vec2 &vri, const Vec2 &vrj) -> 
  *
  * @return a `Mat2` object.
  */
-inline auto makeadjoint(const Vec2 &vr, const Vec2 &vp) -> Mat2 {
-    auto &&p = vp.x();
-    auto &&s = vp.y();
+inline auto makeadjoint(const Vec2& vr, const Vec2& vp) -> Mat2 {
+    auto&& p = vp.x();
+    auto&& s = vp.y();
     return {Vec2{s, -p}, Vec2{-p * vr.y(), p * vr.x() + s}};
 }
 
@@ -141,7 +142,7 @@ inline auto makeadjoint(const Vec2 &vr, const Vec2 &vp) -> Mat2 {
  *
  * @return a Vec2 object.
  */
-inline auto delta(const Vec2 &vA, const Vec2 &vr, const Vec2 &vp) -> Vec2 {
+inline auto delta(const Vec2& vA, const Vec2& vr, const Vec2& vp) -> Vec2 {
     const auto mp = makeadjoint(vr, vp);  // 2 mul's
     return mp.mdot(vA) / mp.det();        // 6 mul's + 2 div's
 }
@@ -158,7 +159,7 @@ inline auto delta(const Vec2 &vA, const Vec2 &vr, const Vec2 &vp) -> Vec2 {
  *
  * @return a double value.
  */
-inline auto horner_eval(std::vector<double> coeffs1, std::size_t degree, const double &z)
+inline auto horner_eval(std::vector<double> coeffs1, std::size_t degree, const double& z)
     -> double {
     for (auto idx = 0U; idx != degree; ++idx) {
         coeffs1[idx + 1] += coeffs1[idx] * z;

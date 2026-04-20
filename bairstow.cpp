@@ -30,8 +30,8 @@
  *
  * @return a Vec2 object.
  */
-auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeffs, size_t degree,
-                const Vec2 &vr) -> Vec2Ref {
+auto horner_ref(std::vector<double>& coeffs, std::vector<Vec2Ref>& vcoeffs, size_t degree,
+                const Vec2& vr) -> Vec2Ref {
     auto itr0 = coeffs.begin();
     auto itr1 = std::next(vcoeffs.begin());
     for (auto i = 0U; i != degree - 1; ++i, ++itr0, ++itr1) {
@@ -62,7 +62,7 @@ auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeffs, size
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  */
-auto bairstow(const std::vector<double> &coeffs, Vec2 &vr, const Options &options = Options())
+auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const Options& options = Options())
     -> std::pair<unsigned int, bool> {
     auto coeffs1 = coeffs;
     const auto degree = coeffs1.size() - 1;  // degree, assume even

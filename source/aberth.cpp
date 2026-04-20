@@ -38,7 +38,7 @@ using Complex = std::complex<double>;
  * P(x) = coeffs[0]*x^n + coeffs[1]*x^(n-1) + ... + coeffs[n-1]*x + coeffs[n]
  * ```
  */
-inline auto horner_eval_c(const std::vector<double> &coeffs, const std::complex<double> &zval)
+inline auto horner_eval_c(const std::vector<double>& coeffs, const std::complex<double>& zval)
     -> std::complex<double> {
     std::complex<double> result(0.0, 0.0);
     for (auto coeff : coeffs) {
@@ -57,7 +57,7 @@ inline auto horner_eval_c(const std::vector<double> &coeffs, const std::complex<
  * @param[in] z
  * @return Tp
  */
-inline auto horner_eval_f(const std::vector<double> &coeffs, const double &zval) -> double {
+inline auto horner_eval_f(const std::vector<double>& coeffs, const double& zval) -> double {
     double result(0.0);
     for (auto coeff : coeffs) {
         result = result * zval + coeff;
@@ -98,7 +98,7 @@ inline auto horner_eval_f(const std::vector<double> &coeffs, const double &zval)
  * Initial points distributed on a circle around center
  * ```
  */
-auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
+auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;
     const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
     const auto p_center = horner_eval_f(coeffs, center);
@@ -113,8 +113,8 @@ auto initial_aberth(const vector<double> &coeffs) -> vector<Complex> {
     return z0s;
 }
 
-template <typename F> auto aberth_core(const vector<double> &coeffs, vector<Complex> &zs,
-                                       const Options &options, F &&aberth_job_generator)
+template <typename F> auto aberth_core(const vector<double>& coeffs, vector<Complex>& zs,
+                                       const Options& options, F&& aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -124,8 +124,8 @@ template <typename F> auto aberth_core(const vector<double> &coeffs, vector<Comp
         for (auto idx = 0U; idx != num_roots; ++idx) {
             results.emplace_back(aberth_job(idx));
         }
-        for (auto &result : results) {
-            auto &&res = result.get();
+        for (auto& result : results) {
+            auto&& res = result.get();
             if (tolerance < res) {
                 tolerance = res;
             }
@@ -137,7 +137,7 @@ template <typename F> auto aberth_core(const vector<double> &coeffs, vector<Comp
     return {options.max_iters, false};
 }
 
-auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &options = Options())
+auto aberth(const vector<double>& coeffs, vector<Complex>& zs, const Options& options = Options())
     -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
@@ -146,7 +146,7 @@ auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &op
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
         return [&](size_t idx) {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
@@ -163,8 +163,8 @@ auto aberth(const vector<double> &coeffs, vector<Complex> &zs, const Options &op
     return aberth_core(coeffs, zs, options, aberth_job_generator);
 }
 
-auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
-               const Options &options = Options()) -> std::pair<unsigned int, bool> {
+auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
+               const Options& options = Options()) -> std::pair<unsigned int, bool> {
     ThreadPool pool(std::thread::hardware_concurrency());
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
@@ -173,7 +173,7 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
         return [&](size_t idx) {
             return pool.enqueue([&, idx]() {
                 const auto zi = zs_ref[idx];
@@ -228,7 +228,7 @@ auto aberth_mt(const vector<double> &coeffs, vector<Complex> &zs,
  * for auto-correlation specific properties
  * ```
  */
-auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
+auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;  // assume even
     const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
     const auto poly_c = horner_eval_f(coeffs, center);
@@ -246,8 +246,8 @@ auto initial_aberth_autocorr(const vector<double> &coeffs) -> vector<Complex> {
     return z0s;
 }
 
-template <typename F> auto aberth_autocorr_core(const vector<double> &coeffs, vector<Complex> &zs,
-                                                const Options &options, F &&aberth_job_generator)
+template <typename F> auto aberth_autocorr_core(const vector<double>& coeffs, vector<Complex>& zs,
+                                                const Options& options, F&& aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -257,8 +257,8 @@ template <typename F> auto aberth_autocorr_core(const vector<double> &coeffs, ve
         for (auto idx = 0U; idx != num_roots; ++idx) {
             results.emplace_back(aberth_job(idx));
         }
-        for (auto &result : results) {
-            auto &&res = result.get();
+        for (auto& result : results) {
+            auto&& res = result.get();
             if (tolerance < res) {
                 tolerance = res;
             }
@@ -270,8 +270,8 @@ template <typename F> auto aberth_autocorr_core(const vector<double> &coeffs, ve
     return {options.max_iters, false};
 }
 
-auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
-                     const Options &options = Options()) -> std::pair<unsigned int, bool> {
+auto aberth_autocorr(const vector<double>& coeffs, vector<Complex>& zs,
+                     const Options& options = Options()) -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
     for (auto idx = 0U; idx != degree; ++idx) {
@@ -279,7 +279,7 @@ auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
         return [&](size_t idx) {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
@@ -297,8 +297,8 @@ auto aberth_autocorr(const vector<double> &coeffs, vector<Complex> &zs,
     return aberth_autocorr_core(coeffs, zs, options, aberth_job_generator);
 }
 
-auto aberth_autocorr_mt(const vector<double> &coeffs, vector<Complex> &zs,
-                        const Options &options = Options()) -> std::pair<unsigned int, bool> {
+auto aberth_autocorr_mt(const vector<double>& coeffs, vector<Complex>& zs,
+                        const Options& options = Options()) -> std::pair<unsigned int, bool> {
     ThreadPool pool(std::thread::hardware_concurrency());
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
@@ -307,7 +307,7 @@ auto aberth_autocorr_mt(const vector<double> &coeffs, vector<Complex> &zs,
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
-    auto aberth_job_generator = [&](const vector<double> &, vector<Complex> &zs_ref) {
+    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
         return [&](size_t idx) {
             return pool.enqueue([&, idx]() {
                 const auto zi = zs_ref[idx];

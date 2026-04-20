@@ -9,7 +9,7 @@
 
 using Vec2 = ginger::Vector2<double>;
 using Mat2 = ginger::Matrix2<Vec2>;
-using Vec2Ref = ginger::Vector2<double &>;
+using Vec2Ref = ginger::Vector2<double&>;
 
 class Options;
 
@@ -37,8 +37,8 @@ class Options;
  *
  * @return a Vec2Ref object.
  */
-extern auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeffs,
-                       std::size_t degree, const Vec2 &vr) -> Vec2Ref;
+extern auto horner_ref(std::vector<double>& coeffs, std::vector<Vec2Ref>& vcoeffs,
+                       std::size_t degree, const Vec2& vr) -> Vec2Ref;
 
 /**
  * @brief Bairstow's method (even degree only)
@@ -62,7 +62,7 @@ extern auto horner_ref(std::vector<double> &coeffs, std::vector<Vec2Ref> &vcoeff
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  */
-extern auto bairstow(const std::vector<double> &coeffs, Vec2 &vr, const Options &options)
+extern auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const Options& options)
     -> std::pair<unsigned int, bool>;
 
 /**
@@ -74,7 +74,7 @@ extern auto bairstow(const std::vector<double> &coeffs, Vec2 &vr, const Options 
  *
  * @return a `Mat2` object.
  */
-inline auto makeadjoint_ref(const Vec2 &vr, const Vec2Ref &vp) -> Mat2 {
+inline auto makeadjoint_ref(const Vec2& vr, const Vec2Ref& vp) -> Mat2 {
     auto p = vp.x();
     auto s = vp.y();
     return {Vec2{s, -p}, Vec2{-p * vr.y(), p * vr.x() + s}};
@@ -89,7 +89,7 @@ inline auto makeadjoint_ref(const Vec2 &vr, const Vec2Ref &vp) -> Mat2 {
  *
  * @return a Vec2 object.
  */
-inline auto delta_ref(const Vec2Ref &vA, const Vec2 &vr, const Vec2Ref &vp) -> Vec2 {
+inline auto delta_ref(const Vec2Ref& vA, const Vec2& vr, const Vec2Ref& vp) -> Vec2 {
     const auto mp = makeadjoint_ref(vr, vp);  // 2 mul's
     return mp.mdot(vA) / mp.det();            // 6 mul's + 2 div's
 }

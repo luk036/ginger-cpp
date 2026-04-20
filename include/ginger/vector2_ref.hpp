@@ -18,8 +18,8 @@ namespace ginger {
      */
     class Vector2Ref {
       public:
-        double &_x;
-        double &_y;
+        double& _x;
+        double& _y;
 
         /**
          * @brief Construct a new Vector2Ref object
@@ -48,21 +48,21 @@ namespace ginger {
          * @param[in] y The parameter "y" is the y-coordinate of the Vector2Ref object. It
          * represents the vertical position of the vector in a 2D coordinate system.
          */
-        constexpr Vector2Ref(double &x, double &y) noexcept : _x{x}, _y{y} {}
+        constexpr Vector2Ref(double& x, double& y) noexcept : _x{x}, _y{y} {}
 
         /**
          * The function returns a reference to a constant value of type double.
          *
          * @return a reference to a constant object of type double.
          */
-        constexpr auto x() const noexcept -> const double & { return this->_x; }
+        constexpr auto x() const noexcept -> const double& { return this->_x; }
 
         /**
          * The function `y()` returns a reference to a constant value of type `double`.
          *
          * @return a reference to a constant object of type double.
          */
-        constexpr auto y() const noexcept -> const double & { return this->_y; }
+        constexpr auto y() const noexcept -> const double& { return this->_y; }
 
         /**
          * The dot function calculates the dot product of two 2D vectors.
@@ -72,7 +72,7 @@ namespace ginger {
          * @return The `dot` function is returning the dot product of two vectors, which is a scalar
          * value of type `double`.
          */
-        constexpr auto dot(const Vector2Ref &other) const -> double {
+        constexpr auto dot(const Vector2Ref& other) const -> double {
             return this->_x * other._x + this->_y * other._y;
         }
 
@@ -85,7 +85,7 @@ namespace ginger {
          * @return The function `cross` returns the result of the cross product between the current
          * vector and the `other` vector. The result is of type `double`.
          */
-        constexpr auto cross(const Vector2Ref &other) const -> double {
+        constexpr auto cross(const Vector2Ref& other) const -> double {
             return this->_x * other._y - other._x * this->_y;
         }
 
@@ -98,11 +98,12 @@ namespace ginger {
          * The function `operator+=` adds the components of another Vector2 object to the current
          * Vector2Ref object and returns a reference to the updated object.
          *
-         * @param[in] other The parameter "other" is a reference to an object of type Vector2<double, double>.
+         * @param[in] other The parameter "other" is a reference to an object of type
+         * Vector2<double, double>.
          *
          * @return a reference to a Vector2Ref object.
          */
-        CONSTEXPR14 auto operator+=(const Vector2<double, double> &other) -> Vector2Ref & {
+        CONSTEXPR14 auto operator+=(const Vector2<double, double>& other) -> Vector2Ref& {
             this->_x += other.x();
             this->_y += other.y();
             return *this;
@@ -112,11 +113,12 @@ namespace ginger {
          * The function subtracts the x and y components of another Vector2 object from the
          * current Vector2Ref object.
          *
-         * @param[in] other The parameter "other" is a reference to an object of type Vector2<double, double>.
+         * @param[in] other The parameter "other" is a reference to an object of type
+         * Vector2<double, double>.
          *
          * @return a reference to a Vector2Ref object.
          */
-        CONSTEXPR14 auto operator-=(const Vector2<double, double> &other) -> Vector2Ref & {
+        CONSTEXPR14 auto operator-=(const Vector2<double, double>& other) -> Vector2Ref& {
             this->_x -= other.x();
             this->_y -= other.y();
             return *this;
@@ -131,7 +133,7 @@ namespace ginger {
          * @return The `operator*=` function returns a reference to the modified `Vector2Ref`
          * object.
          */
-        CONSTEXPR14 auto operator*=(const double &alpha) -> Vector2Ref & {
+        CONSTEXPR14 auto operator*=(const double& alpha) -> Vector2Ref& {
             this->_x *= alpha;
             this->_y *= alpha;
             return *this;
@@ -147,7 +149,7 @@ namespace ginger {
          *
          * @return a reference to the current instance of the Vector2Ref class.
          */
-        CONSTEXPR14 auto operator/=(const double &alpha) -> Vector2Ref & {
+        CONSTEXPR14 auto operator/=(const double& alpha) -> Vector2Ref& {
             this->_x /= alpha;
             this->_y /= alpha;
             return *this;
@@ -163,7 +165,7 @@ namespace ginger {
          *
          * @return a Vector2 object.
          */
-        CONSTEXPR14 auto operator*(const double &alpha) const -> Vector2<double, double> {
+        CONSTEXPR14 auto operator*(const double& alpha) const -> Vector2<double, double> {
             return Vector2<double, double>{this->x() * alpha, this->y() * alpha};
         }
 
@@ -181,8 +183,8 @@ namespace ginger {
          *
          * @return The return type of the `operator<<` function is `Stream&`.
          */
-        template <class Stream> friend auto operator<<(Stream &out, const Vector2Ref &vec)
-            -> Stream & {
+        template <class Stream> friend auto operator<<(Stream& out, const Vector2Ref& vec)
+            -> Stream& {
             out << "{" << vec.x() << ", " << vec.y() << "}";
             return out;
         }

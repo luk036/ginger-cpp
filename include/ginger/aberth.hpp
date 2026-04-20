@@ -18,7 +18,7 @@ class Options;
  *
  * @return The function `initial_aberth` returns a vector of Complex numbers.
  */
-extern auto initial_aberth(const std::vector<double> &coeffs) -> std::vector<std::complex<double>>;
+extern auto initial_aberth(const std::vector<double>& coeffs) -> std::vector<std::complex<double>>;
 
 /**
  * @brief Single-threading Aberth-Ehrlich method
@@ -45,8 +45,8 @@ extern auto initial_aberth(const std::vector<double> &coeffs) -> std::vector<std
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-extern auto aberth(const std::vector<double> &coeffs, std::vector<std::complex<double>> &zs,
-                   const Options &options) -> std::pair<unsigned int, bool>;
+extern auto aberth(const std::vector<double>& coeffs, std::vector<std::complex<double>>& zs,
+                   const Options& options) -> std::pair<unsigned int, bool>;
 
 /**
  * @brief Multi-threading Aberth-Ehrlich method
@@ -73,8 +73,8 @@ extern auto aberth(const std::vector<double> &coeffs, std::vector<std::complex<d
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-extern auto aberth_mt(const std::vector<double> &coeffs, std::vector<std::complex<double>> &zs,
-                      const Options &options) -> std::pair<unsigned int, bool>;
+extern auto aberth_mt(const std::vector<double>& coeffs, std::vector<std::complex<double>>& zs,
+                      const Options& options) -> std::pair<unsigned int, bool>;
 
 /**
  * @brief Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)
@@ -87,7 +87,7 @@ extern auto aberth_mt(const std::vector<double> &coeffs, std::vector<std::comple
  *
  * @return The function `initial_aberth` returns a vector of Complex numbers.
  */
-extern auto initial_aberth_autocorr(const std::vector<double> &coeffs)
+extern auto initial_aberth_autocorr(const std::vector<double>& coeffs)
     -> std::vector<std::complex<double>>;
 
 /**
@@ -115,8 +115,8 @@ extern auto initial_aberth_autocorr(const std::vector<double> &coeffs)
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-extern auto aberth_autocorr(const std::vector<double> &coeffs,
-                            std::vector<std::complex<double>> &zs, const Options &options)
+extern auto aberth_autocorr(const std::vector<double>& coeffs,
+                            std::vector<std::complex<double>>& zs, const Options& options)
     -> std::pair<unsigned int, bool>;
 
 /**
@@ -144,6 +144,6 @@ extern auto aberth_autocorr(const std::vector<double> &coeffs,
  * pair represents the number of iterations performed, and the second element represents whether the
  * method converged to a solution within the specified tolerance.
  */
-extern auto aberth_autocorr_mt(const std::vector<double> &coeffs,
-                               std::vector<std::complex<double>> &zs, const Options &options)
+extern auto aberth_autocorr_mt(const std::vector<double>& coeffs,
+                               std::vector<std::complex<double>>& zs, const Options& options)
     -> std::pair<unsigned int, bool>;

@@ -1,7 +1,8 @@
+#include <doctest/doctest.h>
+
 #include <complex>
 #include <vector>
 
-#include <doctest/doctest.h>
 #include "ginger/aberth.hpp"
 #include "ginger/config.hpp"
 #include "ginger/rootfinding.hpp"
@@ -14,12 +15,12 @@ void test_linear_polynomial() {
     auto a = *rc::gen::nonZero<double>();
     auto b = *rc::gen::arbitrary<double>();
     std::vector<double> coeffs = {a, b};
-    
+
     auto initial = initial_aberth(coeffs);
     Options options;
     std::pair<unsigned int, bool> result = aberth(coeffs, initial, options);
     bool converged = result.second;
-    
+
     RC_ASSERT(converged);
     RC_ASSERT(initial.size() == static_cast<size_t>(1));
 }
@@ -29,12 +30,12 @@ void test_quadratic_polynomial() {
     auto b = *rc::gen::arbitrary<double>();
     auto c = *rc::gen::arbitrary<double>();
     std::vector<double> coeffs = {a, b, c};
-    
+
     auto initial = initial_aberth(coeffs);
     Options options;
     std::pair<unsigned int, bool> result = aberth(coeffs, initial, options);
     bool converged = result.second;
-    
+
     RC_ASSERT(converged);
     RC_ASSERT(initial.size() == static_cast<size_t>(2));
 }
@@ -49,15 +50,15 @@ void test_horner_consistency() {
     while (coeffs[0] == 0.0) {
         coeffs[0] = *rc::gen::nonZero<double>();
     }
-    
+
     auto x = *rc::gen::arbitrary<double>();
     double horner_value = horner_eval(coeffs, degree, x);
-    
+
     double direct_value = 0.0;
     for (size_t i = 0; i <= degree; ++i) {
         direct_value += coeffs[i] * std::pow(x, static_cast<int>(degree - i));
     }
-    
+
     RC_ASSERT(std::abs(horner_value - direct_value) < 1e-10);
 }
 
@@ -68,9 +69,9 @@ void test_initial_guess_count() {
     for (size_t i = 1; i <= degree; ++i) {
         coeffs[i] = *rc::gen::arbitrary<double>();
     }
-    
+
     auto initial = initial_aberth(coeffs);
-    
+
     RC_ASSERT(initial.size() == degree);
 }
 
@@ -82,33 +83,33 @@ void test_options_defaults() {
 
 void test_bairstow_initial_guess() {
     auto degree = static_cast<size_t>(*rc::gen::inRange(2, 7) * 2);
-    
+
     std::vector<double> coeffs(degree + 1);
     coeffs[0] = *rc::gen::nonZero<double>();
     for (size_t i = 1; i <= degree; ++i) {
         coeffs[i] = *rc::gen::arbitrary<double>();
     }
-    
+
     auto initial = initial_guess(coeffs);
-    
+
     RC_ASSERT(initial.size() == degree / 2);
 }
 
 void test_roots_of_unity() {
     auto n = static_cast<size_t>(*rc::gen::inRange(2, 10));
-    
+
     std::vector<double> coeffs(n + 1);
     coeffs[0] = 1.0;
     for (size_t i = 1; i < n; ++i) {
         coeffs[i] = 0.0;
     }
     coeffs[n] = -1.0;
-    
+
     auto initial = initial_aberth(coeffs);
     Options options;
     std::pair<unsigned int, bool> result = aberth(coeffs, initial, options);
     bool converged = result.second;
-    
+
     if (converged) {
         for (const auto& root : initial) {
             std::complex<double> z = std::pow(root, static_cast<int>(n));
@@ -119,19 +120,19 @@ void test_roots_of_unity() {
 
 void test_autocorr_conjugate_pairs() {
     auto degree = static_cast<size_t>(*rc::gen::inRange(2, 6));
-    
+
     std::vector<double> coeffs(degree + 1);
     coeffs[0] = 1.0;
     for (size_t i = 1; i <= degree; ++i) {
         coeffs[i] = *rc::gen::arbitrary<double>();
     }
     coeffs[degree] = 1.0;
-    
+
     auto initial = initial_aberth_autocorr(coeffs);
     Options options;
     std::pair<unsigned int, bool> result = aberth_autocorr(coeffs, initial, options);
     bool converged = result.second;
-    
+
     if (converged) {
         for (const auto& root : initial) {
             if (std::abs(root.imag()) > options.tolerance) {
@@ -158,12 +159,12 @@ void test_polynomial_at_roots() {
     while (coeffs[0] == 0.0) {
         coeffs[0] = *rc::gen::nonZero<double>();
     }
-    
+
     auto initial = initial_aberth(coeffs);
     Options options;
     std::pair<unsigned int, bool> result = aberth(coeffs, initial, options);
     bool converged = result.second;
-    
+
     if (converged) {
         for (const auto& root : initial) {
             std::complex<double> z(root);
@@ -197,7 +198,8 @@ TEST_CASE("Property-based test: Options default values are reasonable") {
 }
 
 TEST_CASE("Property-based test: Bairstow method produces quadratic factors") {
-    rc::check("Bairstow initial guess produces correct number of quadratic factors", test_bairstow_initial_guess);
+    rc::check("Bairstow initial guess produces correct number of quadratic factors",
+              test_bairstow_initial_guess);
 }
 
 TEST_CASE("Property-based test: Monic polynomial (x^n - 1) roots are nth roots of unity") {
@@ -205,11 +207,13 @@ TEST_CASE("Property-based test: Monic polynomial (x^n - 1) roots are nth roots o
 }
 
 TEST_CASE("Property-based test: Aberth autocorr finds conjugate pairs") {
-    rc::check("aberth_autocorr finds conjugate pairs for autocorrelation polynomials", test_autocorr_conjugate_pairs);
+    rc::check("aberth_autocorr finds conjugate pairs for autocorrelation polynomials",
+              test_autocorr_conjugate_pairs);
 }
 
 TEST_CASE("Property-based test: Polynomial evaluation at roots is near zero") {
-    rc::check("Evaluating polynomial at found roots gives near-zero values", test_polynomial_at_roots);
+    rc::check("Evaluating polynomial at found roots gives near-zero values",
+              test_polynomial_at_roots);
 }
 
 #endif

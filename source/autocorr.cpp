@@ -44,7 +44,7 @@
  * Points placed at specific positions for auto-correlation property
  * ```
  */
-auto initial_autocorr(const std::vector<double> &coeffs) -> std::vector<Vec2> {
+auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
     const auto radius = std::pow(std::abs(coeffs[degree]), 1.0 / double(degree));
 
@@ -94,8 +94,8 @@ auto initial_autocorr(const std::vector<double> &coeffs) -> std::vector<Vec2> {
  * Special handling for auto-correlation property: process both vr_j and (1/vr_j)
  * ```
  */
-auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vrs,
-                        const Options &options = Options()) -> std::pair<unsigned int, bool> {
+auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                        const Options& options = Options()) -> std::pair<unsigned int, bool> {
     ThreadPool pool(std::thread::hardware_concurrency());
 
     const auto num_roots = vrs.size();
@@ -108,12 +108,12 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
             results.emplace_back(pool.enqueue([&, idx]() {
                 auto coeffs1 = coeffs;
                 const auto degree = coeffs.size() - 1;  // degree, assume even
-                const auto &vri = vrs[idx];
+                const auto& vri = vrs[idx];
                 auto vA = horner(coeffs1, degree, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
                 auto vA1 = horner(coeffs1, degree - 2, vri);
                 for (auto jdx : rr.exclude(idx)) {  // exclude idx
-                    const auto vrj = vrs[jdx];    // make a copy, don't reference!
+                    const auto vrj = vrs[jdx];      // make a copy, don't reference!
                     suppress(vA, vA1, vri, vrj);
                     const auto vrjn = ginger::Vector2<double>(-vrj.x(), 1.0) / vrj.y();
                     suppress(vA, vA1, vri, vrjn);
@@ -125,8 +125,8 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
                 return tol_i;
             }));
         }
-        for (auto &&result : results) {
-            auto &&res = result.get();
+        for (auto&& result : results) {
+            auto&& res = result.get();
             if (tolerance < res) {
                 tolerance = res;
             }
@@ -173,9 +173,9 @@ auto pbairstow_autocorr(const std::vector<double> &coeffs, std::vector<Vec2> &vr
  * Output: updated vr
  * ```
  */
-void extract_autocorr(Vec2 &vr) {
-    const auto &r = vr.x();
-    const auto &q = vr.y();
+void extract_autocorr(Vec2& vr) {
+    const auto& r = vr.x();
+    const auto& q = vr.y();
     const auto hr = r / 2.0;
     const auto d = hr * hr + q;
     if (d < 0.0) {  // complex conjugate root

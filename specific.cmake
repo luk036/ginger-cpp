@@ -15,7 +15,6 @@ CPMAddPackage(
   OPTIONS "INSTALL_ONLY YES" # create an installable target
 )
 
-
 # Add spdlog for logging functionality
 CPMAddPackage(
   NAME spdlog
@@ -38,4 +37,3 @@ set(SPECIFIC_LIBS LdsGen::LdsGen Threads::Threads fmt::fmt spdlog::spdlog)
 # find_package(Microsoft.GSL CONFIG REQUIRED)
 
 # set(SPECIFIC_LIBS fmt::fmt Microsoft.GSL::GSL)
-

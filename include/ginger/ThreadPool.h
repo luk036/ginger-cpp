@@ -34,7 +34,7 @@ class ThreadPool {
      * @param threads The number of worker threads to create
      */
     ThreadPool(size_t);
-    
+
     /**
      * @brief Enqueue a new task to the thread pool
      *
@@ -48,13 +48,13 @@ class ThreadPool {
      * @return A std::future containing the result of the task
      * @throws std::runtime_error if enqueue is called after the pool has been stopped
      */
-    template <class F, class... Args> auto enqueue(F &&f, Args &&...args)
+    template <class F, class... Args> auto enqueue(F&& f, Args&&... args)
 #if __cplusplus >= 201703L
         -> std::future<typename std::invoke_result<F, Args...>::type>;
 #else
         -> std::future<typename std::result_of<F(Args...)>::type>;
 #endif
-    
+
     /**
      * @brief Destroy the ThreadPool
      *
@@ -97,7 +97,7 @@ inline ThreadPool::ThreadPool(size_t threads) : stop(false) {
 }
 
 // add new work item to the pool
-template <class F, class... Args> inline auto ThreadPool::enqueue(F &&f, Args &&...args)
+template <class F, class... Args> inline auto ThreadPool::enqueue(F&& f, Args&&... args)
 #if __cplusplus >= 201703L
     -> std::future<typename std::invoke_result<F, Args...>::type>
 #else
@@ -133,7 +133,7 @@ inline ThreadPool::~ThreadPool() {
         stop = true;
     }
     condition.notify_all();
-    for (std::thread &worker : workers) worker.join();
+    for (std::thread& worker : workers) worker.join();
 }
 
 #endif

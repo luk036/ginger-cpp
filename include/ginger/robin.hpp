@@ -11,7 +11,7 @@ namespace fun {
          * @tparam T The type of the key stored in the node
          */
         template <typename T> struct RobinSlNode {
-            RobinSlNode *next;
+            RobinSlNode* next;
             T key;
         };
 
@@ -21,14 +21,14 @@ namespace fun {
          * @tparam T The type of elements being iterated
          */
         template <typename T> struct RobinIterator {
-            const RobinSlNode<T> *cur;
-            auto operator!=(const RobinIterator &other) const -> bool { return cur != other.cur; }
-            auto operator==(const RobinIterator &other) const -> bool { return cur == other.cur; }
-            auto operator++() -> RobinIterator & {
+            const RobinSlNode<T>* cur;
+            auto operator!=(const RobinIterator& other) const -> bool { return cur != other.cur; }
+            auto operator==(const RobinIterator& other) const -> bool { return cur == other.cur; }
+            auto operator++() -> RobinIterator& {
                 cur = cur->next;
                 return *this;
             }
-            auto operator*() const -> const T & { return cur->key; }
+            auto operator*() const -> const T& { return cur->key; }
         };
 
         /**
@@ -37,7 +37,7 @@ namespace fun {
          * @tparam T The type of elements in the list
          */
         template <typename T> struct RobinIterableWrapper {
-            const detail::RobinSlNode<T> *node;
+            const detail::RobinSlNode<T>* node;
             // const Robin<T> *rr;
             // T from_part;
             auto begin() const -> RobinIterator<T> { return RobinIterator<T>{node->next}; }
@@ -65,9 +65,9 @@ namespace fun {
          * @param num_parts The number of elements in the cycle
          */
         explicit Robin(T num_parts) : cycle(num_parts) {
-            auto *slptr = &this->cycle[num_parts - 1];
+            auto* slptr = &this->cycle[num_parts - 1];
             auto k = T(0);
-            for (auto &sl : this->cycle) {
+            for (auto& sl : this->cycle) {
                 sl.key = k;
                 slptr->next = &sl;
                 slptr = slptr->next;

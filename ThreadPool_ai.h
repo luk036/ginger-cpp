@@ -30,7 +30,7 @@ class ThreadPool {
      * @param threads The number of worker threads to create
      */
     ThreadPool(size_t threads);
-    
+
     /**
      * @brief Destroy the ThreadPool
      *

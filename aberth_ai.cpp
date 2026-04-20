@@ -20,10 +20,10 @@ const double TWO_PI = 2 * M_PI;
  *
  * @return The function `horner_eval_c` returns a complex number of type `std::complex<double>`.
  */
-std::complex<double> horner_eval_c(const std::vector<double> &coeffs,
-                                   const std::complex<double> &zval) {
+std::complex<double> horner_eval_c(const std::vector<double>& coeffs,
+                                   const std::complex<double>& zval) {
     std::complex<double> result = 0.0;
-    for (const auto &coeff : coeffs) {
+    for (const auto& coeff : coeffs) {
         result = result * zval + std::complex<double>(coeff, 0.0);
     }
     return result;
@@ -46,8 +46,8 @@ std::complex<double> horner_eval_c(const std::vector<double> &coeffs,
  * pair represents the number of iterations performed by the algorithm, and the second element
  * represents whether the algorithm converged or not.
  */
-std::pair<size_t, bool> aberth_mt(const std::vector<double> &coeffs,
-                                  std::vector<std::complex<double>> &zs, const Options &options) {
+std::pair<size_t, bool> aberth_mt(const std::vector<double>& coeffs,
+                                  std::vector<std::complex<double>>& zs, const Options& options) {
     size_t m_zs = zs.size();
     size_t degree = coeffs.size() - 1;
     std::vector<double> coeffs1(degree);
@@ -62,7 +62,7 @@ std::pair<size_t, bool> aberth_mt(const std::vector<double> &coeffs,
         double tol_i = std::transform_reduce(
             zs.begin(), zs.end(), converged.begin(), 0.0,
             [](double x, double y) { return std::max(x, y); },
-            [&](const std::complex<double> &zi, bool &converged) {
+            [&](const std::complex<double>& zi, bool& converged) {
                 return aberth_job(coeffs, zi, converged, zsc, coeffs1);
             });
         if (tolerance < tol_i) {
