@@ -22,7 +22,7 @@ std::vector<ComplexNum> lejaOrder(std::vector<ComplexNum> points) {
               [](const ComplexNum& a, const ComplexNum& b) { return magnitude(a) < magnitude(b); });
 
     std::vector<ComplexNum> lejaOrderedPoints;
-    lejaOrderedPoints.push_back(points.front());  // Start with the smallest magnitude point
+    lejaOrderedPoints.emplace_back(points.front());  // Start with the smallest magnitude point
     points.erase(points.begin());                 // Remove this point from further consideration
 
     while (!points.empty()) {
@@ -41,7 +41,7 @@ std::vector<ComplexNum> lejaOrder(std::vector<ComplexNum> points) {
         }
 
         // Append this point to the Leja ordered sequence
-        lejaOrderedPoints.push_back(points[nextIdx]);
+        lejaOrderedPoints.emplace_back(points[nextIdx]);
         // Remove this point from further consideration
         points.erase(points.begin() + nextIdx);
     }
@@ -54,7 +54,7 @@ int main() {
     std::vector<ComplexNum> lejaOrdered = lejaOrder(points);
 
     for (const auto& point : lejaOrdered) {
-        std::cout << point << std::endl;
+        std::cout << point << '\n';
     }
 
     return 0;

@@ -42,7 +42,7 @@ std::vector<std::complex<double>> initial_aberth(const std::vector<double>& coef
     std::vector<std::complex<double>> roots;
     for (size_t idx = 0; idx < degree; ++idx) {
         double theta = k * (0.25 + idx);
-        roots.push_back(center + radius * std::complex<double>(cos(theta), sin(theta)));
+        roots.emplace_back(center + radius * std::complex<double>(cos(theta), sin(theta)));
     }
     return roots;
 }
@@ -112,7 +112,7 @@ std::pair<int, bool> aberth_mt(const std::vector<double>& coeffs,
 
         for (size_t i = 0; i < zs.size(); ++i) {
             if (!converged[i]) {
-                futures.push_back(pool.enqueue(aberth_job, coeffs, i, std::ref(zs[i]),
+                futures.emplace_back(pool.enqueue(aberth_job, coeffs, i, std::ref(zs[i]),
                                                std::ref(converged[i]), zsc, coeffs1));
             }
         }

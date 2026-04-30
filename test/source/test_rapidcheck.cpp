@@ -45,7 +45,7 @@ void test_horner_consistency() {
     std::vector<double> coeffs;
     coeffs.reserve(degree + 1);
     for (size_t i = 0; i <= degree; ++i) {
-        coeffs.push_back(*rc::gen::arbitrary<double>());
+        coeffs.emplace_back(*rc::gen::arbitrary<double>());
     }
     while (coeffs[0] == 0.0) {
         coeffs[0] = *rc::gen::nonZero<double>();
@@ -154,7 +154,7 @@ void test_polynomial_at_roots() {
     std::vector<double> coeffs;
     coeffs.reserve(degree + 1);
     for (size_t i = 0; i <= degree; ++i) {
-        coeffs.push_back(*rc::gen::arbitrary<double>());
+        coeffs.emplace_back(*rc::gen::arbitrary<double>());
     }
     while (coeffs[0] == 0.0) {
         coeffs[0] = *rc::gen::nonZero<double>();
