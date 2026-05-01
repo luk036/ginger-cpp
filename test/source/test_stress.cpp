@@ -32,6 +32,6 @@ TEST_CASE("stress test aberth_mt with high-degree polynomial") {
 
     // Check if the number of iterations is within a reasonable bound
     // The exact bound might vary, but it should converge within a certain number of iterations
-    CHECK(niter <= options.max_iters);
-    CHECK(niter > 0);  // Ensure it actually ran
+    CHECK_LE(niter, options.max_iters);
+    CHECK_GT(niter, 0);  // Ensure it actually ran
 }

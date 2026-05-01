@@ -95,7 +95,7 @@ TEST_CASE("test horner_rule 2") {
 //     auto found = result.second;
 //     fmt::print("-------------------- {}, {}\n", niter, found);
 //     REQUIRE(found);
-//     CHECK(niter <= 11);
+//     CHECK_LE(niter, 11);
 //     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 // }
 
@@ -120,7 +120,7 @@ TEST_CASE("test horner_rule 2") {
 //     fmt::print("{}, {}\n", niter, found);
 
 //     REQUIRE(found);
-//     CHECK(niter <= 13);
+//     CHECK_LE(niter, 13);
 //     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 // }
 
@@ -150,6 +150,6 @@ TEST_CASE("test horner_rule 2") {
 //     auto found = result.second;
 //     fmt::print("{}, {}\n", niter, found);
 
-//     CHECK(niter <= 14);
+//     CHECK_LE(niter, 14);
 //     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 // }

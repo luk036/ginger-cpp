@@ -921,7 +921,7 @@ TEST_CASE("Aberth converges for cubic") {
     // Verify roots
     for (const auto& z : zs) {
         auto val = horner_eval_c(coeffs, z);
-        CHECK(std::abs(val) < 1e-10);
+        CHECK_LT(std::abs(val), 1e-10);
     }
 }
 ```

@@ -14,7 +14,7 @@ TEST_CASE("test aberth 1") {
     auto zs = initial_aberth(h);
     auto result = aberth(h, zs, Options());
     auto niter = result.first;
-    CHECK(niter <= 11);
+    CHECK_LE(niter, 11);
 }
 
 TEST_CASE("test aberth 2") {
@@ -24,7 +24,7 @@ TEST_CASE("test aberth 2") {
     options.tolerance = 1e-12;
     auto result = aberth(h, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 13);
+    CHECK_LE(niter, 13);
 }
 
 TEST_CASE("test aberth FIR") {
@@ -42,7 +42,7 @@ TEST_CASE("test aberth FIR") {
     options.tolerance = 1e-8;
     auto result = aberth(r, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 12);
+    CHECK_LE(niter, 12);
 }
 
 TEST_CASE("test aberth_mt 1") {
@@ -50,7 +50,7 @@ TEST_CASE("test aberth_mt 1") {
     auto zs = initial_aberth(h);
     auto result = aberth_mt(h, zs, Options());
     auto niter = result.first;
-    CHECK(niter <= 12);
+    CHECK_LE(niter, 12);
 }
 
 TEST_CASE("test aberth_mt 2") {
@@ -60,7 +60,7 @@ TEST_CASE("test aberth_mt 2") {
     options.tolerance = 1e-12;
     auto result = aberth_mt(h, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 14);
+    CHECK_LE(niter, 14);
 }
 
 TEST_CASE("test aberth_mt FIR") {
@@ -78,7 +78,7 @@ TEST_CASE("test aberth_mt FIR") {
     options.tolerance = 1e-8;
     auto result = aberth_mt(r, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 13);
+    CHECK_LE(niter, 13);
 }
 
 // TEST_CASE("test aberth_autocorr 1") {
@@ -86,7 +86,7 @@ TEST_CASE("test aberth_mt FIR") {
 //     auto zs = initial_aberth_autocorr(h);
 //     auto result = aberth_autocorr(h, zs, Options());
 //     auto niter = result.first;
-//     CHECK(niter <= 11);
+//     CHECK_LE(niter, 11);
 // }
 
 TEST_CASE("test aberth_autocorr 2") {
@@ -96,7 +96,7 @@ TEST_CASE("test aberth_autocorr 2") {
     options.tolerance = 1e-12;
     auto result = aberth(h, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 13);
+    CHECK_LE(niter, 13);
 }
 
 TEST_CASE("test aberth_autocorr FIR") {
@@ -114,7 +114,7 @@ TEST_CASE("test aberth_autocorr FIR") {
     options.tolerance = 1e-8;
     auto result = aberth_autocorr(r, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 12);
+    CHECK_LE(niter, 12);
 }
 
 // TEST_CASE("test aberth_autocorr_mt 1") {
@@ -122,7 +122,7 @@ TEST_CASE("test aberth_autocorr FIR") {
 //     auto zs = initial_aberth_autocorr(h);
 //     auto result = aberth_autocorr_mt(h, zs, Options());
 //     auto niter = result.first;
-//     CHECK(niter <= 12);
+//     CHECK_LE(niter, 12);
 // }
 
 TEST_CASE("test aberth_autocorr_mt 2") {
@@ -132,7 +132,7 @@ TEST_CASE("test aberth_autocorr_mt 2") {
     options.tolerance = 1e-12;
     auto result = aberth_mt(h, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 14);
+    CHECK_LE(niter, 14);
 }
 
 TEST_CASE("test aberth_autocorr_mt FIR") {
@@ -150,7 +150,7 @@ TEST_CASE("test aberth_autocorr_mt FIR") {
     options.tolerance = 1e-8;
     auto result = aberth_autocorr_mt(r, zs, options);
     auto niter = result.first;
-    CHECK(niter <= 13);
+    CHECK_LE(niter, 13);
 }
 
 TEST_CASE("test horners method") {
@@ -162,5 +162,5 @@ TEST_CASE("test horners method") {
     auto niter = result.first;
     // auto found = result.second;
     // fmt::print("{}, {}\n", niter, found);
-    CHECK(niter <= 12);
+    CHECK_LE(niter, 12);
 }

@@ -177,7 +177,7 @@ TEST_CASE("test root-finding 1") {
     // fmt::print("{}, {}\n", niter, found);
 
     REQUIRE(found);
-    CHECK(niter <= 11);
+    CHECK_LE(niter, 11);
 
     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 }
@@ -203,7 +203,7 @@ TEST_CASE("test root-finding 2") {
     // fmt::print("{}, {}\n", niter, found);
 
     REQUIRE(found);
-    CHECK(niter <= 13);
+    CHECK_LE(niter, 13);
     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 }
 
@@ -233,7 +233,7 @@ TEST_CASE("test root-finding FIR") {
     // auto found = result.second;
     // fmt::print("{}, {}\n", niter, found);
 
-    CHECK(niter <= 14);
+    CHECK_LE(niter, 14);
     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 }
 
@@ -312,7 +312,7 @@ TEST_CASE("Polynomial Root Finding") {
 
         SUBCASE("Convergence") {
             auto [niter, found] = pbairstow_even(coeffs, vrs, options);
-            CHECK(niter > 0);
+            CHECK_GT(niter, 0);
             CHECK_EQ(found, true);
 
             // Verify roots by evaluating polynomial

@@ -41,7 +41,7 @@ TEST_CASE("test auto-corr 1") {
     }
     REQUIRE(found);
 
-    CHECK(niter <= 21);
+    CHECK_LE(niter, 21);
 
     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 }
@@ -85,7 +85,7 @@ TEST_CASE("test autocorr FIR") {
     //     fmt::print("{}, {}\n", vr.x(), vr.y());
     // }
 
-    // CHECK(niter <= 346);
+    // CHECK_LE(niter, 346);
 
     // fmt::print([find_rootq(-r[0], -r[1]) for r : vrs]);
 }
