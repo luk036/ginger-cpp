@@ -113,7 +113,7 @@ std::pair<int, bool> aberth_mt(const std::vector<double>& coeffs,
         for (size_t i = 0; i < zs.size(); ++i) {
             if (!converged[i]) {
                 futures.emplace_back(pool.enqueue(aberth_job, coeffs, i, std::ref(zs[i]),
-                                               std::ref(converged[i]), zsc, coeffs1));
+                                                  std::ref(converged[i]), zsc, coeffs1));
             }
         }
 

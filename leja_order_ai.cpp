@@ -23,7 +23,7 @@ std::vector<ComplexNum> lejaOrder(std::vector<ComplexNum> points) {
 
     std::vector<ComplexNum> lejaOrderedPoints;
     lejaOrderedPoints.emplace_back(points.front());  // Start with the smallest magnitude point
-    points.erase(points.begin());                 // Remove this point from further consideration
+    points.erase(points.begin());                    // Remove this point from further consideration
 
     while (!points.empty()) {
         // Find the point with the maximum minimum distance to the current Leja sequence
