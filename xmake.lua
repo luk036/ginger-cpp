@@ -2,7 +2,7 @@ add_rules("mode.debug", "mode.release", "mode.coverage")
 add_requires("doctest", { alias = "doctest" })
 add_requires("fmt", { alias = "fmt" })
 add_requires("benchmark", { alias = "benchmark" })
-add_requires("spdlog", { alias = "spdlog", configs = { fmt_external = true } })
+add_requires("spdlog", { alias = "spdlog" })
 
 
 
