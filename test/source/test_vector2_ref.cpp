@@ -12,14 +12,14 @@ TEST_CASE("test vector2") {
     auto x = 1.0;
     auto y = 2.0;
     auto v = ginger::Vector2Ref(x, y);
-    CHECK(v.x() == 1.0);
-    CHECK(v.y() == 2.0);
+    CHECK_EQ(v.x(), 1.0);
+    CHECK_EQ(v.y(), 2.0);
 
     auto v2 = ginger::Vector2Ref(x, y);
     v2 *= 2.0;
-    CHECK(v.y() == 4.0);
+    CHECK_EQ(v.y(), 4.0);
 
     // auto vA = horner(h, 3, v);
-    // CHECK(vA.x() == 8.0);
-    // CHECK(vA.y() == 10.0);
+    // CHECK_EQ(vA.x(), 8.0);
+    // CHECK_EQ(vA.y(), 10.0);
 }

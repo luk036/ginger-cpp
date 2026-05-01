@@ -14,10 +14,10 @@ TEST_CASE("Matrix2 Construction") {
         ginger::Vector2<int> row2(3, 4);
         ginger::Matrix2<ginger::Vector2<int>> m(std::move(row1), std::move(row2));
 
-        CHECK(m.x().x() == 1);
-        CHECK(m.x().y() == 2);
-        CHECK(m.y().x() == 3);
-        CHECK(m.y().y() == 4);
+        CHECK_EQ(m.x().x(), 1);
+        CHECK_EQ(m.x().y(), 2);
+        CHECK_EQ(m.y().x(), 3);
+        CHECK_EQ(m.y().y(), 4);
     }
 }
 
@@ -32,58 +32,58 @@ TEST_CASE("Matrix2 Operations") {
 
     SUBCASE("Negation") {
         auto m = -m1;
-        CHECK(m.x().x() == -1);
-        CHECK(m.x().y() == -2);
-        CHECK(m.y().x() == -3);
-        CHECK(m.y().y() == -4);
+        CHECK_EQ(m.x().x(), -1);
+        CHECK_EQ(m.x().y(), -2);
+        CHECK_EQ(m.y().x(), -3);
+        CHECK_EQ(m.y().y(), -4);
     }
 
     SUBCASE("Matrix addition") {
         auto m = m1 + m2;
-        CHECK(m.x().x() == 6);
-        CHECK(m.x().y() == 8);
-        CHECK(m.y().x() == 10);
-        CHECK(m.y().y() == 12);
+        CHECK_EQ(m.x().x(), 6);
+        CHECK_EQ(m.x().y(), 8);
+        CHECK_EQ(m.y().x(), 10);
+        CHECK_EQ(m.y().y(), 12);
 
         m1 += m2;
-        CHECK(m1.x().x() == 6);
-        CHECK(m1.x().y() == 8);
-        CHECK(m1.y().x() == 10);
-        CHECK(m1.y().y() == 12);
+        CHECK_EQ(m1.x().x(), 6);
+        CHECK_EQ(m1.x().y(), 8);
+        CHECK_EQ(m1.y().x(), 10);
+        CHECK_EQ(m1.y().y(), 12);
     }
 
     SUBCASE("Matrix subtraction") {
         auto m = m2 - m1;
-        CHECK(m.x().x() == 4);
-        CHECK(m.x().y() == 4);
-        CHECK(m.y().x() == 4);
-        CHECK(m.y().y() == 4);
+        CHECK_EQ(m.x().x(), 4);
+        CHECK_EQ(m.x().y(), 4);
+        CHECK_EQ(m.y().x(), 4);
+        CHECK_EQ(m.y().y(), 4);
 
         m2 -= m1;
-        CHECK(m2.x().x() == 4);
-        CHECK(m2.x().y() == 4);
-        CHECK(m2.y().x() == 4);
-        CHECK(m2.y().y() == 4);
+        CHECK_EQ(m2.x().x(), 4);
+        CHECK_EQ(m2.x().y(), 4);
+        CHECK_EQ(m2.y().x(), 4);
+        CHECK_EQ(m2.y().y(), 4);
     }
 
     SUBCASE("Scalar multiplication") {
         auto m = m1 * 2;
-        CHECK(m.x().x() == 2);
-        CHECK(m.x().y() == 4);
-        CHECK(m.y().x() == 6);
-        CHECK(m.y().y() == 8);
+        CHECK_EQ(m.x().x(), 2);
+        CHECK_EQ(m.x().y(), 4);
+        CHECK_EQ(m.y().x(), 6);
+        CHECK_EQ(m.y().y(), 8);
 
         m = 2 * m1;
-        CHECK(m.x().x() == 2);
-        CHECK(m.x().y() == 4);
-        CHECK(m.y().x() == 6);
-        CHECK(m.y().y() == 8);
+        CHECK_EQ(m.x().x(), 2);
+        CHECK_EQ(m.x().y(), 4);
+        CHECK_EQ(m.y().x(), 6);
+        CHECK_EQ(m.y().y(), 8);
 
         m1 *= 2;
-        CHECK(m1.x().x() == 2);
-        CHECK(m1.x().y() == 4);
-        CHECK(m1.y().x() == 6);
-        CHECK(m1.y().y() == 8);
+        CHECK_EQ(m1.x().x(), 2);
+        CHECK_EQ(m1.x().y(), 4);
+        CHECK_EQ(m1.y().x(), 6);
+        CHECK_EQ(m1.y().y(), 8);
     }
 
     SUBCASE("Scalar division") {
@@ -92,17 +92,17 @@ TEST_CASE("Matrix2 Operations") {
         ginger::Matrix2<ginger::Vector2<double>> m(std::move(lrow1), std::move(lrow2));
 
         auto lm2 = m / 2.0;
-        CHECK(lm2.x().x() == doctest::Approx(1.0));
-        CHECK(lm2.x().y() == doctest::Approx(2.0));
+        CHECK_EQ(lm2.x().x(), doctest::Approx(1.0));
+        CHECK_EQ(lm2.x().y(), doctest::Approx(2.0));
 
-        CHECK(lm2.y().x() == doctest::Approx(3.0));
-        CHECK(lm2.y().y() == doctest::Approx(4.0));
+        CHECK_EQ(lm2.y().x(), doctest::Approx(3.0));
+        CHECK_EQ(lm2.y().y(), doctest::Approx(4.0));
 
         m /= 2.0;
-        CHECK(m.x().x() == doctest::Approx(1.0));
-        CHECK(m.x().y() == doctest::Approx(2.0));
-        CHECK(m.y().x() == doctest::Approx(3.0));
-        CHECK(m.y().y() == doctest::Approx(4.0));
+        CHECK_EQ(m.x().x(), doctest::Approx(1.0));
+        CHECK_EQ(m.x().y(), doctest::Approx(2.0));
+        CHECK_EQ(m.y().x(), doctest::Approx(3.0));
+        CHECK_EQ(m.y().y(), doctest::Approx(4.0));
     }
 }
 
@@ -115,8 +115,8 @@ TEST_CASE("Matrix2 Vector Operations") {
 
     SUBCASE("Matrix-vector multiplication") {
         auto result = m.mdot(v);
-        CHECK(result.x() == 1 * 5 + 2 * 6);
-        CHECK(result.y() == 3 * 5 + 4 * 6);
+        CHECK_EQ(result.x(), 1 * 5 + 2 * 6);
+        CHECK_EQ(result.y(), 3 * 5 + 4 * 6);
     }
 }
 
@@ -126,7 +126,7 @@ TEST_CASE("Matrix2 Determinant") {
         ginger::Vector2<int> row2(5, 6);
         ginger::Matrix2<ginger::Vector2<int>> m(std::move(row1), std::move(row2));
 
-        CHECK(m.det() == doctest::Approx(3 * 6 - 4 * 5));
+        CHECK_EQ(m.det(), doctest::Approx(3 * 6 - 4 * 5));
     }
 
     SUBCASE("Double matrix") {
@@ -134,7 +134,7 @@ TEST_CASE("Matrix2 Determinant") {
         ginger::Vector2<double> row2(3.5, 4.5);
         ginger::Matrix2<ginger::Vector2<double>> m(std::move(row1), std::move(row2));
 
-        CHECK(m.det() == doctest::Approx(1.5 * 4.5 - 2.5 * 3.5));
+        CHECK_EQ(m.det(), doctest::Approx(1.5 * 4.5 - 2.5 * 3.5));
     }
 }
 
@@ -149,17 +149,17 @@ TEST_CASE("Matrix2 Determinant") {
 
 //     SUBCASE("Mixed type addition") {
 //         auto m = mi + md;
-//         CHECK(m.x().x() == doctest::Approx(2.5));
-//         CHECK(m.x().y() == doctest::Approx(4.5));
-//         CHECK(m.y().x() == doctest::Approx(6.5));
-//         CHECK(m.y().y() == doctest::Approx(8.5));
+//         CHECK_EQ(m.x().x(), doctest::Approx(2.5));
+//         CHECK_EQ(m.x().y(), doctest::Approx(4.5));
+//         CHECK_EQ(m.y().x(), doctest::Approx(6.5));
+//         CHECK_EQ(m.y().y(), doctest::Approx(8.5));
 //     }
 
 //     SUBCASE("Mixed type subtraction") {
 //         auto m = md - mi;
-//         CHECK(m.x().x() == doctest::Approx(0.5));
-//         CHECK(m.x().y() == doctest::Approx(0.5));
-//         CHECK(m.y().x() == doctest::Approx(0.5));
-//         CHECK(m.y().y() == doctest::Approx(0.5));
+//         CHECK_EQ(m.x().x(), doctest::Approx(0.5));
+//         CHECK_EQ(m.x().y(), doctest::Approx(0.5));
+//         CHECK_EQ(m.y().x(), doctest::Approx(0.5));
+//         CHECK_EQ(m.y().y(), doctest::Approx(0.5));
 //     }
 // }
