@@ -61,11 +61,11 @@
           <tbody>
             <tr>
               <td style="width: 1%">T1</td>
-              <td></td>
+              <td>The type of the first column vector</td>
             </tr>
             <tr>
               <td>T2</td>
-              <td></td>
+              <td>The type of the second column vector (defaults to T1)</td>
             </tr>
           </tbody>
         </table>
@@ -82,6 +82,7 @@
             </li>
           </ul>
         </nav>
+<p>A template class representing a 2x2 matrix with column vectors. The matrix is stored as two column vectors (x and y).</p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -98,11 +99,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a116a63714918435b5dc449b77461f619" class="m-doc">x</a>(</span><span class="m-doc-wrap">) const -&gt; const T1 &amp; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the first column vector.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4fd86daf1cfd6bf04dc4cfff3d6de866" class="m-doc">y</a>(</span><span class="m-doc-wrap">) const -&gt; const T2 &amp; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the second column vector.</dd>
           </dl>
         </section>
         <section id="arithmetic-operators">
@@ -112,17 +113,17 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a8fd26a1e7d75cc4b7ee6051bbf80f7e5" class="m-doc">operator-</a>(</span><span class="m-doc-wrap">) const -&gt; Matrix2&lt; T1, T2 &gt; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Negate.</dd>
+            <dd>Negate the matrix.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename U1, typename U2&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a31f5ce7506ca0f39d2a0093f3f40d188" class="m-doc">operator+=</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; other) -&gt; Matrix2&lt; T1, T2 &gt; &amp; -&gt; <a href="matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46" class="m-doc">CONSTEXPR14</a> auto</span>
             </dt>
-            <dd>Add.</dd>
+            <dd>Add another matrix to this one.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename U1, typename U2&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a1e81759cb41a08e01dde831d309cc3d6" class="m-doc">operator-=</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; other) -&gt; Matrix2&lt; T1, T2 &gt; &amp; -&gt; <a href="matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46" class="m-doc">CONSTEXPR14</a> auto</span>
             </dt>
-            <dd>Substract.</dd>
+            <dd>Subtract another matrix from this one.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename R&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a8ca1a255189725b9fe4258104f324da8" class="m-doc">operator*=</a>(</span><span class="m-doc-wrap">const R&amp; alpha) -&gt; Matrix2&lt; T1, T2 &gt; &amp; -&gt; <a href="matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46" class="m-doc">CONSTEXPR14</a> auto</span>
@@ -132,46 +133,46 @@
               <div class="m-doc-template">template&lt;typename R&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#ab494c16128614ea1e289ebf48e8eb408" class="m-doc">operator/=</a>(</span><span class="m-doc-wrap">const R&amp; alpha) -&gt; Matrix2&lt; T1, T2 &gt; &amp; -&gt; <a href="matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46" class="m-doc">CONSTEXPR14</a> auto</span>
             </dt>
-            <dd>Divide.</dd>
+            <dd>Divide matrix by a scalar.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename U1, typename U2&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a7ad2d4085f3e7651aab87bd51c150f50" class="m-doc">mdot</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1Vector2.html" class="m-doc">Vector2</a>&lt;U1, U2&gt;&amp; other) const -&gt; T1 -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Multiply with <a href="classginger_1_1Vector2.html" class="m-doc">Vector2</a>.</dd>
+            <dd>Multiply matrix with vector.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#abd9100996ae0a16ed3052c6baccc6a1e" class="m-doc">det</a>(</span><span class="m-doc-wrap">) const -&gt; double -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Det.</dd>
+            <dd>Calculate the determinant.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename U1, typename U2&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a3ba4b0a8e419cbcb89c6c4229399f6b1" class="m-doc">operator+</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; y) -&gt; Matrix2&lt; T1, T2 &gt; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Add.</dd>
+            <dd>Add two matrices.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename U1, typename U2&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a9bc932cd09d8f43bb7a42be01768663a" class="m-doc">operator-</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; y) -&gt; Matrix2&lt; T1, T2 &gt; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Substract.</dd>
+            <dd>Subtract two matrices.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename R&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a4ab5e106faddbc6d024d8f2593f34de5" class="m-doc">operator*</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const R&amp; alpha) -&gt; Matrix2&lt; T1, T2 &gt; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Multiply by a scalar.</dd>
+            <dd>Multiply matrix by a scalar.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename R&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a63bb4a62a730165c1b09819cf6c54345" class="m-doc">operator*</a>(</span><span class="m-doc-wrap">const R&amp; alpha,
               <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x) -&gt; Matrix2&lt; T1, T2 &gt; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Multiply (by a scalar)</dd>
+            <dd>Multiply a scalar by a matrix.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename R&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a34297bc199c66eacdbca6567beeda54f" class="m-doc">operator/</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const R&amp; alpha) -&gt; Matrix2&lt; T1, T2 &gt; -&gt; auto <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
-            <dd>Divide (by a scalar)</dd>
+            <dd>Divide matrix by a scalar.</dd>
           </dl>
         </section>
         <section>
@@ -192,11 +193,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">x&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The first column vector</td>
                 </tr>
                 <tr>
                   <td>y&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The second column vector</td>
                 </tr>
               </tbody>
             </table>
@@ -208,11 +209,12 @@
               </div>
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a116a63714918435b5dc449b77461f619" class="m-doc-self">x</a>(</span><span class="m-doc-wrap">) const -&gt; const T1 &amp; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
+            <p>Get the first column vector.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>constexpr const T1&amp;</td>
+                  <td>constexpr const T1&amp; Reference to the first column vector</td>
                 </tr>
               </tfoot>
             </table>
@@ -224,11 +226,12 @@
               </div>
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4fd86daf1cfd6bf04dc4cfff3d6de866" class="m-doc-self">y</a>(</span><span class="m-doc-wrap">) const -&gt; const T2 &amp; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
+            <p>Get the second column vector.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>constexpr const T2&amp;</td>
+                  <td>constexpr const T2&amp; Reference to the second column vector</td>
                 </tr>
               </tfoot>
             </table>
@@ -240,12 +243,12 @@
               </div>
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8fd26a1e7d75cc4b7ee6051bbf80f7e5" class="m-doc-self">operator-</a>(</span><span class="m-doc-wrap">) const -&gt; Matrix2&lt; T1, T2 &gt; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Negate.</p>
+            <p>Negate the matrix.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;</td>
+                  <td>Matrix2&lt;T1, T2&gt; A new matrix with negated column vectors</td>
                 </tr>
               </tfoot>
             </table>
@@ -258,7 +261,7 @@
               </div>
               <span class="m-doc-wrap-bumper"><a href="matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46" class="m-doc">CONSTEXPR14</a> auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a31f5ce7506ca0f39d2a0093f3f40d188" class="m-doc-self">operator+=</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; other) -&gt; Matrix2&lt; T1, T2 &gt; &amp;</span></span>
             </h3>
-            <p>Add.</p>
+            <p>Add another matrix to this one.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -266,11 +269,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">U1</td>
-                  <td></td>
+                  <td>Type of the first column of the other matrix</td>
                 </tr>
                 <tr>
                   <td>U2</td>
-                  <td></td>
+                  <td>Type of the second column of the other matrix</td>
                 </tr>
               </tbody>
               <thead>
@@ -279,13 +282,13 @@
               <tbody>
                 <tr>
                   <td>other&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The matrix to add</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;&amp;</td>
+                  <td>Matrix2&lt;T1, T2&gt;&amp; Reference to this matrix</td>
                 </tr>
               </tfoot>
             </table>
@@ -298,7 +301,7 @@
               </div>
               <span class="m-doc-wrap-bumper"><a href="matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46" class="m-doc">CONSTEXPR14</a> auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1e81759cb41a08e01dde831d309cc3d6" class="m-doc-self">operator-=</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; other) -&gt; Matrix2&lt; T1, T2 &gt; &amp;</span></span>
             </h3>
-            <p>Substract.</p>
+            <p>Subtract another matrix from this one.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -306,11 +309,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">U1</td>
-                  <td></td>
+                  <td>Type of the first column of the other matrix</td>
                 </tr>
                 <tr>
                   <td>U2</td>
-                  <td></td>
+                  <td>Type of the second column of the other matrix</td>
                 </tr>
               </tbody>
               <thead>
@@ -319,13 +322,13 @@
               <tbody>
                 <tr>
                   <td>other&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The matrix to subtract</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;&amp;</td>
+                  <td>Matrix2&lt;T1, T2&gt;&amp; Reference to this matrix</td>
                 </tr>
               </tfoot>
             </table>
@@ -374,7 +377,7 @@
               </div>
               <span class="m-doc-wrap-bumper"><a href="matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46" class="m-doc">CONSTEXPR14</a> auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab494c16128614ea1e289ebf48e8eb408" class="m-doc-self">operator/=</a>(</span><span class="m-doc-wrap">const R&amp; alpha) -&gt; Matrix2&lt; T1, T2 &gt; &amp;</span></span>
             </h3>
-            <p>Divide.</p>
+            <p>Divide matrix by a scalar.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -382,7 +385,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">R</td>
-                  <td></td>
+                  <td>The scalar type</td>
                 </tr>
               </tbody>
               <thead>
@@ -391,13 +394,13 @@
               <tbody>
                 <tr>
                   <td>alpha&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The scalar value</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;&amp;</td>
+                  <td>Matrix2&lt;T1, T2&gt;&amp; Reference to this matrix</td>
                 </tr>
               </tfoot>
             </table>
@@ -410,7 +413,7 @@
               </div>
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7ad2d4085f3e7651aab87bd51c150f50" class="m-doc-self">mdot</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1Vector2.html" class="m-doc">Vector2</a>&lt;U1, U2&gt;&amp; other) const -&gt; T1 <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Multiply with <a href="classginger_1_1Vector2.html" class="m-doc">Vector2</a>.</p>
+            <p>Multiply matrix with vector.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -418,11 +421,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">U1</td>
-                  <td></td>
+                  <td>Type of the first component of the vector</td>
                 </tr>
                 <tr>
                   <td>U2</td>
-                  <td></td>
+                  <td>Type of the second component of the vector</td>
                 </tr>
               </tbody>
               <thead>
@@ -431,16 +434,17 @@
               <tbody>
                 <tr>
                   <td>other&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The vector to multiply</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Vector2&lt;U1, U2&gt;</td>
+                  <td>T1 The resulting vector (as column vector type)</td>
                 </tr>
               </tfoot>
             </table>
+<p>Performs matrix-vector multiplication: this * other.</p>
           </div></section>
           <section class="m-doc-details" id="abd9100996ae0a16ed3052c6baccc6a1e"><div>
             <h3>
@@ -449,15 +453,16 @@
               </div>
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abd9100996ae0a16ed3052c6baccc6a1e" class="m-doc-self">det</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Det.</p>
+            <p>Calculate the determinant.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>double</td>
+                  <td>double The determinant value</td>
                 </tr>
               </tfoot>
             </table>
+<p>Computes the determinant of the 2x2 matrix.</p>
           </div></section>
           <section class="m-doc-details" id="a3ba4b0a8e419cbcb89c6c4229399f6b1"><div>
             <h3>
@@ -468,7 +473,7 @@
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3ba4b0a8e419cbcb89c6c4229399f6b1" class="m-doc-self">operator+</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; y) -&gt; Matrix2&lt; T1, T2 &gt; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Add.</p>
+            <p>Add two matrices.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -476,11 +481,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">U1</td>
-                  <td></td>
+                  <td>Type of the first column of the first matrix</td>
                 </tr>
                 <tr>
                   <td>U2</td>
-                  <td></td>
+                  <td>Type of the second column of the first matrix</td>
                 </tr>
               </tbody>
               <thead>
@@ -489,17 +494,17 @@
               <tbody>
                 <tr>
                   <td>x&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The first matrix</td>
                 </tr>
                 <tr>
                   <td>y&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The second matrix</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;</td>
+                  <td>Matrix2&lt;T1, T2&gt; The result matrix</td>
                 </tr>
               </tfoot>
             </table>
@@ -513,7 +518,7 @@
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9bc932cd09d8f43bb7a42be01768663a" class="m-doc-self">operator-</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;U1, U2&gt;&amp; y) -&gt; Matrix2&lt; T1, T2 &gt; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Substract.</p>
+            <p>Subtract two matrices.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -521,11 +526,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">U1</td>
-                  <td></td>
+                  <td>Type of the first column of the first matrix</td>
                 </tr>
                 <tr>
                   <td>U2</td>
-                  <td></td>
+                  <td>Type of the second column of the first matrix</td>
                 </tr>
               </tbody>
               <thead>
@@ -534,17 +539,17 @@
               <tbody>
                 <tr>
                   <td>x&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The first matrix</td>
                 </tr>
                 <tr>
                   <td>y&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The second matrix</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;</td>
+                  <td>Matrix2&lt;T1, T2&gt; The result matrix</td>
                 </tr>
               </tfoot>
             </table>
@@ -558,7 +563,7 @@
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4ab5e106faddbc6d024d8f2593f34de5" class="m-doc-self">operator*</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const R&amp; alpha) -&gt; Matrix2&lt; T1, T2 &gt; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Multiply by a scalar.</p>
+            <p>Multiply matrix by a scalar.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -566,7 +571,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">R</td>
-                  <td></td>
+                  <td>The scalar type</td>
                 </tr>
               </tbody>
               <thead>
@@ -575,17 +580,17 @@
               <tbody>
                 <tr>
                   <td>x&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The matrix</td>
                 </tr>
                 <tr>
                   <td>alpha&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The scalar value</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;</td>
+                  <td>Matrix2&lt;T1, T2&gt; The result matrix</td>
                 </tr>
               </tfoot>
             </table>
@@ -599,7 +604,7 @@
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a63bb4a62a730165c1b09819cf6c54345" class="m-doc-self">operator*</a>(</span><span class="m-doc-wrap">const R&amp; alpha,
               <a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x) -&gt; Matrix2&lt; T1, T2 &gt; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Multiply (by a scalar)</p>
+            <p>Multiply a scalar by a matrix.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -607,7 +612,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">R</td>
-                  <td></td>
+                  <td>The scalar type</td>
                 </tr>
               </tbody>
               <thead>
@@ -616,17 +621,17 @@
               <tbody>
                 <tr>
                   <td>alpha&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The scalar value</td>
                 </tr>
                 <tr>
                   <td>x&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The matrix</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;</td>
+                  <td>Matrix2&lt;T1, T2&gt; The result matrix</td>
                 </tr>
               </tfoot>
             </table>
@@ -640,7 +645,7 @@
               <span class="m-doc-wrap-bumper">auto ginger::<wbr />Matrix2&lt;T1, T2&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a34297bc199c66eacdbca6567beeda54f" class="m-doc-self">operator/</a>(</span><span class="m-doc-wrap"><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>&lt;T1, T2&gt; x,
               const R&amp; alpha) -&gt; Matrix2&lt; T1, T2 &gt; <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
-            <p>Divide (by a scalar)</p>
+            <p>Divide matrix by a scalar.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -648,7 +653,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">R</td>
-                  <td></td>
+                  <td>The scalar type</td>
                 </tr>
               </tbody>
               <thead>
@@ -657,17 +662,17 @@
               <tbody>
                 <tr>
                   <td>x&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The matrix</td>
                 </tr>
                 <tr>
                   <td>alpha&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The scalar value</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>Matrix2&lt;T1, T2&gt;</td>
+                  <td>Matrix2&lt;T1, T2&gt; The result matrix</td>
                 </tr>
               </tfoot>
             </table>

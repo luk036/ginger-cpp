@@ -75,8 +75,8 @@
               using <a href="#a09dcc1516e32f64b1b52dad53b675f08" class="m-doc-self">Mat2</a> = <a href="classginger_1_1Matrix2.html" class="m-doc">ginger::<wbr />Matrix2</a>&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;
             </dt>
             <dd><span></span></dd>
-            <dt id="affc52fe9cda46840aa5a25f8f0e47c7c">
-              using <a href="#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc-self">Vec2Ref</a> = <a href="classginger_1_1Vector2.html" class="m-doc">ginger::<wbr />Vector2</a>&lt;double&amp;&gt;
+            <dt id="a7068ac8e71012ab542c048af06ac0e4c">
+              using <a href="#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc-self">Vec2Ref</a> = <a href="classginger_1_1Vector2.html" class="m-doc">ginger::<wbr />Vector2</a>&lt;double&amp;&gt;
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -86,7 +86,7 @@
           <dl class="m-doc">
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aea1ead0640642fc5d52810dad01a7f27" class="m-doc">horner_ref</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt;&amp; coeffs,
-              std::vector&lt;<a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&gt;&amp; vcoeffs,
+              std::vector&lt;<a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&gt;&amp; vcoeffs,
               std::size_t degree,
               const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2Ref -&gt; auto</span>
             </dt>
@@ -99,13 +99,13 @@
             <dd>Bairstow&#x27;s method (even degree only)</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ae06971a2961c924701e3c7445b858eee" class="m-doc">makeadjoint_ref</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Mat2 -&gt; auto</span>
+              const <a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Mat2 -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a733b72b5322fcb93809c3fd308eb905b" class="m-doc">delta_ref</a>(</span><span class="m-doc-wrap">const <a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&amp; vA,
+              <span class="m-doc-wrap-bumper">auto <a href="#a733b72b5322fcb93809c3fd308eb905b" class="m-doc">delta_ref</a>(</span><span class="m-doc-wrap">const <a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&amp; vA,
               const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Vec2 -&gt; auto</span>
+              const <a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Vec2 -&gt; auto</span>
             </dt>
             <dd></dd>
           </dl>
@@ -115,7 +115,7 @@
           <section class="m-doc-details" id="aea1ead0640642fc5d52810dad01a7f27"><div>
             <h3>
               <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aea1ead0640642fc5d52810dad01a7f27" class="m-doc-self">horner_ref</a>(</span><span class="m-doc-wrap">std::vector&lt;double&gt;&amp; coeffs,
-              std::vector&lt;<a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&gt;&amp; vcoeffs,
+              std::vector&lt;<a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&gt;&amp; vcoeffs,
               std::size_t degree,
               const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr) -&gt; Vec2Ref</span></span>
             </h3>
@@ -126,16 +126,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">coeffs</td>
-                  <td></td>
+                  <td style="width: 1%">coeffs&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td>coeffs is a reference to a vector of doubles. It is used to store the coefficients of a polynomial.</td>
                 </tr>
                 <tr>
-                  <td>vcoeffs</td>
-                  <td></td>
+                  <td>vcoeffs&nbsp;<span class="m-label m-flat m-danger">in/out</span></td>
+                  <td>vcoeffs is a reference to a vector of Vec2Ref objects.</td>
                 </tr>
                 <tr>
                   <td>degree&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The parameter <code>degree</code> represents the size of the vector <code>coeffs1</code>. It indicates the number of elements in the vector <code>coeffs1</code>.</td>
+                  <td>The parameter <code>degree</code> represents the size of the vector <code>coeffs</code>. It indicates the number of elements in the vector <code>coeffs</code>.</td>
                 </tr>
                 <tr>
                   <td>vr&nbsp;<span class="m-label m-flat m-info">in</span></td>
@@ -145,7 +145,7 @@
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>a Vec2 object.</td>
+                  <td>a Vec2Ref object.</td>
                 </tr>
               </tfoot>
             </table>
@@ -188,7 +188,7 @@
           <section class="m-doc-details" id="ae06971a2961c924701e3c7445b858eee"><div>
             <h3>
               <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae06971a2961c924701e3c7445b858eee" class="m-doc-self">makeadjoint_ref</a>(</span><span class="m-doc-wrap">const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Mat2</span></span>
+              const <a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Mat2</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -215,9 +215,9 @@
           </div></section>
           <section class="m-doc-details" id="a733b72b5322fcb93809c3fd308eb905b"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a733b72b5322fcb93809c3fd308eb905b" class="m-doc-self">delta_ref</a>(</span><span class="m-doc-wrap">const <a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&amp; vA,
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a733b72b5322fcb93809c3fd308eb905b" class="m-doc-self">delta_ref</a>(</span><span class="m-doc-wrap">const <a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&amp; vA,
               const <a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr,
-              const <a href="bairstow_8hpp.html#affc52fe9cda46840aa5a25f8f0e47c7c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Vec2</span></span>
+              const <a href="bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c" class="m-doc">Vec2Ref</a>&amp; vp) -&gt; Vec2</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -226,7 +226,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">vA&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>A vector of type Vec2.</td>
+                  <td>A vector of type Vec2Ref.</td>
                 </tr>
                 <tr>
                   <td>vr&nbsp;<span class="m-label m-flat m-info">in</span></td>
@@ -234,7 +234,7 @@
                 </tr>
                 <tr>
                   <td>vp&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td>The parameter <code>vp</code> is a <code>Vec2</code> object that is passed by rvalue reference.</td>
+                  <td>The parameter <code>vp</code> is a <code>Vec2Ref</code> object that is passed by const reference.</td>
                 </tr>
               </tbody>
               <tfoot>
