@@ -24,7 +24,7 @@ using Complex = std::complex<double>;
  * @param[in] z
  * @return Tp
  *
- * ```svgbob
+ * @verbatim
  *        coeffs[0]      coeffs[1]      coeffs[2]                 coeffs[n-1]    coeffs[n]
  *     +-----------> + -----------> + -----------> + ... + -----------> + --------->
  *     |             |              |              |                   |            |
@@ -36,7 +36,7 @@ using Complex = std::complex<double>;
  *           +------------------------------------+----------------------------------------+
  *
  * P(x) = coeffs[0]*x^n + coeffs[1]*x^(n-1) + ... + coeffs[n-1]*x + coeffs[n]
- * ```
+ * @endverbatim
  */
 inline auto horner_eval_c(const std::vector<double>& coeffs, const std::complex<double>& zval)
     -> std::complex<double> {
@@ -78,7 +78,7 @@ inline auto horner_eval_f(const std::vector<double>& coeffs, const double& zval)
  * @return The function `initial_aberth` returns a vector of Complex numbers representing the
  * initial guesses for the roots of the polynomial.
  *
- * ```svgbob
+ * @verbatim
  *        center
  *          *
  *         /|\
@@ -96,7 +96,7 @@ inline auto horner_eval_f(const std::vector<double>& coeffs, const double& zval)
  *         imag
  *
  * Initial points distributed on a circle around center
- * ```
+ * @endverbatim
  */
 auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;
@@ -205,7 +205,7 @@ auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
  * @return The function `initial_aberth_autocorr` returns a vector of Complex numbers representing
  * the initial guesses for the roots of the polynomial.
  *
- * ```svgbob
+ * @verbatim
  * For auto-correlation functions:
  *
  *        center
@@ -226,7 +226,7 @@ auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
  *
  * Initial points distributed on a circle around center, with radius adjustment
  * for auto-correlation specific properties
- * ```
+ * @endverbatim
  */
 auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;  // assume even

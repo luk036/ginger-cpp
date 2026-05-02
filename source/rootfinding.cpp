@@ -27,7 +27,7 @@
  *
  * @return a Vec2 object.
  *
- * ```svgbob
+ * @verbatim
  * Horner's method for polynomial evaluation:
  *
  * For polynomial P(x) = a_n*x^n + a_(n-1)*x^(n-1) + ... + a_1*x + a_0
@@ -50,7 +50,7 @@
  * +-------------+-------------+----------------------+------------+-----------> Vec2 result
  *
  * Where each step modifies the coefficients in place
- * ```
+ * @endverbatim
  */
 auto horner(std::vector<double>& coeffs1, size_t degree, const Vec2& vr) -> Vec2 {
     auto itr0 = coeffs1.begin();
@@ -74,7 +74,7 @@ auto horner(std::vector<double>& coeffs1, size_t degree, const Vec2& vr) -> Vec2
  * @param[in] vri A vector representing the position of point i.
  * @param[in] vrj The parameter `vrj` represents a `Vec2` object.
  *
- * ```svgbob
+ * @verbatim
  * Suppression step in root-finding:
  *
  * Given two root approximations vri and vrj, suppress the influence of vrj on vri
@@ -98,7 +98,7 @@ auto horner(std::vector<double>& coeffs1, size_t degree, const Vec2& vr) -> Vec2
  *    Updated vA, vA1 without influence from vrj
  *
  * This process removes the contribution of root vrj from the evaluation at vri
- * ```
+ * @endverbatim
  */
 auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
     const auto vp = vri - vrj;
@@ -122,7 +122,7 @@ auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
  * @param[in] vri A vector representing the position of point i.
  * @param[in] vrj The parameter `vrj` represents a `Vec2` object.
  *
- * ```svgbob
+ * @verbatim
  * Alternative suppression step in root-finding:
  *
  * This version uses vrj in the adjoint calculation instead of vri
@@ -146,7 +146,7 @@ auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
  *    Updated vA, vA1 with alternative suppression method
  *
  * Specialized variant for specific root-finding scenarios
- * ```
+ * @endverbatim
  */
 auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
     const auto vp = vri - vrj;
@@ -169,7 +169,7 @@ auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
  *
  * @return The function `initial_guess` returns a vector of `Vec2` objects.
  *
- * ```svgbob
+ * @verbatim
  * Initial guess calculation for Bairstow's method:
  *
  *                    center
@@ -190,7 +190,7 @@ auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
  * - m = center^2 + radius^2
  * - Points placed at (2*(center + radius*cos(θ)), -(m + 2*center*radius*cos(θ)))
  * - θ values: π*i/degree for odd i from 1 to degree-1
- * ```
+ * @endverbatim
  */
 auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
@@ -233,7 +233,7 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  *
- * ```svgbob
+ * @verbatim
  * Parallel Bairstow's method iterative process:
  *
  * For each iterate vr_i, the process is:
@@ -260,7 +260,7 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  *
  * All iterates updated in parallel using thread pool
  * Convergence check across all iterates simultaneously
- * ```
+ * @endverbatim
  */
 auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                     const Options& options = Options()) -> std::pair<unsigned int, bool> {

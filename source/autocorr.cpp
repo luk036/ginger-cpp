@@ -23,7 +23,7 @@
  *
  * @return The function `initial_autocorr` returns a vector of `Vec2` objects.
  *
- * ```svgbob
+ * @verbatim
  * For auto-correlation functions:
  *
  * Initial values distributed as:
@@ -42,7 +42,7 @@
  *
  * Where radius = |coeffs[degree]|^(1/degree)
  * Points placed at specific positions for auto-correlation property
- * ```
+ * @endverbatim
  */
 auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
@@ -71,7 +71,7 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
  * @param[in] options maximum iterations and tolorance
  * @return std::pair<unsigned int, bool>
  *
- * ```svgbob
+ * @verbatim
  * Bairstow's method iterative process for auto-correlation:
  *
  * For each iterate vr_i, the process is:
@@ -92,7 +92,7 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
  *
  * Parallel computation across all iterates vr_0, vr_1, ..., vr_n
  * Special handling for auto-correlation property: process both vr_j and (1/vr_j)
- * ```
+ * @endverbatim
  */
 auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                         const Options& options = Options()) -> std::pair<unsigned int, bool> {
@@ -151,7 +151,7 @@ auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vr
  * class representing a 2D vector. It contains two components, `x` and `y`,
  * which are accessed using the `x()` and `y()` member functions respectively.
  *
- * ```svgbob
+ * @verbatim
  * Root extraction process:
  *
  * Input: vr = (r, q) representing x^2 - r*x - q
@@ -171,7 +171,7 @@ auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vr
  *    vr = (-r/q, 1/q)
  *
  * Output: updated vr
- * ```
+ * @endverbatim
  */
 void extract_autocorr(Vec2& vr) {
     const auto& r = vr.x();
