@@ -5,7 +5,7 @@
 #include <future>   // for future
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>  // for Robin
-#include <ldsgen/lds.hpp>
+#include <lds/lds.hpp>
 #include <utility>  // for pair
 #include <vector>   // for vector, vector<>::reference, __v...
 
@@ -104,10 +104,10 @@ auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     const auto p_center = horner_eval_f(coeffs, center);
     const auto radius = std::pow(std::fabs(p_center), 1.0 / double(degree));
     auto z0s = vector<Complex>{};
-    ldsgen::Circle c_gen(2);
+    lds::Circle<2> c_gen{};
     for (auto i = 0U; i != degree; ++i) {
         auto res = c_gen.pop();
-        auto z0 = center + radius * Complex{res[1], res[0]};
+        auto z0 = center + radius * Complex{res[1], res[0]}; // note! swap res[1] and res[0] to get correct distribution
         z0s.emplace_back(z0);
     }
     return z0s;
@@ -237,10 +237,10 @@ auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
         radius = 1.0 / radius;
     }
     auto z0s = vector<Complex>{};
-    ldsgen::Circle c_gen(2);
+    lds::Circle<2> c_gen{};
     for (auto i = 0U; i != degree / 2; ++i) {
         auto res = c_gen.pop();
-        auto z0 = center + radius * Complex{res[1], res[0]};
+        auto z0 = center + radius * Complex{res[1], res[0]}; // note! swap res[1] and res[0] to get correct distribution for autocorr
         z0s.emplace_back(z0);
     }
     return z0s;

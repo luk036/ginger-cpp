@@ -4,8 +4,6 @@ add_requires("fmt", { alias = "fmt" })
 add_requires("benchmark", { alias = "benchmark" })
 add_requires("spdlog", { alias = "spdlog" })
 
-
-
 if is_mode("coverage") then
 	add_cxflags("-ftest-coverage", "-fprofile-arcs", { force = true })
 end
@@ -29,7 +27,7 @@ end
 target("Ginger")
 set_languages("c++17")
 set_kind("static")
-add_includedirs("../lds-gen-cpp/include", { public = true })
+-- add_includedirs("../lds-gen-cpp/include", { public = true })
 add_includedirs("include", { public = true })
 add_files("source/*.cpp")
 add_packages("fmt", "spdlog")

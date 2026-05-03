@@ -8,12 +8,12 @@ CPMAddPackage(
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-CPMAddPackage(
-  NAME LdsGen
-  GIT_TAG 1.2.1
-  GITHUB_REPOSITORY luk036/lds-gen-cpp
-  OPTIONS "INSTALL_ONLY YES" # create an installable target
-)
+# CPMAddPackage(
+#   NAME LdsGen
+#   GIT_TAG 1.2.1
+#   GITHUB_REPOSITORY luk036/lds-gen-cpp
+#   OPTIONS "INSTALL_ONLY YES" # create an installable target
+# )
 
 # Add spdlog for logging functionality
 CPMAddPackage(
@@ -23,7 +23,7 @@ CPMAddPackage(
   OPTIONS "SPDLOG_INSTALL YES" # create an installable target
 )
 
-set(SPECIFIC_LIBS LdsGen::LdsGen Threads::Threads fmt::fmt spdlog::spdlog)
+set(SPECIFIC_LIBS Threads::Threads fmt::fmt spdlog::spdlog)
 
 # cpmaddpackage( NAME GSL GITHUB_REPOSITORY "microsoft/GSL" GIT_TAG "v4.0.0" GIT_SHALLOW ON )
 
