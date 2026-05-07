@@ -107,7 +107,11 @@ auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     lds::Circle<2> c_gen{};
     for (auto i = 0U; i != degree; ++i) {
         auto res = c_gen.pop();
-        auto z0 = center + radius * Complex{res[1], res[0]}; // note! swap res[1] and res[0] to get correct distribution
+        auto z0
+            = center
+              + radius
+                    * Complex{res[1],
+                              res[0]};  // note! swap res[1] and res[0] to get correct distribution
         z0s.emplace_back(z0);
     }
     return z0s;
@@ -240,7 +244,8 @@ auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
     lds::Circle<2> c_gen{};
     for (auto i = 0U; i != degree / 2; ++i) {
         auto res = c_gen.pop();
-        auto z0 = center + radius * Complex{res[1], res[0]}; // note! swap res[1] and res[0] to get correct distribution for autocorr
+        auto z0 = center + radius * Complex{res[1], res[0]};  // note! swap res[1] and res[0] to get
+                                                              // correct distribution for autocorr
         z0s.emplace_back(z0);
     }
     return z0s;
