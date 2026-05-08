@@ -101,9 +101,9 @@ inline auto horner_eval_f(const std::vector<double>& coeffs, const double& zval)
  */
 auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;
-    const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
+    const auto center = -coeffs[1] / (static_cast<double>(degree) * coeffs[0]);
     const auto p_center = horner_eval_f(coeffs, center);
-    const auto radius = std::pow(std::fabs(p_center), 1.0 / double(degree));
+    const auto radius = std::pow(std::fabs(p_center), 1.0 / static_cast<double>(degree));
     auto z0s = vector<Complex>{};
     lds::Circle<2> c_gen{};
     for (auto i = 0U; i != degree; ++i) {
@@ -145,7 +145,7 @@ auto aberth(const vector<double>& coeffs, vector<Complex>& zs, const Options& op
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
     for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = double(degree - idx) * coeffs[idx];
+        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
@@ -172,7 +172,7 @@ auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
     for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = double(degree - idx) * coeffs[idx];
+        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
@@ -233,9 +233,9 @@ auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
  */
 auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;  // assume even
-    const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
+    const auto center = -coeffs[1] / (static_cast<double>(degree) * coeffs[0]);
     const auto poly_c = horner_eval_f(coeffs, center);
-    auto radius = std::pow(std::fabs(poly_c), 1.0 / double(degree));
+    auto radius = std::pow(std::fabs(poly_c), 1.0 / static_cast<double>(degree));
     if (std::abs(radius) > 1.0) {
         radius = 1.0 / radius;
     }
@@ -277,7 +277,7 @@ auto aberth_autocorr(const vector<double>& coeffs, vector<Complex>& zs,
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
     for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = double(degree - idx) * coeffs[idx];
+        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 
@@ -305,7 +305,7 @@ auto aberth_autocorr_mt(const vector<double>& coeffs, vector<Complex>& zs,
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
     for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = double(degree - idx) * coeffs[idx];
+        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
     const auto rr = fun::Robin<size_t>(zs.size());
 

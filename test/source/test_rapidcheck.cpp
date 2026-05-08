@@ -169,8 +169,8 @@ void test_polynomial_at_roots() {
         for (const auto& root : initial) {
             std::complex<double> z(root);
             std::complex<double> value_complex(0.0);
-            for (size_t i = 0; i < coeffs.size(); ++i) {
-                value_complex = value_complex * z + std::complex<double>(coeffs[i]);
+            for (double coeff : coeffs) {
+                value_complex = value_complex * z + std::complex<double>(coeff);
             }
             RC_ASSERT(std::abs(value_complex) < options.tolerance);
         }

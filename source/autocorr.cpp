@@ -47,14 +47,14 @@ constexpr double M_PI = 3.14159265358979323846264338327950288;
  */
 auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
-    const auto radius = std::pow(std::abs(coeffs[degree]), 1.0 / double(degree));
+    const auto radius = std::pow(std::abs(coeffs[degree]), 1.0 / static_cast<double>(degree));
 
     degree /= 2;
-    const auto k = M_PI / double(degree);
+    const auto k = M_PI / static_cast<double>(degree);
     const auto m = radius * radius;
     auto vr0s = std::vector<Vec2>{};
     for (auto i = 1U; i < degree; i += 2) {
-        vr0s.emplace_back(Vec2{2 * radius * std::cos(k * double(i)), -m});
+        vr0s.emplace_back(2 * radius * std::cos(k * static_cast<double>(i)), -m);
     }
     return vr0s;
 }

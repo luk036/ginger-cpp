@@ -195,19 +195,19 @@ auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
  */
 auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
-    const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
+    const auto center = -coeffs[1] / (static_cast<double>(degree) * coeffs[0]);
     const auto poly_c = horner_eval(std::move(coeffs), degree, center);
-    const auto radius = std::pow(std::abs(poly_c), 1.0 / double(degree));
+    const auto radius = std::pow(std::abs(poly_c), 1.0 / static_cast<double>(degree));
     degree /= 2;
     degree *= 2;  // make even
-    const auto k = M_PI / double(degree);
+    const auto k = M_PI / static_cast<double>(degree);
     const auto m = center * center + radius * radius;
     auto vr0s = std::vector<Vec2>{};
     for (auto i = 1U; i < degree; i += 2) {
         const auto temp = radius * std::cos(k * i);
         auto r0 = 2 * (center + temp);
         auto t0 = -(m + 2 * center * temp);
-        vr0s.emplace_back(Vec2{r0, t0});
+        vr0s.emplace_back(r0, t0);
     }
     return vr0s;
 }
