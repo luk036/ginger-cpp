@@ -163,7 +163,7 @@ TEST_CASE("test root-finding 1") {
     auto vrs = initial_guess(h);
     // fmt::print(vrs);
     // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
-    auto coeffs1 = h;
+    // auto coeffs1 = h;
     // auto degree = coeffs1.size() - 1;
     // auto vAh = horner(coeffs1, degree, vrs[1]);
     // fmt::print("{}, {}\n", vAh.x(), vAh.y());
@@ -187,7 +187,7 @@ TEST_CASE("test root-finding 2") {
     auto vrs = initial_guess(h);
     // fmt::print(vrs);
     // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
-    auto coeffs1 = h;
+    // auto coeffs1 = h;
     // auto degree = coeffs1.size() - 1;
     // auto vAh = horner(coeffs1, degree, vrs[1]);
     // fmt::print("{}, {}\n", vAh.x(), vAh.y());
@@ -218,7 +218,7 @@ TEST_CASE("test root-finding FIR") {
     auto vrs = initial_guess(h);
     // fmt::print(vrs);
     // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
-    auto coeffs1 = h;
+    // auto coeffs1 = h;
     // auto degree = coeffs1.size() - 1;
     // auto vAh = horner(coeffs1, degree, vrs[1]);
     // fmt::print("{}, {}\n", vAh.x(), vAh.y());

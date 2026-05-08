@@ -4,7 +4,6 @@
 
 #include <vector>
 
-#include "fmt/format.h"        // for print
 #include "ginger/vector2.hpp"  // for Vector2
 
 TEST_CASE("test vector2") {

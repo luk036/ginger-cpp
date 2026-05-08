@@ -1,5 +1,6 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
+#include <algorithm>
 #include <cmath>    // for acos, cos, sin
 #include <complex>  // for complex, operator*, operator+
 #include <future>   // for future
@@ -118,7 +119,7 @@ auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
 }
 
 template <typename F> auto aberth_core(const vector<double>& coeffs, vector<Complex>& zs,
-                                       const Options& options, F&& aberth_job_generator)
+                                       const Options& options, F& aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -130,9 +131,7 @@ template <typename F> auto aberth_core(const vector<double>& coeffs, vector<Comp
         }
         for (auto& result : results) {
             auto&& res = result.get();
-            if (tolerance < res) {
-                tolerance = res;
-            }
+            tolerance = std::max(tolerance, res);
         }
         if (tolerance < options.tolerance) {
             return {niter, true};
@@ -252,7 +251,7 @@ auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
 }
 
 template <typename F> auto aberth_autocorr_core(const vector<double>& coeffs, vector<Complex>& zs,
-                                                const Options& options, F&& aberth_job_generator)
+                                                const Options& options, F& aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -264,9 +263,7 @@ template <typename F> auto aberth_autocorr_core(const vector<double>& coeffs, ve
         }
         for (auto& result : results) {
             auto&& res = result.get();
-            if (tolerance < res) {
-                tolerance = res;
-            }
+            tolerance = std::max(tolerance, res);
         }
         if (tolerance < options.tolerance) {
             return {niter, true};

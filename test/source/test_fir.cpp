@@ -29,7 +29,7 @@ TEST_CASE("test FIR") {
     auto vrs = initial_autocorr(r);
     // fmt::print(vrs);
     // fmt::print("vrs[1]: {}, {}\n", vrs[1].x(), vrs[1].y());
-    auto coeffs1 = r;
+    // auto coeffs1 = r;
     // auto degree = coeffs1.size() - 1;
     // auto vAh = horner(coeffs1, degree, vrs[1]);
     // fmt::print("{}, {}\n", vAh.x(), vAh.y());

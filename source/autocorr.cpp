@@ -1,5 +1,6 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
+#include <algorithm>
 #include <cmath>    // for abs, acos, cos, pow
 #include <cstddef>  // for size_t
 #include <future>   // for future
@@ -12,7 +13,7 @@
 #include <vector>                  // for vector, vector<>::reference, __v...
 
 #ifndef M_PI
-#    define M_PI 3.14159265358979323846264338327950288
+constexpr double M_PI = 3.14159265358979323846264338327950288;
 #endif
 
 /**
@@ -121,15 +122,13 @@ auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vr
                 const auto vrin = ginger::Vector2<double>(-vri.x(), 1.0) / vri.y();
                 suppress(vA, vA1, vri, vrin);
 
-                vrs[idx] -= delta(vA, vri, std::move(vA1));  // Gauss-Seidel fashion
+                vrs[idx] -= delta(vA, vri, vA1);  // Gauss-Seidel fashion
                 return tol_i;
             }));
         }
         for (auto&& result : results) {
             auto&& res = result.get();
-            if (tolerance < res) {
-                tolerance = res;
-            }
+            tolerance = std::max(tolerance, res);
         }
         if (tolerance < options.tolerance) {
             return {niter, true};

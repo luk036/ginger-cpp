@@ -32,7 +32,7 @@ namespace ginger {
          * @param[in] x The first column vector
          * @param[in] y The second column vector
          */
-        constexpr Matrix2(T1&& x, T2&& y) noexcept : _x{std::move(x)}, _y{std::move(y)} {}
+        constexpr Matrix2(T1 x, T2 y) noexcept : _x{std::move(x)}, _y{std::move(y)} {}
 
         /**
          * @brief Get the first column vector

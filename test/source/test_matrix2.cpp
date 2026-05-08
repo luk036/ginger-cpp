@@ -12,7 +12,7 @@ TEST_CASE("Matrix2 Construction") {
     SUBCASE("Value construction") {
         ginger::Vector2<int> row1(1, 2);
         ginger::Vector2<int> row2(3, 4);
-        ginger::Matrix2<ginger::Vector2<int>> m(std::move(row1), std::move(row2));
+        ginger::Matrix2<ginger::Vector2<int>> m(row1, row2);
 
         CHECK_EQ(m.x().x(), 1);
         CHECK_EQ(m.x().y(), 2);
@@ -24,11 +24,11 @@ TEST_CASE("Matrix2 Construction") {
 TEST_CASE("Matrix2 Operations") {
     ginger::Vector2<int> row1(1, 2);
     ginger::Vector2<int> row2(3, 4);
-    ginger::Matrix2<ginger::Vector2<int>> m1(std::move(row1), std::move(row2));
+    ginger::Matrix2<ginger::Vector2<int>> m1(row1, row2);
 
     ginger::Vector2<int> row3(5, 6);
     ginger::Vector2<int> row4(7, 8);
-    ginger::Matrix2<ginger::Vector2<int>> m2(std::move(row3), std::move(row4));
+    ginger::Matrix2<ginger::Vector2<int>> m2(row3, row4);
 
     SUBCASE("Negation") {
         auto m = -m1;
@@ -89,7 +89,7 @@ TEST_CASE("Matrix2 Operations") {
     SUBCASE("Scalar division") {
         ginger::Vector2<double> lrow1(2.0, 4.0);
         ginger::Vector2<double> lrow2(6.0, 8.0);
-        ginger::Matrix2<ginger::Vector2<double>> m(std::move(lrow1), std::move(lrow2));
+        ginger::Matrix2<ginger::Vector2<double>> m(lrow1, lrow2);
 
         auto lm2 = m / 2.0;
         CHECK_EQ(lm2.x().x(), doctest::Approx(1.0));
@@ -109,7 +109,7 @@ TEST_CASE("Matrix2 Operations") {
 TEST_CASE("Matrix2 Vector Operations") {
     ginger::Vector2<double> row1(1, 2);
     ginger::Vector2<double> row2(3, 4);
-    ginger::Matrix2<ginger::Vector2<double>> m(std::move(row1), std::move(row2));
+    ginger::Matrix2<ginger::Vector2<double>> m(row1, row2);
 
     ginger::Vector2<double> v(5, 6);
 
@@ -124,7 +124,7 @@ TEST_CASE("Matrix2 Determinant") {
     SUBCASE("Integer matrix") {
         ginger::Vector2<int> row1(3, 4);
         ginger::Vector2<int> row2(5, 6);
-        ginger::Matrix2<ginger::Vector2<int>> m(std::move(row1), std::move(row2));
+        ginger::Matrix2<ginger::Vector2<int>> m(row1, row2);
 
         CHECK_EQ(m.det(), doctest::Approx(3 * 6 - 4 * 5));
     }
@@ -132,7 +132,7 @@ TEST_CASE("Matrix2 Determinant") {
     SUBCASE("Double matrix") {
         ginger::Vector2<double> row1(1.5, 2.5);
         ginger::Vector2<double> row2(3.5, 4.5);
-        ginger::Matrix2<ginger::Vector2<double>> m(std::move(row1), std::move(row2));
+        ginger::Matrix2<ginger::Vector2<double>> m(row1, row2);
 
         CHECK_EQ(m.det(), doctest::Approx(1.5 * 4.5 - 2.5 * 3.5));
     }
@@ -141,11 +141,11 @@ TEST_CASE("Matrix2 Determinant") {
 // TEST_CASE("Matrix2 Mixed Type Operations") {
 //     ginger::Vector2<int> row1(1, 2);
 //     ginger::Vector2<int> row2(3, 4);
-//     ginger::Matrix2<ginger::Vector2<int>> mi(std::move(row1), std::move(row2));
+//     ginger::Matrix2<ginger::Vector2<int>> mi(row1, row2);
 
 //     ginger::Vector2<double> row3(1.5, 2.5);
 //     ginger::Vector2<double> row4(3.5, 4.5);
-//     ginger::Matrix2<ginger::Vector2<double>> md(std::move(row3), std::move(row4));
+//     ginger::Matrix2<ginger::Vector2<double>> md(row3, row4);
 
 //     SUBCASE("Mixed type addition") {
 //         auto m = mi + md;

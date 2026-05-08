@@ -1,5 +1,6 @@
 #include <ginger/ThreadPool.h>  // for ThreadPool
 
+#include <algorithm>
 #include <cmath>    // for abs, acos, cos, pow
 #include <cstddef>  // for size_t
 #include <ginger/config.hpp>
@@ -10,7 +11,7 @@
 #include <vector>                  // for vector, vector<>::reference, __v...
 
 #ifndef M_PI
-#    define M_PI 3.14159265358979323846264338327950288
+constexpr double M_PI = 3.14159265358979323846264338327950288;
 #endif
 
 /**
@@ -291,9 +292,7 @@ auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
         }
         for (auto&& result : results) {
             auto&& res = result.get();
-            if (tolerance < res) {
-                tolerance = res;
-            }
+            tolerance = std::max(tolerance, res);
         }
         if (tolerance < options.tolerance) {
             return {niter, true};
