@@ -81,16 +81,16 @@ graph LR
     A --> C[🧪 Testing]
     A --> D[⚡ Parallel]
     A --> E[🎯 Multiple Methods]
-    
+
     B --> B1[Header-only ready]
     B --> B2[CPM.cmake]
-    
+
     C --> C1[doctest]
     C --> C2[RapidCheck]
-    
+
     D --> D1[ThreadPool]
     D --> D2[Async/Await]
-    
+
     E --> E1[Aberth-Ehrlich]
     E --> E2[Bairstow]
 ```
@@ -162,7 +162,7 @@ flowchart TD
     D -->|Yes| E[✅ Root Found]
     D -->|No| F[Update Guess]
     F --> B
-    
+
     G[Iteration Limit] --> E
 ```
 
@@ -215,8 +215,8 @@ graph LR
 ### Implementation
 
 ```cpp
-inline auto horner_eval_c(const std::vector<double>& coeffs, 
-                           const std::complex<double>& zval) 
+inline auto horner_eval_c(const std::vector<double>& coeffs,
+                           const std::complex<double>& zval)
     -> std::complex<double> {
     std::complex<double> result(0.0, 0.0);
     for (auto coeff : coeffs) {
@@ -248,7 +248,7 @@ graph TD
     A --> C[🔄 Iterative]
     A --> D[💾 Complex Memory]
     A --> E[⚡ Parallelizable]
-    
+
     B --> B1[All roots updated together]
     C --> C1[Newton-like corrections]
     D --> D1[Uses complex arithmetic]
@@ -311,7 +311,7 @@ graph TD
     A[Compute Polynomial Center] --> B[Calculate Radius]
     B --> C[Distribute Points on Circle]
     C --> D[Complex Initial Values]
-    
+
     A --> A1[center = -coeffs[1] / n·coeffs[0]]
     B --> B1[radius = |P(center)|^(1/n)]
 ```
@@ -329,14 +329,14 @@ $$z_i^{(0)} = \text{center} + \text{radius} \cdot e^{2\pi i i / n}$$
   <line x1="200" y1="20" x2="200" y2="280" stroke="gray" stroke-width="2"/>
   <text x="355" y="155" font-size="14">Re</text>
   <text x="205" y="25" font-size="14">Im</text>
-  
+
   <!-- Circle -->
   <circle cx="200" cy="150" r="80" fill="none" stroke="#339af0" stroke-width="2" stroke-dasharray="5,5"/>
-  
+
   <!-- Center point -->
   <circle cx="200" cy="150" r="5" fill="#e64980"/>
   <text x="210" y="140" font-size="12" fill="#e64980">center</text>
-  
+
   <!-- Initial guess points -->
   <circle cx="280" cy="150" r="6" fill="#51cf66"/>
   <circle cx="246" cy="110" r="6" fill="#51cf66"/>
@@ -346,7 +346,7 @@ $$z_i^{(0)} = \text{center} + \text{radius} \cdot e^{2\pi i i / n}$$
   <circle cx="154" cy="190" r="6" fill="#51cf66"/>
   <circle cx="200" cy="230" r="6" fill="#51cf66"/>
   <circle cx="246" cy="190" r="6" fill="#51cf66"/>
-  
+
   <!-- Legend -->
   <circle cx="80" cy="270" r="4" fill="#51cf66"/>
   <text x="90" y="274" font-size="12">Initial guesses</text>
@@ -363,7 +363,7 @@ auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     const auto center = -coeffs[1] / (double(degree) * coeffs[0]);
     const auto p_center = horner_eval_f(coeffs, center);
     const auto radius = std::pow(std::fabs(p_center), 1.0 / double(degree));
-    
+
     auto z0s = vector<Complex>{};
     ldsgen::Circle c_gen(2);  // 2D sphere for complex
     for (auto i = 0U; i != degree; ++i) {
@@ -385,7 +385,7 @@ auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
 graph LR
     A[Convergence] --> B[Quadratic]
     B --> C[Similar to Newton]
-    
+
     D[Advantages] --> E[Global]
     D --> F[All roots simultaneously]
     D --> G[Parallelizable]
@@ -439,7 +439,7 @@ flowchart TD
     A --> C[📦 Even Degree]
     A --> D[👥 Quadratic Factors]
     A --> E[⚡ Parallelizable]
-    
+
     B --> B1[Only real coefficients]
     C --> C1[Degree must be 2k]
     D --> D1[Extracts root pairs]
@@ -483,29 +483,29 @@ auto horner(std::vector<double>& coeffs1, size_t degree, const Vec2& vr) -> Vec2
   <!-- Polynomial -->
   <rect x="20" y="80" width="120" height="40" fill="#339af0" rx="5"/>
   <text x="80" y="105" fill="white" font-size="14" text-anchor="middle">P(x)</text>
-  
+
   <!-- Division symbol -->
   <text x="160" y="105" font-size="24">÷</text>
-  
+
   <!-- Quadratic factor -->
   <rect x="190" y="60" width="100" height="80" fill="#51cf66" rx="5"/>
   <text x="240" y="105" fill="white" font-size="12" text-anchor="middle">x² - rx - s</text>
-  
+
   <!-- Arrow -->
   <line x1="310" y1="100" x2="340" y2="100" stroke="gray" stroke-width="2"/>
   <polygon points="340,95 350,100 340,105" fill="gray"/>
-  
+
   <!-- Quotient -->
   <rect x="370" y="80" width="50" height="40" fill="#fcc419" rx="5"/>
   <text x="395" y="105" fill="black" font-size="12" text-anchor="middle">Q(x)</text>
-  
+
   <!-- Plus -->
   <text x="435" y="105" font-size="20">+</text>
-  
+
   <!-- Remainder -->
   <rect x="455" y="80" width="35" height="40" fill="#e64980" rx="5"/>
   <text x="472" y="105" fill="white" font-size="10" text-anchor="middle">b₁x+b₀</text>
-  
+
   <!-- Labels -->
   <text x="395" y="30" font-size="14" text-anchor="middle">Quotient</text>
   <text x="472" y="30" font-size="14" text-anchor="middle">Remainder</text>
@@ -533,7 +533,7 @@ graph TD
     A[Root rⱼ found] --> B[Update remaining roots]
     B --> C[Remove rⱼ's contribution]
     C --> D[Isolate rᵢ individually]
-    
+
     E[Without Suppression] --> F[❌ Interference]
     G[With Suppression] --> H[✅ Isolated update]
 ```
@@ -552,18 +552,18 @@ where the adjoint matrix $M_{\text{adj}}$ removes the $j$-th root's influence.
 auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
     const auto vp = vri - vrj;                    // Difference
     const auto p = vp.x(), s = vp.y();
-    
+
     // Adjoint matrix
     const auto m_adjoint = Mat2{
-        Vec2{s, -p}, 
+        Vec2{s, -p},
         Vec2{-p * vri.y(), p * vri.x() + s}
     };
-    
+
     const auto e = m_adjoint.det();
     const auto va = m_adjoint.mdot(vA);
     const auto vd = vA1 * e - va;
     const auto vc = Vec2{vd.x(), vd.y() - va.x() * p};
-    
+
     vA = va * e;
     vA1 = m_adjoint.mdot(vc);
 }
@@ -583,7 +583,7 @@ flowchart TD
         T3[Thread 3] --> R3[Root r₃]
         T4[Thread 4] --> R4[Root r₄]
     end
-    
+
     R1 --> Sync[Synchronize]
     R2 --> Sync
     R3 --> Sync
@@ -596,7 +596,7 @@ flowchart TD
 ### Parallel Implementation
 
 ```cpp
-auto pbairstow_even(const std::vector<double>& coeffs, 
+auto pbairstow_even(const std::vector<double>& coeffs,
                     std::vector<Vec2>& vrs,
                     const Options& options) -> std::pair<unsigned int, bool> {
     ThreadPool pool(std::thread::hardware_concurrency());
@@ -612,29 +612,29 @@ auto pbairstow_even(const std::vector<double>& coeffs,
             results.emplace_back(pool.enqueue([&, idx]() {
                 const auto degree = coeffs.size() - 1;
                 const auto& vri = vrs[idx];
-                
+
                 auto coeffs1 = coeffs;
                 auto vA = horner(coeffs1, degree, vri);
                 auto vA1 = horner(coeffs1, degree - 2, vri);
-                
+
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                
+
                 // Suppress all OTHER roots
                 for (auto jdx : rr.exclude(idx)) {
                     const auto vrj = vrs[jdx];
                     suppress(vA, vA1, vri, vrj);
                 }
-                
+
                 vrs[idx] -= delta(vA, vri, vA1);
                 return tol_i;
             }));
         }
-        
+
         // Check convergence
         for (auto& result : results) {
             tolerance = std::max(tolerance, result.get());
         }
-        
+
         if (tolerance < options.tolerance) {
             return {niter, true};
         }
@@ -663,14 +663,14 @@ flowchart LR
         T3[Thread 3]
         T4[Thread N]
     end
-    
+
     subgraph TaskQueue
         Q1[Task]
         Q2[Task]
         Q3[Task]
         Q4[Task]
     end
-    
+
     Q1 -->|enqueue| T1
     Q2 -->|enqueue| T2
     Q3 -->|enqueue| T3
@@ -705,12 +705,12 @@ flowchart TD
         R2["z₂ ← z₂ - P(z₂)/(P'(z₂) - Σⱼ≠₂)"]
         R3["z₃ ← z₃ - P(z₃)/(P'(z₃) - Σⱼ≠₃)"]
     end
-    
+
     subgraph "Dependency"
         D1["z₁ depends on z₂, z₃, ..."]
         D2["z₂ depends on z₁, z₃, ..."]
     end
-    
+
     R1 -.-> D1
     R2 -.-> D2
 ```
@@ -751,7 +751,7 @@ graph TD
     A --> C[Synchronization]
     A --> D[Memory Access]
     A --> E[Overhead]
-    
+
     B --> B1[Parallelizable ✅]
     C --> C1[Serial 😓]
     D --> D1[Bandwidth limited 💾]
@@ -916,7 +916,7 @@ TEST_CASE("Aberth converges for cubic") {
     std::vector<double> coeffs = {1, -6, 11, -6};
     auto zs = initial_aberth(coeffs);
     auto [iters, converged] = aberth(coeffs, zs);
-    
+
     CHECK(converged);
     // Verify roots
     for (const auto& z : zs) {
@@ -934,10 +934,10 @@ TEST_CASE("Aberth converges for cubic") {
 RC_GTEST_PROP(Aberth, polynomial_roots, (const std::vector<double>& coeffs)) {
     RC_PRE(coeffs.size() >= 2);
     RC_PRE(coeffs[0] != 0);  // Leading coefficient non-zero
-    
+
     auto zs = initial_aberth(coeffs);
     auto [iters, converged] = aberth(coeffs, zs);
-    
+
     RC_ASSERT(converged);
     for (const auto& z : zs) {
         auto val = horner_eval_c(coeffs, z);
@@ -983,7 +983,7 @@ CPMAddPackage("gh:mrussotti/rapidcheck@main")
 
 # Library target
 add_library(ginger INTERFACE)
-target_include_directories(ginger INTERFACE 
+target_include_directories(ginger INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
@@ -1015,41 +1015,41 @@ target_include_directories(ginger INTERFACE
   <!-- Axes -->
   <line x1="60" y1="250" x2="480" y2="250" stroke="gray" stroke-width="2"/>
   <line x1="60" y1="250" x2="60" y2="30" stroke="gray" stroke-width="2"/>
-  
+
   <!-- Y-axis labels -->
   <text x="50" y="250" font-size="12" text-anchor="end">0</text>
   <text x="50" y="195" font-size="12" text-anchor="end">2</text>
   <text x="50" y="140" font-size="12" text-anchor="end">4</text>
   <text x="50" y="85" font-size="12" text-anchor="end">6</text>
   <text x="50" y="30" font-size="12" text-anchor="end">8</text>
-  
+
   <!-- X-axis labels -->
   <text x="60" y="270" font-size="12" text-anchor="middle">1</text>
   <text x="165" y="270" font-size="12" text-anchor="middle">2</text>
   <text x="270" y="270" font-size="12" text-anchor="middle">4</text>
   <text x="375" y="270" font-size="12" text-anchor="middle">8</text>
   <text x="480" y="270" font-size="12" text-anchor="middle">16</text>
-  
+
   <!-- Ideal line -->
   <line x1="60" y1="250" x2="480" y2="30" stroke="gray" stroke-width="1" stroke-dasharray="5,5"/>
   <text x="490" y="35" font-size="10" fill="gray">Ideal</text>
-  
+
   <!-- Degree 20 -->
   <polyline points="60,245 165,205 270,150 375,105 480,75" fill="none" stroke="#339af0" stroke-width="2"/>
-  
+
   <!-- Degree 50 -->
   <polyline points="60,245 165,195 270,120 375,65 480,45" fill="none" stroke="#51cf66" stroke-width="2"/>
-  
+
   <!-- Degree 100 -->
   <polyline points="60,245 165,185 270,100 375,45 480,25" fill="none" stroke="#e64980" stroke-width="2"/>
-  
+
   <!-- Legend -->
   <line x1="100" y1="285" x2="130" y2="285" stroke="#339af0" stroke-width="2"/>
   <text x="135" y="289" font-size="10">n=20</text>
-  
+
   <line x1="190" y1="285" x2="220" y2="285" stroke="#51cf66" stroke-width="2"/>
   <text x="225" y="289" font-size="10">n=50</text>
-  
+
   <line x1="280" y1="285" x2="310" y2="285" stroke="#e64980" stroke-width="2"/>
   <text x="315" y="289" font-size="10">n=100</text>
 </svg>
@@ -1074,10 +1074,10 @@ graph TD
     A[Higher Degree] --> B[More Work Per Root]
     B --> C[Better Computation/Overhead Ratio]
     C --> D[Higher Speedup]
-    
+
     E[Thread Count] --> F[Context Switches]
     F --> G[Overhead Increases]
-    
+
     D -.-> H[Optimal Point]
     G -.-> H
 ```
@@ -1145,7 +1145,7 @@ flowchart LR
     A --> C[🎯 Adaptive Methods]
     A --> D[🔢 Multiple Precision]
     A --> E[📦 Package Managers]
-    
+
     B --> B1[CUDA/OpenCL]
     C --> C1[Auto method selection]
     D --> D1[GMP/MPFR]
@@ -1214,10 +1214,10 @@ namespace ginger {
       public:
         T1 _x;
         T2 _y;
-        
+
         constexpr auto x() const -> const T1& { return _x; }
         constexpr auto y() const -> const T2& { return _y; }
-        
+
         // Operators: +, -, *, /, +=, -=, *=, /=
         // Dot product, cross product
     };
@@ -1233,7 +1233,7 @@ namespace ginger {
       private:
         T1 _x;  // First column
         T2 _y;  // Second column
-        
+
       public:
         constexpr auto mdot(const Vector2<U1, U2>& v) const -> T1;
         constexpr auto det() const -> double;

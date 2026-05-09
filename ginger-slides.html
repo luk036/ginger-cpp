@@ -325,16 +325,16 @@ Finding?</h2>
     A --&gt; C[🧪 Testing]
     A --&gt; D[⚡ Parallel]
     A --&gt; E[🎯 Multiple Methods]
-    
+
     B --&gt; B1[Header-only ready]
     B --&gt; B2[CPM.cmake]
-    
+
     C --&gt; C1[doctest]
     C --&gt; C2[RapidCheck]
-    
+
     D --&gt; D1[ThreadPool]
     D --&gt; D2[Async/Await]
-    
+
     E --&gt; E1[Aberth-Ehrlich]
     E --&gt; E2[Bairstow]</code></pre>
 <h3 id="supported-algorithms">Supported Algorithms</h3>
@@ -435,7 +435,7 @@ class="math display"><em>P</em>(<em>r</em><sub><em>i</em></sub>) = 0  fo
     D --&gt;|Yes| E[✅ Root Found]
     D --&gt;|No| F[Update Guess]
     F --&gt; B
-    
+
     G[Iteration Limit] --&gt; E</code></pre>
 <h3 id="convergence-criteria">Convergence Criteria</h3>
 <p><span
@@ -515,7 +515,7 @@ of a polynomial at once!</p>
     A --&gt; C[🔄 Iterative]
     A --&gt; D[💾 Complex Memory]
     A --&gt; E[⚡ Parallelizable]
-    
+
     B --&gt; B1[All roots updated together]
     C --&gt; C1[Newton-like corrections]
     D --&gt; D1[Uses complex arithmetic]
@@ -571,7 +571,7 @@ Circle Method</h2>
     A[Compute Polynomial Center] --&gt; B[Calculate Radius]
     B --&gt; C[Distribute Points on Circle]
     C --&gt; D[Complex Initial Values]
-    
+
     A --&gt; A1[center = -coeffs[1] / n·coeffs[0]]
     B --&gt; B1[radius = |P(center)|^(1/n)]</code></pre>
 <h3 id="formula">Formula</h3>
@@ -633,7 +633,7 @@ Convergence Properties</h2>
 <pre class="mermaid"><code>graph LR
     A[Convergence] --&gt; B[Quadratic]
     B --&gt; C[Similar to Newton]
-    
+
     D[Advantages] --&gt; E[Global]
     D --&gt; F[All roots simultaneously]
     D --&gt; G[Parallelizable]</code></pre>
@@ -689,7 +689,7 @@ class="math display"><em>x</em><sup>2</sup> − <em>r</em><em>x</em> −�
     A --&gt; C[📦 Even Degree]
     A --&gt; D[👥 Quadratic Factors]
     A --&gt; E[⚡ Parallelizable]
-    
+
     B --&gt; B1[Only real coefficients]
     C --&gt; C1[Degree must be 2k]
     D --&gt; D1[Extracts root pairs]
@@ -788,7 +788,7 @@ class="math inline"><em>r</em>, <em>s</em></span>.</p>
     A[Root rⱼ found] --&gt; B[Update remaining roots]
     B --&gt; C[Remove rⱼ&#39;s contribution]
     C --&gt; D[Isolate rᵢ individually]
-    
+
     E[Without Suppression] --&gt; F[❌ Interference]
     G[With Suppression] --&gt; H[✅ Isolated update]</code></pre>
 <h3 id="suppression-formula">Suppression Formula</h3>
@@ -834,7 +834,7 @@ Core Algorithm</h2>
         T3[Thread 3] --&gt; R3[Root r₃]
         T4[Thread 4] --&gt; R4[Root r₄]
     end
-    
+
     R1 --&gt; Sync[Synchronize]
     R2 --&gt; Sync
     R3 --&gt; Sync
@@ -903,14 +903,14 @@ Strategies</h1>
         T3[Thread 3]
         T4[Thread N]
     end
-    
+
     subgraph TaskQueue
         Q1[Task]
         Q2[Task]
         Q3[Task]
         Q4[Task]
     end
-    
+
     Q1 --&gt;|enqueue| T1
     Q2 --&gt;|enqueue| T2
     Q3 --&gt;|enqueue| T3
@@ -938,12 +938,12 @@ Independent</h3>
         R2[&quot;z₂ ← z₂ - P(z₂)/(P&#39;(z₂) - Σⱼ≠₂)&quot;]
         R3[&quot;z₃ ← z₃ - P(z₃)/(P&#39;(z₃) - Σⱼ≠₃)&quot;]
     end
-    
+
     subgraph &quot;Dependency&quot;
         D1[&quot;z₁ depends on z₂, z₃, ...&quot;]
         D2[&quot;z₂ depends on z₁, z₃, ...&quot;]
     end
-    
+
     R1 -.-&gt; D1
     R2 -.-&gt; D2</code></pre>
 <h3 id="the-solution-gauss-seidel-updates">The Solution: Gauss-Seidel
@@ -1017,7 +1017,7 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a href="#
     A --&gt; C[Synchronization]
     A --&gt; D[Memory Access]
     A --&gt; E[Overhead]
-    
+
     B --&gt; B1[Parallelizable ✅]
     C --&gt; C1[Serial 😓]
     D --&gt; D1[Bandwidth limited 💾]
@@ -1329,10 +1329,10 @@ Degree</h3>
     A[Higher Degree] --&gt; B[More Work Per Root]
     B --&gt; C[Better Computation/Overhead Ratio]
     C --&gt; D[Higher Speedup]
-    
+
     E[Thread Count] --&gt; F[Context Switches]
     F --&gt; G[Overhead Increases]
-    
+
     D -.-&gt; H[Optimal Point]
     G -.-&gt; H</code></pre>
 <h3 id="breaking-down-the-work">Breaking Down the Work</h3>
@@ -1425,7 +1425,7 @@ Degree</h3>
     A --&gt; C[🎯 Adaptive Methods]
     A --&gt; D[🔢 Multiple Precision]
     A --&gt; E[📦 Package Managers]
-    
+
     B --&gt; B1[CUDA/OpenCL]
     C --&gt; C1[Auto method selection]
     D --&gt; D1[GMP/MPFR]
