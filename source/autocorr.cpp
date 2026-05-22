@@ -104,23 +104,32 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
 auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                         const Options& options = Options()) -> std::pair<unsigned int, bool> {
     auto& pool = get_thread_pool();
-    thread_local std::vector<double> thread_coeffs;
+
+#if !defined(_MSC_VER) || !defined(_DEBUG)
+    // MSVC Debug: thread_local at function scope has TLS guard init issues
+    // when accessed from thread pool lambdas. Each task creates a local copy.
+    thread_local std::vector<double> local_coeffs;
+#endif
 
     const auto num_roots = vrs.size();
     const auto rr = fun::Robin<size_t>(num_roots);
-    const auto degree = coeffs.size() - 1;
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         std::vector<std::future<double>> results;
         results.reserve(num_roots);
         for (auto idx = 0U; idx != num_roots; ++idx) {
-            results.emplace_back(pool.enqueue([&, idx, degree]() {
+            results.emplace_back(pool.enqueue([&coeffs, &vrs, &rr, idx]() {
+                const auto degree = coeffs.size() - 1;
                 const auto& vri = vrs[idx];
-                thread_coeffs = coeffs;
-                auto vA = horner(thread_coeffs, degree, vri);
+#if defined(_MSC_VER) && defined(_DEBUG)
+                auto local_coeffs = coeffs;
+#else
+                local_coeffs = coeffs;
+#endif
+                auto vA = horner(local_coeffs, degree, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                auto vA1 = horner(thread_coeffs, degree - 2, vri);
+                auto vA1 = horner(local_coeffs, degree - 2, vri);
                 for (auto jdx : rr.exclude(idx)) {  // exclude idx
                     const auto vrj = vrs[jdx];      // make a copy, don't reference!
                     suppress(vA, vA1, vri, vrj);
