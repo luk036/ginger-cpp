@@ -52,3 +52,16 @@ extern auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Ve
  * which are accessed using the `x()` and `y()` member functions respectively.
  */
 extern void extract_autocorr(Vec2& vr);
+
+/**
+ * @brief Reconstruct a monic polynomial from its autocorrelation quadratic factors
+ *
+ * Auto-correlation (palindromic) polynomials have roots in reciprocal pairs.
+ * Each quadratic factor x^2 - r*x - q found by pbairstow_autocorr carries 2 roots.
+ * This function adds the reciprocal of each root, then reconstructs the full
+ * monic polynomial with Leja ordering for numerical accuracy.
+ *
+ * @param[in] vrs Quadratic factors from pbairstow_autocorr
+ * @return std::vector<double> Monic polynomial coefficients (highest degree first)
+ */
+extern auto poly_from_autocorr_factors(const std::vector<Vec2>& vrs) -> std::vector<double>;

@@ -166,3 +166,16 @@ inline auto horner_eval(std::vector<double> coeffs1, std::size_t degree, const d
     }
     return coeffs1[degree];
 }
+
+/**
+ * @brief Reconstruct a monic polynomial from its quadratic factors
+ *
+ * Given the quadratic factors found by Bairstow's method (each representing
+ * x^2 - r*x - q), multiply them together to recover the monic polynomial
+ * coefficients. To get the original polynomial, multiply the result by the
+ * original leading coefficient.
+ *
+ * @param[in] vrs Vector of quadratic factors, each as a Vec2 with x() = r, y() = q
+ * @return std::vector<double> Monic polynomial coefficients (highest degree first)
+ */
+extern auto poly_from_quadratic_factors(const std::vector<Vec2>& vrs) -> std::vector<double>;

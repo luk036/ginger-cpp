@@ -18,10 +18,20 @@ if is_plat("linux") then
 		add_sysincludedirs(termux_prefix .. "/include/c++/v1", { public = true })
 		add_sysincludedirs(termux_prefix .. "/include", { public = true })
 	end
+	if is_mode("release") then
+		add_cxflags("-march=native", "-ffast-math", { force = true })
+	end
+elseif is_plat("macosx") then
+	if is_mode("release") then
+		add_cxflags("-march=native", "-ffast-math", { force = true })
+	end
 elseif is_plat("windows") then
 	add_cxflags("/EHsc /W4 /WX /wd4459", { force = true })
 	add_ldflags("/FORCE:MULTIPLE", { force = true })
 	add_defines("_SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING")
+	if is_mode("release") then
+		add_cxflags("/arch:AVX2", "/fp:fast", { force = true })
+	end
 end
 
 target("Ginger")

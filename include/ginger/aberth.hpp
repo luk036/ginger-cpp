@@ -145,5 +145,36 @@ extern auto aberth_autocorr(const std::vector<double>& coeffs,
  * method converged to a solution within the specified tolerance.
  */
 extern auto aberth_autocorr_mt(const std::vector<double>& coeffs,
-                               std::vector<std::complex<double>>& zs, const Options& options)
+                                std::vector<std::complex<double>>& zs, const Options& options)
     -> std::pair<unsigned int, bool>;
+
+extern auto poly_from_roots(const std::vector<std::complex<double>>& zs)
+    -> std::vector<double>;
+
+/**
+ * @brief Leja ordering of complex points
+ *
+ * Reorders complex points using the greedy Leja algorithm: starts with the
+ * smallest-magnitude point, then iteratively selects the remaining point that
+ * maximizes the minimum Euclidean distance to all already-selected points.
+ * This ordering reduces numerical error when reconstructing polynomials from roots.
+ *
+ * @param[in] points Input vector of complex numbers
+ * @return std::vector<std::complex<double>> Reordered points in Leja sequence
+ */
+extern auto leja_order(const std::vector<std::complex<double>>& points)
+    -> std::vector<std::complex<double>>;
+
+/**
+ * @brief Reconstruct a monic polynomial from its autocorrelation roots
+ *
+ * Auto-correlation (palindromic) polynomials have roots in reciprocal pairs.
+ * The aberth_autocorr functions find the degree/2 "independent" roots.
+ * This function adds the reciprocal of each root (1/z) to get the full set
+ * of degree roots, then reconstructs with Leja ordering.
+ *
+ * @param[in] zs Roots found by aberth_autocorr or aberth_autocorr_mt
+ * @return std::vector<double> Monic polynomial coefficients (highest degree first)
+ */
+extern auto poly_from_autocorr_roots(const std::vector<std::complex<double>>& zs)
+    -> std::vector<double>;

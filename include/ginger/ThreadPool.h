@@ -136,4 +136,9 @@ inline ThreadPool::~ThreadPool() {
     for (std::thread& worker : workers) worker.join();
 }
 
+inline auto get_thread_pool() -> ThreadPool& {
+    static ThreadPool pool(std::thread::hardware_concurrency());
+    return pool;
+}
+
 #endif

@@ -2,11 +2,14 @@
 
 #include <algorithm>
 #include <cmath>    // for abs, acos, cos, pow
+#include <complex>  // for complex
 #include <cstddef>  // for size_t
+#include <ginger/aberth.hpp>     // for poly_from_roots
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
+#include <lds/lds.hpp>           // for VdCorput
 #include <utility>                 // for pair
 #include <vector>                  // for vector, vector<>::reference, __v...
 
@@ -160,39 +163,6 @@ auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
     vA *= e;
 }
 
-/**
- * @brief Initial guess for the parallel Bairstow method
- *
- * The `initial_guess` function calculates the initial values for the parallel Bairstow method for
- * finding the roots of a real polynomial.
- *
- * @param[in] coeffs coeffs is a vector of doubles that represents the coefficients of a polynomial.
- *
- * @return The function `initial_guess` returns a vector of `Vec2` objects.
- *
- * @verbatim
- * Initial guess calculation for Bairstow's method:
- *
- *                    center
- *                      *
- *                     /|\
- *                    / | \ radius
- *                   /  |  \
- *    (-2*radius,-m) *   |   * (2*radius,-m)
- *                   \  |  /
- *                    \ | /
- *                     \|/
- *                      *
- *                     (0,-m)
- *
- * Where:
- * - center = -coeffs[1] / (degree * coeffs[0])
- * - radius = |P(center)|^(1/degree)
- * - m = center^2 + radius^2
- * - Points placed at (2*(center + radius*cos(θ)), -(m + 2*center*radius*cos(θ)))
- * - θ values: π*i/degree for odd i from 1 to degree-1
- * @endverbatim
- */
 auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
     auto degree = coeffs.size() - 1;
     const auto center = -coeffs[1] / (static_cast<double>(degree) * coeffs[0]);
@@ -200,11 +170,14 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
     const auto radius = std::pow(std::abs(poly_c), 1.0 / static_cast<double>(degree));
     degree /= 2;
     degree *= 2;  // make even
-    const auto k = M_PI / static_cast<double>(degree);
     const auto m = center * center + radius * radius;
+    const auto num_points = degree / 2;
     auto vr0s = std::vector<Vec2>{};
-    for (auto i = 1U; i < degree; i += 2) {
-        const auto temp = radius * std::cos(k * i);
+    vr0s.reserve(num_points);
+    lds::VdCorput<2> vgen{};
+    vgen.reseed(1);
+    for (auto i = 0U; i < num_points; ++i) {
+        const auto temp = radius * std::cos(M_PI * vgen.pop());
         auto r0 = 2 * (center + temp);
         auto t0 = -(m + 2 * center * temp);
         vr0s.emplace_back(r0, t0);
@@ -265,22 +238,24 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  */
 auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                     const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    ThreadPool pool(std::thread::hardware_concurrency());
+    auto& pool = get_thread_pool();
+    thread_local std::vector<double> thread_coeffs;
 
     const auto num_roots = vrs.size();
     const auto rr = fun::Robin<size_t>(num_roots);
+    const auto degree = coeffs.size() - 1;
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         std::vector<std::future<double>> results;
+        results.reserve(num_roots);
 
         for (auto idx = 0U; idx != num_roots; ++idx) {
-            results.emplace_back(pool.enqueue([&coeffs, &vrs, &rr, idx]() {
-                const auto degree = coeffs.size() - 1;  // degree, assume even
+            results.emplace_back(pool.enqueue([&coeffs, &vrs, &rr, idx, degree]() {
                 const auto& vri = vrs[idx];
-                auto coeffs1 = coeffs;
-                auto vA = horner(coeffs1, degree, vri);
-                auto vA1 = horner(coeffs1, degree - 2, vri);
+                thread_coeffs = coeffs;  // copy without reallocation (capacity already sufficient)
+                auto vA = horner(thread_coeffs, degree, vri);
+                auto vA1 = horner(thread_coeffs, degree - 2, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
                 for (auto jdx : rr.exclude(idx)) {
                     const auto vrj = vrs[jdx];  // make a copy, don't reference!
@@ -299,4 +274,33 @@ auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
         }
     }
     return {options.max_iters, false};
+}
+
+static auto roots_from_quadratic(const Vec2& vr)
+    -> std::pair<std::complex<double>, std::complex<double>> {
+    const auto r = vr.x();
+    const auto q = vr.y();
+    const auto disc = r * r + 4.0 * q;
+    if (disc >= 0.0) {
+        const auto sqrt_disc = std::sqrt(disc);
+        return {{(r + sqrt_disc) / 2.0, 0.0}, {(r - sqrt_disc) / 2.0, 0.0}};
+    }
+    const auto sqrt_disc = std::sqrt(-disc);
+    return {{r / 2.0, sqrt_disc / 2.0}, {r / 2.0, -sqrt_disc / 2.0}};
+}
+
+auto poly_from_quadratic_factors(const std::vector<Vec2>& vrs) -> std::vector<double> {
+    if (vrs.empty()) {
+        return {1.0};
+    }
+    // Extract all roots from quadratic factors and reconstruct with Leja ordering
+    // for enhanced numerical accuracy (via poly_from_roots).
+    std::vector<std::complex<double>> all_roots;
+    all_roots.reserve(2 * vrs.size());
+    for (const auto& vr : vrs) {
+        auto [r1, r2] = roots_from_quadratic(vr);
+        all_roots.push_back(r1);
+        all_roots.push_back(r2);
+    }
+    return poly_from_roots(all_roots);
 }

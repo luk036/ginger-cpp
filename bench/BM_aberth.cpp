@@ -45,7 +45,7 @@ auto run_fir_aberth_mt() -> std::pair<unsigned int, bool> {
  * @param[in,out] state
  */
 static void FIR_Aberth(benchmark::State& state) {
-    while (state.KeepRunning()) {
+    for (auto _ : state) {
         auto result = run_fir_aberth();
         benchmark::DoNotOptimize(result);
     }
@@ -60,7 +60,7 @@ BENCHMARK(FIR_Aberth);
  * @param[in,out] state
  */
 static void FIR_Aberth_MT(benchmark::State& state) {
-    while (state.KeepRunning()) {
+    for (auto _ : state) {
         auto result = run_fir_aberth_mt();
         benchmark::DoNotOptimize(result);
     }

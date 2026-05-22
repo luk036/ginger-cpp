@@ -333,6 +333,66 @@ TEST_CASE("Polynomial Root Finding") {
     }
 }
 
+TEST_CASE("test poly_from_quadratic_factors empty") {
+    auto coeffs = poly_from_quadratic_factors({});
+    REQUIRE(coeffs.size() == 1);
+    CHECK_EQ(coeffs[0], doctest::Approx(1.0));
+}
+
+TEST_CASE("test poly_from_quadratic_factors single factor") {
+    // x^2 - 0*x - 1 = (x-1)(x+1)
+    auto vrs = std::vector<Vec2>{{0.0, 1.0}};
+    auto coeffs = poly_from_quadratic_factors(vrs);
+    REQUIRE(coeffs.size() == 3);
+    CHECK_EQ(coeffs[0], doctest::Approx(1.0));
+    CHECK_EQ(coeffs[1], doctest::Approx(0.0));
+    CHECK_EQ(coeffs[2], doctest::Approx(-1.0));
+}
+
+TEST_CASE("test poly_from_quadratic_factors two factors") {
+    // (x^2 - 1)(x^2 - 4) = x^4 - 5x^2 + 4
+    // Factor 1: x^2 - 0*x - 1  =>  {0, 1}
+    // Factor 2: x^2 - 0*x - 4  =>  {0, 4}
+    auto vrs = std::vector<Vec2>{{0.0, 1.0}, {0.0, 4.0}};
+    auto coeffs = poly_from_quadratic_factors(vrs);
+    REQUIRE(coeffs.size() == 5);
+    CHECK_EQ(coeffs[0], doctest::Approx(1.0));
+    CHECK_EQ(coeffs[1], doctest::Approx(0.0));
+    CHECK_EQ(coeffs[2], doctest::Approx(-5.0));
+    CHECK_EQ(coeffs[3], doctest::Approx(0.0));
+    CHECK_EQ(coeffs[4], doctest::Approx(4.0));
+}
+
+TEST_CASE("test poly_from_quadratic_factors general factor") {
+    // (x^2 - 3x - 10)(x^2 + x - 2)
+    // = x^4 - 2x^3 - 15x^2 - 4x + 20
+    // Factor 1: {3, 10}  =>  x^2 - 3x - 10
+    // Factor 2: {-1, 2}  =>  x^2 + x - 2
+    auto vrs = std::vector<Vec2>{{3.0, 10.0}, {-1.0, 2.0}};
+    auto coeffs = poly_from_quadratic_factors(vrs);
+    REQUIRE(coeffs.size() == 5);
+    CHECK_EQ(coeffs[0], doctest::Approx(1.0));
+    CHECK_EQ(coeffs[1], doctest::Approx(-2.0));
+    CHECK_EQ(coeffs[2], doctest::Approx(-15.0));
+    CHECK_EQ(coeffs[3], doctest::Approx(-4.0));
+    CHECK_EQ(coeffs[4], doctest::Approx(20.0));
+}
+
+TEST_CASE("test poly_from_quadratic_factors pbairstow reconstruction") {
+    auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
+    auto vrs = initial_guess(h);
+    auto options = Options();
+    options.tolerance = 1e-12;
+    auto result = pbairstow_even(h, vrs, options);
+    REQUIRE(result.second);
+    auto monic = poly_from_quadratic_factors(vrs);
+    REQUIRE(monic.size() == h.size());
+    auto scale = h[0];
+    for (auto i = 0U; i < h.size(); ++i) {
+        CHECK_EQ(monic[i] * scale, doctest::Approx(h[i]).epsilon(1e-8));
+    }
+}
+
 // TEST_CASE("Edge Cases") {
 //     SUBCASE("Zero Polynomial") {
 //         std::vector<double> coeffs = {0.0, 0.0, 0.0};

@@ -2,10 +2,13 @@
 
 #include <algorithm>
 #include <cmath>    // for abs, acos, cos, pow
+#include <complex>  // for complex
 #include <cstddef>  // for size_t
 #include <future>   // for future
+#include <ginger/aberth.hpp>     // for poly_from_roots
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>        // for Robin
+#include <lds/lds.hpp>           // for VdCorput
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
 #include <thread>                  // for thread
@@ -50,11 +53,14 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
     const auto radius = std::pow(std::abs(coeffs[degree]), 1.0 / static_cast<double>(degree));
 
     degree /= 2;
-    const auto k = M_PI / static_cast<double>(degree);
     const auto m = radius * radius;
+    const auto num_points = degree / 2;
     auto vr0s = std::vector<Vec2>{};
-    for (auto i = 1U; i < degree; i += 2) {
-        vr0s.emplace_back(2 * radius * std::cos(k * static_cast<double>(i)), -m);
+    vr0s.reserve(num_points);
+    lds::VdCorput<2> vgen{};
+    vgen.reseed(1);
+    for (auto i = 0U; i < num_points; ++i) {
+        vr0s.emplace_back(2 * radius * std::cos(M_PI * vgen.pop()), -m);
     }
     return vr0s;
 }
@@ -97,22 +103,24 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
  */
 auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                         const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    ThreadPool pool(std::thread::hardware_concurrency());
+    auto& pool = get_thread_pool();
+    thread_local std::vector<double> thread_coeffs;
 
     const auto num_roots = vrs.size();
     const auto rr = fun::Robin<size_t>(num_roots);
+    const auto degree = coeffs.size() - 1;
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
         std::vector<std::future<double>> results;
+        results.reserve(num_roots);
         for (auto idx = 0U; idx != num_roots; ++idx) {
-            results.emplace_back(pool.enqueue([&, idx]() {
-                auto coeffs1 = coeffs;
-                const auto degree = coeffs.size() - 1;  // degree, assume even
+            results.emplace_back(pool.enqueue([&, idx, degree]() {
                 const auto& vri = vrs[idx];
-                auto vA = horner(coeffs1, degree, vri);
+                thread_coeffs = coeffs;
+                auto vA = horner(thread_coeffs, degree, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                auto vA1 = horner(coeffs1, degree - 2, vri);
+                auto vA1 = horner(thread_coeffs, degree - 2, vri);
                 for (auto jdx : rr.exclude(idx)) {  // exclude idx
                     const auto vrj = vrs[jdx];      // make a copy, don't reference!
                     suppress(vA, vA1, vri, vrj);
@@ -172,6 +180,38 @@ auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vr
  * Output: updated vr
  * @endverbatim
  */
+static auto roots_from_quadratic(const Vec2& vr)
+    -> std::pair<std::complex<double>, std::complex<double>> {
+    const auto r = vr.x();
+    const auto q = vr.y();
+    const auto disc = r * r + 4.0 * q;
+    if (disc >= 0.0) {
+        const auto sqrt_disc = std::sqrt(disc);
+        return {{(r + sqrt_disc) / 2.0, 0.0}, {(r - sqrt_disc) / 2.0, 0.0}};
+    }
+    const auto sqrt_disc = std::sqrt(-disc);
+    return {{r / 2.0, sqrt_disc / 2.0}, {r / 2.0, -sqrt_disc / 2.0}};
+}
+
+auto poly_from_autocorr_factors(const std::vector<Vec2>& vrs) -> std::vector<double> {
+    if (vrs.empty()) {
+        return {1.0};
+    }
+    // Each factor x^2 - r*x - q contributes 2 roots. For palindromic/autocorrelation
+    // polynomials, the reciprocal of each root is also a root. Collect all roots
+    // and their reciprocals, then reconstruct with Leja ordering.
+    std::vector<std::complex<double>> all_roots;
+    all_roots.reserve(4 * vrs.size());
+    for (const auto& vr : vrs) {
+        auto [r1, r2] = roots_from_quadratic(vr);
+        all_roots.push_back(r1);
+        all_roots.push_back(r2);
+        all_roots.push_back(1.0 / r1);
+        all_roots.push_back(1.0 / r2);
+    }
+    return poly_from_roots(all_roots);
+}
+
 void extract_autocorr(Vec2& vr) {
     const auto& r = vr.x();
     const auto& q = vr.y();
