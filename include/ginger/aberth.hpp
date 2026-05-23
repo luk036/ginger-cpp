@@ -7,6 +7,11 @@
 
 class Options;
 
+extern double vdc2_table(unsigned long index);
+extern double cos_pi_vdc2(unsigned long index);
+extern double circle2_table_x(unsigned long index);
+extern double circle2_table_y(unsigned long index);
+
 /**
  * @brief Initial guess for the Aberth-Ehrlich method
  *

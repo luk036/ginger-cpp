@@ -8,7 +8,7 @@
 #include <ginger/aberth.hpp>     // for poly_from_roots
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>        // for Robin
-#include <lds/lds.hpp>           // for VdCorput
+
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
 #include <thread>                  // for thread
@@ -57,10 +57,8 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
     const auto num_points = degree / 2;
     auto vr0s = std::vector<Vec2>{};
     vr0s.reserve(num_points);
-    lds::VdCorput<2> vgen{};
-    vgen.reseed(1);
     for (auto i = 0U; i < num_points; ++i) {
-        vr0s.emplace_back(2 * radius * std::cos(M_PI * vgen.pop()), -m);
+        vr0s.emplace_back(2 * radius * cos_pi_vdc2(i), -m);
     }
     return vr0s;
 }

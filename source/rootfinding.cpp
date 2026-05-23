@@ -9,7 +9,7 @@
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
 #include <ginger/vector2.hpp>      // for operator-, Vector2
-#include <lds/lds.hpp>           // for VdCorput
+
 #include <utility>                 // for pair
 #include <vector>                  // for vector, vector<>::reference, __v...
 
@@ -174,10 +174,8 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
     const auto num_points = degree / 2;
     auto vr0s = std::vector<Vec2>{};
     vr0s.reserve(num_points);
-    lds::VdCorput<2> vgen{};
-    vgen.reseed(1);
     for (auto i = 0U; i < num_points; ++i) {
-        const auto temp = radius * std::cos(M_PI * vgen.pop());
+        const auto temp = radius * cos_pi_vdc2(i);
         auto r0 = 2 * (center + temp);
         auto t0 = -(m + 2 * center * temp);
         vr0s.emplace_back(r0, t0);
