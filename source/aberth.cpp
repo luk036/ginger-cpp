@@ -4,10 +4,10 @@
 #include <cmath>    // for acos, cos, sin
 #include <complex>  // for complex, operator*, operator+
 #include <future>   // for future
-#include <limits>   // for numeric_limits
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>  // for Robin
 #include <lds/lds.hpp>
+#include <limits>   // for numeric_limits
 #include <utility>  // for pair
 #include <vector>   // for vector, vector<>::reference, __v...
 
@@ -20,8 +20,8 @@ using Complex = std::complex<double>;
 /// @tparam N Number of values to generate
 /// @tparam Base Base of the van der Corput sequence
 /// @return std::array<double, N> with precomputed sequence values
-template <unsigned long N, unsigned long Base = 2>
-constexpr auto make_vdc_table() -> std::array<double, N> {
+template <unsigned long N, unsigned long Base = 2> constexpr auto make_vdc_table()
+    -> std::array<double, N> {
     std::array<double, N> table{};
     lds::VdCorput<Base> gen;
     for (unsigned long i = 0; i < N; ++i) {
@@ -41,7 +41,6 @@ constexpr std::array<double, VDC_TABLE_SIZE> VDC_TABLE_2 = make_vdc_table<VDC_TA
 /// @param index Index into the table
 /// @return The VDC value at the given index
 double vdc2_table(unsigned long index) { return VDC_TABLE_2[index]; }
-
 
 /// @brief Precomputed table of 1000 Circle<2> points
 /// @details Generated using precomputed VDC_TABLE_2 mapped to unit circle.
@@ -65,7 +64,6 @@ constexpr double circle2_table_x(unsigned long index) { return CIRCLE_TABLE_2[in
 /// @return The circle point y-coordinate at the given index
 constexpr double circle2_table_y(unsigned long index) { return CIRCLE_TABLE_2[index][1]; }
 
-
 /// @brief Precomputed table of cos(pi * vdc2_table[i]) values
 /// @details Used by initial_guess and initial_autocorr to avoid computing cos on the fly.
 static const auto COS_PI_VDC2_TABLE = []() {
@@ -80,7 +78,6 @@ static const auto COS_PI_VDC2_TABLE = []() {
 /// @param index Index into the table
 /// @return The cos(pi * vdc_value) at the given index
 double cos_pi_vdc2(unsigned long index) { return COS_PI_VDC2_TABLE[index]; }
-
 
 /**
  * The function `horner_eval_c` is implementing the Horner's method for
@@ -176,19 +173,20 @@ auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     // lds::Circle<2> c_gen{};
     for (auto i = 0U; i != degree; ++i) {
         // auto res = c_gen.pop();
-        auto z0
-            = center
-              + radius
-                    * Complex{circle2_table_y(i), circle2_table_x(i)};  // note! swap x and y to get correct distribution for autocorr
+        auto z0 = center
+                  + radius
+                        * Complex{
+                            circle2_table_y(i),
+                            circle2_table_x(
+                                i)};  // note! swap x and y to get correct distribution for autocorr
         z0s.emplace_back(z0);
     }
     return z0s;
 }
 
 // ST core — no std::future overhead, returns tolerance directly
-template <typename F>
-static auto aberth_st_core(const vector<double>& coeffs, vector<Complex>& zs,
-                           const Options& options, F& aberth_job_generator)
+template <typename F> static auto aberth_st_core(const vector<double>& coeffs, vector<Complex>& zs,
+                                                 const Options& options, F& aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -329,9 +327,10 @@ auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
     z0s.reserve(degree / 2);
     for (auto i = 0U; i != degree / 2; ++i) {
         auto z0 = center
-                  + radius * Complex{circle2_table_y(i),
-                                     circle2_table_x(i)};  // note! swap x and y to get correct
-                                                           // distribution for autocorr
+                  + radius
+                        * Complex{circle2_table_y(i),
+                                  circle2_table_x(i)};  // note! swap x and y to get correct
+                                                        // distribution for autocorr
         z0s.emplace_back(z0);
     }
     return z0s;

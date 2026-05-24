@@ -150,11 +150,10 @@ extern auto aberth_autocorr(const std::vector<double>& coeffs,
  * method converged to a solution within the specified tolerance.
  */
 extern auto aberth_autocorr_mt(const std::vector<double>& coeffs,
-                                std::vector<std::complex<double>>& zs, const Options& options)
+                               std::vector<std::complex<double>>& zs, const Options& options)
     -> std::pair<unsigned int, bool>;
 
-extern auto poly_from_roots(const std::vector<std::complex<double>>& zs)
-    -> std::vector<double>;
+extern auto poly_from_roots(const std::vector<std::complex<double>>& zs) -> std::vector<double>;
 
 /**
  * @brief Leja ordering of complex points
