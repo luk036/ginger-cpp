@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ginger/ThreadPool.h file | Ginger</title>
+  <title>lds/lds.hpp file | Ginger</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,7 +49,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="dir_33b11cd8a9ca736fc4e15b7819865541.html">ginger</a>/</span>ThreadPool.h <span class="m-thin">file</span>
+          <span class="m-breadcrumb"><a href="dir_20e875b46f774aaa37c5fd6616e1d097.html">lds</a>/</span>lds.hpp <span class="m-thin">file</span>
         </h1>
         <p><span></span></p>
         <nav class="m-block m-default">
@@ -58,26 +58,65 @@
             <li>
               Reference
               <ul>
+                <li><a href="#namespaces">Namespaces</a></li>
                 <li><a href="#nested-classes">Classes</a></li>
-                <li><a href="#func-members">Functions</a></li>
+                <li><a href="#define-members">Defines</a></li>
               </ul>
             </li>
           </ul>
         </nav>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
+          <dl class="m-doc">
+            <dt>namespace <a href="namespacelds.html" class="m-doc">lds</a></dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section id="nested-classes">
           <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
             <dt>
-              class <a href="classThreadPool.html" class="m-doc">ThreadPool</a>
+              <div class="m-doc-template">template&lt;<a href="classlds_1_1GeneratorIterator.html" class="m-doc">typename</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">Generator</a>, <a href="classlds_1_1GeneratorIterator.html" class="m-doc">typename</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">Value</a>&gt;</div>
+              class <a href="classlds_1_1GeneratorIterator.html" class="m-doc">lds::GeneratorIterator</a>
             </dt>
-            <dd><a href="classThreadPool.html" class="m-doc">ThreadPool</a>.</dd>
+            <dd>Forward iterator for sequence generators.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;<a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base = 2&gt;</div>
+              class <a href="classlds_1_1VdCorput.html" class="m-doc">lds::VdCorput</a>
+            </dt>
+            <dd>van der Corput sequence generator</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;<a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base = 2&gt;</div>
+              class <a href="classlds_1_1Circle.html" class="m-doc">lds::Circle</a>
+            </dt>
+            <dd><a href="classlds_1_1Circle.html" class="m-doc">Circle</a> sequence generator.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;<a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base0 = 2, <a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base1 = 3&gt;</div>
+              class <a href="classlds_1_1Halton.html" class="m-doc">lds::Halton</a>
+            </dt>
+            <dd><a href="classlds_1_1Halton.html" class="m-doc">Halton</a> sequence generator.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;<a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base0 = 2, <a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base1 = 3&gt;</div>
+              class <a href="classlds_1_1Disk.html" class="m-doc">lds::Disk</a>
+            </dt>
+            <dd><a href="classlds_1_1Disk.html" class="m-doc">Disk</a> sequence generator.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;<a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base0 = 2, <a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base1 = 3&gt;</div>
+              class <a href="classlds_1_1Sphere.html" class="m-doc">lds::Sphere</a>
+            </dt>
+            <dd><a href="classlds_1_1Sphere.html" class="m-doc">Sphere</a> sequence generator.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;<a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base0 = 2, <a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base1 = 3, <a href="classlds_1_1GeneratorIterator.html" class="m-doc">unsigned</a> <a href="classlds_1_1GeneratorIterator.html" class="m-doc">long</a> Base2 = 5&gt;</div>
+              class <a href="classlds_1_1Sphere3Hopf.html" class="m-doc">lds::Sphere3Hopf</a>
+            </dt>
+            <dd>S(3) sequence generator by Hopf fibration.</dd>
           </dl>
         </section>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
+        <section id="define-members">
+          <h2><a href="#define-members">Defines</a></h2>
           <dl class="m-doc">
-            <dt id="a19edb5d31e2915184e011fd4cb15949c">
-              <span class="m-doc-wrap-bumper">auto <a href="#a19edb5d31e2915184e011fd4cb15949c" class="m-doc-self">get_thread_pool</a>(</span><span class="m-doc-wrap">) -&gt; ThreadPool &amp; -&gt; auto</span>
+            <dt id="ae71449b1cc6e6250b91f539153a7a0d3">
+              <span class="m-doc-wrap-bumper">#define <a href="#ae71449b1cc6e6250b91f539153a7a0d3" class="m-doc-self">M_PI</a></span>
             </dt>
             <dd><span></span></dd>
           </dl>

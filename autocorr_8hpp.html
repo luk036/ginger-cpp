@@ -94,6 +94,10 @@
               <span class="m-doc-wrap-bumper">void <a href="#a270fcfedf802909b6740868b334c5497" class="m-doc">extract_autocorr</a>(</span><span class="m-doc-wrap"><a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&amp; vr)</span>
             </dt>
             <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a58a9d346ef8cc69df5513475e303d783" class="m-doc">poly_from_autocorr_factors</a>(</span><span class="m-doc-wrap">const std::vector&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;&amp; vrs) -&gt; std::vector&lt; double &gt; -&gt; auto</span>
+            </dt>
+            <dd>Reconstruct a monic polynomial from its autocorrelation quadratic factors.</dd>
           </dl>
         </section>
         <section>
@@ -171,6 +175,30 @@
               </tbody>
             </table>
 <p>The function extracts the autocorrelation values from a given vector.</p><p>x^2 - r*x - q or (-1/q) + (r/q) * x + x^2 (x - a1)(x - a2) = x^2 - (a1 + a2) x + a1 * a2</p><p>x^2 + r*x + t or x^2 + (r/t) * x + (1/t) (x + a1)(x + a2) = x^2 + (a1 + a2) x + a1 * a2</p>
+          </div></section>
+          <section class="m-doc-details" id="a58a9d346ef8cc69df5513475e303d783"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a58a9d346ef8cc69df5513475e303d783" class="m-doc-self">poly_from_autocorr_factors</a>(</span><span class="m-doc-wrap">const std::vector&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;&amp; vrs) -&gt; std::vector&lt; double &gt;</span></span>
+            </h3>
+            <p>Reconstruct a monic polynomial from its autocorrelation quadratic factors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vrs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>Quadratic factors from pbairstow_autocorr</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>std::vector&lt;double&gt; Monic polynomial coefficients (highest degree first)</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Auto-correlation (palindromic) polynomials have roots in reciprocal pairs. Each quadratic factor x^2 - r*x - q found by pbairstow_autocorr carries 2 roots. This function adds the reciprocal of each root, then reconstructs the full monic polynomial with Leja ordering for numerical accuracy.</p>
           </div></section>
         </section>
       </div>

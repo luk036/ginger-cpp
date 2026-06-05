@@ -127,6 +127,10 @@
               const double&amp; z) -&gt; double -&gt; auto</span>
             </dt>
             <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7efd5a3dfa4f1171f9e477ab20502952" class="m-doc">poly_from_quadratic_factors</a>(</span><span class="m-doc-wrap">const std::vector&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;&amp; vrs) -&gt; std::vector&lt; double &gt; -&gt; auto</span>
+            </dt>
+            <dd>Reconstruct a monic polynomial from its quadratic factors.</dd>
           </dl>
         </section>
         <section>
@@ -382,6 +386,30 @@
               </tfoot>
             </table>
 <p>The function <code>horner_eval</code> evaluates a polynomial using Horner&#x27;s method.</p>
+          </div></section>
+          <section class="m-doc-details" id="a7efd5a3dfa4f1171f9e477ab20502952"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7efd5a3dfa4f1171f9e477ab20502952" class="m-doc-self">poly_from_quadratic_factors</a>(</span><span class="m-doc-wrap">const std::vector&lt;<a href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8" class="m-doc">Vec2</a>&gt;&amp; vrs) -&gt; std::vector&lt; double &gt;</span></span>
+            </h3>
+            <p>Reconstruct a monic polynomial from its quadratic factors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vrs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>Vector of quadratic factors, each as a Vec2 with x() = r, y() = q</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>std::vector&lt;double&gt; Monic polynomial coefficients (highest degree first)</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Given the quadratic factors found by Bairstow&#x27;s method (each representing x^2 - r*x - q), multiply them together to recover the monic polynomial coefficients. To get the original polynomial, multiply the result by the original leading coefficient.</p>
           </div></section>
         </section>
       </div>

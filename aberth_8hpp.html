@@ -66,6 +66,22 @@
         <section id="func-members">
           <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
+            <dt id="a6806060b9cbd3919f27fdc3cf4530048">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6806060b9cbd3919f27fdc3cf4530048" class="m-doc-self">vdc2_table</a>(</span><span class="m-doc-wrap">unsigned long index) -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a69f4b1d63f9b91f1c24c897df5fe6230">
+              <span class="m-doc-wrap-bumper">auto <a href="#a69f4b1d63f9b91f1c24c897df5fe6230" class="m-doc-self">cos_pi_vdc2</a>(</span><span class="m-doc-wrap">unsigned long index) -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a83168b1da6160d706975300970bebde0">
+              <span class="m-doc-wrap-bumper">auto <a href="#a83168b1da6160d706975300970bebde0" class="m-doc-self">circle2_table_x</a>(</span><span class="m-doc-wrap">unsigned long index) -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="adab4a6887ff9da428e2b5f60c9fddb7a">
+              <span class="m-doc-wrap-bumper">auto <a href="#adab4a6887ff9da428e2b5f60c9fddb7a" class="m-doc-self">circle2_table_y</a>(</span><span class="m-doc-wrap">unsigned long index) -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a5c5c50733648df730b08a40ff722ef44" class="m-doc">initial_aberth</a>(</span><span class="m-doc-wrap">const std::vector&lt;double&gt;&amp; coeffs) -&gt; std::vector&lt; std::complex&lt; double &gt; &gt; -&gt; auto</span>
             </dt>
@@ -98,6 +114,18 @@
               const <a href="classOptions.html" class="m-doc">Options</a>&amp; options) -&gt; std::pair&lt; unsigned int, bool &gt; -&gt; auto</span>
             </dt>
             <dd>Multi-threading Aberth-Ehrlich method (specifically for auto-correlation functions)</dd>
+            <dt id="a0a1587fcfbf87cc2eacf7a7a5d2399d0">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0a1587fcfbf87cc2eacf7a7a5d2399d0" class="m-doc-self">poly_from_roots</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs) -&gt; std::vector&lt; double &gt; -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae16409c46c9332f76d5c4c82fbc1f0e9" class="m-doc">leja_order</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::complex&lt;double&gt;&gt;&amp; points) -&gt; std::vector&lt; std::complex&lt; double &gt; &gt; -&gt; auto</span>
+            </dt>
+            <dd>Leja ordering of complex points.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3f3443042511dcc7dfb615f8777e16c5" class="m-doc">poly_from_autocorr_roots</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs) -&gt; std::vector&lt; double &gt; -&gt; auto</span>
+            </dt>
+            <dd>Reconstruct a monic polynomial from its autocorrelation roots.</dd>
           </dl>
         </section>
         <section>
@@ -285,6 +313,54 @@
               </tfoot>
             </table>
 <p>The <code>aberth</code> function is a multi-threaded implementation of the Aberth-Ehrlich method for finding the roots of a polynomial.</p><p>Aberth&#x27;s method is a method for finding the roots of a polynomial that is robust but requires complex arithmetic even if the polynomial is real. This is because it starts with complex initial approximations.</p>
+          </div></section>
+          <section class="m-doc-details" id="ae16409c46c9332f76d5c4c82fbc1f0e9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae16409c46c9332f76d5c4c82fbc1f0e9" class="m-doc-self">leja_order</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::complex&lt;double&gt;&gt;&amp; points) -&gt; std::vector&lt; std::complex&lt; double &gt; &gt;</span></span>
+            </h3>
+            <p>Leja ordering of complex points.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">points&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>Input vector of complex numbers</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>std::vector&lt;std::complex&lt;double&gt;&gt; Reordered points in Leja sequence</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Reorders complex points using the greedy Leja algorithm: starts with the smallest-magnitude point, then iteratively selects the remaining point that maximizes the minimum Euclidean distance to all already-selected points. This ordering reduces numerical error when reconstructing polynomials from roots.</p>
+          </div></section>
+          <section class="m-doc-details" id="a3f3443042511dcc7dfb615f8777e16c5"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3f3443042511dcc7dfb615f8777e16c5" class="m-doc-self">poly_from_autocorr_roots</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::complex&lt;double&gt;&gt;&amp; zs) -&gt; std::vector&lt; double &gt;</span></span>
+            </h3>
+            <p>Reconstruct a monic polynomial from its autocorrelation roots.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">zs&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>Roots found by aberth_autocorr or aberth_autocorr_mt</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>std::vector&lt;double&gt; Monic polynomial coefficients (highest degree first)</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Auto-correlation (palindromic) polynomials have roots in reciprocal pairs. The aberth_autocorr functions find the degree/2 &quot;independent&quot; roots. This function adds the reciprocal of each root (1/z) to get the full set of degree roots, then reconstructs with Leja ordering.</p>
           </div></section>
         </section>
       </div>
