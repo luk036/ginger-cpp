@@ -26,7 +26,7 @@ elseif is_plat("macosx") then
 		add_cxflags("-march=native", "-ffast-math", { force = true })
 	end
 elseif is_plat("windows") then
-	add_cxflags("/EHsc /W4 /WX /wd4459", { force = true })
+	add_cxflags("/EHsc /W4 /WX /wd5285 /wd4459", { force = true })
 	add_ldflags("/FORCE:MULTIPLE", { force = true })
 	add_defines("_SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING")
 	if is_mode("release") then
