@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ThreadPool class | Ginger</title>
+  <title>ginger::thread_pool class | Ginger</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,10 +49,10 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          ThreadPool <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="ThreadPool_8h.html">&lt;ginger/ThreadPool.h&gt;</a></div>
+          <span class="m-breadcrumb"><a href="namespaceginger.html">ginger</a>::<wbr/></span>thread_pool <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="thread__pool_8hpp.html">&lt;ginger/thread_pool.hpp&gt;</a></div>
         </h1>
-        <p><a href="classThreadPool.html" class="m-doc">ThreadPool</a>.</p>
+        <p><span></span></p>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -65,56 +65,62 @@
             </li>
           </ul>
         </nav>
-<p>A simple thread pool implementation that allows tasks to be enqueued and executed asynchronously by a fixed number of worker threads.</p><p>The pool creates a specified number of worker threads at construction. Tasks can be enqueued using the <a href="classThreadPool.html#a8f628893c030552d9714c25f68656adc" class="m-doc">enqueue()</a> method, which returns a std::future that can be used to retrieve the result or wait for completion.</p><aside class="m-note m-info"><h4>Note</h4><p>The pool will automatically shut down when destroyed, waiting for all pending tasks to complete.</p></aside>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#ac291710e33dbbed96ee20711080d506d" class="m-doc">ThreadPool</a>(</span><span class="m-doc-wrap">size_t)</span>
+              <span class="m-doc-wrap-bumper"><a href="#a1f7c572c7a7475eefbab8dbb1d11a5f0" class="m-doc">thread_pool</a>(</span><span class="m-doc-wrap">size_t num_threads = std::thread::hardware_concurrency()) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd>Construct a new <a href="classThreadPool.html" class="m-doc">ThreadPool</a>.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a44d3d2ab618970605e684efc216655eb" class="m-doc">~ThreadPool</a>(</span><span class="m-doc-wrap">)</span>
+            <dd></dd>
+            <dt id="a08ee9250ce93ac4a16304037b8a25289">
+              <span class="m-doc-wrap-bumper"><a href="#a08ee9250ce93ac4a16304037b8a25289" class="m-doc-self">~thread_pool</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
-            <dd>Destroy the <a href="classThreadPool.html" class="m-doc">ThreadPool</a>.</dd>
+            <dd><span></span></dd>
+            <dt id="aaa14dfb4297a8e9a878fe7bfd7beaec2">
+              <span class="m-doc-wrap-bumper"><a href="#aaa14dfb4297a8e9a878fe7bfd7beaec2" class="m-doc-self">thread_pool</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1thread__pool.html" class="m-doc">thread_<wbr />pool</a>&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              <div class="m-doc-template">template&lt;class F, class... Args&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a8f628893c030552d9714c25f68656adc" class="m-doc">enqueue</a>(</span><span class="m-doc-wrap">F&amp;&amp; f,
-              Args &amp;&amp; ... args) &gt;::type &gt; -&gt; auto</span>
+            <dt id="a4ef492b1b630dc0e5adfd54ab69f2ecc">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4ef492b1b630dc0e5adfd54ab69f2ecc" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classginger_1_1thread__pool.html" class="m-doc">thread_<wbr />pool</a>&amp;) -&gt; <a href="classginger_1_1thread__pool.html" class="m-doc">thread_<wbr />pool</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
-            <dd>Enqueue a new task to the thread pool.</dd>
+            <dd><span></span></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename F&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a810140b0a87681e96ead8d45554fbeb2" class="m-doc">enqueue</a>(</span><span class="m-doc-wrap">F&amp;&amp; task) -&gt; std::future&lt; std::invoke_result_t&lt; std::decay_t&lt; F &gt; &gt; &gt; -&gt; auto</span>
+            </dt>
+            <dd></dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="ac291710e33dbbed96ee20711080d506d"><div>
+          <section class="m-doc-details" id="a1f7c572c7a7475eefbab8dbb1d11a5f0"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"> ThreadPool::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac291710e33dbbed96ee20711080d506d" class="m-doc-self">ThreadPool</a>(</span><span class="m-doc-wrap">size_t)</span></span>
+              <span class="m-doc-wrap-bumper"> ginger::<wbr />thread_pool::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1f7c572c7a7475eefbab8dbb1d11a5f0" class="m-doc-self">thread_pool</a>(</span><span class="m-doc-wrap">size_t num_threads = std::thread::hardware_concurrency()) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
-            <p>Construct a new <a href="classThreadPool.html" class="m-doc">ThreadPool</a>.</p>
-<p>Creates a thread pool with the specified number of worker threads.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">num_threads</td>
+                  <td>Number of worker threads. Defaults to hardware concurrency (min 1).</td>
+                </tr>
+              </tbody>
+            </table>
           </div></section>
-          <section class="m-doc-details" id="a44d3d2ab618970605e684efc216655eb"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"> ThreadPool::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a44d3d2ab618970605e684efc216655eb" class="m-doc-self">~ThreadPool</a>(</span><span class="m-doc-wrap">)</span></span>
-            </h3>
-            <p>Destroy the <a href="classThreadPool.html" class="m-doc">ThreadPool</a>.</p>
-<p>Stops the pool and waits for all worker threads to complete their current tasks. All pending tasks in the queue will be executed before the threads terminate.</p>
-          </div></section>
-          <section class="m-doc-details" id="a8f628893c030552d9714c25f68656adc"><div>
+          <section class="m-doc-details" id="a810140b0a87681e96ead8d45554fbeb2"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;class F, class... Args&gt;
+                template&lt;typename F&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto ThreadPool::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8f628893c030552d9714c25f68656adc" class="m-doc-self">enqueue</a>(</span><span class="m-doc-wrap">F&amp;&amp; f,
-              Args &amp;&amp; ... args) &gt;::type &gt;</span></span>
+              <span class="m-doc-wrap-bumper">auto ginger::<wbr />thread_pool::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a810140b0a87681e96ead8d45554fbeb2" class="m-doc-self">enqueue</a>(</span><span class="m-doc-wrap">F&amp;&amp; task) -&gt; std::future&lt; std::invoke_result_t&lt; std::decay_t&lt; F &gt; &gt; &gt;</span></span>
             </h3>
-            <p>Enqueue a new task to the thread pool.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Template parameters</th></tr>
@@ -122,11 +128,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">F</td>
-                  <td>The callable type of the task</td>
-                </tr>
-                <tr>
-                  <td>Args</td>
-                  <td>The argument types for the task</td>
+                  <td>Callable type (invocable, returns T)</td>
                 </tr>
               </tbody>
               <thead>
@@ -134,31 +136,18 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>f</td>
-                  <td>The callable to execute</td>
-                </tr>
-                <tr>
-                  <td>args</td>
-                  <td>The arguments to pass to the callable</td>
+                  <td>task</td>
+                  <td>Callable to execute</td>
                 </tr>
               </tbody>
-              <thead>
+              <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>A std::future containing the result of the task</td>
+                  <td>std::future&lt;T&gt; holding the result (or exception)</td>
                 </tr>
-              </thead>
-              <thead>
-                <tr><th colspan="2">Exceptions</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>std::runtime_error</td>
-                  <td>if enqueue is called after the pool has been stopped</td>
-                </tr>
-              </tbody>
+              </tfoot>
             </table>
-<p>Adds a new work item to the pool&#x27;s task queue. The task will be executed by one of the worker threads.</p>
+<p>Enqueue a callable for execution on the thread pool.</p>
           </div></section>
         </section>
       </div>

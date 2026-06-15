@@ -73,6 +73,10 @@
             </dt>
             <dd><a href="classginger_1_1Matrix2.html" class="m-doc">Matrix2</a>.</dd>
             <dt>
+              class <a href="classginger_1_1thread__pool.html" class="m-doc">thread_pool</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
               <div class="m-doc-template">template&lt;typename T1, typename T2 = T1&gt;</div>
               class <a href="classginger_1_1Vector2.html" class="m-doc">Vector2</a>
             </dt>
@@ -90,6 +94,10 @@
               <span class="m-doc-wrap-bumper">void <a href="#a69846b64c89fbf72d7761600356d2366" class="m-doc">log_with_spdlog</a>(</span><span class="m-doc-wrap">const std::string&amp; message)</span>
             </dt>
             <dd>Log a message using spdlog.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3b62cd679aed268f3e14dff01093e3b0" class="m-doc">get_thread_pool</a>(</span><span class="m-doc-wrap">) -&gt; thread_pool &amp; -&gt; auto</span>
+            </dt>
+            <dd>Convenience accessor returning a singleton thread pool.</dd>
           </dl>
         </section>
         <section>
@@ -112,6 +120,22 @@
               </tbody>
             </table>
 <p>This function provides a simple wrapper around spdlog for logging messages. It creates a file logger that writes to &quot;ginger.log&quot; and logs at the info level.</p>
+          </div></section>
+          <section class="m-doc-details" id="a3b62cd679aed268f3e14dff01093e3b0"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">auto ginger::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3b62cd679aed268f3e14dff01093e3b0" class="m-doc-self">get_thread_pool</a>(</span><span class="m-doc-wrap">) -&gt; thread_pool &amp;</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="thread__pool_8hpp.html">&lt;ginger/thread_pool.hpp&gt;</a></div>
+            </h3>
+            <p>Convenience accessor returning a singleton thread pool.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Reference to the global <a href="classginger_1_1thread__pool.html" class="m-doc">thread_<wbr />pool</a> instance.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>The pool uses hardware concurrency as the number of worker threads. Use this in call sites that do not need to manage pool lifetime.</p>
           </div></section>
         </section>
       </div>
