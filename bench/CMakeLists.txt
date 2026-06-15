@@ -39,8 +39,6 @@ elseif(MSVC)
     Ginger
     PUBLIC /utf-8 /W4
            /WX
-           /wd4146
-           /wd4127
   )
   # target_compile_definitions(EllAlgoTests PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
 endif()
