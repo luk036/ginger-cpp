@@ -1,5 +1,3 @@
-#include <ginger/thread_pool.hpp>  // for thread_pool
-
 #include <algorithm>
 #include <cmath>              // for abs, acos, cos, pow
 #include <complex>            // for complex
@@ -8,6 +6,7 @@
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
+#include <ginger/thread_pool.hpp>  // for thread_pool
 #include <ginger/vector2.hpp>      // for operator-, Vector2
 #include <utility>                 // for pair
 #include <vector>                  // for vector, vector<>::reference, __v...

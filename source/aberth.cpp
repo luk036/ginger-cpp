@@ -1,11 +1,10 @@
-#include <ginger/thread_pool.hpp>  // for thread_pool
-
 #include <algorithm>
 #include <cmath>    // for acos, cos, sin
 #include <complex>  // for complex, operator*, operator+
 #include <future>   // for future
 #include <ginger/config.hpp>
-#include <ginger/robin.hpp>  // for Robin
+#include <ginger/robin.hpp>        // for Robin
+#include <ginger/thread_pool.hpp>  // for thread_pool
 #include <lds/lds.hpp>
 #include <limits>   // for numeric_limits
 #include <utility>  // for pair
@@ -203,9 +202,9 @@ template <typename F> static auto aberth_st_core(const vector<double>& coeffs, v
 }
 
 // MT core — uses futures from thread pool
-template <typename F>
-static auto aberth_mt_core(const vector<double>& coeffs, vector<Complex>& zs,
-                            const Options& options, ginger::thread_pool& pool, F& aberth_job_generator)
+template <typename F> static auto aberth_mt_core(const vector<double>& coeffs, vector<Complex>& zs,
+                                                 const Options& options, ginger::thread_pool& pool,
+                                                 F& aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
