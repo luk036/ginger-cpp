@@ -39,7 +39,6 @@ elseif(MSVC)
     Ginger
     PUBLIC /W4
            /WX
-           /wd4459
            /wd4819
            /wd4146
            /wd4127
