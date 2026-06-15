@@ -164,7 +164,7 @@ ginger-cpp/
 
 ## Dependencies (via CPM.cmake)
 
-- **doctest**@2.4.11 - Testing framework
+- **doctest**@2.5.2 - Testing framework
 - **rapidcheck** (master) - Property-based testing
 - **fmt** (installed via PackageProject.cmake) - Formatting
 

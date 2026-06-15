@@ -978,7 +978,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Dependencies via CPM
-CPMAddPackage("gh:doctest/doctest@2.4.11")
+CPMAddPackage("gh:doctest/doctest@2.5.2")
 CPMAddPackage("gh:mrussotti/rapidcheck@main")
 
 # Library target
