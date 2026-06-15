@@ -1,4 +1,4 @@
-#include <ginger/ThreadPool.h>  // for ThreadPool
+#include <ginger/thread_pool.hpp>  // for thread_pool
 
 #include <algorithm>
 #include <cmath>              // for abs, acos, cos, pow
@@ -100,7 +100,7 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
  */
 auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                         const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    auto& pool = get_thread_pool();
+    auto& pool = ginger::get_thread_pool();
 
 #if !defined(_MSC_VER) || !defined(_DEBUG)
     // MSVC Debug: thread_local at function scope has TLS guard init issues

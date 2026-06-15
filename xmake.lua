@@ -28,7 +28,6 @@ elseif is_plat("macosx") then
 elseif is_plat("windows") then
 	add_cxflags("/EHsc /utf-8 /W4 /WX /wd5285", { force = true })
 	add_ldflags("/FORCE:MULTIPLE", { force = true })
-	add_defines("_SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING")
 	if is_mode("release") then
 		add_cxflags("/arch:AVX2", "/fp:fast", { force = true })
 	end

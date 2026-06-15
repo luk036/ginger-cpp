@@ -1,4 +1,4 @@
-#include <ginger/ThreadPool.h>  // for ThreadPool
+#include <ginger/thread_pool.hpp>  // for thread_pool
 
 #include <algorithm>
 #include <cmath>    // for acos, cos, sin
@@ -205,7 +205,7 @@ template <typename F> static auto aberth_st_core(const vector<double>& coeffs, v
 // MT core — uses futures from thread pool
 template <typename F>
 static auto aberth_mt_core(const vector<double>& coeffs, vector<Complex>& zs,
-                           const Options& options, ThreadPool& pool, F& aberth_job_generator)
+                            const Options& options, ginger::thread_pool& pool, F& aberth_job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -254,7 +254,7 @@ auto aberth(const vector<double>& coeffs, vector<Complex>& zs, const Options& op
 
 auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
                const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    auto& pool = get_thread_pool();
+    auto& pool = ginger::get_thread_pool();
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
     for (auto idx = 0U; idx != degree; ++idx) {
@@ -358,7 +358,7 @@ static auto aberth_autocorr_st_core(const vector<double>& coeffs, vector<Complex
 // MT core — uses futures from thread pool
 template <typename F>
 static auto aberth_autocorr_mt_core(const vector<double>& coeffs, vector<Complex>& zs,
-                                    const Options& options, ThreadPool& pool,
+                                    const Options& options, ginger::thread_pool& pool,
                                     F& aberth_job_generator) -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
@@ -408,7 +408,7 @@ auto aberth_autocorr(const vector<double>& coeffs, vector<Complex>& zs,
 
 auto aberth_autocorr_mt(const vector<double>& coeffs, vector<Complex>& zs,
                         const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    auto& pool = get_thread_pool();
+    auto& pool = ginger::get_thread_pool();
     const auto degree = coeffs.size() - 1;
     auto coeffs1 = vector<double>(degree);
     for (auto idx = 0U; idx != degree; ++idx) {

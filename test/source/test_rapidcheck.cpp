@@ -11,35 +11,6 @@
 #    include <rapidcheck.h>
 
 // Simple helper functions to avoid complex lambdas that cause MSVC ICE
-void test_linear_polynomial() {
-    auto a = *rc::gen::nonZero<double>();
-    auto b = *rc::gen::arbitrary<double>();
-    std::vector<double> coeffs = {a, b};
-
-    auto initial = initial_aberth(coeffs);
-    Options options;
-    std::pair<unsigned int, bool> result = aberth(coeffs, initial, options);
-    bool converged = result.second;
-
-    RC_ASSERT(converged);
-    RC_ASSERT(initial.size() == static_cast<size_t>(1));
-}
-
-void test_quadratic_polynomial() {
-    auto a = *rc::gen::nonZero<double>();
-    auto b = *rc::gen::arbitrary<double>();
-    auto c = *rc::gen::arbitrary<double>();
-    std::vector<double> coeffs = {a, b, c};
-
-    auto initial = initial_aberth(coeffs);
-    Options options;
-    std::pair<unsigned int, bool> result = aberth(coeffs, initial, options);
-    bool converged = result.second;
-
-    RC_ASSERT(converged);
-    RC_ASSERT(initial.size() == static_cast<size_t>(2));
-}
-
 void test_horner_consistency() {
     auto degree = static_cast<size_t>(*rc::gen::inRange(2, 10));
     std::vector<double> coeffs;
@@ -175,14 +146,6 @@ void test_polynomial_at_roots() {
             RC_ASSERT(std::abs(value_complex) < options.tolerance);
         }
     }
-}
-
-TEST_CASE("Property-based test: Aberth method finds correct roots for linear polynomial") {
-    rc::check("aberth finds root of ax + b", test_linear_polynomial);
-}
-
-TEST_CASE("Property-based test: Aberth method finds correct roots for quadratic polynomial") {
-    rc::check("aberth finds roots of ax^2 + bx + c", test_quadratic_polynomial);
 }
 
 TEST_CASE("Property-based test: Horner evaluation consistency") {

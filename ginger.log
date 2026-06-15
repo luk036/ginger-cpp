@@ -18,3 +18,8 @@
 [2026-06-14 17:08:08.992] [file_logger] [info] Ginger message: Test message 3
 [2026-06-14 17:08:08.993] [file_logger] [info] Ginger message: Starting polynomial root finding
 [2026-06-14 17:08:08.995] [file_logger] [info] Ginger message: Polynomial root finding converged
+[2026-06-15 14:43:42.620] [file_logger] [info] Ginger message: Test message 1
+[2026-06-15 14:43:42.626] [file_logger] [info] Ginger message: Test message 2
+[2026-06-15 14:43:42.627] [file_logger] [info] Ginger message: Test message 3
+[2026-06-15 14:43:42.632] [file_logger] [info] Ginger message: Starting polynomial root finding
+[2026-06-15 14:43:42.634] [file_logger] [info] Ginger message: Polynomial root finding converged
