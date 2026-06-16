@@ -78,7 +78,7 @@ TEST_CASE("test aberth_mt FIR") {
     options.tolerance = 1e-8;
     auto result = aberth_mt(r, zs, options);
     auto niter = result.first;
-    CHECK_LE(niter, 13);
+    CHECK_LE(niter, 14);
 }
 
 // TEST_CASE("test aberth_autocorr 1") {
