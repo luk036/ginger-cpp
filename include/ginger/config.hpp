@@ -1,10 +1,15 @@
+/**
+ * @file config.hpp
+ * @brief Algorithm options (max iterations, tolerance)
+ */
+
 #pragma once
 
 /**
- * @brief Options
+ * @brief Options for convergence-based algorithms
  *
- * The code snippet defines a class called `Options` that represents the options for a specific
- * algorithm or function. It has two public member variables: `max_iters` and `tolerance`.
+ * Stores maximum iteration count and tolerance for convergence checks
+ * used by Bairstow and Aberth root-finding methods.
  */
 class Options {
   public:

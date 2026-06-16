@@ -1,3 +1,8 @@
+/**
+ * @file autocorr.hpp
+ * @brief Auto-correlation polynomial root-finding (palindromic polynomials)
+ */
+
 #pragma once
 
 // import numpy as np
@@ -39,17 +44,17 @@ extern auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Ve
                                const Options& options) -> std::pair<unsigned int, bool>;
 
 /**
- * The function extracts the autocorrelation values from a given vector.
+ * @brief Extract autocorrelation quadratic factor
  *
- *   x^2 - r*x - q  or (-1/q) + (r/q) * x + x^2
- *   (x - a1)(x - a2) = x^2 - (a1 + a2) x + a1 * a2
+ * Converts a quadratic factor of the form x^2 - r*x - q
+ * to the autocorrelation form (-1/q) + (r/q)*x + x^2
+ * where the roots appear in reciprocal pairs.
  *
- *   x^2 + r*x + t or x^2 + (r/t) * x + (1/t)
- *   (x + a1)(x + a2) = x^2 + (a1 + a2) x + a1 * a2
+ * Quadratic factor relations:
+ *   x^2 - r*x - q  = (x - a1)(x - a2) = x^2 - (a1 + a2)x + a1*a2
+ *   x^2 + r*x + t  = (x + a1)(x + a2) = x^2 + (a1 + a2)x + a1*a2
  *
- * @param[in,out] vr The parameter `vr` is of type `Vec2`, which is a custom
- * class representing a 2D vector. It contains two components, `x` and `y`,
- * which are accessed using the `x()` and `y()` member functions respectively.
+ * @param[in,out] vr Quadratic factor Vec2 (r, q) modified in-place
  */
 extern void extract_autocorr(Vec2& vr);
 

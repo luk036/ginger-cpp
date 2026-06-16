@@ -1,3 +1,8 @@
+/**
+ * @file matrix2.hpp
+ * @brief 2x2 matrix template for polynomial root-finding
+ */
+
 #pragma once
 
 #include <utility>  // import std::move

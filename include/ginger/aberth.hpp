@@ -1,3 +1,8 @@
+/**
+ * @file aberth.hpp
+ * @brief Aberth-Ehrlich method for polynomial root-finding
+ */
+
 #pragma once
 
 // import numpy as np
@@ -7,9 +12,32 @@
 
 class Options;
 
+/**
+ * @brief van der Corput sequence value for a given index
+ * @param[in] index Sequence index
+ * @return double The van der Corput value
+ */
 extern double vdc2_table(unsigned long index);
+
+/**
+ * @brief Cosine of pi times van der Corput value
+ * @param[in] index Sequence index
+ * @return double cos(pi * vdc2_table(index))
+ */
 extern double cos_pi_vdc2(unsigned long index);
+
+/**
+ * @brief Circle sequence X-coordinate for an index
+ * @param[in] index Sequence index
+ * @return double X-coordinate on the unit circle
+ */
 extern double circle2_table_x(unsigned long index);
+
+/**
+ * @brief Circle sequence Y-coordinate for an index
+ * @param[in] index Sequence index
+ * @return double Y-coordinate on the unit circle
+ */
 extern double circle2_table_y(unsigned long index);
 
 /**
@@ -153,6 +181,15 @@ extern auto aberth_autocorr_mt(const std::vector<double>& coeffs,
                                std::vector<std::complex<double>>& zs, const Options& options)
     -> std::pair<unsigned int, bool>;
 
+/**
+ * @brief Reconstruct a monic polynomial from its complex roots
+ *
+ * Builds the monic polynomial whose roots are the given complex numbers,
+ * using Leja ordering for numerical stability.
+ *
+ * @param[in] zs Vector of complex roots
+ * @return std::vector<double> Monic polynomial coefficients (highest degree first)
+ */
 extern auto poly_from_roots(const std::vector<std::complex<double>>& zs) -> std::vector<double>;
 
 /**

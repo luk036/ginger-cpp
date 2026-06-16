@@ -1,3 +1,8 @@
+/**
+ * @file robin.hpp
+ * @brief Robin Hood cycle iteration data structure
+ */
+
 #pragma once
 
 #include <vector>

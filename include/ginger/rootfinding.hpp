@@ -1,3 +1,8 @@
+/**
+ * @file rootfinding.hpp
+ * @brief Parallel Bairstow root-finding methods for real polynomials
+ */
+
 #pragma once
 
 #include <utility>
@@ -81,40 +86,28 @@ extern auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>&
 extern auto horner(std::vector<double>& coeffs1, std::size_t degree, const Vec2& vr) -> Vec2;
 
 /**
- * @brief zero suppression
+ * @brief Zero suppression step in Bairstow's method (variant 1)
  *
- * zero suppression is a technique used in the Bairstow method to find the
- * coefficients of the linear remainder of a deflated polynomial without
- * explicitly constructing the deflated polynomial. The goal of zero suppression
- * is to perform the Bairstow process without the need for complex arithmetic
- * within iterations. The technique involves finding the coefficients of the
- * linear remainder of the deflated polynomial using the coefficients of the
- * linear remainder of the original polynomial and the known factor of the
- * original polynomial.
+ * Finds coefficients of the linear remainder of a deflated polynomial
+ * without explicitly constructing the deflated polynomial, avoiding
+ * complex arithmetic within iterations.
  *
- * @param[in,out] vA
- * @param[in,out] vA1
- * @param[in] vri
- * @param[in] vrj
+ * @param[in,out] vA First remainder coefficient
+ * @param[in,out] vA1 Second remainder coefficient
+ * @param[in] vri First known factor
+ * @param[in] vrj Second known factor
  */
 extern auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void;
 
 /**
- * @brief zero suppression
+ * @brief Zero suppression step in Bairstow's method (variant 2)
  *
- * zero suppression is a technique used in the Bairstow method to find the
- * coefficients of the linear remainder of a deflated polynomial without
- * explicitly constructing the deflated polynomial. The goal of zero suppression
- * is to perform the Bairstow process without the need for complex arithmetic
- * within iterations. The technique involves finding the coefficients of the
- * linear remainder of the deflated polynomial using the coefficients of the
- * linear remainder of the original polynomial and the known factor of the
- * original polynomial.
+ * Alternative formulation of the zero suppression technique.
  *
- * @param[in,out] vA
- * @param[in,out] vA1
- * @param[in] vri
- * @param[in] vrj
+ * @param[in,out] vA First remainder coefficient
+ * @param[in,out] vA1 Second remainder coefficient
+ * @param[in] vri First known factor
+ * @param[in] vrj Second known factor
  */
 extern auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void;
 

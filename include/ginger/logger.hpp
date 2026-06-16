@@ -1,3 +1,8 @@
+/**
+ * @file logger.hpp
+ * @brief Logging utilities for the ginger library
+ */
+
 #pragma once
 
 #include <string>

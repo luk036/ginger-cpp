@@ -1,3 +1,8 @@
+/**
+ * @file lds.hpp
+ * @brief Low-discrepancy sequence generators (van der Corput, Halton, Circle, Disk, Sphere)
+ */
+
 #pragma once
 
 #include <array>
@@ -847,5 +852,10 @@ namespace lds {
         }
     };
 
+    /**
+     * @brief Dummy function for index manipulation
+     * @param[in] index Input index
+     * @return unsigned long The processed index
+     */
     extern unsigned long dummy(unsigned long index);
 }  // namespace lds

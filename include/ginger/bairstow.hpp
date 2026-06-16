@@ -1,3 +1,8 @@
+/**
+ * @file bairstow.hpp
+ * @brief Bairstow's root-finding method with reference-based vectors
+ */
+
 #pragma once
 
 #include <utility>
@@ -66,13 +71,11 @@ extern auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const Options&
     -> std::pair<unsigned int, bool>;
 
 /**
- * The function "makeadjoint" takes in a vector vr and a vector vp, and returns a 2x2 matrix where
- * the elements are calculated based on the values of vr and vp.
+ * @brief Create adjoint matrix from two vectors (reference-based)
  *
- * @param[in] vr A constant reference to a Vec2 object, representing the vector vr.
- * @param[in] vp vp is a vector with two components, vp.x() and vp.y().
- *
- * @return a `Mat2` object.
+ * @param[in] vr Vector r (constant reference)
+ * @param[in] vp Vector p (reference wrapper)
+ * @return Mat2 The adjoint 2x2 matrix
  */
 inline auto makeadjoint_ref(const Vec2& vr, const Vec2Ref& vp) -> Mat2 {
     auto p = vp.x();
@@ -81,13 +84,14 @@ inline auto makeadjoint_ref(const Vec2& vr, const Vec2Ref& vp) -> Mat2 {
 }
 
 /**
- * The function calculates the delta value using the given parameters.
+ * @brief Calculate Newton correction delta (reference-based)
  *
- * @param[in] vA A vector of type Vec2Ref.
- * @param[in] vr A vector representing the direction of rotation.
- * @param[in] vp The parameter `vp` is a `Vec2Ref` object that is passed by const reference.
+ * Uses the adjoint matrix to compute the correction step in Bairstow's method.
  *
- * @return a Vec2 object.
+ * @param[in] vA Current remainder vector (reference wrapper)
+ * @param[in] vr Direction vector r
+ * @param[in] vp Vector p (reference wrapper)
+ * @return Vec2 The correction delta
  */
 inline auto delta_ref(const Vec2Ref& vA, const Vec2& vr, const Vec2Ref& vp) -> Vec2 {
     const auto mp = makeadjoint_ref(vr, vp);  // 2 mul's
