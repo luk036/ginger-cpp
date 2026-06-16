@@ -14,7 +14,7 @@ end
 if is_plat("linux") then
     set_warnings("all", "error")
     add_cxflags("-Wconversion -Wno-deprecated-experimental-coroutine -Wno-deprecated-coroutine -Wno-unknown-warning-option", {force = true})
-    add_cxflags("-Wno-unused-command-line-argument", {force = true})
+    -- add_cxflags("-Wno-unused-command-line-argument", {force = true})
     -- Check if we're on Termux/Android
     local termux_prefix = os.getenv("PREFIX")
     if termux_prefix then
