@@ -107,18 +107,18 @@ namespace lds {
      * @brief van der Corput sequence
      *
      * The `vdc` function is calculating the van der Corput sequence value for a
-     * given index `count` and base `base`. It returns a `double` value.
+     * given index `cnt` and template base `Base`. It returns a `double` value.
      *
      * @verbatim
      *     Base 2 Example:
-     *     count=1 -> 0.5  (0.1 in base 2)
-     *     count=2 -> 0.25 (0.01 in base 2)
-     *     count=3 -> 0.75 (0.11 in base 2)
-     *     count=4 -> 0.125(0.001 in base 2)
+     *     cnt=1 -> 0.5  (0.1 in base 2)
+     *     cnt=2 -> 0.25 (0.01 in base 2)
+     *     cnt=3 -> 0.75 (0.11 in base 2)
+     *     cnt=4 -> 0.125(0.001 in base 2)
      * @endverbatim
      *
-     * @param[in] count index of the sequence
-     * @param[in] base base of the sequence
+     * @tparam Base base of the sequence
+     * @param[in] cnt index of the sequence
      * @return double
      */
     template <unsigned long Base = 2> constexpr auto vdc(unsigned long cnt) -> double {
@@ -152,6 +152,8 @@ namespace lds {
      *     pop() -> 0.125 (0.001 base 2)
      *     ...
      * @endverbatim
+     *
+     * @tparam Base the base of the van der Corput sequence
      */
     template <unsigned long Base = 2> class VdCorput {
         unsigned long count;
@@ -161,11 +163,7 @@ namespace lds {
         /**
          * @brief Construct a new VdCorput object
          *
-         * The `VdCorput(unsigned long base)` constructor is initializing a `VdCorput`
-         * object with a given base. The base is used to generate the van der Corput
-         * sequence.
-         *
-         * @param[in] base the base of the van der Corput sequence
+         * Constructs a VdCorput sequence generator using the template base parameter.
          */
         constexpr VdCorput() : count{0}, rev_lst{} {
             double reverse = 1.0;
@@ -289,6 +287,8 @@ namespace lds {
      *     Points distributed more evenly
      *     than random sampling
      * @endverbatim
+     *
+     * @tparam Base the base for the van der Corput sequence generator
      */
     template <unsigned long Base = 2> class Circle {
         VdCorput<Base> vdc;
@@ -297,10 +297,7 @@ namespace lds {
         /**
          * @brief Construct a new Circle object
          *
-         * Constructs a Circle sequence generator with the specified base for generating
-         * the van der Corput sequence, which is then mapped to points on the unit circle.
-         *
-         * @param[in] base the base for the van der Corput sequence generator
+         * Constructs a Circle sequence generator using the template base parameter.
          */
         constexpr Circle<Base>() : vdc() {}
 
@@ -499,6 +496,9 @@ namespace lds {
      *      ***     ***
      *         *****
      * @endverbatim
+     *
+     * @tparam Base0 the base for the first dimension (angle)
+     * @tparam Base1 the base for the second dimension (radius)
      */
     template <unsigned long Base0 = 2, unsigned long Base1 = 3> class Disk {
         VdCorput<Base0> vdc0;
@@ -508,10 +508,7 @@ namespace lds {
         /**
          * @brief Construct a new Disk object
          *
-         * Constructs a Disk sequence generator with the specified bases for the two dimensions.
-         *
-         * @param[in] base0 the base for the first dimension (angle)
-         * @param[in] base1 the base for the second dimension (radius)
+         * Constructs a Disk sequence generator using the template base parameters.
          */
         constexpr Disk() : vdc0(), vdc1() {}
 

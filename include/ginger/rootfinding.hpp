@@ -44,14 +44,13 @@ extern auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2>;
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of the
  * polynomial. Each element of the vector corresponds to the coefficient of a term in the
  * polynomial, starting from the highest degree term and ending with the constant term. For example,
- * if the polynomial is `3x^2 +
- * 2
- * @param[in, out] vrs `vrs` is a vector of iterates, which represents the initial guesses for the
- * roots of the polynomial. The Bairstow's method will update these iterates iteratively until the
+ * if the polynomial is `3x^2 + 2x + 1`, the coefficients vector would be `{3, 2, 1}`.
+ * @param[in,out] vrs `vrs` is a vector of iterates, which represents the initial guesses for the
+ * roots of the polynomial. Bairstow's method will update these iterates iteratively until the
  * desired tolerance is reached or the maximum number of iterations is reached.
  * @param[in] options The `options` parameter is an object of type `Options` which contains the
  * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options are
- * used to control the convergence criteria for the Bairstow's method.
+ * used to control the convergence criteria for Bairstow's method.
  *
  * @return The function `pbairstow_even` returns a `std::pair<unsigned int, bool>`. The first
  * element of the pair represents the number of iterations performed, and the second element

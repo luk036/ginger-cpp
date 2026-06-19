@@ -24,14 +24,7 @@ namespace ginger {
         /**
          * @brief Construct a new Vector2Ref object
          *
-         * The function constructs a new Vector2Ref object with given x and y values.
-         *
-         * @param[in] x The parameter `x` is of type `double&&`, which means it is a forwarding
-         * reference. It can accept any type, and it is passed as an rvalue reference. This allows
-         * the constructor to efficiently move or forward the value of `x` into the `_x` member
-         * variable.
-         * @param[in] y The parameter "y" is the y-coordinate of the Vector2Ref object. It
-         * represents the vertical position of the vector in a 2D coordinate system.
+         * The default constructor binds both components to a shared dummy variable.
          */
         constexpr Vector2Ref() noexcept
             : _x{global_vector2_ref_dummy}, _y{global_vector2_ref_dummy} {}
@@ -156,12 +149,9 @@ namespace ginger {
         }
 
         /**
-         * The function multiplies a Vector2 object by a scalar value.
+         * The function multiplies the components of this Vector2Ref by a scalar value.
          *
-         * @tparam R
-         * @param[in] x A Vector2 object of type T1 and T2.
-         * @param[in] alpha The parameter `alpha` is a scalar value that will be used to multiply
-         * each component of the `Vector2` object `x`.
+         * @param[in] alpha The scalar value to multiply each component by.
          *
          * @return a Vector2 object.
          */

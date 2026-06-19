@@ -59,12 +59,8 @@ namespace ginger {
 
         /**
          * @brief Construct a new Vector2 object
+         * @overload
          *
-         * The function constructs a new Vector2 object by copying the values from another Vector2
-         * object.
-         *
-         * @tparam U1
-         * @tparam U2
          * @param[in] other The parameter "other" is a reference to another Vector2 object.
          */
         template <typename U1, typename U2> constexpr explicit Vector2(const Vector2<U1, U2>& other)

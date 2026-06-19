@@ -46,24 +46,23 @@ extern auto horner_ref(std::vector<double>& coeffs, std::vector<Vec2Ref>& vcoeff
                        std::size_t degree, const Vec2& vr) -> Vec2Ref;
 
 /**
- * @brief Bairstow's method (even degree only)
+ * @brief Bairstow's method
  *
- * The `bairstow_even` function implements Bairstow's method for finding the roots of a real
- * polynomial with an even degree using multi-threading.
+ * The `bairstow` function implements Bairstow's method for finding the roots of a real
+ * polynomial.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of the
  * polynomial. Each element of the vector corresponds to the coefficient of a term in the
  * polynomial, starting from the highest degree term and ending with the constant term. For example,
- * if the polynomial is `3x^2 +
- * 2
- * @param[in, out] vr `vr` is a vector of iterates, which represents the initial guesses for the
- * roots of the polynomial. The Bairstow's method will update these iterates iteratively until the
+ * if the polynomial is `3x^2 + 2x + 1`, the coefficients vector would be `{3, 2, 1}`.
+ * @param[in,out] vr `vr` is a vector of iterates, which represents the initial guesses for the
+ * roots of the polynomial. Bairstow's method will update these iterates iteratively until the
  * desired tolerance is reached or the maximum number of iterations is reached.
  * @param[in] options The `options` parameter is an object of type `Options` which contains the
  * maximum number of iterations (`max_iters`) and the tolerance (`tolerance`). These options are
- * used to control the convergence criteria for the Bairstow's method.
+ * used to control the convergence criteria for Bairstow's method.
  *
- * @return The function `pbairstow_even` returns a `std::pair<unsigned int, bool>`. The first
+ * @return The function `bairstow` returns a `std::pair<unsigned int, bool>`. The first
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  */
