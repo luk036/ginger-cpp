@@ -9,7 +9,7 @@ option(INSTALL_ONLY "Enable for installation only" OFF)
 # Note: update this to your new project's name and version
 project(
   Ginger
-  VERSION 1.1.3
+  VERSION 1.1.4
   LANGUAGES CXX
 )
 
