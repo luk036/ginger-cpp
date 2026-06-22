@@ -61,16 +61,13 @@ extern auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>&
 
 /**
  * @brief Horner's rule
- *
- * Horner's rule is a method for evaluating a polynomial of degree degree at a given
- * point x. It involves rewriting the polynomial as a nested multiplication and
- * addition of the form:
- *
- *  P(x) = a_0 + x(a_1 + x(a_2 + ... + x(a_{degree-1} + x(a_n))...))
- *
- * This form allows for efficient evaluation of the polynomial at a given point
- * x using only degree multiplications and degree additions. Horner's rule is commonly
- * used in numerical methods for polynomial evaluation and interpolation.
+     *
+     * Horner's rule is a method for evaluating a polynomial at a given point \f$x\f$.
+     * It rewrites the polynomial as nested multiplication:
+     * @f[
+     *     P(x) = a_0 + x(a_1 + x(a_2 + \cdots + x(a_{n-1} + x a_n)\cdots))
+     * @f]
+     * This allows evaluation using \f$n\f$ multiplications and \f$n\f$ additions.
  *
  * @param[in, out] coeffs1 coeffs1 is a reference to a vector of doubles. It is used to
  * store the coefficients of a polynomial.
@@ -141,9 +138,15 @@ inline auto delta(const Vec2& vA, const Vec2& vr, const Vec2& vp) -> Vec2 {
 
 /**
  * The function `horner_eval` evaluates a polynomial using Horner's method.
- *
- * @param[in,out] coeffs1 A vector of coefficients for a polynomial, where the coefficient at index
- * i corresponds to the term with degree i.
+     *
+     * Evaluates:
+     * @f[
+     *     P(z) = a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n
+     * @f]
+     * using the recurrence \f$b_0 = a_0, \; b_{k+1} = a_{k+1} + b_k z\f$, returning \f$b_n\f$.
+     *
+     * @param[in,out] coeffs1 A vector of coefficients for a polynomial, where the coefficient at index
+     * i corresponds to the term with degree i.
  * @param[in] degree The degree parameter represents the degree of the polynomial. It indicates the
  * highest power of the variable in the polynomial equation.
  * @param[in] z The parameter `z` is a constant value that is used as the input to the polynomial
@@ -163,9 +166,11 @@ inline auto horner_eval(std::vector<double> coeffs1, std::size_t degree, const d
  * @brief Reconstruct a monic polynomial from its quadratic factors
  *
  * Given the quadratic factors found by Bairstow's method (each representing
- * x^2 - r*x - q), multiply them together to recover the monic polynomial
- * coefficients. To get the original polynomial, multiply the result by the
- * original leading coefficient.
+ * \f$x^2 - r_i x - q_i\f$), multiply them together:
+ * @f[
+ *     P(x) = \prod_{i=1}^{n/2} (x^2 - r_i x - q_i) = x^n + a_{n-1}x^{n-1} + \cdots + a_0
+ * @f]
+ * To get the original polynomial, multiply the result by the original leading coefficient.
  *
  * @param[in] vrs Vector of quadratic factors, each as a Vec2 with x() = r, y() = q
  * @return std::vector<double> Monic polynomial coefficients (highest degree first)

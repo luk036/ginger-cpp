@@ -51,6 +51,13 @@ extern auto horner_ref(std::vector<double>& coeffs, std::vector<Vec2Ref>& vcoeff
  * The `bairstow` function implements Bairstow's method for finding the roots of a real
  * polynomial.
  *
+ * Bairstow's method finds quadratic factors of the form \f$x^2 - rx - q\f$ of a real polynomial
+ * using Newton's method in 2D. At each iteration, the correction is:
+ * @f[
+ *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -J^{-1} \begin{bmatrix} P(r,q) \\ Q(r,q) \end{bmatrix}
+ * @f]
+ * where \f$P\f$ and \f$Q\f$ are the remainders of synthetic division by \f$x^2 - rx - q\f$.
+ *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of the
  * polynomial. Each element of the vector corresponds to the coefficient of a term in the
  * polynomial, starting from the highest degree term and ending with the constant term. For example,

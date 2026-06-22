@@ -90,7 +90,10 @@ namespace ginger {
         // }
 
         /**
-         * The dot function calculates the dot product of two 2D vectors.
+         * The dot function calculates the dot product of two 2D vectors:
+         * @f[
+         *     u \cdot v = u_x v_x + u_y v_y
+         * @f]
          *
          * @tparam U1
          * @tparam U2
@@ -106,8 +109,10 @@ namespace ginger {
         }
 
         /**
-         * The cross product of two 2D vectors is calculated by multiplying their x and y components
-         * and subtracting the result.
+         * The cross product of two 2D vectors (scalar, z-component):
+         * @f[
+         *     u \times v = u_x v_y - u_y v_x
+         * @f]
          *
          * @tparam U1
          * @tparam U2

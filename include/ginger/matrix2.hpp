@@ -201,7 +201,12 @@ namespace ginger {
         /**
          * @brief Multiply matrix with vector
          *
-         * Performs matrix-vector multiplication: this * other.
+         * Performs matrix-vector multiplication:
+         * @f[
+         *     \begin{bmatrix} a & b \\ c & d \end{bmatrix}
+         *     \begin{bmatrix} x \\ y \end{bmatrix}
+         *     = \begin{bmatrix} ax + by \\ cx + dy \end{bmatrix}
+         * @f]
          *
          * @tparam U1 Type of the first component of the vector
          * @tparam U2 Type of the second component of the vector
@@ -216,7 +221,10 @@ namespace ginger {
         /**
          * @brief Calculate the determinant
          *
-         * Computes the determinant of the 2x2 matrix.
+         * Computes the determinant of the 2x2 matrix:
+         * @f[
+         *     \det\begin{bmatrix} a & b \\ c & d \end{bmatrix} = ad - bc
+         * @f]
          *
          * @return double The determinant value
          */

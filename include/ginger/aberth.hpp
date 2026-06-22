@@ -59,7 +59,11 @@ extern auto initial_aberth(const std::vector<double>& coeffs) -> std::vector<std
  * The `aberth` function is an implementation of the Aberth-Ehrlich method for finding
  * the roots of a polynomial.
  *
- * Aberth's method is a method for finding the roots of a polynomial that is
+ * Aberth's method iteratively improves root estimates for a polynomial \f$P(x)\f$:
+ * @f[
+ *     x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P'(x_k)}\Bigg/ \left(1 - \frac{P(x_k)}{P'(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
+ * @f]
+ * where the sum is over all other root approximations. The method is
  * robust but requires complex arithmetic even if the polynomial is real. This
  * is because it starts with complex initial approximations.
  *
@@ -87,9 +91,11 @@ extern auto aberth(const std::vector<double>& coeffs, std::vector<std::complex<d
  * The `aberth_mt` function is a multi-threaded implementation of the Aberth-Ehrlich method for
  * finding the roots of a polynomial.
  *
- * Aberth's method is a method for finding the roots of a polynomial that is
- * robust but requires complex arithmetic even if the polynomial is real. This
- * is because it starts with complex initial approximations.
+ * Multi-threaded variant of the Aberth-Ehrlich method:
+ * @f[
+ *     x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P'(x_k)}\Bigg/ \left(1 - \frac{P(x_k)}{P'(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
+ * @f]
+ * Each root is updated in parallel using separate threads.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
  * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
@@ -184,8 +190,11 @@ extern auto aberth_autocorr_mt(const std::vector<double>& coeffs,
 /**
  * @brief Reconstruct a monic polynomial from its complex roots
  *
- * Builds the monic polynomial whose roots are the given complex numbers,
- * using Leja ordering for numerical stability.
+ * Builds the monic polynomial whose roots are the given complex numbers:
+ * @f[
+ *     P(x) = \prod_{k=1}^{n} (x - z_k) = x^n + a_{n-1}x^{n-1} + \cdots + a_0
+ * @f]
+ * Uses Leja ordering for numerical stability.
  *
  * @param[in] zs Vector of complex roots
  * @return std::vector<double> Monic polynomial coefficients (highest degree first)
