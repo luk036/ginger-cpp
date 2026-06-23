@@ -1,0 +1,7 @@
+<map id="ginger/matrix2.hpp" name="ginger/matrix2.hpp">
+<area shape="rect" id="Node000001" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="14,5,161,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,65,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,33,54,69,50,66,77,29"/>
+<area shape="rect" id="Node000003" href="$vector2_8hpp.html" title=" " alt="" coords="90,79,189,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="98,29,125,66,121,69,94,33"/>
+</map>

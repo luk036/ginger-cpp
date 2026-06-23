@@ -1,0 +1,9 @@
+<map id="ginger/matrix2.hpp" name="ginger/matrix2.hpp">
+<area shape="rect" id="Node000001" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="179,5,326,31"/>
+<area shape="rect" id="Node000002" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)" alt="" coords="5,79,153,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,38,109,81,107,76,211,33"/>
+<area shape="rect" id="Node000003" href="$bairstow_8hpp.html" title="Bairstow&#39;s root&#45;finding method with reference&#45;based vectors." alt="" coords="177,79,328,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,44,255,79,250,79,250,44"/>
+<area shape="rect" id="Node000004" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="353,79,518,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="296,33,406,76,404,81,294,38"/>
+</map>

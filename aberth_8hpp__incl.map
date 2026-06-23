@@ -1,0 +1,9 @@
+<map id="ginger/aberth.hpp" name="ginger/aberth.hpp">
+<area shape="rect" id="Node000001" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding." alt="" coords="69,5,207,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,84,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,33,72,72,69,68,121,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="108,79,168,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,31,141,65,135,65,135,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,79,255,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="153,29,201,68,197,72,150,33"/>
+</map>
