@@ -28,6 +28,12 @@ class Options;
  * The `initial_guess` function calculates the initial values for the parallel Bairstow method for
  * finding the roots of a real polynomial.
  *
+ * The initial quadratic factors are:
+ * @f[
+ *     x^2 - r_k x - q_k, \quad r_k = 2R\cos(2\pi\phi_2(k)), \quad q_k = -R^2, \quad k = 0,\dots,\lfloor n/2\rfloor
+ * @f]
+ * where @f$ R @f$ is estimated from the polynomial coefficients.
+ *
  * @param[in] coeffs coeffs is a vector of doubles that represents the coefficients of a polynomial.
  * The vector is passed by value.
  *
@@ -40,6 +46,29 @@ extern auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2>;
  *
  * The `pbairstow_even` function implements Bairstow's method for finding the roots of a real
  * polynomial with an even degree using multi-threading.
+ *
+ * Each thread handles one quadratic factor @f$ x^2 - r_i x - q_i @f$, applying:
+ * @f[
+ *     \begin{bmatrix} \Delta r_i \\ \Delta q_i \end{bmatrix} = -J_i^{-1} \begin{bmatrix} P_i \\ Q_i \end{bmatrix}
+ * @f]
+ * where @f$ P_i, Q_i @f$ are the remainders from synthetic division.
+ *
+ * @dot
+ *   digraph pbairstow_flow {
+ *     bgcolor="transparent";
+ *     rankdir=LR;
+ *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+ *     init [label="Initial\nquadratic factors", fillcolor="#a9cce3"];
+ *     spawn [label="Spawn threads\none per factor"];
+ *     thread [label="Each thread:\nBairstow Newton\nin (r_i, q_i)", fillcolor="#d4e6f1"];
+ *     sync [label="Sync +\ncheck all\nconverged?", shape=diamond, fillcolor="#f9e79f"];
+ *     extract [label="Extract\nfactors", fillcolor="#d5f5e3"];
+ *     done [label="All roots\nfound!", fillcolor="#7fb3d8"];
+ *     init -> spawn -> thread -> sync;
+ *     sync -> thread [label="No", style=dashed, color="#e74c3c"];
+ *     sync -> extract -> done [label="Yes", color="#27ae60"];
+ *   }
+ * @enddot
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of the
  * polynomial. Each element of the vector corresponds to the coefficient of a term in the
@@ -88,6 +117,12 @@ extern auto horner(std::vector<double>& coeffs1, std::size_t degree, const Vec2&
  * without explicitly constructing the deflated polynomial, avoiding
  * complex arithmetic within iterations.
  *
+ * Suppresses a known quadratic factor @f$ x^2 - r_i x - q_i @f$ from the
+ * remainder by adjusting the remainder coefficients:
+ * @f[
+ *     (a_0 + a_1 x) \bmod (x^2 - r_i x - q_i)(x^2 - r_j x - q_j)
+ * @f]
+ *
  * @param[in,out] vA First remainder coefficient
  * @param[in,out] vA1 Second remainder coefficient
  * @param[in] vri First known factor
@@ -98,7 +133,13 @@ extern auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> v
 /**
  * @brief Zero suppression step in Bairstow's method (variant 2)
  *
- * Alternative formulation of the zero suppression technique.
+ * Alternative formulation of the zero suppression technique using
+ * adjugate matrix-based update:
+ * @f[
+ *     \begin{bmatrix} vA \\ vA_1 \end{bmatrix}^+
+ *     = \begin{bmatrix} vA \\ vA_1 \end{bmatrix}
+ *     - \frac{\operatorname{adj}(J)}{\det(J)} \, vA
+ * @f]
  *
  * @param[in,out] vA First remainder coefficient
  * @param[in,out] vA1 Second remainder coefficient
@@ -108,8 +149,13 @@ extern auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> v
 extern auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void;
 
 /**
- * The function "makeadjoint" takes in a vector vr and a vector vp, and returns a 2x2 matrix where
- * the elements are calculated based on the values of vr and vp.
+ * @brief Create adjoint matrix from two vectors
+ *
+ * Computes the adjugate matrix of the Jacobian in Bairstow's method:
+ * @f[
+ *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s \end{bmatrix}
+ * @f]
+ * where @f$ (p, s) = vp @f$ and @f$ (r_x, r_y) = vr @f$.
  *
  * @param[in] vr A constant reference to a Vec2 object, representing the vector vr.
  * @param[in] vp vp is a vector with two components, vp.x() and vp.y().
@@ -123,7 +169,12 @@ inline auto makeadjoint(const Vec2& vr, const Vec2& vp) -> Mat2 {
 }
 
 /**
- * The function calculates the delta value using the given parameters.
+ * @brief Calculate Newton correction delta
+ *
+ * Uses the adjoint matrix to compute the correction step in Bairstow's method:
+ * @f[
+ *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)} \, vA
+ * @f]
  *
  * @param[in] vA A vector of type Vec2.
  * @param[in] vr A vector representing the direction of rotation.
