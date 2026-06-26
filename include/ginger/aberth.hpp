@@ -14,6 +14,10 @@ class Options;
 
 /**
  * @brief van der Corput sequence value for a given index
+ *
+ * @f$ \phi_2(n) = \sum_{k=0}^{\infty} a_k(n) \, 2^{-k-1} @f$
+ * where @f$ a_k(n) @f$ are the binary digits of @f$ n @f$.
+ *
  * @param[in] index Sequence index
  * @return double The van der Corput value
  */
@@ -21,6 +25,9 @@ extern double vdc2_table(unsigned long index);
 
 /**
  * @brief Cosine of pi times van der Corput value
+ *
+ * @f$ \cos(\pi \cdot \phi_2(\text{index})) @f$
+ *
  * @param[in] index Sequence index
  * @return double cos(pi * vdc2_table(index))
  */
@@ -28,6 +35,9 @@ extern double cos_pi_vdc2(unsigned long index);
 
 /**
  * @brief Circle sequence X-coordinate for an index
+ *
+ * @f$ x = \cos(2\pi \cdot \phi_2(\text{index})) @f$
+ *
  * @param[in] index Sequence index
  * @return double X-coordinate on the unit circle
  */
@@ -35,6 +45,9 @@ extern double circle2_table_x(unsigned long index);
 
 /**
  * @brief Circle sequence Y-coordinate for an index
+ *
+ * @f$ y = \sin(2\pi \cdot \phi_2(\text{index})) @f$
+ *
  * @param[in] index Sequence index
  * @return double Y-coordinate on the unit circle
  */
@@ -45,6 +58,9 @@ extern double circle2_table_y(unsigned long index);
  *
  * The `initial_aberth` function calculates the initial values for the Aberth-Ehrlich method for
  * finding the roots of a polynomial.
+ *
+ * @f$ z_k = R \cdot e^{2\pi i \cdot \phi_2(k)}, \quad k = 0,\dots,n-1 @f$
+ * where @f$ R @f$ is estimated from the polynomial coefficients.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector of doubles that represents the coefficients
  * of a polynomial.
@@ -66,6 +82,21 @@ extern auto initial_aberth(const std::vector<double>& coeffs) -> std::vector<std
  * where the sum is over all other root approximations. The method is
  * robust but requires complex arithmetic even if the polynomial is real. This
  * is because it starts with complex initial approximations.
+ *
+ * @dot
+ *   digraph aberth_iter {
+ *     rankdir=LR; bgcolor="transparent";
+ *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+ *     init [label="Initial\nguesses z_k", fillcolor="#a9cce3"];
+ *     eval [label="Evaluate\nP(z_k), P'(z_k)"];
+ *     update [label="Update\nz_k_new"];
+ *     check [label="Converged?", shape=diamond, fillcolor="#f9e79f"];
+ *     done [label="Roots found!", fillcolor="#7fb3d8"];
+ *     init -> eval -> update -> check;
+ *     check -> eval [label="No", style=dashed, color="#e74c3c"];
+ *     check -> done [label="Yes", color="#27ae60"];
+ *   }
+ * @enddot
  *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
  * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
@@ -118,13 +149,16 @@ extern auto aberth_mt(const std::vector<double>& coeffs, std::vector<std::comple
 /**
  * @brief Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)
  *
- * The `initial_aberth` function calculates the initial values for the Aberth-Ehrlich method for
- * finding the roots of a polynomial.
+ * The `initial_aberth_autocorr` function calculates the initial values for the Aberth-Ehrlich method
+ * for finding the roots of a palindromic (auto-correlation) polynomial.
+ *
+ * @f$ z_k = e^{2\pi i \cdot \phi_2(k)}, \quad k = 0,\dots,\lfloor n/2 \rfloor @f$
+ * where the roots are distributed on the unit circle.
  *
  * @param[in] coeffs The `coeffs` parameter is a vector of doubles that represents the coefficients
  * of a polynomial.
  *
- * @return The function `initial_aberth` returns a vector of Complex numbers.
+ * @return The function `initial_aberth_autocorr` returns a vector of Complex numbers.
  */
 extern auto initial_aberth_autocorr(const std::vector<double>& coeffs)
     -> std::vector<std::complex<double>>;
@@ -209,6 +243,11 @@ extern auto poly_from_roots(const std::vector<std::complex<double>>& zs) -> std:
  * maximizes the minimum Euclidean distance to all already-selected points.
  * This ordering reduces numerical error when reconstructing polynomials from roots.
  *
+ * @f[
+ *     p_0 = \arg\min_{z \in S} |z|, \qquad
+ *     p_k = \arg\max_{z \in S_k} \min_{j < k} |z - p_j|
+ * @f]
+ *
  * @param[in] points Input vector of complex numbers
  * @return std::vector<std::complex<double>> Reordered points in Leja sequence
  */
@@ -222,6 +261,10 @@ extern auto leja_order(const std::vector<std::complex<double>>& points)
  * The aberth_autocorr functions find the degree/2 "independent" roots.
  * This function adds the reciprocal of each root (1/z) to get the full set
  * of degree roots, then reconstructs with Leja ordering.
+ *
+ * @f[
+ *     P(x) = \prod_{k=1}^{n} (x - r_k)(x - r_k^{-1}) = x^{2n} + a_{2n-1}x^{2n-1} + \cdots + a_0
+ * @f]
  *
  * @param[in] zs Roots found by aberth_autocorr or aberth_autocorr_mt
  * @return std::vector<double> Monic polynomial coefficients (highest degree first)

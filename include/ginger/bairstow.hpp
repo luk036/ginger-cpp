@@ -19,17 +19,14 @@ using Vec2Ref = ginger::Vector2<double&>;
 class Options;
 
 /**
- * @brief Horner's rule
+ * @brief Horner's rule (reference-based Vec2 version)
  *
- * Horner's rule is a method for evaluating a polynomial of degree degree at a given
- * point x. It involves rewriting the polynomial as a nested multiplication and
- * addition of the form:
- *
- *  P(x) = a_0 + x(a_1 + x(a_2 + ... + x(a_{degree-1} + x(a_n))...))
- *
- * This form allows for efficient evaluation of the polynomial at a given point
- * x using only degree multiplications and degree additions. Horner's rule is commonly
- * used in numerical methods for polynomial evaluation and interpolation.
+ * Horner's rule evaluates a polynomial at a given point \f$x\f$.
+ * It rewrites the polynomial as nested multiplication:
+ * @f[
+ *     P(x) = a_0 + x(a_1 + x(a_2 + \cdots + x(a_{n-1} + x a_n)\cdots))
+ * @f]
+ * This allows evaluation using \f$n\f$ multiplications and \f$n\f$ additions.
  *
  * @param[in, out] coeffs coeffs is a reference to a vector of doubles. It is used to
  * store the coefficients of a polynomial.
@@ -58,6 +55,22 @@ extern auto horner_ref(std::vector<double>& coeffs, std::vector<Vec2Ref>& vcoeff
  * @f]
  * where \f$P\f$ and \f$Q\f$ are the remainders of synthetic division by \f$x^2 - rx - q\f$.
  *
+ * @dot
+ *   digraph bairstow_iter {
+ *     rankdir=LR; bgcolor="transparent";
+ *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+ *     init [label="Initial\n(r, q)", fillcolor="#a9cce3"];
+ *     horner [label="Synthetic\ndivision"];
+ *     jacobian [label="Jacobian\n+ adjoint"];
+ *     newton [label="Newton step\nDelta r, Delta q"];
+ *     check [label="|P|,|Q| < tol?", shape=diamond, fillcolor="#f9e79f"];
+ *     done [label="Quadratic\nfactor found!", fillcolor="#7fb3d8"];
+ *     init -> horner -> jacobian -> newton -> check;
+ *     check -> horner [label="No", style=dashed, color="#e74c3c"];
+ *     check -> done [label="Yes", color="#27ae60"];
+ *   }
+ * @enddot
+ *
  * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of the
  * polynomial. Each element of the vector corresponds to the coefficient of a term in the
  * polynomial, starting from the highest degree term and ending with the constant term. For example,
@@ -79,6 +92,12 @@ extern auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const Options&
 /**
  * @brief Create adjoint matrix from two vectors (reference-based)
  *
+ * Computes the adjugate matrix of the Jacobian in Bairstow's method:
+ * @f[
+ *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s \end{bmatrix}
+ * @f]
+ * where @f$ (p, s) = vp @f$ and @f$ (r_x, r_y) = vr @f$.
+ *
  * @param[in] vr Vector r (constant reference)
  * @param[in] vp Vector p (reference wrapper)
  * @return Mat2 The adjoint 2x2 matrix
@@ -92,7 +111,10 @@ inline auto makeadjoint_ref(const Vec2& vr, const Vec2Ref& vp) -> Mat2 {
 /**
  * @brief Calculate Newton correction delta (reference-based)
  *
- * Uses the adjoint matrix to compute the correction step in Bairstow's method.
+ * Uses the adjoint matrix to compute the correction step in Bairstow's method:
+ * @f[
+ *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)} \, vA
+ * @f]
  *
  * @param[in] vA Current remainder vector (reference wrapper)
  * @param[in] vr Direction vector r
