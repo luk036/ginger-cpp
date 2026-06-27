@@ -36,7 +36,8 @@ namespace ginger {
       public:
         /**
          * @brief Construct a thread pool with the given number of worker threads.
-         * @param[in] num_threads Number of worker threads. Defaults to hardware concurrency (min 1).
+         * @param[in] num_threads Number of worker threads. Defaults to hardware concurrency (min
+         * 1).
          */
         explicit thread_pool(size_t num_threads = std::thread::hardware_concurrency())
             : stop_(false) {

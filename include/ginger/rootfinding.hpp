@@ -61,13 +61,13 @@ extern auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>&
 
 /**
  * @brief Horner's rule
-     *
-     * Horner's rule is a method for evaluating a polynomial at a given point \f$x\f$.
-     * It rewrites the polynomial as nested multiplication:
-     * @f[
-     *     P(x) = a_0 + x(a_1 + x(a_2 + \cdots + x(a_{n-1} + x a_n)\cdots))
-     * @f]
-     * This allows evaluation using \f$n\f$ multiplications and \f$n\f$ additions.
+ *
+ * Horner's rule is a method for evaluating a polynomial at a given point \f$x\f$.
+ * It rewrites the polynomial as nested multiplication:
+ * @f[
+ *     P(x) = a_0 + x(a_1 + x(a_2 + \cdots + x(a_{n-1} + x a_n)\cdots))
+ * @f]
+ * This allows evaluation using \f$n\f$ multiplications and \f$n\f$ additions.
  *
  * @param[in, out] coeffs1 coeffs1 is a reference to a vector of doubles. It is used to
  * store the coefficients of a polynomial.
@@ -138,15 +138,15 @@ inline auto delta(const Vec2& vA, const Vec2& vr, const Vec2& vp) -> Vec2 {
 
 /**
  * The function `horner_eval` evaluates a polynomial using Horner's method.
-     *
-     * Evaluates:
-     * @f[
-     *     P(z) = a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n
-     * @f]
-     * using the recurrence \f$b_0 = a_0, \; b_{k+1} = a_{k+1} + b_k z\f$, returning \f$b_n\f$.
-     *
-     * @param[in,out] coeffs1 A vector of coefficients for a polynomial, where the coefficient at index
-     * i corresponds to the term with degree i.
+ *
+ * Evaluates:
+ * @f[
+ *     P(z) = a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n
+ * @f]
+ * using the recurrence \f$b_0 = a_0, \; b_{k+1} = a_{k+1} + b_k z\f$, returning \f$b_n\f$.
+ *
+ * @param[in,out] coeffs1 A vector of coefficients for a polynomial, where the coefficient at index
+ * i corresponds to the term with degree i.
  * @param[in] degree The degree parameter represents the degree of the polynomial. It indicates the
  * highest power of the variable in the polynomial equation.
  * @param[in] z The parameter `z` is a constant value that is used as the input to the polynomial

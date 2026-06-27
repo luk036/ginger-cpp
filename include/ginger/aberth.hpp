@@ -61,7 +61,8 @@ extern auto initial_aberth(const std::vector<double>& coeffs) -> std::vector<std
  *
  * Aberth's method iteratively improves root estimates for a polynomial \f$P(x)\f$:
  * @f[
- *     x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P'(x_k)}\Bigg/ \left(1 - \frac{P(x_k)}{P'(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
+ *     x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P'(x_k)}\Bigg/ \left(1 -
+ * \frac{P(x_k)}{P'(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
  * @f]
  * where the sum is over all other root approximations. The method is
  * robust but requires complex arithmetic even if the polynomial is real. This
@@ -93,7 +94,8 @@ extern auto aberth(const std::vector<double>& coeffs, std::vector<std::complex<d
  *
  * Multi-threaded variant of the Aberth-Ehrlich method:
  * @f[
- *     x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P'(x_k)}\Bigg/ \left(1 - \frac{P(x_k)}{P'(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
+ *     x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P'(x_k)}\Bigg/ \left(1 -
+ * \frac{P(x_k)}{P'(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
  * @f]
  * Each root is updated in parallel using separate threads.
  *
