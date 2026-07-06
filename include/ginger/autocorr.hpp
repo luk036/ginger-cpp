@@ -24,7 +24,8 @@ class Options;
  * a palindromic (auto-correlation) polynomial.
  *
  * @f[
- *     x^2 - r_k x - q_k, \quad r_k = 2\cos(2\pi\phi_2(k)), \quad q_k = -1, \quad k = 0,\dots,\lfloor n/2\rfloor
+ *     x^2 - r_k x - q_k, \quad r_k = 2\cos(2\pi\phi_2(k)), \quad q_k = -1, \quad k =
+ * 0,\dots,\lfloor n/2\rfloor
  * @f]
  *
  * @dot
@@ -56,7 +57,8 @@ extern auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<V
  * Each thread finds a quadratic factor @f$ x^2 - r_i x - q_i @f$ that respects the palindromic
  * symmetry, where the roots appear in reciprocal pairs:
  * @f[
- *     \begin{bmatrix} \Delta r_i \\ \Delta q_i \end{bmatrix} = -J_i^{-1} \begin{bmatrix} P_i \\ Q_i \end{bmatrix}
+ *     \begin{bmatrix} \Delta r_i \\ \Delta q_i \end{bmatrix} = -J_i^{-1} \begin{bmatrix} P_i \\ Q_i
+ * \end{bmatrix}
  * @f]
  *
  * @dot
@@ -65,8 +67,8 @@ extern auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<V
  *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
  *     coeffs [label="Palindromic\npolynomial", fillcolor="#a9cce3"];
  *     spawn [label="Spawn threads\none per factor", fillcolor="#f9e79f"];
- *     thread [label="Each thread:\nBairstow Newton\n(r_i, q_i) with\nreciprocal pairs", fillcolor="#d4e6f1"];
- *     sync [label="Sync all\nconverged?", shape=diamond, fillcolor="#f9e79f"];
+ *     thread [label="Each thread:\nBairstow Newton\n(r_i, q_i) with\nreciprocal pairs",
+ * fillcolor="#d4e6f1"]; sync [label="Sync all\nconverged?", shape=diamond, fillcolor="#f9e79f"];
  *     extract [label="Extract\nreciprocal roots\n(r, 1/r)", fillcolor="#d5f5e3"];
  *     done [label="All roots\nfound!", fillcolor="#7fb3d8"];
  *     coeffs -> spawn -> thread -> sync;

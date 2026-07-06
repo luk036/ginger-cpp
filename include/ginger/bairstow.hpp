@@ -51,7 +51,8 @@ extern auto horner_ref(std::vector<double>& coeffs, std::vector<Vec2Ref>& vcoeff
  * Bairstow's method finds quadratic factors of the form \f$x^2 - rx - q\f$ of a real polynomial
  * using Newton's method in 2D. At each iteration, the correction is:
  * @f[
- *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -J^{-1} \begin{bmatrix} P(r,q) \\ Q(r,q) \end{bmatrix}
+ *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -J^{-1} \begin{bmatrix} P(r,q) \\ Q(r,q)
+ * \end{bmatrix}
  * @f]
  * where \f$P\f$ and \f$Q\f$ are the remainders of synthetic division by \f$x^2 - rx - q\f$.
  *
@@ -94,7 +95,8 @@ extern auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const Options&
  *
  * Computes the adjugate matrix of the Jacobian in Bairstow's method:
  * @f[
- *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s \end{bmatrix}
+ *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s
+ * \end{bmatrix}
  * @f]
  * where @f$ (p, s) = vp @f$ and @f$ (r_x, r_y) = vr @f$.
  *
@@ -113,7 +115,8 @@ inline auto makeadjoint_ref(const Vec2& vr, const Vec2Ref& vp) -> Mat2 {
  *
  * Uses the adjoint matrix to compute the correction step in Bairstow's method:
  * @f[
- *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)} \, vA
+ *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)}
+ * \, vA
  * @f]
  *
  * @param[in] vA Current remainder vector (reference wrapper)
