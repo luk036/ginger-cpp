@@ -101,7 +101,6 @@ add_files("bench/BM_aberth.cpp")
 add_packages("benchmark", "fmt", "spdlog")
 if is_plat("linux", "macosx") then
 	add_syslinks("pthread")
-	-- target:add("links", "pthread", "m", "dl")
 end
 
 -- If you want to known more usage about xmake, please see https://xmake.io
