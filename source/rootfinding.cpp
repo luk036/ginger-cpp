@@ -102,6 +102,27 @@ auto horner(std::vector<double>& coeffs1, size_t degree, const Vec2& vr) -> Vec2
  * This process removes the contribution of root vrj from the evaluation at vri
  * @endverbatim
  */
+auto suppress_old(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
+    const auto vp = vri - vrj;
+    const auto r = vri.x();
+    const auto q = vri.y();
+    const auto p = vp.x();
+    const auto s = vp.y();
+    const auto f = r * p + s;
+    const auto qp = q * p;
+    const auto e = f * s - qp * p;
+    const auto a_val = vA.x();
+    const auto b_val = vA.y();
+    const auto a1_val = vA1.x();
+    const auto b1_val = vA1.y();
+    const auto new_a = (a_val * s - b_val * p) / e;
+    const auto new_b = (b_val * f - a_val * qp) / e;
+    const auto c = a1_val - new_a;
+    const auto d = (b1_val - new_b) - new_a * p;
+    vA = Vec2{new_a, new_b};
+    vA1 = Vec2{(c * s - d * p) / e, (d * f - c * qp) / e};
+}
+
 auto suppress(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void {
     const auto vp = vri - vrj;
     const auto p = vp.x();
@@ -232,8 +253,34 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
  * Convergence check across all iterates simultaneously
  * @endverbatim
  */
-auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                    const Options& options = Options()) -> std::pair<unsigned int, bool> {
+auto pbairstow_even_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                       const Options& options) -> std::pair<unsigned int, bool> {
+    const auto num_roots = vrs.size();
+    const auto degree = coeffs.size() - 1;
+
+    for (auto niter = 0U; niter != options.max_iters; ++niter) {
+        auto tolerance = 0.0;
+        for (auto idx = 0U; idx != num_roots; ++idx) {
+            auto local_coeffs = coeffs;
+            const auto& vri = vrs[idx];
+            auto vA = horner(local_coeffs, degree, vri);
+            const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
+            if (tol_i < options.tol_ind) continue;
+            auto vA1 = horner(local_coeffs, degree - 2, vri);
+            for (auto jdx = 0U; jdx < num_roots; ++jdx) {
+                if (jdx == idx) continue;
+                suppress_old(vA, vA1, vri, vrs[jdx]);
+            }
+            vrs[idx] -= delta_scalar(vA, vri, vA1);
+            tolerance = std::max(tolerance, tol_i);
+        }
+        if (tolerance < options.tolerance) return {niter, true};
+    }
+    return {options.max_iters, false};
+}
+
+auto pbairstow_even_mt(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                       const Options& options) -> std::pair<unsigned int, bool> {
     auto& pool = ginger::get_thread_pool();
 
 #if !defined(_MSC_VER) || !defined(_DEBUG)
@@ -243,7 +290,6 @@ auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
 #endif
 
     const auto num_roots = vrs.size();
-    const auto rr = fun::Robin<size_t>(num_roots);
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
         auto tolerance = 0.0;
@@ -251,7 +297,7 @@ auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
         results.reserve(num_roots);
 
         for (auto idx = 0U; idx != num_roots; ++idx) {
-            results.emplace_back(pool.enqueue([&coeffs, &vrs, &rr, idx]() {
+            results.emplace_back(pool.enqueue([&coeffs, &vrs, &options, idx, num_roots]() {
                 const auto degree = coeffs.size() - 1;
                 const auto& vri = vrs[idx];
 #if defined(_MSC_VER) && defined(_DEBUG)
@@ -260,13 +306,16 @@ auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                 local_coeffs = coeffs;
 #endif
                 auto vA = horner(local_coeffs, degree, vri);
-                auto vA1 = horner(local_coeffs, degree - 2, vri);
                 const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                for (auto jdx : rr.exclude(idx)) {
-                    const auto vrj = vrs[jdx];  // make a copy, don't reference!
-                    suppress(vA, vA1, vri, vrj);
+                if (tol_i < options.tol_ind) {
+                    return 0.0;  // already converged
                 }
-                vrs[idx] -= delta(vA, vri, vA1);  // Gauss-Seidel fashion
+                auto vA1 = horner(local_coeffs, degree - 2, vri);
+                for (auto jdx = 0U; jdx < num_roots; ++jdx) { if (jdx == idx) continue;
+                    const auto vrj = vrs[jdx];  // make a copy, don't reference!
+                    suppress_old(vA, vA1, vri, vrj);
+                }
+                vrs[idx] -= delta_scalar(vA, vri, vA1);  // Gauss-Seidel fashion
                 return tol_i;
             }));
         }

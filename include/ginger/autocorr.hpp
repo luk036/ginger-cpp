@@ -10,12 +10,8 @@
 #include <vector>
 
 #include "matrix2.hpp"
+#include "rootfinding.hpp"
 #include "vector2.hpp"
-
-using Vec2 = ginger::Vector2<double>;
-using Mat2 = ginger::Matrix2<Vec2>;
-
-class Options;
 
 /**
  * @brief Initial guess for the parallel Bairstow method (specific for auto-correlation function)
@@ -82,8 +78,16 @@ extern auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<V
  * @param[in] options maximum iterations and tolorance
  * @return std::pair<unsigned int, bool>
  */
-extern auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                               const Options& options) -> std::pair<unsigned int, bool>;
+extern auto pbairstow_autocorr_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                                  const Options& options) -> std::pair<unsigned int, bool>;
+
+extern auto pbairstow_autocorr_mt(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                                  const Options& options) -> std::pair<unsigned int, bool>;
+
+inline auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                               const Options& options) -> std::pair<unsigned int, bool> {
+    return pbairstow_autocorr_st(coeffs, vrs, options);
+}
 
 /**
  * @brief Extract autocorrelation quadratic factor
