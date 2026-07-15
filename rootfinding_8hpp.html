@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.4;  VERSION ${PROJECT_VERSION}</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.5;  VERSION ${PROJECT_VERSION}</span>
    </div>
   </td>
  </tr>
@@ -96,20 +96,12 @@ $(function() {
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for rootfinding.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="rootfinding_8hpp__incl.png" border="0" usemap="#aginger_2rootfinding_8hpp" alt=""/></div>
-<map name="aginger_2rootfinding_8hpp" id="aginger_2rootfinding_8hpp">
-<area shape="rect" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="24,5,190,31"/>
-<area shape="rect" title=" " alt="" coords="34,152,94,177"/>
-<area shape="poly" title=" " alt="" coords="73,33,39,52,24,64,12,80,8,96,14,112,25,128,39,141,35,145,21,131,9,114,3,96,7,78,20,61,36,47,70,28"/>
-<area shape="rect" title=" " alt="" coords="22,79,85,104"/>
-<area shape="poly" title=" " alt="" coords="100,33,72,69,68,66,96,29"/>
-<area shape="rect" href="matrix2_8hpp.html" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="110,79,211,104"/>
-<area shape="poly" title=" " alt="" coords="118,29,146,66,141,69,114,33"/>
-<area shape="rect" href="vector2_8hpp.html" title=" " alt="" coords="155,152,254,177"/>
-<area shape="poly" title=" " alt="" coords="155,28,194,46,211,60,225,77,231,93,231,110,221,140,216,138,226,109,226,94,221,80,208,64,191,51,153,33"/>
-<area shape="poly" title=" " alt="" coords="146,106,93,146,90,141,143,102"/>
-<area shape="poly" title=" " alt="" coords="170,103,192,139,188,142,165,106"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="rootfinding_8hpp__incl.svg" width="259" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="rootfinding_8hpp__dep__incl.svg" width="176" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="rootfinding_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -118,33 +110,45 @@ Include dependency graph for rootfinding.hpp:</div>
 Typedefs</h2></td></tr>
 <tr class="memitem:ae19467d9b2dbbd57d23a49734c6354b8" id="r_ae19467d9b2dbbd57d23a49734c6354b8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> = <a class="el" href="classginger_1_1Vector2.html">ginger::Vector2</a>&lt; double &gt;</td></tr>
 <tr class="separator:ae19467d9b2dbbd57d23a49734c6354b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09dcc1516e32f64b1b52dad53b675f08" id="r_a09dcc1516e32f64b1b52dad53b675f08"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a> = <a class="el" href="classginger_1_1Matrix2.html">ginger::Matrix2</a>&lt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt;</td></tr>
+<tr class="memitem:a09dcc1516e32f64b1b52dad53b675f08" id="r_a09dcc1516e32f64b1b52dad53b675f08"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a> = <a class="el" href="classginger_1_1Matrix2.html">ginger::Matrix2</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt;</td></tr>
 <tr class="separator:a09dcc1516e32f64b1b52dad53b675f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a08b40b6a19b0b89e0e473d77c0d3fb69" id="r_a08b40b6a19b0b89e0e473d77c0d3fb69"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a08b40b6a19b0b89e0e473d77c0d3fb69">initial_guess</a> (std::vector&lt; double &gt; coeffs) -&gt; std::vector&lt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt;</td></tr>
+<tr class="memitem:a08b40b6a19b0b89e0e473d77c0d3fb69" id="r_a08b40b6a19b0b89e0e473d77c0d3fb69"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a08b40b6a19b0b89e0e473d77c0d3fb69">initial_guess</a> (std::vector&lt; double &gt; coeffs) -&gt; std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt;</td></tr>
 <tr class="memdesc:a08b40b6a19b0b89e0e473d77c0d3fb69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial guess for the parallel Bairstow method.  <br /></td></tr>
 <tr class="separator:a08b40b6a19b0b89e0e473d77c0d3fb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0427aa9643759c3320b425c17a5e138c" id="r_a0427aa9643759c3320b425c17a5e138c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a0427aa9643759c3320b425c17a5e138c">pbairstow_even</a> (const std::vector&lt; double &gt; &amp;coeffs, std::vector&lt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;vrs, const <a class="el" href="classOptions.html">Options</a> &amp;options) -&gt; std::pair&lt; unsigned int, bool &gt;</td></tr>
-<tr class="memdesc:a0427aa9643759c3320b425c17a5e138c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multi-threading Bairstow's method (even degree only)  <br /></td></tr>
+<tr class="memitem:abf5413c04c6753540539a782783b4ac3" id="r_abf5413c04c6753540539a782783b4ac3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#abf5413c04c6753540539a782783b4ac3">pbairstow_even_st</a> (const std::vector&lt; double &gt; &amp;coeffs, std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;vrs, const <a class="el" href="classOptions.html">Options</a> &amp;options) -&gt; std::pair&lt; unsigned int, bool &gt;</td></tr>
+<tr class="memdesc:abf5413c04c6753540539a782783b4ac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multi-threading Bairstow's method (even degree only)  <br /></td></tr>
+<tr class="separator:abf5413c04c6753540539a782783b4ac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36693fa5f5621e14bff2be023665d05b" id="r_a36693fa5f5621e14bff2be023665d05b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a36693fa5f5621e14bff2be023665d05b">pbairstow_even_mt</a> (const std::vector&lt; double &gt; &amp;coeffs, std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;vrs, const <a class="el" href="classOptions.html">Options</a> &amp;options) -&gt; std::pair&lt; unsigned int, bool &gt;</td></tr>
+<tr class="separator:a36693fa5f5621e14bff2be023665d05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0427aa9643759c3320b425c17a5e138c" id="r_a0427aa9643759c3320b425c17a5e138c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a0427aa9643759c3320b425c17a5e138c">pbairstow_even</a> (const std::vector&lt; double &gt; &amp;coeffs, std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;vrs, const <a class="el" href="classOptions.html">Options</a> &amp;options) -&gt; std::pair&lt; unsigned int, bool &gt;</td></tr>
 <tr class="separator:a0427aa9643759c3320b425c17a5e138c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa05afc70e0a790f77aae8d4155d04cc9" id="r_aa05afc70e0a790f77aae8d4155d04cc9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#aa05afc70e0a790f77aae8d4155d04cc9">horner</a> (std::vector&lt; double &gt; &amp;coeffs1, std::size_t degree, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vr) -&gt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td></tr>
+<tr class="memitem:aa05afc70e0a790f77aae8d4155d04cc9" id="r_aa05afc70e0a790f77aae8d4155d04cc9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#aa05afc70e0a790f77aae8d4155d04cc9">horner</a> (std::vector&lt; double &gt; &amp;coeffs1, std::size_t degree, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vr) -&gt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td></tr>
 <tr class="memdesc:aa05afc70e0a790f77aae8d4155d04cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Horner's rule.  <br /></td></tr>
 <tr class="separator:aa05afc70e0a790f77aae8d4155d04cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a241f80ca028f09e7510fae9ab148b7" id="r_a0a241f80ca028f09e7510fae9ab148b7"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a0a241f80ca028f09e7510fae9ab148b7">suppress</a> (<a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA1, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vri, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vrj) -&gt; void</td></tr>
-<tr class="memdesc:a0a241f80ca028f09e7510fae9ab148b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero suppression step in Bairstow's method (variant 1)  <br /></td></tr>
+<tr class="memitem:a2954557d42e8096510d4cf5c793bcbb4" id="r_a2954557d42e8096510d4cf5c793bcbb4"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a2954557d42e8096510d4cf5c793bcbb4">suppress_old</a> (<a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA1, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vri, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vrj) -&gt; void</td></tr>
+<tr class="memdesc:a2954557d42e8096510d4cf5c793bcbb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero suppression step in Bairstow's method (scalar arithmetic)  <br /></td></tr>
+<tr class="separator:a2954557d42e8096510d4cf5c793bcbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a241f80ca028f09e7510fae9ab148b7" id="r_a0a241f80ca028f09e7510fae9ab148b7"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a0a241f80ca028f09e7510fae9ab148b7">suppress</a> (<a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA1, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vri, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vrj) -&gt; void</td></tr>
+<tr class="memdesc:a0a241f80ca028f09e7510fae9ab148b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero suppression step in Bairstow's method (matrix variant)  <br /></td></tr>
 <tr class="separator:a0a241f80ca028f09e7510fae9ab148b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a845095322475734a4a4c17a61da1a505" id="r_a845095322475734a4a4c17a61da1a505"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a845095322475734a4a4c17a61da1a505">suppress2</a> (<a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA1, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vri, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vrj) -&gt; void</td></tr>
+<tr class="memitem:a845095322475734a4a4c17a61da1a505" id="r_a845095322475734a4a4c17a61da1a505"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a845095322475734a4a4c17a61da1a505">suppress2</a> (<a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA1, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vri, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vrj) -&gt; void</td></tr>
 <tr class="memdesc:a845095322475734a4a4c17a61da1a505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero suppression step in Bairstow's method (variant 2)  <br /></td></tr>
 <tr class="separator:a845095322475734a4a4c17a61da1a505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f6614d3ea6830460ccd31f6fbe7ec68" id="r_a6f6614d3ea6830460ccd31f6fbe7ec68"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a6f6614d3ea6830460ccd31f6fbe7ec68">makeadjoint</a> (const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vr, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vp) -&gt; <a class="el" href="autocorr_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a></td></tr>
+<tr class="memitem:a6f6614d3ea6830460ccd31f6fbe7ec68" id="r_a6f6614d3ea6830460ccd31f6fbe7ec68"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a6f6614d3ea6830460ccd31f6fbe7ec68">makeadjoint</a> (const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vr, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vp) -&gt; <a class="el" href="bairstow_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a></td></tr>
+<tr class="memdesc:a6f6614d3ea6830460ccd31f6fbe7ec68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create adjoint matrix from two vectors.  <br /></td></tr>
 <tr class="separator:a6f6614d3ea6830460ccd31f6fbe7ec68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc8471d6f94a1e238d908108dd0b1da7" id="r_afc8471d6f94a1e238d908108dd0b1da7"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#afc8471d6f94a1e238d908108dd0b1da7">delta</a> (const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vr, const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vp) -&gt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td></tr>
+<tr class="memitem:a74907e7da90ef1cefce679f031d04d03" id="r_a74907e7da90ef1cefce679f031d04d03"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a74907e7da90ef1cefce679f031d04d03">delta_scalar</a> (const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vr, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vp) -&gt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td></tr>
+<tr class="memdesc:a74907e7da90ef1cefce679f031d04d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate Newton correction delta (scalar arithmetic, no Matrix2 temporaries)  <br /></td></tr>
+<tr class="separator:a74907e7da90ef1cefce679f031d04d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc8471d6f94a1e238d908108dd0b1da7" id="r_afc8471d6f94a1e238d908108dd0b1da7"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#afc8471d6f94a1e238d908108dd0b1da7">delta</a> (const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vA, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vr, const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;vp) -&gt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td></tr>
+<tr class="memdesc:afc8471d6f94a1e238d908108dd0b1da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate Newton correction delta (matrix-based)  <br /></td></tr>
 <tr class="separator:afc8471d6f94a1e238d908108dd0b1da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fb6b64b00eb4ba2e61a6983121e77a7" id="r_a5fb6b64b00eb4ba2e61a6983121e77a7"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a5fb6b64b00eb4ba2e61a6983121e77a7">horner_eval</a> (std::vector&lt; double &gt; coeffs1, std::size_t degree, const double &amp;z) -&gt; double</td></tr>
 <tr class="separator:a5fb6b64b00eb4ba2e61a6983121e77a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7efd5a3dfa4f1171f9e477ab20502952" id="r_a7efd5a3dfa4f1171f9e477ab20502952"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a7efd5a3dfa4f1171f9e477ab20502952">poly_from_quadratic_factors</a> (const std::vector&lt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;vrs) -&gt; std::vector&lt; double &gt;</td></tr>
+<tr class="memitem:a7efd5a3dfa4f1171f9e477ab20502952" id="r_a7efd5a3dfa4f1171f9e477ab20502952"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a7efd5a3dfa4f1171f9e477ab20502952">poly_from_quadratic_factors</a> (const std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;vrs) -&gt; std::vector&lt; double &gt;</td></tr>
 <tr class="memdesc:a7efd5a3dfa4f1171f9e477ab20502952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruct a monic polynomial from its quadratic factors.  <br /></td></tr>
 <tr class="separator:a7efd5a3dfa4f1171f9e477ab20502952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -158,7 +162,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="autocorr_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a> =  <a class="el" href="classginger_1_1Matrix2.html">ginger::Matrix2</a>&lt;<a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a>&gt;</td>
+          <td class="memname">using <a class="el" href="bairstow_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a> =  <a class="el" href="classginger_1_1Matrix2.html">ginger::Matrix2</a>&lt;<a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -172,7 +176,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> =  <a class="el" href="classginger_1_1Vector2.html">ginger::Vector2</a>&lt;double&gt;</td>
+          <td class="memname">using <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> =  <a class="el" href="classginger_1_1Vector2.html">ginger::Vector2</a>&lt;double&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -192,25 +196,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">auto delta </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vA</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vp</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> </td>
+          <td></td><td> -&gt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> </td>
         </tr>
       </table>
   </td>
@@ -219,7 +223,14 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The function calculates the delta value using the given parameters.</p>
+
+<p>Calculate Newton correction delta (matrix-based) </p>
+<p>Uses the adjoint matrix to compute the correction step in Bairstow's method:  </p><p class="formulaDsp">
+\[
+    \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)}
+\, vA
+\]
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">vA</td><td>A vector of type Vec2. </td></tr>
@@ -229,6 +240,61 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a Vec2 object. </dd></dl>
+
+</div>
+</div>
+<a id="a74907e7da90ef1cefce679f031d04d03" name="a74907e7da90ef1cefce679f031d04d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74907e7da90ef1cefce679f031d04d03">&#9670;&#160;</a></span>delta_scalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto delta_scalar </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramname"><em>vA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramname"><em>vr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramname"><em>vp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculate Newton correction delta (scalar arithmetic, no Matrix2 temporaries) </p>
+<p>Pure scalar computation of the Newton correction step in Bairstow's method. Avoids Matrix2 and Vector2 template instantiations in the hot loop.</p>
+<p>Adj = [[s, -p], [-p*q, p*r + s]], det = s*(p*r + s) - p*p*q result = (Adj * vA) / det</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vA</td><td>Residual vector (A, B) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vr</td><td>Current root estimate (r, q) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vp</td><td>Suppression vector (p, s) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vec2 Correction delta </dd></dl>
 
 </div>
 </div>
@@ -256,13 +322,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vr</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt;  <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td>
+          <td></td><td> -&gt;  <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td>
         </tr>
       </table>
   </td>
@@ -273,13 +339,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Horner's rule. </p>
-<pre class="fragment">Horner's rule is a method for evaluating a polynomial at a given point \f$x\f$.
-It rewrites the polynomial as nested multiplication:
-@f[
+<p>Horner's rule is a method for evaluating a polynomial at a given point \(x\). It rewrites the polynomial as nested multiplication:  </p><p class="formulaDsp">
+\[
     P(x) = a_0 + x(a_1 + x(a_2 + \cdots + x(a_{n-1} + x a_n)\cdots))
-@f]
-This allows evaluation using \f$n\f$ multiplications and \f$n\f$ additions.
-</pre> <dl class="params"><dt>Parameters</dt><dd>
+\]
+</p>
+<p> This allows evaluation using \(n\) multiplications and \(n\) additions.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">coeffs1</td><td>coeffs1 is a reference to a vector of doubles. It is used to store the coefficients of a polynomial. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">degree</td><td>The parameter <code>degree</code> represents the size of the vector <code>coeffs1</code>. It indicates the number of elements in the vector <code>coeffs1</code>. </td></tr>
@@ -330,16 +396,16 @@ This allows evaluation using \f$n\f$ multiplications and \f$n\f$ additions.
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The function <code>horner_eval</code> evaluates a polynomial using Horner's method. </p><pre class="fragment">Evaluates:
-@f[
+<p>The function <code>horner_eval</code> evaluates a polynomial using Horner's method.</p>
+<p>Evaluates:  </p><p class="formulaDsp">
+\[
     P(z) = a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n
-@f]
-using the recurrence \f$b_0 = a_0, \; b_{k+1} = a_{k+1} + b_k z\f$, returning \f$b_n\f$.
-
-@param[in,out] coeffs1 A vector of coefficients for a polynomial, where the coefficient at index
-i corresponds to the term with degree i.
-</pre> <dl class="params"><dt>Parameters</dt><dd>
+\]
+</p>
+<p> using the recurrence \(b_0 = a_0, \; b_{k+1} = a_{k+1} + b_k z\), returning \(b_n\).</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">coeffs1</td><td>A vector of coefficients for a polynomial, where the coefficient at index i corresponds to the term with degree i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">degree</td><td>The degree parameter represents the degree of the polynomial. It indicates the highest power of the variable in the polynomial equation. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">z</td><td>The parameter <code>z</code> is a constant value that is used as the input to the polynomial function being evaluated.</td></tr>
   </table>
@@ -363,7 +429,7 @@ i corresponds to the term with degree i.
           <td>(</td>
           <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
           <td class="paramname"><em>coeffs</em></td><td>)</td>
-          <td> -&gt;  std::vector&lt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt;</td>
+          <td> -&gt;  std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt;</td>
         </tr>
       </table>
   </td>
@@ -375,6 +441,13 @@ i corresponds to the term with degree i.
 
 <p>Initial guess for the parallel Bairstow method. </p>
 <p>The <code>initial_guess</code> function calculates the initial values for the parallel Bairstow method for finding the roots of a real polynomial.</p>
+<p>The initial quadratic factors are:  </p><p class="formulaDsp">
+\[
+    x^2 - r_k x - q_k, \quad r_k = 2R\cos(2\pi\phi_2(k)), \quad q_k = -R^2, \quad k =
+0,\dots,\lfloor n/2\rfloor
+\]
+</p>
+<p> where \( R \) is estimated from the polynomial coefficients.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>coeffs is a vector of doubles that represents the coefficients of a polynomial. The vector is passed by value.</td></tr>
@@ -397,19 +470,19 @@ i corresponds to the term with degree i.
         <tr>
           <td class="memname">auto makeadjoint </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vp</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="autocorr_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a> </td>
+          <td></td><td> -&gt; <a class="el" href="bairstow_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08">Mat2</a> </td>
         </tr>
       </table>
   </td>
@@ -418,7 +491,15 @@ i corresponds to the term with degree i.
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The function "makeadjoint" takes in a vector vr and a vector vp, and returns a 2x2 matrix where the elements are calculated based on the values of vr and vp.</p>
+
+<p>Create adjoint matrix from two vectors. </p>
+<p>Computes the adjugate matrix of the Jacobian in Bairstow's method:  </p><p class="formulaDsp">
+\[
+    \operatorname{adj}(J) = \begin{bmatrix} s &amp; -p \cdot r_y \\ -p &amp; p \cdot r_x + s
+\end{bmatrix}
+\]
+</p>
+<p> where \( (p, s) = vp \) and \( (r_x, r_y) = vr \).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">vr</td><td>A constant reference to a Vec2 object, representing the vector vr. </td></tr>
@@ -448,7 +529,91 @@ i corresponds to the term with degree i.
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vrs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classOptions.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::pair&lt;unsigned int, bool&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a36693fa5f5621e14bff2be023665d05b" name="a36693fa5f5621e14bff2be023665d05b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36693fa5f5621e14bff2be023665d05b">&#9670;&#160;</a></span>pbairstow_even_mt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto pbairstow_even_mt </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vrs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classOptions.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  std::pair&lt; unsigned int, bool &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf5413c04c6753540539a782783b4ac3" name="abf5413c04c6753540539a782783b4ac3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf5413c04c6753540539a782783b4ac3">&#9670;&#160;</a></span>pbairstow_even_st()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto pbairstow_even_st </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>vrs</em>, </td>
         </tr>
         <tr>
@@ -472,6 +637,15 @@ i corresponds to the term with degree i.
 
 <p>Multi-threading Bairstow's method (even degree only) </p>
 <p>The <code>pbairstow_even</code> function implements Bairstow's method for finding the roots of a real polynomial with an even degree using multi-threading.</p>
+<p>Each thread handles one quadratic factor \( x^2 - r_i x - q_i \), applying:  </p><p class="formulaDsp">
+\[
+    \begin{bmatrix} \Delta r_i \\ \Delta q_i \end{bmatrix} = -J_i^{-1} \begin{bmatrix} P_i \\ Q_i
+\end{bmatrix}
+\]
+</p>
+<p> where \( P_i, Q_i \) are the remainders from synthetic division.</p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_5.svg" width="1343" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>The <code>coeffs</code> parameter is a vector representing the coefficients of the polynomial. Each element of the vector corresponds to the coefficient of a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2x + 1</code>, the coefficients vector would be <code>{3, 2, 1}</code>. </td></tr>
@@ -496,7 +670,7 @@ i corresponds to the term with degree i.
         <tr>
           <td class="memname">auto poly_from_quadratic_factors </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>vrs</em></td><td>)</td>
           <td> -&gt;  std::vector&lt; double &gt;</td>
         </tr>
@@ -537,25 +711,25 @@ i corresponds to the term with degree i.
         <tr>
           <td class="memname">auto suppress </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vA</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vA1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vri</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vrj</em>&#160;</td>
         </tr>
         <tr>
@@ -571,8 +745,9 @@ i corresponds to the term with degree i.
 </table>
 </div><div class="memdoc">
 
-<p>Zero suppression step in Bairstow's method (variant 1) </p>
+<p>Zero suppression step in Bairstow's method (matrix variant) </p>
 <p>Finds coefficients of the linear remainder of a deflated polynomial without explicitly constructing the deflated polynomial, avoiding complex arithmetic within iterations.</p>
+<p>Uses adjoint-matrix formulation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">vA</td><td>First remainder coefficient </td></tr>
@@ -597,25 +772,25 @@ i corresponds to the term with degree i.
         <tr>
           <td class="memname">auto suppress2 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vA</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vA1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vri</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
           <td class="paramname"><em>vrj</em>&#160;</td>
         </tr>
         <tr>
@@ -632,7 +807,73 @@ i corresponds to the term with degree i.
 </div><div class="memdoc">
 
 <p>Zero suppression step in Bairstow's method (variant 2) </p>
-<p>Alternative formulation of the zero suppression technique.</p>
+<p>Alternative formulation of the zero suppression technique using adjugate matrix-based update:  </p><p class="formulaDsp">
+\[
+    \begin{bmatrix} vA \\ vA_1 \end{bmatrix}^+
+    = \begin{bmatrix} vA \\ vA_1 \end{bmatrix}
+    - \frac{\operatorname{adj}(J)}{\det(J)} \, vA
+\]
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">vA</td><td>First remainder coefficient </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">vA1</td><td>Second remainder coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vri</td><td>First known factor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vrj</td><td>Second known factor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2954557d42e8096510d4cf5c793bcbb4" name="a2954557d42e8096510d4cf5c793bcbb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2954557d42e8096510d4cf5c793bcbb4">&#9670;&#160;</a></span>suppress_old()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto suppress_old </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramname"><em>vA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramname"><em>vA1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramname"><em>vri</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;&#160;</td>
+          <td class="paramname"><em>vrj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  void</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zero suppression step in Bairstow's method (scalar arithmetic) </p>
+<p>In-place scalar variant that avoids Matrix2/Vector2 temporaries. Directly computes the adjusted remainder coefficients using Cramer's rule on the 2×2 Jacobian system.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">vA</td><td>First remainder coefficient </td></tr>

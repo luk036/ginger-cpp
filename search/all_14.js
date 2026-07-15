@@ -8,7 +8,7 @@ var searchData=
   ['vdcorput_3c_203_20_3e_5',['VdCorput&lt; 3 &gt;',['../classlds_1_1VdCorput.html',1,'lds']]],
   ['vdcorput_3c_205_20_3e_6',['VdCorput&lt; 5 &gt;',['../classlds_1_1VdCorput.html',1,'lds']]],
   ['vdcorput_3c_20base_20_3e_7',['VdCorput&lt; Base &gt;',['../classlds_1_1VdCorput.html',1,'lds']]],
-  ['vec2_8',['vec2',['../autocorr_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8',1,'Vec2:&#160;autocorr.hpp'],['../bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8',1,'Vec2:&#160;bairstow.hpp'],['../rootfinding_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8',1,'Vec2:&#160;rootfinding.hpp']]],
+  ['vec2_8',['vec2',['../bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8',1,'Vec2:&#160;bairstow.hpp'],['../rootfinding_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8',1,'Vec2:&#160;rootfinding.hpp']]],
   ['vec2ref_9',['Vec2Ref',['../bairstow_8hpp.html#a7068ac8e71012ab542c048af06ac0e4c',1,'bairstow.hpp']]],
   ['vector2_10',['vector2',['../classginger_1_1Vector2.html',1,'ginger::Vector2&lt; T1, T2 &gt;'],['../classginger_1_1Vector2.html#aeb1df5e8f2047a893225a655d639fd92',1,'ginger::Vector2::Vector2()'],['../classginger_1_1Vector2.html#a6ec8dab9bc283ad22080fb95c006323e',1,'ginger::Vector2::Vector2(T1 x, T2 y) noexcept'],['../classginger_1_1Vector2.html#ab9e3611b69701fd1e1f5da51ea0bbb7d',1,'ginger::Vector2::Vector2(const Vector2&lt; U1, U2 &gt; &amp;other)']]],
   ['vector2_2ehpp_11',['vector2.hpp',['../vector2_8hpp.html',1,'']]],

@@ -1,9 +1,10 @@
 <map id="ginger/matrix2.hpp" name="ginger/matrix2.hpp">
-<area shape="rect" id="Node000001" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="179,5,326,31"/>
-<area shape="rect" id="Node000002" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)" alt="" coords="5,79,153,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,38,109,81,107,76,211,33"/>
-<area shape="rect" id="Node000003" href="$bairstow_8hpp.html" title="Bairstow&#39;s root&#45;finding method with reference&#45;based vectors." alt="" coords="177,79,328,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,44,255,79,250,79,250,44"/>
-<area shape="rect" id="Node000004" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="353,79,518,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="296,33,406,76,404,81,294,38"/>
+<area shape="rect" id="Node000001" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="25,5,171,31"/>
+<area shape="rect" id="Node000002" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)" alt="" coords="59,152,207,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,39,36,52,18,68,9,85,9,93,12,103,26,119,43,132,81,149,79,154,40,136,22,123,8,105,3,94,3,84,14,64,33,48,56,34"/>
+<area shape="rect" id="Node000003" href="$bairstow_8hpp.html" title="Bairstow&#39;s root&#45;finding method with reference&#45;based vectors." alt="" coords="23,79,173,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,44,101,79,95,79,95,44"/>
+<area shape="rect" id="Node000004" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="198,79,363,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="141,33,252,76,250,81,139,38"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="246,112,158,154,156,149,244,107"/>
 </map>

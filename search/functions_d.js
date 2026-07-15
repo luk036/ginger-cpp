@@ -4,5 +4,6 @@ var searchData=
   ['sphere_1',['Sphere',['../classlds_1_1Sphere.html#a3b093370d990f47c1a0d1c2222c1544c',1,'lds::Sphere']]],
   ['sphere3hopf_2',['Sphere3Hopf',['../classlds_1_1Sphere3Hopf.html#aa472f5bd45f7c0a378b74a8d99b3a991',1,'lds::Sphere3Hopf']]],
   ['suppress_3',['suppress',['../rootfinding_8hpp.html#a0a241f80ca028f09e7510fae9ab148b7',1,'rootfinding.hpp']]],
-  ['suppress2_4',['suppress2',['../rootfinding_8hpp.html#a845095322475734a4a4c17a61da1a505',1,'rootfinding.hpp']]]
+  ['suppress2_4',['suppress2',['../rootfinding_8hpp.html#a845095322475734a4a4c17a61da1a505',1,'rootfinding.hpp']]],
+  ['suppress_5fold_5',['suppress_old',['../rootfinding_8hpp.html#a2954557d42e8096510d4cf5c793bcbb4',1,'rootfinding.hpp']]]
 ];

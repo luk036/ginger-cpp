@@ -9,5 +9,6 @@ var searchData=
   ['static_20analyzers_6',['Static Analyzers',['../index.html#autotoc_md9',1,'']]],
   ['suite_7',['Build and run test suite',['../index.html#autotoc_md5',1,'']]],
   ['suppress_8',['suppress',['../rootfinding_8hpp.html#a0a241f80ca028f09e7510fae9ab148b7',1,'rootfinding.hpp']]],
-  ['suppress2_9',['suppress2',['../rootfinding_8hpp.html#a845095322475734a4a4c17a61da1a505',1,'rootfinding.hpp']]]
+  ['suppress2_9',['suppress2',['../rootfinding_8hpp.html#a845095322475734a4a4c17a61da1a505',1,'rootfinding.hpp']]],
+  ['suppress_5fold_10',['suppress_old',['../rootfinding_8hpp.html#a2954557d42e8096510d4cf5c793bcbb4',1,'rootfinding.hpp']]]
 ];

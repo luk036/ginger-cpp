@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.4;  VERSION ${PROJECT_VERSION}</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.5;  VERSION ${PROJECT_VERSION}</span>
    </div>
   </td>
  </tr>
@@ -94,16 +94,7 @@ $(function() {
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for aberth.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="aberth_8hpp__incl.png" border="0" usemap="#aginger_2aberth_8hpp" alt=""/></div>
-<map name="aginger_2aberth_8hpp" id="aginger_2aberth_8hpp">
-<area shape="rect" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding." alt="" coords="69,5,207,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,84,104"/>
-<area shape="poly" title=" " alt="" coords="125,33,72,72,69,68,121,29"/>
-<area shape="rect" title=" " alt="" coords="108,79,168,104"/>
-<area shape="poly" title=" " alt="" coords="141,31,141,65,135,65,135,31"/>
-<area shape="rect" title=" " alt="" coords="192,79,255,104"/>
-<area shape="poly" title=" " alt="" coords="153,29,201,68,197,72,150,33"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="aberth_8hpp__incl.svg" width="260" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="aberth_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -197,10 +188,13 @@ Functions</h2></td></tr>
 <p>The <code>aberth</code> function is an implementation of the Aberth-Ehrlich method for finding the roots of a polynomial.</p>
 <p>Aberth's method iteratively improves root estimates for a polynomial \(P(x)\):  </p><p class="formulaDsp">
 \[
-    x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P&#39;(x_k)}\Bigg/ \left(1 - \frac{P(x_k)}{P&#39;(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
+    x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P&#39;(x_k)}\Bigg/ \left(1 -
+\frac{P(x_k)}{P&#39;(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
 \]
 </p>
 <p> where the sum is over all other root approximations. The method is robust but requires complex arithmetic even if the polynomial is real. This is because it starts with complex initial approximations.</p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_1.svg" width="1020" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>The <code>coeffs</code> parameter is a vector representing the coefficients of a polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2x + 1</code>, the coefficients vector would be <code>{3, 2, 1}</code>. </td></tr>
@@ -367,7 +361,8 @@ Functions</h2></td></tr>
 <p>The <code>aberth_mt</code> function is a multi-threaded implementation of the Aberth-Ehrlich method for finding the roots of a polynomial.</p>
 <p>Multi-threaded variant of the Aberth-Ehrlich method:  </p><p class="formulaDsp">
 \[
-    x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P&#39;(x_k)}\Bigg/ \left(1 - \frac{P(x_k)}{P&#39;(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
+    x_k^{(i+1)} = x_k^{(i)} - \frac{P(x_k)}{P&#39;(x_k)}\Bigg/ \left(1 -
+\frac{P(x_k)}{P&#39;(x_k)}\sum_{j \ne k}\frac{1}{x_k - x_j}\right)
 \]
 </p>
 <p> Each root is updated in parallel using separate threads.</p>
@@ -408,6 +403,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Circle sequence X-coordinate for an index. </p>
+<p>\( x = \cos(2\pi \cdot \phi_2(\text{index})) \)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Sequence index </td></tr>
@@ -443,6 +439,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Circle sequence Y-coordinate for an index. </p>
+<p>\( y = \sin(2\pi \cdot \phi_2(\text{index})) \)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Sequence index </td></tr>
@@ -478,6 +475,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cosine of pi times van der Corput value. </p>
+<p>\( \cos(\pi \cdot \phi_2(\text{index})) \)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Sequence index </td></tr>
@@ -514,6 +512,7 @@ Functions</h2></td></tr>
 
 <p>Initial guess for the Aberth-Ehrlich method. </p>
 <p>The <code>initial_aberth</code> function calculates the initial values for the Aberth-Ehrlich method for finding the roots of a polynomial.</p>
+<p>\( z_k = R \cdot e^{2\pi i \cdot \phi_2(k)}, \quad k = 0,\dots,n-1 \) where \( R \) is estimated from the polynomial coefficients.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>The <code>coeffs</code> parameter is a vector of doubles that represents the coefficients of a polynomial.</td></tr>
@@ -549,14 +548,15 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions) </p>
-<p>The <code>initial_aberth</code> function calculates the initial values for the Aberth-Ehrlich method for finding the roots of a polynomial.</p>
+<p>The <code>initial_aberth_autocorr</code> function calculates the initial values for the Aberth-Ehrlich method for finding the roots of a palindromic (auto-correlation) polynomial.</p>
+<p>\( z_k = e^{2\pi i \cdot \phi_2(k)}, \quad k = 0,\dots,\lfloor n/2 \rfloor \) where the roots are distributed on the unit circle.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>The <code>coeffs</code> parameter is a vector of doubles that represents the coefficients of a polynomial.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The function <code>initial_aberth</code> returns a vector of Complex numbers. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The function <code>initial_aberth_autocorr</code> returns a vector of Complex numbers. </dd></dl>
 
 </div>
 </div>
@@ -586,6 +586,12 @@ Functions</h2></td></tr>
 
 <p>Leja ordering of complex points. </p>
 <p>Reorders complex points using the greedy Leja algorithm: starts with the smallest-magnitude point, then iteratively selects the remaining point that maximizes the minimum Euclidean distance to all already-selected points. This ordering reduces numerical error when reconstructing polynomials from roots.</p>
+<p class="formulaDsp">
+\[
+    p_0 = \arg\min_{z \in S} |z|, \qquad
+    p_k = \arg\max_{z \in S_k} \min_{j &lt; k} |z - p_j|
+\]
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">points</td><td>Input vector of complex numbers </td></tr>
@@ -622,6 +628,11 @@ Functions</h2></td></tr>
 
 <p>Reconstruct a monic polynomial from its autocorrelation roots. </p>
 <p>Auto-correlation (palindromic) polynomials have roots in reciprocal pairs. The aberth_autocorr functions find the degree/2 "independent" roots. This function adds the reciprocal of each root (1/z) to get the full set of degree roots, then reconstructs with Leja ordering.</p>
+<p class="formulaDsp">
+\[
+    P(x) = \prod_{k=1}^{n} (x - r_k)(x - r_k^{-1}) = x^{2n} + a_{2n-1}x^{2n-1} + \cdots + a_0
+\]
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">zs</td><td>Roots found by aberth_autocorr or aberth_autocorr_mt </td></tr>
@@ -698,6 +709,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>van der Corput sequence value for a given index </p>
+<p>\( \phi_2(n) = \sum_{k=0}^{\infty} a_k(n) \, 2^{-k-1} \) where \( a_k(n) \) are the binary digits of \( n \).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Sequence index </td></tr>

@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.4;  VERSION ${PROJECT_VERSION}</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.5;  VERSION ${PROJECT_VERSION}</span>
    </div>
   </td>
  </tr>
@@ -92,12 +92,14 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:a66daa7efe88014eae430dabc2d899507" id="r_a66daa7efe88014eae430dabc2d899507"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOptions.html#a66daa7efe88014eae430dabc2d899507">max_iters</a> = 2000U</td></tr>
 <tr class="separator:a66daa7efe88014eae430dabc2d899507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac679b1118fdd146896bcd2cf5f35460f" id="r_ac679b1118fdd146896bcd2cf5f35460f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOptions.html#ac679b1118fdd146896bcd2cf5f35460f">tolerance</a> = 1e-14</td></tr>
+<tr class="memitem:ac679b1118fdd146896bcd2cf5f35460f" id="r_ac679b1118fdd146896bcd2cf5f35460f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOptions.html#ac679b1118fdd146896bcd2cf5f35460f">tolerance</a> = 1e-12</td></tr>
 <tr class="separator:ac679b1118fdd146896bcd2cf5f35460f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c1354e74bb46437ce0563b7a9f92aa" id="r_a95c1354e74bb46437ce0563b7a9f92aa"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOptions.html#a95c1354e74bb46437ce0563b7a9f92aa">tol_ind</a> = 1e-15</td></tr>
+<tr class="separator:a95c1354e74bb46437ce0563b7a9f92aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classOptions.html" title="Options for convergence-based algorithms.">Options</a> for convergence-based algorithms. </p>
-<p>Stores maximum iteration count and tolerance for convergence checks used by Bairstow and Aberth root-finding methods. </p>
+<p>Stores maximum iteration count, tolerance for global convergence, and per-root tolerance for convergence checks used by Bairstow and Aberth root-finding methods. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a66daa7efe88014eae430dabc2d899507" name="a66daa7efe88014eae430dabc2d899507"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a66daa7efe88014eae430dabc2d899507">&#9670;&#160;</a></span>max_iters</h2>
@@ -113,6 +115,20 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a95c1354e74bb46437ce0563b7a9f92aa" name="a95c1354e74bb46437ce0563b7a9f92aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95c1354e74bb46437ce0563b7a9f92aa">&#9670;&#160;</a></span>tol_ind</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Options::tol_ind = 1e-15</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac679b1118fdd146896bcd2cf5f35460f" name="ac679b1118fdd146896bcd2cf5f35460f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac679b1118fdd146896bcd2cf5f35460f">&#9670;&#160;</a></span>tolerance</h2>
 
@@ -120,7 +136,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double Options::tolerance = 1e-14</td>
+          <td class="memname">double Options::tolerance = 1e-12</td>
         </tr>
       </table>
 </div><div class="memdoc">
