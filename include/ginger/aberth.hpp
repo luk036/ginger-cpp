@@ -151,8 +151,8 @@ extern auto aberth_mt(const std::vector<double>& coeffs, std::vector<std::comple
 /**
  * @brief Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)
  *
- * The `initial_aberth_autocorr` function calculates the initial values for the Aberth-Ehrlich method
- * for finding the roots of a palindromic (auto-correlation) polynomial.
+ * The `initial_aberth_autocorr` function calculates the initial values for the Aberth-Ehrlich
+ * method for finding the roots of a palindromic (auto-correlation) polynomial.
  *
  * @f$ z_k = e^{2\pi i \cdot \phi_2(k)}, \quad k = 0,\dots,\lfloor n/2 \rfloor @f$
  * where the roots are distributed on the unit circle.

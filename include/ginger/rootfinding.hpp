@@ -30,7 +30,8 @@ class Options;
  *
  * The initial quadratic factors are:
  * @f[
- *     x^2 - r_k x - q_k, \quad r_k = 2R\cos(2\pi\phi_2(k)), \quad q_k = -R^2, \quad k = 0,\dots,\lfloor n/2\rfloor
+ *     x^2 - r_k x - q_k, \quad r_k = 2R\cos(2\pi\phi_2(k)), \quad q_k = -R^2, \quad k =
+ * 0,\dots,\lfloor n/2\rfloor
  * @f]
  * where @f$ R @f$ is estimated from the polynomial coefficients.
  *
@@ -49,7 +50,8 @@ extern auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2>;
  *
  * Each thread handles one quadratic factor @f$ x^2 - r_i x - q_i @f$, applying:
  * @f[
- *     \begin{bmatrix} \Delta r_i \\ \Delta q_i \end{bmatrix} = -J_i^{-1} \begin{bmatrix} P_i \\ Q_i \end{bmatrix}
+ *     \begin{bmatrix} \Delta r_i \\ \Delta q_i \end{bmatrix} = -J_i^{-1} \begin{bmatrix} P_i \\ Q_i
+ * \end{bmatrix}
  * @f]
  * where @f$ P_i, Q_i @f$ are the remainders from synthetic division.
  *
@@ -85,8 +87,16 @@ extern auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2>;
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  */
-extern auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                           const Options& options) -> std::pair<unsigned int, bool>;
+extern auto pbairstow_even_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                              const Options& options) -> std::pair<unsigned int, bool>;
+
+extern auto pbairstow_even_mt(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                              const Options& options) -> std::pair<unsigned int, bool>;
+
+inline auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
+                           const Options& options) -> std::pair<unsigned int, bool> {
+    return pbairstow_even_st(coeffs, vrs, options);
+}
 
 /**
  * @brief Horner's rule
@@ -111,17 +121,27 @@ extern auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>&
 extern auto horner(std::vector<double>& coeffs1, std::size_t degree, const Vec2& vr) -> Vec2;
 
 /**
- * @brief Zero suppression step in Bairstow's method (variant 1)
+ * @brief Zero suppression step in Bairstow's method (scalar arithmetic)
+ *
+ * In-place scalar variant that avoids Matrix2/Vector2 temporaries.
+ * Directly computes the adjusted remainder coefficients using
+ * Cramer's rule on the 2×2 Jacobian system.
+ *
+ * @param[in,out] vA First remainder coefficient
+ * @param[in,out] vA1 Second remainder coefficient
+ * @param[in] vri First known factor
+ * @param[in] vrj Second known factor
+ */
+extern auto suppress_old(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> void;
+
+/**
+ * @brief Zero suppression step in Bairstow's method (matrix variant)
  *
  * Finds coefficients of the linear remainder of a deflated polynomial
  * without explicitly constructing the deflated polynomial, avoiding
  * complex arithmetic within iterations.
  *
- * Suppresses a known quadratic factor @f$ x^2 - r_i x - q_i @f$ from the
- * remainder by adjusting the remainder coefficients:
- * @f[
- *     (a_0 + a_1 x) \bmod (x^2 - r_i x - q_i)(x^2 - r_j x - q_j)
- * @f]
+ * Uses adjoint-matrix formulation.
  *
  * @param[in,out] vA First remainder coefficient
  * @param[in,out] vA1 Second remainder coefficient
@@ -153,7 +173,8 @@ extern auto suppress2(Vec2& vA, Vec2& vA1, const Vec2& vri, const Vec2& vrj) -> 
  *
  * Computes the adjugate matrix of the Jacobian in Bairstow's method:
  * @f[
- *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s \end{bmatrix}
+ *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s
+ * \end{bmatrix}
  * @f]
  * where @f$ (p, s) = vp @f$ and @f$ (r_x, r_y) = vr @f$.
  *
@@ -169,11 +190,41 @@ inline auto makeadjoint(const Vec2& vr, const Vec2& vp) -> Mat2 {
 }
 
 /**
- * @brief Calculate Newton correction delta
+ * @brief Calculate Newton correction delta (scalar arithmetic, no Matrix2 temporaries)
+ *
+ * Pure scalar computation of the Newton correction step in Bairstow's method.
+ * Avoids Matrix2 and Vector2 template instantiations in the hot loop.
+ *
+ * Adj = [[s, -p], [-p*q, p*r + s]],  det = s*(p*r + s) - p*p*q
+ * result = (Adj * vA) / det
+ *
+ * @param[in] vA Residual vector (A, B)
+ * @param[in] vr Current root estimate (r, q)
+ * @param[in] vp Suppression vector (p, s)
+ * @return Vec2 Correction delta
+ */
+inline auto delta_scalar(const Vec2& vA, const Vec2& vr, const Vec2& vp) -> Vec2 {
+    const auto r = vr.x();
+    const auto q = vr.y();
+    const auto p = vp.x();
+    const auto s = vp.y();
+    // adj = [[s, -p], [-p*q, p*r + s]]
+    // det = s*(p*r + s) - p*p*q
+    const auto det = s * (p * r + s) - p * p * q;
+    // mdot_x = s*vA.x + (-p)*vA.y
+    // mdot_y = (-p*q)*vA.x + (p*r + s)*vA.y
+    const auto mx = s * vA.x() - p * vA.y();
+    const auto my = -p * q * vA.x() + (p * r + s) * vA.y();
+    return Vec2{mx / det, my / det};
+}
+
+/**
+ * @brief Calculate Newton correction delta (matrix-based)
  *
  * Uses the adjoint matrix to compute the correction step in Bairstow's method:
  * @f[
- *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)} \, vA
+ *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)}
+ * \, vA
  * @f]
  *
  * @param[in] vA A vector of type Vec2.

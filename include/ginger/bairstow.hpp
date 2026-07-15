@@ -95,7 +95,8 @@ extern auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const Options&
  *
  * Computes the adjugate matrix of the Jacobian in Bairstow's method:
  * @f[
- *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s \end{bmatrix}
+ *     \operatorname{adj}(J) = \begin{bmatrix} s & -p \cdot r_y \\ -p & p \cdot r_x + s
+ * \end{bmatrix}
  * @f]
  * where @f$ (p, s) = vp @f$ and @f$ (r_x, r_y) = vr @f$.
  *
@@ -114,7 +115,8 @@ inline auto makeadjoint_ref(const Vec2& vr, const Vec2Ref& vp) -> Mat2 {
  *
  * Uses the adjoint matrix to compute the correction step in Bairstow's method:
  * @f[
- *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)} \, vA
+ *     \begin{bmatrix} \Delta r \\ \Delta q \end{bmatrix} = -\frac{\operatorname{adj}(J)}{\det(J)}
+ * \, vA
  * @f]
  *
  * @param[in] vA Current remainder vector (reference wrapper)

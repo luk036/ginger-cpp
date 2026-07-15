@@ -232,15 +232,16 @@ auto aberth(const vector<double>& coeffs, vector<Complex>& zs, const Options& op
     for (auto idx = 0U; idx != degree; ++idx) {
         coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
-    const auto rr = fun::Robin<size_t>(zs.size());
+    const auto num_zs = zs.size();
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t idx) -> double {
+        return [&, num_zs](size_t idx) -> double {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
             auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx : rr.exclude(idx)) {
+            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
+                if (jdx == idx) continue;
                 P1 -= P / (zi - zs_ref[jdx]);
             }
             zs_ref[idx] -= P / P1;
@@ -259,15 +260,16 @@ auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
     for (auto idx = 0U; idx != degree; ++idx) {
         coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
-    const auto rr = fun::Robin<size_t>(zs.size());
+    const auto num_zs = zs.size();
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t idx) -> double {
+        return [&, num_zs](size_t idx) -> double {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
             auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx : rr.exclude(idx)) {
+            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
+                if (jdx == idx) continue;
                 P1 -= P / (zi - zs_ref[jdx]);
             }
             zs_ref[idx] -= P / P1;
@@ -385,15 +387,16 @@ auto aberth_autocorr(const vector<double>& coeffs, vector<Complex>& zs,
     for (auto idx = 0U; idx != degree; ++idx) {
         coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
-    const auto rr = fun::Robin<size_t>(zs.size());
+    const auto num_zs = zs.size();
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t idx) -> double {
+        return [&, num_zs](size_t idx) -> double {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
             auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx : rr.exclude(idx)) {
+            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
+                if (jdx == idx) continue;
                 P1 -= P / (zi - zs_ref[jdx]);
                 P1 -= P / (zi - 1.0 / zs_ref[jdx]);
             }
@@ -413,15 +416,16 @@ auto aberth_autocorr_mt(const vector<double>& coeffs, vector<Complex>& zs,
     for (auto idx = 0U; idx != degree; ++idx) {
         coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
     }
-    const auto rr = fun::Robin<size_t>(zs.size());
+    const auto num_zs = zs.size();
 
     auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&](size_t idx) -> double {
+        return [&, num_zs](size_t idx) -> double {
             const auto zi = zs_ref[idx];
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
             auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx : rr.exclude(idx)) {
+            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
+                if (jdx == idx) continue;
                 P1 -= P / (zi - zs_ref[jdx]);
                 P1 -= P / (zi - 1.0 / zs_ref[jdx]);
             }

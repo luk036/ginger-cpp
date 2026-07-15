@@ -60,6 +60,8 @@ namespace ginger {
         /**
          * The dot function calculates the dot product of two 2D vectors.
          *
+         * @f$ u \cdot v = u_x v_x + u_y v_y @f$
+         *
          * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref.
          *
          * @return The `dot` function is returning the dot product of two vectors, which is a scalar
@@ -72,6 +74,8 @@ namespace ginger {
         /**
          * The cross product of two 2D vectors is calculated by multiplying their x and y components
          * and subtracting the result.
+         *
+         * @f$ u \times v = u_x v_y - u_y v_x @f$
          *
          * @param[in] other The parameter "other" is a reference to an object of type Vector2Ref.
          *
