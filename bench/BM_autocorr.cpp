@@ -1,4 +1,5 @@
 #include <benchmark/benchmark.h>
+
 #include <ginger/autocorr.hpp>
 #include <ginger/config.hpp>
 #include <ginger/rootfinding.hpp>

@@ -311,7 +311,8 @@ auto pbairstow_even_mt(const std::vector<double>& coeffs, std::vector<Vec2>& vrs
                     return 0.0;  // already converged
                 }
                 auto vA1 = horner(local_coeffs, degree - 2, vri);
-                for (auto jdx = 0U; jdx < num_roots; ++jdx) { if (jdx == idx) continue;
+                for (auto jdx = 0U; jdx < num_roots; ++jdx) {
+                    if (jdx == idx) continue;
                     const auto vrj = vrs[jdx];  // make a copy, don't reference!
                     suppress_old(vA, vA1, vri, vrj);
                 }
