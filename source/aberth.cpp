@@ -1,10 +1,9 @@
 #include <algorithm>
 #include <cmath>    // for acos, cos, sin
 #include <complex>  // for complex, operator*, operator+
-#include <future>   // for future
+#include <ginger/aberth.hpp>
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>        // for Robin
-#include <ginger/thread_pool.hpp>  // for thread_pool
 #include <lds/lds.hpp>
 #include <limits>   // for numeric_limits
 #include <utility>  // for pair
@@ -14,120 +13,6 @@ using std::vector;
 using Complex = std::complex<double>;
 
 // static const auto TWO_PI = 2.0 * std::acos(-1.0);
-
-/// @brief Helper to generate a constexpr table of VdCorput<Base> values
-/// @tparam N Number of values to generate
-/// @tparam Base Base of the van der Corput sequence
-/// @return std::array<double, N> with precomputed sequence values
-template <unsigned long N, unsigned long Base = 2> constexpr auto make_vdc_table()
-    -> std::array<double, N> {
-    std::array<double, N> table{};
-    lds::VdCorput<Base> gen;
-    for (unsigned long i = 0; i < N; ++i) {
-        table[i] = gen.pop();
-    }
-    return table;
-}
-
-/// @brief Size of the precomputed VdCorput base-2 table
-constexpr const auto VDC_TABLE_SIZE = 1000UL;
-
-/// @brief Precomputed table of VdCorput sequence values (base 2)
-/// @details Generated at compile-time using VdCorput<2>
-constexpr std::array<double, VDC_TABLE_SIZE> VDC_TABLE_2 = make_vdc_table<VDC_TABLE_SIZE, 2>();
-
-/// @brief Access the precomputed VdCorput base-2 table
-/// @param index Index into the table
-/// @return The VDC value at the given index
-double vdc2_table(unsigned long index) { return VDC_TABLE_2[index]; }
-
-/// @brief Precomputed table of 1000 Circle<2> points
-/// @details Generated using precomputed VDC_TABLE_2 mapped to unit circle.
-///          Not constexpr: std::cos/std::sin lack portable constexpr support in C++20.
-static const auto CIRCLE_TABLE_2 = []() {
-    std::array<std::array<double, 2>, VDC_TABLE_SIZE> table{};
-    for (unsigned long i = 0; i < VDC_TABLE_SIZE; ++i) {
-        auto theta = VDC_TABLE_2[i] * lds::TWO_PI;
-        table[i] = {std::cos(theta), std::sin(theta)};
-    }
-    return table;
-}();
-
-/// @brief Access the precomputed Circle base-2 table x-coordinate
-/// @param index Index into the table
-/// @return The circle point x-coordinate at the given index
-constexpr double circle2_table_x(unsigned long index) { return CIRCLE_TABLE_2[index][0]; }
-
-/// @brief Access the precomputed Circle base-2 table y-coordinate
-/// @param index Index into the table
-/// @return The circle point y-coordinate at the given index
-constexpr double circle2_table_y(unsigned long index) { return CIRCLE_TABLE_2[index][1]; }
-
-/// @brief Precomputed table of cos(pi * vdc2_table[i]) values
-/// @details Used by initial_guess and initial_autocorr to avoid computing cos on the fly.
-static const auto COS_PI_VDC2_TABLE = []() {
-    std::array<double, VDC_TABLE_SIZE> table{};
-    for (unsigned long i = 0; i < VDC_TABLE_SIZE; ++i) {
-        table[i] = std::cos(lds::TWO_PI / 2.0 * VDC_TABLE_2[i]);
-    }
-    return table;
-}();
-
-/// @brief Access the precomputed cos(pi * vdc2_table[i]) value
-/// @param index Index into the table
-/// @return The cos(pi * vdc_value) at the given index
-double cos_pi_vdc2(unsigned long index) { return COS_PI_VDC2_TABLE[index]; }
-
-/**
- * The function `horner_eval_c` is implementing the Horner's method for
- * evaluating a polynomial at a given point.
- *
- * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
- * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
- * highest degree term and ending with the constant term.
- * @param[in] z
- * @return Tp
- *
- * @verbatim
- *        coeffs[0]      coeffs[1]      coeffs[2]                 coeffs[n-1]    coeffs[n]
- *     +-----------> + -----------> + -----------> + ... + -----------> + --------->
- *     |             |              |              |                   |            |
- *     |    z       v    z         v    z         v                   v    z       v    z
- *     +---> [x] --> +---> [x] --> +---> [x] --> +---> ... ----> +---> [x] --> +---> [x] --> result
- *           |                    |              |                           |              |
- *           +---------------------              +---------------------------+              |
- *           |                                   |                                        |
- *           +------------------------------------+----------------------------------------+
- *
- * P(x) = coeffs[0]*x^n + coeffs[1]*x^(n-1) + ... + coeffs[n-1]*x + coeffs[n]
- * @endverbatim
- */
-inline auto horner_eval_c(const std::vector<double>& coeffs, const std::complex<double>& zval)
-    -> std::complex<double> {
-    std::complex<double> result(0.0, 0.0);
-    for (auto coeff : coeffs) {
-        result = result * zval + coeff;
-    }
-    return result;
-}
-
-/**
- * The function `horner_eval_f` is implementing the Horner's method for
- * evaluating a polynomial at a given point.
- *
- * @param[in] coeffs The `coeffs` parameter is a vector representing the coefficients of a
- * polynomial. Each element of the vector corresponds to a term in the polynomial, starting from the
- * highest degree term and ending with the constant term.
- * @param[in] z
- * @return Tp
- */
-inline auto horner_eval_f(const std::vector<double>& coeffs, const double& zval) -> double {
-    double result(0.0);
-    for (auto coeff : coeffs) {
-        result = result * zval + coeff;
-    }
-    return result;
-}
 
 /**
  * @brief Initial guess for the Aberth-Ehrlich method
@@ -141,26 +26,6 @@ inline auto horner_eval_f(const std::vector<double>& coeffs, const double& zval)
  *
  * @return The function `initial_aberth` returns a vector of Complex numbers representing the
  * initial guesses for the roots of the polynomial.
- *
- * @verbatim
- *        center
- *          *
- *         /|\
- *        / | \ radius
- *       /  |  \
- *      *   |   *
- *     /    |    \
- *    *----------*----------> real
- *     \    |    /
- *      *   |   *
- *       \  |  /
- *        \ | /
- *         \|/
- *          *
- *         imag
- *
- * Initial points distributed on a circle around center
- * @endverbatim
  */
 auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;
@@ -201,53 +66,6 @@ template <typename F> static auto aberth_st_core(const vector<double>& coeffs, v
     return {options.max_iters, false};
 }
 
-// MT core — uses futures from thread pool with batched scheduling
-template <typename F> static auto aberth_mt_core(const vector<double>& coeffs, vector<Complex>& zs,
-                                                 const Options& options, ginger::thread_pool& pool,
-                                                 F& aberth_job_generator)
-    -> std::pair<unsigned int, bool> {
-    const auto num_roots = zs.size();
-    // For small problems, parallel overhead dominates; run sequentially.
-    const auto use_mt = num_roots > 4;
-    const auto pool_size = pool.size();
-    const auto num_threads = use_mt ? std::max(size_t{1}, std::min(pool_size, num_roots)) : size_t{1};
-    const auto chunk_size = use_mt ? (num_roots + num_threads - 1) / num_threads : num_roots;
-
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        auto zs_snapshot = zs;
-        // job reads from zs_snapshot (frozen for the iteration)
-        auto aberth_job = aberth_job_generator(coeffs, zs_snapshot);
-
-        vector<std::future<double>> results;
-        results.reserve(num_threads);
-        for (auto t = size_t{0}; t < num_threads; ++t) {
-            auto start = t * chunk_size;
-            auto end = std::min(start + chunk_size, num_roots);
-            if (start >= end) break;
-
-            results.emplace_back(pool.enqueue([&, start, end]() {
-                double max_tol = 0.0;
-                for (auto idx = start; idx < end; ++idx) {
-                    max_tol = std::max(max_tol, aberth_job(idx));
-                }
-                return max_tol;
-            }));
-        }
-        for (auto& result : results) {
-            tolerance = std::max(tolerance, result.get());
-        }
-        // copy snapshot updates back to zs
-        for (auto idx = size_t{0}; idx < num_roots; ++idx) {
-            zs[idx] = zs_snapshot[idx];
-        }
-        if (tolerance < options.tolerance) {
-            return {niter, true};
-        }
-    }
-    return {options.max_iters, false};
-}
-
 auto aberth(const vector<double>& coeffs, vector<Complex>& zs, const Options& options = Options())
     -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
@@ -275,34 +93,6 @@ auto aberth(const vector<double>& coeffs, vector<Complex>& zs, const Options& op
     return aberth_st_core(coeffs, zs, options, aberth_job_generator);
 }
 
-auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
-               const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    auto& pool = ginger::get_thread_pool();
-    const auto degree = coeffs.size() - 1;
-    auto coeffs1 = vector<double>(degree);
-    for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
-    }
-    const auto num_zs = zs.size();
-
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&, num_zs](size_t idx) -> double {
-            const auto zi = zs_ref[idx];
-            const auto P = horner_eval_c(coeffs, zi);
-            const auto tol_i = std::abs(P);
-            auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
-                if (jdx == idx) continue;
-                P1 -= P / (zi - zs_ref[jdx]);
-            }
-            zs_ref[idx] -= P / P1;
-            return tol_i;
-        };
-    };
-
-    return aberth_mt_core(coeffs, zs, options, pool, aberth_job_generator);
-}
-
 /**
  * @brief Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)
  *
@@ -315,29 +105,6 @@ auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
  *
  * @return The function `initial_aberth_autocorr` returns a vector of Complex numbers representing
  * the initial guesses for the roots of the polynomial.
- *
- * @verbatim
- * For auto-correlation functions:
- *
- *        center
- *          *
- *         /|\
- *        / | \ radius (limited to 1/radius if > 1)
- *       /  |  \
- *      *   |   *
- *     /    |    \
- *    *----------*----------> real
- *     \    |    /
- *      *   |   *
- *       \  |  /
- *        \ | /
- *         \|/
- *          *
- *         imag
- *
- * Initial points distributed on a circle around center, with radius adjustment
- * for auto-correlation specific properties
- * @endverbatim
  */
 auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
     const auto degree = coeffs.size() - 1;  // assume even
@@ -379,30 +146,6 @@ static auto aberth_autocorr_st_core(const vector<double>& coeffs, vector<Complex
     return {options.max_iters, false};
 }
 
-// MT core — uses futures from thread pool
-template <typename F>
-static auto aberth_autocorr_mt_core(const vector<double>& coeffs, vector<Complex>& zs,
-                                    const Options& options, ginger::thread_pool& pool,
-                                    F& aberth_job_generator) -> std::pair<unsigned int, bool> {
-    const auto num_roots = zs.size();
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        auto aberth_job = aberth_job_generator(coeffs, zs);
-        vector<std::future<double>> results;
-        results.reserve(num_roots);
-        for (auto idx = 0U; idx != num_roots; ++idx) {
-            results.emplace_back(pool.enqueue([&, idx]() { return aberth_job(idx); }));
-        }
-        for (auto& result : results) {
-            tolerance = std::max(tolerance, result.get());
-        }
-        if (tolerance < options.tolerance) {
-            return {niter, true};
-        }
-    }
-    return {options.max_iters, false};
-}
-
 auto aberth_autocorr(const vector<double>& coeffs, vector<Complex>& zs,
                      const Options& options = Options()) -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
@@ -429,35 +172,6 @@ auto aberth_autocorr(const vector<double>& coeffs, vector<Complex>& zs,
     };
 
     return aberth_autocorr_st_core(coeffs, zs, options, aberth_job_generator);
-}
-
-auto aberth_autocorr_mt(const vector<double>& coeffs, vector<Complex>& zs,
-                        const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    auto& pool = ginger::get_thread_pool();
-    const auto degree = coeffs.size() - 1;
-    auto coeffs1 = vector<double>(degree);
-    for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
-    }
-    const auto num_zs = zs.size();
-
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&, num_zs](size_t idx) -> double {
-            const auto zi = zs_ref[idx];
-            const auto P = horner_eval_c(coeffs, zi);
-            const auto tol_i = std::abs(P);
-            auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
-                if (jdx == idx) continue;
-                P1 -= P / (zi - zs_ref[jdx]);
-                P1 -= P / (zi - 1.0 / zs_ref[jdx]);
-            }
-            zs_ref[idx] -= P / P1;
-            return tol_i;
-        };
-    };
-
-    return aberth_autocorr_mt_core(coeffs, zs, options, pool, aberth_job_generator);
 }
 
 auto leja_order(const vector<Complex>& points) -> vector<Complex> {
@@ -493,8 +207,6 @@ auto leja_order(const vector<Complex>& points) -> vector<Complex> {
     }
     return result;
 }
-
-auto poly_from_roots(const vector<Complex>& zs) -> vector<double>;
 
 auto poly_from_autocorr_roots(const vector<Complex>& zs) -> vector<double> {
     if (zs.empty()) {

@@ -2,6 +2,7 @@
 #include <nanobench.h>
 
 #include <ginger/aberth.hpp>
+#include <ginger/aberth_mt.hpp>
 #include <ginger/config.hpp>
 #include <vector>
 
