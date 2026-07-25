@@ -5,7 +5,6 @@
 
 #pragma once
 
-// import numpy as np
 #include <complex>
 #include <utility>
 #include <vector>

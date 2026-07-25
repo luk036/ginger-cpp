@@ -63,6 +63,8 @@ namespace ginger {
             }
         }
 
+        [[nodiscard]] auto size() const -> size_t { return workers_.size(); }
+
         thread_pool(const thread_pool&) = delete;
         thread_pool& operator=(const thread_pool&) = delete;
 
