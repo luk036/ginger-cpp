@@ -3,9 +3,9 @@
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
 #include <ginger/aberth_mt.hpp>  // for aberth, initial_aberth
-#include <ginger/config.hpp>  // for Options
-#include <utility>            // for pair
-#include <vector>             // for vector
+#include <ginger/config.hpp>     // for Options
+#include <utility>               // for pair
+#include <vector>                // for vector
 
 TEST_CASE("test aberth_mt 1") {
     auto h = std::vector<double>{5., 2., 9., 6., 2.};

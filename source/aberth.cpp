@@ -3,7 +3,7 @@
 #include <complex>  // for complex, operator*, operator+
 #include <ginger/aberth.hpp>
 #include <ginger/config.hpp>
-#include <ginger/robin.hpp>        // for Robin
+#include <ginger/robin.hpp>  // for Robin
 #include <lds/lds.hpp>
 #include <limits>   // for numeric_limits
 #include <utility>  // for pair

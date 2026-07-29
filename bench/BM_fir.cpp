@@ -36,7 +36,11 @@ auto run_fir_pbairstow() -> std::pair<unsigned int, bool> {
 int main() {
     {
         ankerl::nanobench::Bench bench;
-        bench.title("FIR polynomial root-finding").unit("op").warmup(100).epochs(50).minEpochIterations(250);
+        bench.title("FIR polynomial root-finding")
+            .unit("op")
+            .warmup(100)
+            .epochs(50)
+            .minEpochIterations(250);
 
         bench.run("FIR_Autocorr", [&] {
             auto result = run_fir_autocorr();

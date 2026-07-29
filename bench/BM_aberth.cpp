@@ -21,7 +21,11 @@ static const auto degree8
 int main() {
     {
         ankerl::nanobench::Bench bench;
-        bench.title("Aberth root-finding (ST)").unit("op").warmup(100).epochs(50).minEpochIterations(20);
+        bench.title("Aberth root-finding (ST)")
+            .unit("op")
+            .warmup(100)
+            .epochs(50)
+            .minEpochIterations(20);
 
         bench.run("FIR_Aberth", [&] {
             auto vrs = initial_aberth(global_r);

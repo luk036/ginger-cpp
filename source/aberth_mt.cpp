@@ -22,7 +22,8 @@ template <typename F> static auto aberth_mt_core(const vector<double>& coeffs, v
     // For small problems, parallel overhead dominates; run sequentially.
     const auto use_mt = num_roots > 4;
     const auto pool_size = pool.size();
-    const auto num_threads = use_mt ? std::max(size_t{1}, std::min(pool_size, num_roots)) : size_t{1};
+    const auto num_threads
+        = use_mt ? std::max(size_t{1}, std::min(pool_size, num_roots)) : size_t{1};
     const auto chunk_size = use_mt ? (num_roots + num_threads - 1) / num_threads : num_roots;
 
     for (auto niter = 0U; niter != options.max_iters; ++niter) {
