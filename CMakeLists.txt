@@ -91,6 +91,14 @@ else()
   )
 endif()
 
+# lds provides the van der Corput / low-discrepancy generators used by the Aberth initial guesses.
+CPMAddPackage(
+  NAME Lds
+  GIT_TAG v1.2.4
+  GITHUB_REPOSITORY luk036/lds-cpp
+  OPTIONS "LDS_BUILD_TESTS OFF" "LDS_BUILD_STANDALONE OFF"
+)
+
 set(SPECIFIC_LIBS Threads::Threads fmt::fmt spdlog::spdlog)
 
 # ---------------------------------------------------------------------------
@@ -106,11 +114,13 @@ file(GLOB_RECURSE headers CONFIGURE_DEPENDS
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
 
 add_library(${PROJECT_NAME} ${headers} ${sources})
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
 
 # being a cross-platform target, we enforce standards conformance on MSVC
 target_compile_options(${PROJECT_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
+# aberth.hpp publicly includes <lds/lds.hpp>, so the Lds dependency must be public
+target_link_libraries(${PROJECT_NAME} PUBLIC Lds::Lds)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SPECIFIC_LIBS})
 
 # Any TU using spdlog must compile with spdlog's own interface definitions (SPDLOG_COMPILED_LIB,
@@ -143,7 +153,7 @@ packageProject(
   INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
-  DEPENDENCIES "fmt 12.1.0"
+  DEPENDENCIES "fmt 12.1.0" "Lds 1.2.4"
 )
 
 # ---------------------------------------------------------------------------
@@ -162,7 +172,7 @@ if(GINGER_BUILD_STANDALONE)
 
   file(GLOB GINGER_STANDALONE_SOURCES CONFIGURE_DEPENDS "standalone/source/*.cpp")
   add_executable(GingerStandalone ${GINGER_STANDALONE_SOURCES})
-  set_target_properties(GingerStandalone PROPERTIES OUTPUT_NAME "Ginger" CXX_STANDARD 17)
+  set_target_properties(GingerStandalone PROPERTIES OUTPUT_NAME "Ginger" CXX_STANDARD 20)
   target_include_directories(GingerStandalone SYSTEM PRIVATE ${CXXOPTS_INCLUDE_DIRS})
   target_link_libraries(GingerStandalone PRIVATE Ginger::Ginger cxxopts::cxxopts ${SPECIFIC_LIBS})
   target_enable_warnings(GingerStandalone)
@@ -206,7 +216,7 @@ if(GINGER_BUILD_TESTS)
   )
   target_include_directories(GingerTests PRIVATE ${rapidcheck_SOURCE_DIR}/include)
   target_compile_definitions(GingerTests PRIVATE RAPIDCHECK_H)
-  set_target_properties(GingerTests PROPERTIES CXX_STANDARD 17)
+  set_target_properties(GingerTests PROPERTIES CXX_STANDARD 20)
   target_enable_warnings(GingerTests)
   add_test(NAME GingerAllTests COMMAND GingerTests)
 endif()
@@ -244,7 +254,7 @@ if(GINGER_BUILD_BENCHMARKS)
     set(TARGET_NAME Bench_${ONE_BENCH_EXEC})
 
     add_executable(${TARGET_NAME} ${ONE_BENCH_CPP})
-    set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME ${ONE_BENCH_EXEC} CXX_STANDARD 17)
+    set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME ${ONE_BENCH_EXEC} CXX_STANDARD 20)
     target_link_libraries(${TARGET_NAME} PRIVATE nanobench Ginger::Ginger ${SPECIFIC_LIBS})
     target_enable_warnings(${TARGET_NAME})
     add_test(NAME ${ONE_BENCH_EXEC} COMMAND ${TARGET_NAME})
