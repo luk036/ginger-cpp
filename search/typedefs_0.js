@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['difference_5ftype_0',['difference_type',['../classlds_1_1GeneratorIterator.html#ab62f4091a4ab69993536fd020bb3156b',1,'lds::GeneratorIterator']]]
+  ['mat2_0',['mat2',['../bairstow_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08',1,'Mat2:&#160;bairstow.hpp'],['../rootfinding_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08',1,'Mat2:&#160;rootfinding.hpp']]]
 ];

@@ -11,6 +11,5 @@ var searchData=
   ['to_20your_20needs_8',['Adjust the template to your needs',['../index.html#autotoc_md3',1,'']]],
   ['tol_5find_9',['tol_ind',['../classOptions.html#a95c1354e74bb46437ce0563b7a9f92aa',1,'Options']]],
   ['tolerance_10',['tolerance',['../classOptions.html#ac679b1118fdd146896bcd2cf5f35460f',1,'Options']]],
-  ['tools_11',['Additional tools',['../index.html#additional-tools',1,'']]],
-  ['two_5fpi_12',['TWO_PI',['../namespacelds.html#abb9d0ebf6d596e86033d72ed2681e5f3',1,'lds']]]
+  ['tools_11',['Additional tools',['../index.html#additional-tools',1,'']]]
 ];

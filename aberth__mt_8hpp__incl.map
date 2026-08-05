@@ -1,0 +1,13 @@
+<map id="ginger/aberth_mt.hpp" name="ginger/aberth_mt.hpp">
+<area shape="rect" id="Node000001" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (MT)" alt="" coords="122,5,285,31"/>
+<area shape="rect" id="Node000002" href="$aberth_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding." alt="" coords="157,79,249,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,31,206,65,201,65,201,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,84,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="179,106,84,149,82,144,177,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="108,152,200,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="197,106,172,142,168,139,193,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="224,152,284,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="214,103,240,139,236,142,210,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="308,152,371,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="226,102,306,143,304,148,224,106"/>
+</map>
