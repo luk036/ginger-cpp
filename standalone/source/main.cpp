@@ -1,53 +1,36 @@
-#include <ginger/greeter.h>
+#include <ginger/aberth.hpp>
+#include <ginger/config.hpp>
 #include <ginger/version.h>
 
 #include <cxxopts.hpp>
 #include <iostream>
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 auto main(int argc, char** argv) -> int {
-    const std::unordered_map<std::string, ginger::LanguageCode> languages{
-        {"en", ginger::LanguageCode::EN},
-        {"de", ginger::LanguageCode::DE},
-        {"es", ginger::LanguageCode::ES},
-        {"fr", ginger::LanguageCode::FR},
-    };
+    cxxopts::Options options("Ginger", "Polynomial root-finding demo");
+    options.add_options()("h,help", "Print usage")("v,version", "Print version");
 
-    cxxopts::Options options(*argv, "A program to welcome the world!");
-
-    std::string language;
-    std::string name;
-
-    // clang-format off
-  options.add_options()
-    ("h,help", "Show help")
-    ("v,version", "Print the current version number")
-    ("n,name", "Name to greet", cxxopts::value(name)->default_value("World"))
-    ("l,lang", "Language code to use", cxxopts::value(language)->default_value("en"))
-  ;
-    // clang-format on
-
-    auto result = options.parse(argc, argv);
-
-    if (result["help"].as<bool>()) {
+    const auto result = options.parse(argc, argv);
+    if (result.count("help") > 0) {
         std::cout << options.help() << '\n';
         return 0;
     }
-
-    if (result["version"].as<bool>()) {
+    if (result.count("version") > 0) {
         std::cout << "Ginger, version " << GINGER_VERSION << '\n';
         return 0;
     }
 
-    auto langIt = languages.find(language);
-    if (langIt == languages.end()) {
-        std::cerr << "unknown language code: " << language << '\n';
-        return 1;
-    }
+    const std::vector<double> coeffs{1.0, -3.0, 2.0};
+    auto zs = initial_aberth(coeffs);
+    const auto [iters, converged] = aberth(coeffs, zs, Options{});
 
-    ginger::Ginger ginger(name);
-    std::cout << ginger.greet(langIt->second) << '\n';
+    std::cout << "Ginger: roots of x^2 - 3x + 2 (converged=" << std::boolalpha << converged
+              << ", iters=" << iters << "):";
+    for (const auto& z : zs) {
+        std::cout << ' ' << z;
+    }
+    std::cout << '\n';
 
     return 0;
 }
