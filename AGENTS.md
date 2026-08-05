@@ -10,43 +10,44 @@ ginger-cpp is a C++ library for polynomial root-finding algorithms (parallelizab
 
 ### Build the Library
 ```bash
-cmake -S . -B build
+cmake -B build
 cmake --build build
 ```
 
 ### Build and Run All Tests
 ```bash
-cmake -S test -B build/test
-cmake --build build/test
-CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
+cmake -B build
+cmake --build build
+ctest --test-dir build --output-on-failure
 
 # Or run the executable directly:
-./build/test/GingerTests
+./build/GingerTests
 ```
 
 ### Run a Single Test (doctest filter)
 ```bash
 # Run specific test case
-./build/test/GingerTests -tc="test_case_name"
+./build/GingerTests -tc="test_case_name"
 
 # Run specific test suite
-./build/test/GingerTests -ts="test_suite_name"
+./build/GingerTests -ts="test_suite_name"
 
 # List all test cases
-./build/test/GingerTests --list-test-cases
+./build/GingerTests --list-test-cases
 ```
 
 ### Build with Coverage (Linux/macOS)
 ```bash
-cmake -S test -B build/test -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
-cmake --build build/test
-./build/test/GingerTests
+cmake -B build -DGINGER_ENABLE_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
+cmake --build build
+./build/GingerTests
 ```
 
-### Build All Subprojects
+### Build Standalone
 ```bash
-cmake -S all -B build
+cmake -B build
 cmake --build build
+./build/Ginger --help
 ```
 
 ---
@@ -55,14 +56,14 @@ cmake --build build
 
 ### Check Format
 ```bash
-cmake -S test -B build/test
-cmake --build build/test --target format
+cmake -B build
+cmake --build build --target format
 ```
 
 ### Auto-Fix Format
 ```bash
-cmake -S test -B build/test
-cmake --build build/test --target fix-format
+cmake -B build
+cmake --build build --target fix-format
 ```
 
 Requirements: `clang-format==18.1.2`, `cmake-format==0.6.13`, `pyyaml`
@@ -153,10 +154,10 @@ ginger-cpp/
 │   ├── matrix2.hpp
 │   └── vector2.hpp
 ├── source/               # Implementation (.cpp)
-├── test/                 # Test suite (doctest + RapidCheck)
-├── standalone/           # Example executable
-├── cmake/                # CMake modules
-├── CMakeLists.txt       # Library definition
+├── test/source/          # Test suite (doctest + RapidCheck)
+├── standalone/source/    # Example executable
+├── test_installed/       # Consumer install test (CI only)
+├── CMakeLists.txt       # Single-root build configuration
 └── .clang-format        # Code formatter config
 ```
 
@@ -164,9 +165,12 @@ ginger-cpp/
 
 ## Dependencies (via CPM.cmake)
 
+- **fmt**@12.1.0 - Formatting (system-installed first)
+- **spdlog**@v1.17.0 - Logging (system-installed first, `SPDLOG_FMT_EXTERNAL` always set)
 - **doctest**@2.5.2 - Testing framework
 - **rapidcheck** (master) - Property-based testing
-- **fmt** (installed via PackageProject.cmake) - Formatting
+- **cxxopts**@3.2.1 - CLI parsing (standalone only)
+- **nanobench**@4.3.11 - Benchmarking (header-only download)
 
 ---
 
@@ -175,26 +179,27 @@ ginger-cpp/
 - **ubuntu.yml**: Build + test + coverage on Ubuntu
 - **windows.yml**: Build + test on Windows
 - **macos.yml**: Build + test on macOS
-- **install.yml**: Test installation via `find_package`
+- **install.yml**: Build/install library, then test consumer via `find_package(Ginger)`
 - **benchmark.yml**: Performance benchmarking
+- **documentation.yaml**: Build + publish Doxygen docs on release
 
-All CI runs `ctest --build-config Debug` with `CTEST_OUTPUT_ON_FAILURE=1`.
+All CI runs with `CTEST_OUTPUT_ON_FAILURE=1`.
 
 ---
 
 ## Additional Tools
 
-### Sanitizers
-```bash
-cmake -S test -B build/test -DUSE_SANITIZER=Address
-```
-
 ### Static Analyzers
+
 ```bash
-cmake -S test -B build/test -DUSE_STATIC_ANALYZER=clang-tidy
+cmake -B build -DGINGER_ENABLE_CLANG_TIDY=ON
+cmake --build build --target clang-tidy
 ```
 
-### Ccache
+### Coverage
+
 ```bash
-cmake -S test -B build/test -DUSE_CCACHE=ON
+cmake -B build -DGINGER_ENABLE_COVERAGE=1
+cmake --build build
+cmake --build build --target coverage
 ```
