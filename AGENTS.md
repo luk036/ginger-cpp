@@ -167,6 +167,7 @@ ginger-cpp/
 
 - **fmt**@12.1.0 - Formatting (system-installed first)
 - **spdlog**@v1.17.0 - Logging (system-installed first, `SPDLOG_FMT_EXTERNAL` always set)
+- **Lds**@v1.2.4 - van der Corput / low-discrepancy generators for Aberth initial guesses ([lds-cpp](https://github.com/luk036/lds-cpp))
 - **doctest**@2.5.2 - Testing framework
 - **rapidcheck** (master) - Property-based testing
 - **cxxopts**@3.2.1 - CLI parsing (standalone only)
