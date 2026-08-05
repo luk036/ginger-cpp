@@ -1,4 +1,6 @@
-#include <benchmark/benchmark.h>
+#define ANKERL_NANOBENCH_IMPLEMENT
+#include <nanobench.h>
+
 #include <ginger/autocorr.hpp>
 #include <ginger/config.hpp>
 #include <ginger/rootfinding.hpp>
@@ -40,24 +42,43 @@ auto run_pbairstow_mt() {
     return result;
 }
 
-static void Autocorr_ST(benchmark::State& state) {
-    for (auto _ : state) run_autocorr_st();
-}
-BENCHMARK(Autocorr_ST);
+int main() {
+    {
+        ankerl::nanobench::Bench bench;
+        bench.title("Autocorr root-finding")
+            .unit("op")
+            .warmup(100)
+            .epochs(50)
+            .minEpochIterations(50000);
 
-static void PBairstow_ST(benchmark::State& state) {
-    for (auto _ : state) run_pbairstow_st();
-}
-BENCHMARK(PBairstow_ST);
+        bench.run("Autocorr_ST", [&] {
+            auto result = run_autocorr_st();
+            ankerl::nanobench::doNotOptimizeAway(result);
+        });
 
-static void Autocorr_MT(benchmark::State& state) {
-    for (auto _ : state) run_autocorr_mt();
-}
-BENCHMARK(Autocorr_MT);
+        bench.run("PBairstow_ST", [&] {
+            auto result = run_pbairstow_st();
+            ankerl::nanobench::doNotOptimizeAway(result);
+        });
 
-static void PBairstow_MT(benchmark::State& state) {
-    for (auto _ : state) run_pbairstow_mt();
-}
-BENCHMARK(PBairstow_MT);
+        bench.run("Autocorr_MT", [&] {
+            auto result = run_autocorr_mt();
+            ankerl::nanobench::doNotOptimizeAway(result);
+        });
+    }
 
-BENCHMARK_MAIN();
+    // PBairstow_MT is slower (~360µs/iter), so use lower minEpochIterations
+    {
+        ankerl::nanobench::Bench bench;
+        bench.title("Autocorr root-finding (PBairstow_MT)")
+            .unit("op")
+            .warmup(10)
+            .epochs(30)
+            .minEpochIterations(2000);
+
+        bench.run("PBairstow_MT", [&] {
+            auto result = run_pbairstow_mt();
+            ankerl::nanobench::doNotOptimizeAway(result);
+        });
+    }
+}

@@ -1,7 +1,7 @@
 add_rules("mode.debug", "mode.release", "mode.coverage")
 add_requires("doctest", { alias = "doctest" })
 add_requires("fmt", { alias = "fmt" })
-add_requires("benchmark", { alias = "benchmark" })
+add_requires("nanobench", { alias = "nanobench" })
 add_requires("spdlog", { alias = "spdlog" })
 
 if is_mode("coverage") then
@@ -26,7 +26,7 @@ elseif is_plat("macosx") then
 		add_cxflags("-march=native", "-ffast-math", { force = true })
 	end
 elseif is_plat("windows") then
-	add_cxflags("/EHsc /utf-8 /W4 /WX", { force = true })
+	add_cxflags("/EHsc /utf-8 /W4 /WX /wd4702", { force = true })
 	add_ldflags("/FORCE:MULTIPLE", { force = true })
 	if is_mode("release") then
 		add_cxflags("/arch:AVX2", "/fp:fast", { force = true })
@@ -76,7 +76,7 @@ set_languages("c++17")
 set_kind("binary")
 add_deps("Ginger")
 add_files("bench/BM_fir.cpp")
-add_packages("benchmark", "fmt", "spdlog")
+add_packages("nanobench", "fmt", "spdlog")
 if is_plat("linux", "macosx") then
 	add_syslinks("pthread")
 	-- target:add("links", "pthread", "m", "dl")
@@ -87,7 +87,7 @@ set_languages("c++17")
 set_kind("binary")
 add_deps("Ginger")
 add_files("bench/BM_autocorr.cpp")
-add_packages("benchmark", "fmt", "spdlog")
+add_packages("nanobench", "fmt", "spdlog")
 if is_plat("linux", "macosx") then
 	add_syslinks("pthread")
 	-- target:add("links", "pthread", "m", "dl")
@@ -98,7 +98,7 @@ set_languages("c++17")
 set_kind("binary")
 add_deps("Ginger")
 add_files("bench/BM_aberth.cpp")
-add_packages("benchmark", "fmt", "spdlog")
+add_packages("nanobench", "fmt", "spdlog")
 if is_plat("linux", "macosx") then
 	add_syslinks("pthread")
 end
