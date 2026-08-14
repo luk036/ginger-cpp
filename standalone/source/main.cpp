@@ -1,8 +1,8 @@
-#include <ginger/aberth.hpp>
-#include <ginger/config.hpp>
 #include <ginger/version.h>
 
 #include <cxxopts.hpp>
+#include <ginger/aberth.hpp>
+#include <ginger/config.hpp>
 #include <iostream>
 #include <string>
 #include <vector>

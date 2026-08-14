@@ -39,8 +39,7 @@ namespace ginger {
          * @param[in] num_threads Number of worker threads. Defaults to hardware concurrency (min
          * 1).
          */
-        explicit thread_pool(size_t num_threads = std::thread::hardware_concurrency())
-            : stop_(false) {
+        explicit thread_pool(size_t num_threads = std::thread::hardware_concurrency()) {
             if (num_threads == 0) {
                 num_threads = 1;
             }
@@ -67,6 +66,8 @@ namespace ginger {
 
         thread_pool(const thread_pool&) = delete;
         thread_pool& operator=(const thread_pool&) = delete;
+        thread_pool(thread_pool&&) = delete;
+        thread_pool& operator=(thread_pool&&) = delete;
 
         /**
          * Enqueue a callable for execution on the thread pool.
@@ -115,7 +116,7 @@ namespace ginger {
         std::queue<std::function<void()>> tasks_;
         std::mutex queue_mutex_;
         std::condition_variable condition_;
-        bool stop_;
+        bool stop_{};
     };
 
     /**

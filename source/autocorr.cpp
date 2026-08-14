@@ -2,20 +2,14 @@
 #include <cmath>              // for abs, acos, cos, pow
 #include <complex>            // for complex
 #include <cstddef>            // for size_t
-#include <future>             // for future
 #include <ginger/aberth.hpp>  // for poly_from_roots
+#include <ginger/autocorr.hpp>
 #include <ginger/config.hpp>
 #include <ginger/robin.hpp>        // for Robin
 #include <ginger/rootfinding.hpp>  // for Vec2, delta, Options, horner_eval
-#include <ginger/thread_pool.hpp>  // for thread_pool
 #include <ginger/vector2.hpp>      // for operator-, Vector2
-#include <thread>                  // for thread
 #include <utility>                 // for pair
 #include <vector>                  // for vector, vector<>::reference, __v...
-
-#ifndef M_PI
-constexpr double M_PI = 3.14159265358979323846264338327950288;
-#endif
 
 /**
  * The function calculates the initial autocorrelation values (specific for
@@ -62,10 +56,10 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
 }
 
 /**
- * @brief Multi-threading Bairstow's method (specific for auto-correlation
+ * @brief Single-threading Bairstow's method (specific for auto-correlation
  * function)
  *
- * The function `pbairstow_autocorr` is implementing the Bairstow's method for
+ * The function `pbairstow_autocorr_st` is implementing the Bairstow's method for
  * finding the roots of a real polynomial (specific for auto-correlation
  * function)
  *
@@ -93,7 +87,7 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
  *              v
  *         vr_i^(k+1)
  *
- * Parallel computation across all iterates vr_0, vr_1, ..., vr_n
+ * Process each iterate vr_0, vr_1, ..., vr_n sequentially
  * Special handling for auto-correlation property: process both vr_j and (1/vr_j)
  * @endverbatim
  */
@@ -124,94 +118,6 @@ auto pbairstow_autocorr_st(const std::vector<double>& coeffs, std::vector<Vec2>&
             tolerance = std::max(tolerance, tol_i);
         }
         if (tolerance < options.tolerance) return {niter, true};
-    }
-    return {options.max_iters, false};
-}
-
-auto pbairstow_autocorr_mt(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                           const Options& options) -> std::pair<unsigned int, bool> {
-    auto& pool = ginger::get_thread_pool();
-    const auto num_roots = vrs.size();
-    const auto degree = coeffs.size() - 1;
-
-    // Small problem: run Gauss-Seidel sequentially (no snapshot overhead)
-    if (num_roots <= 4) {
-        for (auto niter = 0U; niter != options.max_iters; ++niter) {
-            auto tolerance = 0.0;
-            for (auto idx = 0U; idx != num_roots; ++idx) {
-                const auto& vri = vrs[idx];
-                auto local_coeffs = coeffs;  // horner corrupts the array
-                auto vA = horner(local_coeffs, degree, vri);
-                const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                if (tol_i < options.tol_ind) continue;
-                auto vA1 = horner(local_coeffs, degree - 2, vri);
-                for (auto jdx = 0U; jdx < num_roots; ++jdx) {
-                    if (jdx == idx) continue;
-                    const auto& vrj = vrs[jdx];
-                    suppress_old(vA, vA1, vri, vrj);
-                    const auto vrjn = ginger::Vector2<double>(-vrj.x(), 1.0) / vrj.y();
-                    suppress_old(vA, vA1, vri, vrjn);
-                }
-                const auto vrin = ginger::Vector2<double>(-vri.x(), 1.0) / vri.y();
-                suppress_old(vA, vA1, vri, vrin);
-                vrs[idx] -= delta_scalar(vA, vri, vA1);
-                tolerance = std::max(tolerance, tol_i);
-            }
-            if (tolerance < options.tolerance) return {niter, true};
-        }
-        return {options.max_iters, false};
-    }
-
-    // Multi-threaded path: batch scheduling + Jacobi snapshot
-    const auto pool_size = pool.size();
-    const auto num_threads = std::max(size_t{1}, std::min(pool_size, num_roots));
-    const auto chunk_size = (num_roots + num_threads - 1) / num_threads;
-
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        std::vector<std::future<double>> results;
-        results.reserve(num_threads);
-
-        auto vrs_snapshot = vrs;
-
-        for (auto t = size_t{0}; t < num_threads; ++t) {
-            auto start = t * chunk_size;
-            auto end = std::min(start + chunk_size, num_roots);
-            if (start >= end) break;
-
-            results.emplace_back(pool.enqueue(
-                [&coeffs, &vrs, &vrs_snapshot, &options, start, end, degree, num_roots]() {
-                    double max_tol = 0.0;
-                    for (auto idx = start; idx < end; ++idx) {
-                        const auto& vri = vrs_snapshot[idx];
-                        auto local_coeffs = coeffs;  // horner corrupts the array
-                        auto vA = horner(local_coeffs, degree, vri);
-                        const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-                        if (tol_i < options.tol_ind) continue;
-                        auto vA1 = horner(local_coeffs, degree - 2, vri);
-                        for (auto jdx = 0U; jdx < num_roots; ++jdx) {
-                            if (jdx == idx) continue;
-                            const auto& vrj = vrs_snapshot[jdx];
-                            suppress_old(vA, vA1, vri, vrj);
-                            const auto vrjn = ginger::Vector2<double>(-vrj.x(), 1.0) / vrj.y();
-                            suppress_old(vA, vA1, vri, vrjn);
-                        }
-                        const auto vrin = ginger::Vector2<double>(-vri.x(), 1.0) / vri.y();
-                        suppress_old(vA, vA1, vri, vrin);
-
-                        vrs[idx] -= delta_scalar(vA, vri, vA1);
-                        max_tol = std::max(max_tol, tol_i);
-                    }
-                    return max_tol;
-                }));
-        }
-        for (auto&& result : results) {
-            auto&& res = result.get();
-            tolerance = std::max(tolerance, res);
-        }
-        if (tolerance < options.tolerance) {
-            return {niter, true};
-        }
     }
     return {options.max_iters, false};
 }

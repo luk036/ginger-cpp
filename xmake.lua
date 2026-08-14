@@ -34,15 +34,16 @@ elseif is_plat("windows") then
 end
 
 target("Ginger")
-set_languages("c++17")
+set_languages("c++20")
 set_kind("static")
--- add_includedirs("../lds-gen-cpp/include", { public = true })
+-- aberth.hpp publicly includes <lds/lds.hpp>, so the Lds include dir must be public
+add_includedirs("../lds-cpp/include", { public = true })
 add_includedirs("include", { public = true })
 add_files("source/*.cpp")
 add_packages("fmt", "spdlog")
 
 target("test_ginger")
-set_languages("c++17")
+set_languages("c++20")
 set_kind("binary")
 add_deps("Ginger")
 add_files("test/source/*.cpp")
@@ -72,7 +73,7 @@ if os.isdir(rapidcheck_dir) and os.isfile(rapidcheck_lib) then
 end
 
 target("test_fir")
-set_languages("c++17")
+set_languages("c++20")
 set_kind("binary")
 add_deps("Ginger")
 add_files("bench/BM_fir.cpp")
@@ -83,7 +84,7 @@ if is_plat("linux", "macosx") then
 end
 
 target("test_autocorr")
-set_languages("c++17")
+set_languages("c++20")
 set_kind("binary")
 add_deps("Ginger")
 add_files("bench/BM_autocorr.cpp")
@@ -94,7 +95,7 @@ if is_plat("linux", "macosx") then
 end
 
 target("test_aberth")
-set_languages("c++17")
+set_languages("c++20")
 set_kind("binary")
 add_deps("Ginger")
 add_files("bench/BM_aberth.cpp")

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 project(
   Ginger
-  VERSION 1.1.6
+  VERSION 1.1.7
   LANGUAGES CXX
 )
 
@@ -41,17 +41,16 @@ option(GINGER_ENABLE_COVERAGE "Enable coverage reporting" OFF)
 # Dependencies
 # ---------------------------------------------------------------------------
 
-# Download CPM.cmake for reproducible dependency management
-# see https://github.com/cpm-cmake/CPM.cmake for more info
+# Download CPM.cmake for reproducible dependency management see
+# https://github.com/cpm-cmake/CPM.cmake for more info
 set(CPM_DOWNLOAD_VERSION 0.38.5)
 set(CPM_HASH_SUM "192aa0ccdc57dfe75bd9e4b176bf7fb5692fd2b3e3f7b09c74856fc39572b31c")
 set(CPM_DOWNLOAD_LOCATION "${CMAKE_BINARY_DIR}/cmake/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
 if(NOT (EXISTS ${CPM_DOWNLOAD_LOCATION}))
   message(STATUS "Downloading CPM.cmake to ${CPM_DOWNLOAD_LOCATION}")
-  file(
-    DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v${CPM_DOWNLOAD_VERSION}/CPM.cmake
-             ${CPM_DOWNLOAD_LOCATION}
-    EXPECTED_HASH SHA256=${CPM_HASH_SUM}
+  file(DOWNLOAD
+       https://github.com/cpm-cmake/CPM.cmake/releases/download/v${CPM_DOWNLOAD_VERSION}/CPM.cmake
+       ${CPM_DOWNLOAD_LOCATION} EXPECTED_HASH SHA256=${CPM_HASH_SUM}
   )
 endif()
 include(${CPM_DOWNLOAD_LOCATION})
@@ -82,6 +81,12 @@ find_package(spdlog CONFIG QUIET)
 if(spdlog_FOUND)
   message(STATUS "Found system spdlog: ${spdlog_DIR}")
   set(CPM_spdlog_ADDED YES)
+  # Some system spdlog packages (e.g. conda) only export the namespaced spdlog::spdlog target, while
+  # the Lds dependency queries the bare `spdlog` target for its interface definitions. Provide an
+  # alias so both work whichever spdlog is used.
+  if(NOT TARGET spdlog AND TARGET spdlog::spdlog)
+    add_library(spdlog ALIAS spdlog::spdlog)
+  endif()
 else()
   CPMAddPackage(
     NAME spdlog
@@ -94,7 +99,7 @@ endif()
 # lds provides the van der Corput / low-discrepancy generators used by the Aberth initial guesses.
 CPMAddPackage(
   NAME Lds
-  GIT_TAG v1.2.4
+  GIT_TAG v1.2.5
   GITHUB_REPOSITORY luk036/lds-cpp
   OPTIONS "LDS_BUILD_TESTS OFF" "LDS_BUILD_STANDALONE OFF"
 )
@@ -107,8 +112,7 @@ set(SPECIFIC_LIBS Threads::Threads fmt::fmt spdlog::spdlog)
 
 # Note: globbing sources is considered bad practice as CMake's generators may not detect new files
 # automatically. Keep that in mind when changing files, or explicitly mention them here.
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS
-     "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h"
+file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h"
      "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
 )
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
@@ -125,7 +129,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${SPECIFIC_LIBS})
 
 # Any TU using spdlog must compile with spdlog's own interface definitions (SPDLOG_COMPILED_LIB,
 # SPDLOG_FMT_EXTERNAL) or the header-only and compiled registries diverge.
-get_target_property(SPDLOG_COMPILE_DEFS spdlog INTERFACE_COMPILE_DEFINITIONS)
+get_target_property(SPDLOG_COMPILE_DEFS spdlog::spdlog INTERFACE_COMPILE_DEFINITIONS)
 if(SPDLOG_COMPILE_DEFS)
   target_compile_definitions(${PROJECT_NAME} PRIVATE ${SPDLOG_COMPILE_DEFS})
 endif()
@@ -161,14 +165,20 @@ packageProject(
 # ---------------------------------------------------------------------------
 
 if(GINGER_BUILD_STANDALONE)
-  # cxxopts is a header-only CLI parser used by the standalone example
-  CPMAddPackage(
-    GITHUB_REPOSITORY jarro2783/cxxopts
-    VERSION 3.2.1
-    OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
-  )
+  # cxxopts is a header-only CLI parser used by the standalone example. Prefer a consumer- or
+  # system-provided cxxopts; only fall back to CPM when no cxxopts target is available.
+  find_package(cxxopts CONFIG QUIET)
+  if(NOT cxxopts_FOUND AND NOT TARGET cxxopts::cxxopts)
+    CPMAddPackage(
+      GITHUB_REPOSITORY jarro2783/cxxopts
+      VERSION 3.2.1
+      OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
+    )
+  endif()
   # keep third-party headers out of our -Werror scope
-  get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)
+  if(TARGET cxxopts::cxxopts)
+    get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)
+  endif()
 
   file(GLOB GINGER_STANDALONE_SOURCES CONFIGURE_DEPENDS "standalone/source/*.cpp")
   add_executable(GingerStandalone ${GINGER_STANDALONE_SOURCES})
@@ -211,8 +221,8 @@ if(GINGER_BUILD_TESTS)
 
   file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS "test/source/*.cpp")
   add_executable(GingerTests ${TEST_SOURCES})
-  target_link_libraries(GingerTests PRIVATE doctest::doctest Ginger::Ginger ${SPECIFIC_LIBS}
-                                           rapidcheck
+  target_link_libraries(
+    GingerTests PRIVATE doctest::doctest Ginger::Ginger ${SPECIFIC_LIBS} rapidcheck
   )
   target_include_directories(GingerTests PRIVATE ${rapidcheck_SOURCE_DIR}/include)
   target_compile_definitions(GingerTests PRIVATE RAPIDCHECK_H)
@@ -270,8 +280,7 @@ if(GINGER_ENABLE_CLANG_TIDY)
   if(CLANG_TIDY)
     add_custom_target(
       clang-tidy
-      COMMAND ${CLANG_TIDY} --extra-arg=-std=c++17
-              --extra-arg=-I${CMAKE_CURRENT_SOURCE_DIR}/include
+      COMMAND ${CLANG_TIDY} --extra-arg=-std=c++17 --extra-arg=-I${CMAKE_CURRENT_SOURCE_DIR}/include
               ${CMAKE_CURRENT_SOURCE_DIR}/include/ginger/*.hpp
       COMMENT "Running clang-tidy static analysis"
     )
@@ -338,13 +347,15 @@ if(GINGER_ENABLE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClan
       coverage
       COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
       COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
-      COMMAND ${GCOVR_PATH} --root ${PROJECT_SOURCE_DIR} --html-details
-              ${CMAKE_BINARY_DIR}/coverage/index.html --exclude test/ --exclude build/
-              ${extra_gcovr_args}
+      COMMAND
+        ${GCOVR_PATH} --root ${PROJECT_SOURCE_DIR} --html-details
+        ${CMAKE_BINARY_DIR}/coverage/index.html --exclude test/ --exclude build/ ${extra_gcovr_args}
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       COMMENT "Generating coverage report in ${CMAKE_BINARY_DIR}/coverage/index.html"
     )
   else()
-    message(WARNING "gcovr not found - coverage target unavailable. Install with: pip install gcovr")
+    message(
+      WARNING "gcovr not found - coverage target unavailable. Install with: pip install gcovr"
+    )
   endif()
 endif()

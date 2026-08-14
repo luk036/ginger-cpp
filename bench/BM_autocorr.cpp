@@ -2,8 +2,10 @@
 #include <nanobench.h>
 
 #include <ginger/autocorr.hpp>
+#include <ginger/autocorr_mt.hpp>
 #include <ginger/config.hpp>
 #include <ginger/rootfinding.hpp>
+#include <ginger/rootfinding_mt.hpp>
 #include <vector>
 
 auto run_autocorr_st() {

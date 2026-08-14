@@ -38,27 +38,37 @@ constexpr std::array<double, VDC_TABLE_SIZE> VDC_TABLE_2 = make_vdc_table<VDC_TA
 /// @return The VDC value at the given index
 inline double vdc2_table(unsigned long index) { return VDC_TABLE_2[index]; }
 
-/// @brief Precomputed table of 1000 Circle<2> points
-/// @details Generated using precomputed VDC_TABLE_2 mapped to unit circle.
-///          Not constexpr: std::cos/std::sin lack portable constexpr support in C++20.
-static const auto CIRCLE_TABLE_2 = []() {
+/// @brief Helper to generate the precomputed Circle base-2 table
+/// @details Mapped from VDC_TABLE_2 to the unit circle. Not constexpr:
+///          std::cos/std::sin lack portable constexpr support in C++20.
+/// @return std::array<std::array<double, 2>, VDC_TABLE_SIZE> of unit-circle points
+inline auto make_circle_table() noexcept -> std::array<std::array<double, 2>, VDC_TABLE_SIZE> {
     std::array<std::array<double, 2>, VDC_TABLE_SIZE> table{};
     for (unsigned long i = 0; i < VDC_TABLE_SIZE; ++i) {
         auto theta = VDC_TABLE_2[i] * lds::TWO_PI;
         table[i] = {std::cos(theta), std::sin(theta)};
     }
     return table;
-}();
+}
 
-/// @brief Precomputed table of cos(pi * vdc2_table[i]) values
-/// @details Used by initial_guess and initial_autocorr to avoid computing cos on the fly.
-static const auto COS_PI_VDC2_TABLE = []() {
+/// @brief Precomputed table of 1000 Circle<2> points
+/// @details Generated using precomputed VDC_TABLE_2 mapped to unit circle.
+///          Not constexpr: std::cos/std::sin lack portable constexpr support in C++20.
+static const auto CIRCLE_TABLE_2 = make_circle_table();
+
+/// @brief Helper to generate the precomputed cos(pi * vdc2_table[i]) table
+/// @return std::array<double, VDC_TABLE_SIZE> of cos(pi * vdc_value) values
+inline auto make_cos_pi_vdc2_table() noexcept -> std::array<double, VDC_TABLE_SIZE> {
     std::array<double, VDC_TABLE_SIZE> table{};
     for (unsigned long i = 0; i < VDC_TABLE_SIZE; ++i) {
         table[i] = std::cos(lds::TWO_PI / 2.0 * VDC_TABLE_2[i]);
     }
     return table;
-}();
+}
+
+/// @brief Precomputed table of cos(pi * vdc2_table[i]) values
+/// @details Used by initial_guess and initial_autocorr to avoid computing cos on the fly.
+static const auto COS_PI_VDC2_TABLE = make_cos_pi_vdc2_table();
 
 /// @brief Access the precomputed cos(pi * vdc2_table[i]) value
 /// @param index Index into the table
