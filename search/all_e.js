@@ -12,7 +12,7 @@ var searchData=
   ['operator_2f_9',['operator/',['../classginger_1_1Matrix2.html#a34297bc199c66eacdbca6567beeda54f',1,'ginger::Matrix2::operator/'],['../classginger_1_1Vector2.html#a4876432ceff597bd309608be36b8c618',1,'ginger::Vector2::operator/']]],
   ['operator_2f_3d_10',['operator/=',['../classginger_1_1Matrix2.html#ab494c16128614ea1e289ebf48e8eb408',1,'ginger::Matrix2::operator/=()'],['../classginger_1_1Vector2.html#a1b48e27de4fbb4cf2204d507f70e75e0',1,'ginger::Vector2::operator/=()'],['../classginger_1_1Vector2Ref.html#a6d3795cbb8a4725d4d66ba2a068c377b',1,'ginger::Vector2Ref::operator/=()']]],
   ['operator_3c_3c_11',['operator&lt;&lt;',['../classginger_1_1Vector2.html#a33de03e60fb22d1eb0fd019f01e0a6e6',1,'ginger::Vector2::operator&lt;&lt;'],['../classginger_1_1Vector2Ref.html#ad05413b33291b8d569e83c5154050df9',1,'ginger::Vector2Ref::operator&lt;&lt;']]],
-  ['operator_3d_12',['operator=',['../classginger_1_1thread__pool.html#a4ef492b1b630dc0e5adfd54ab69f2ecc',1,'ginger::thread_pool']]],
+  ['operator_3d_12',['operator=',['../classginger_1_1thread__pool.html#a4ef492b1b630dc0e5adfd54ab69f2ecc',1,'ginger::thread_pool::operator=(const thread_pool &amp;)=delete'],['../classginger_1_1thread__pool.html#a00ef54fb54595d3646174917e538f180',1,'ginger::thread_pool::operator=(thread_pool &amp;&amp;)=delete']]],
   ['operator_3d_3d_13',['operator==',['../structfun_1_1detail_1_1RobinIterator.html#af4d480caa8bd57025e311a4587652102',1,'fun::detail::RobinIterator']]],
   ['options_14',['Options',['../classOptions.html',1,'']]]
 ];

@@ -8,13 +8,13 @@ var searchData=
   ['aberth_5fmt_2ehpp_5',['aberth_mt.hpp',['../aberth__mt_8hpp.html',1,'']]],
   ['about_6',['About',['../about.html',1,'']]],
   ['about_2edox_7',['about.dox',['../about_8dox.html',1,'']]],
-  ['additional_20tools_8',['Additional tools',['../index.html#additional-tools',1,'']]],
-  ['adjust_20the_20template_20to_20your_20needs_9',['Adjust the template to your needs',['../index.html#autotoc_md3',1,'']]],
-  ['alternatives_10',['Related projects and alternatives',['../index.html#autotoc_md12',1,'']]],
-  ['analyzers_11',['Static Analyzers',['../index.html#autotoc_md9',1,'']]],
-  ['and_20alternatives_12',['Related projects and alternatives',['../index.html#autotoc_md12',1,'']]],
-  ['and_20run_20test_20suite_13',['Build and run test suite',['../index.html#autotoc_md5',1,'']]],
-  ['and_20run_20the_20standalone_20target_14',['Build and run the standalone target',['../index.html#autotoc_md4',1,'']]],
-  ['at_20once_15',['Build everything at once',['../index.html#build-everything-at-once',1,'']]],
-  ['autocorr_2ehpp_16',['autocorr.hpp',['../autocorr_8hpp.html',1,'']]]
+  ['adjust_20the_20template_20to_20your_20needs_8',['Adjust the template to your needs',['../index.html#autotoc_md3',1,'']]],
+  ['alternatives_9',['Related projects and alternatives',['../index.html#autotoc_md10',1,'']]],
+  ['analysis_10',['Static analysis',['../index.html#autotoc_md8',1,'']]],
+  ['and_20alternatives_11',['Related projects and alternatives',['../index.html#autotoc_md10',1,'']]],
+  ['and_20run_20test_20suite_12',['Build and run test suite',['../index.html#autotoc_md5',1,'']]],
+  ['and_20run_20the_20standalone_20target_13',['Build and run the standalone target',['../index.html#autotoc_md4',1,'']]],
+  ['at_20once_14',['Build everything at once',['../index.html#build-everything-at-once',1,'']]],
+  ['autocorr_2ehpp_15',['autocorr.hpp',['../autocorr_8hpp.html',1,'']]],
+  ['autocorr_5fmt_2ehpp_16',['autocorr_mt.hpp',['../autocorr__mt_8hpp.html',1,'']]]
 ];

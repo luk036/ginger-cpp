@@ -1,0 +1,19 @@
+<map id="ginger/autocorr_mt.hpp" name="ginger/autocorr_mt.hpp">
+<area shape="rect" id="Node000001" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (MT)" alt="" coords="5,5,180,31"/>
+<area shape="rect" id="Node000002" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)" alt="" coords="41,79,144,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,31,95,65,90,65,90,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="141,299,201,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,106,71,133,56,170,50,211,53,231,60,249,74,266,91,279,129,297,127,302,88,284,70,270,56,252,47,232,45,211,51,169,67,131,82,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="71,225,133,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="96,104,103,211,98,212,91,105"/>
+<area shape="rect" id="Node000005" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="130,152,250,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="110,102,164,141,161,146,107,106"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="191,178,177,285,172,285,186,177"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="178,179,129,219,125,214,174,175"/>
+<area shape="rect" id="Node000006" href="$matrix2_8hpp.html" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="209,225,310,251"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="203,176,241,214,237,217,200,180"/>
+<area shape="rect" id="Node000007" href="$vector2_8hpp.html" title=" " alt="" coords="262,299,361,324"/>
+<area shape="poly" id="edge10_Node000005_Node000007" title=" " alt="" coords="251,175,291,193,310,207,324,224,330,239,332,256,325,286,320,285,326,255,325,240,320,227,306,210,289,198,249,180"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="247,253,198,292,195,288,244,249"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="270,249,297,286,293,289,266,253"/>
+</map>

@@ -8,6 +8,6 @@ var searchData=
   ['operator_2d_5',['operator-',['../classginger_1_1Matrix2.html#a8fd26a1e7d75cc4b7ee6051bbf80f7e5',1,'ginger::Matrix2::operator-()'],['../classginger_1_1Vector2.html#a3804b073324fae7b4a86fce25ac73f14',1,'ginger::Vector2::operator-()']]],
   ['operator_2d_3d_6',['operator-=',['../classginger_1_1Matrix2.html#a1e81759cb41a08e01dde831d309cc3d6',1,'ginger::Matrix2::operator-=()'],['../classginger_1_1Vector2.html#a56f7021c1e47e1bd0f7225ecf13b6b19',1,'ginger::Vector2::operator-=()'],['../classginger_1_1Vector2Ref.html#a032d24e612b4fd4643f66f4c3814b6c2',1,'ginger::Vector2Ref::operator-=()']]],
   ['operator_2f_3d_7',['operator/=',['../classginger_1_1Matrix2.html#ab494c16128614ea1e289ebf48e8eb408',1,'ginger::Matrix2::operator/=()'],['../classginger_1_1Vector2.html#a1b48e27de4fbb4cf2204d507f70e75e0',1,'ginger::Vector2::operator/=()'],['../classginger_1_1Vector2Ref.html#a6d3795cbb8a4725d4d66ba2a068c377b',1,'ginger::Vector2Ref::operator/=()']]],
-  ['operator_3d_8',['operator=',['../classginger_1_1thread__pool.html#a4ef492b1b630dc0e5adfd54ab69f2ecc',1,'ginger::thread_pool']]],
+  ['operator_3d_8',['operator=',['../classginger_1_1thread__pool.html#a4ef492b1b630dc0e5adfd54ab69f2ecc',1,'ginger::thread_pool::operator=(const thread_pool &amp;)=delete'],['../classginger_1_1thread__pool.html#a00ef54fb54595d3646174917e538f180',1,'ginger::thread_pool::operator=(thread_pool &amp;&amp;)=delete']]],
   ['operator_3d_3d_9',['operator==',['../structfun_1_1detail_1_1RobinIterator.html#af4d480caa8bd57025e311a4587652102',1,'fun::detail::RobinIterator']]]
 ];

@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.6</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.7</span>
    </div>
   </td>
  </tr>
@@ -115,6 +115,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6806060b9cbd3919f27fdc3cf4530048" id="r_a6806060b9cbd3919f27fdc3cf4530048"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aberth_8hpp.html#a6806060b9cbd3919f27fdc3cf4530048">vdc2_table</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">long</a> index)</td></tr>
 <tr class="memdesc:a6806060b9cbd3919f27fdc3cf4530048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the precomputed VdCorput base-2 table.  <br /></td></tr>
 <tr class="separator:a6806060b9cbd3919f27fdc3cf4530048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8084436b138380d875314cc814ba56ed" id="r_a8084436b138380d875314cc814ba56ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aberth_8hpp.html#a8084436b138380d875314cc814ba56ed">make_circle_table</a> () <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">noexcept</a> -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::array</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::array</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a>, 2 &gt;, <a class="el" href="aberth_8hpp.html#a5df56885e2016818691d5be298e0324d">VDC_TABLE_SIZE</a> &gt;</td></tr>
+<tr class="memdesc:a8084436b138380d875314cc814ba56ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to generate the precomputed Circle base-2 table.  <br /></td></tr>
+<tr class="separator:a8084436b138380d875314cc814ba56ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a870bc61c910b91e1860ad3c08c547" id="r_a60a870bc61c910b91e1860ad3c08c547"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aberth_8hpp.html#a60a870bc61c910b91e1860ad3c08c547">make_cos_pi_vdc2_table</a> () <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">noexcept</a> -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::array</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a>, <a class="el" href="aberth_8hpp.html#a5df56885e2016818691d5be298e0324d">VDC_TABLE_SIZE</a> &gt;</td></tr>
+<tr class="memdesc:a60a870bc61c910b91e1860ad3c08c547"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to generate the precomputed cos(pi * vdc2_table[i]) table.  <br /></td></tr>
+<tr class="separator:a60a870bc61c910b91e1860ad3c08c547"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c3adaa1ce358830073cbfb8e17b55fe" id="r_a1c3adaa1ce358830073cbfb8e17b55fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">constexpr</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aberth_8hpp.html#a1c3adaa1ce358830073cbfb8e17b55fe">cos_pi_vdc2</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">long</a> index)</td></tr>
 <tr class="memdesc:a1c3adaa1ce358830073cbfb8e17b55fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the precomputed cos(pi * vdc2_table[i]) value.  <br /></td></tr>
 <tr class="separator:a1c3adaa1ce358830073cbfb8e17b55fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -599,6 +605,62 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::complex&lt;double&gt;&gt; Reordered points in Leja sequence </dd></dl>
+
+</div>
+</div>
+<a id="a8084436b138380d875314cc814ba56ed" name="a8084436b138380d875314cc814ba56ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8084436b138380d875314cc814ba56ed">&#9670;&#160;</a></span>make_circle_table()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> make_circle_table </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::array</a>&lt;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::array</a>&lt;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a>, 2&gt;, <a class="el" href="aberth_8hpp.html#a5df56885e2016818691d5be298e0324d">VDC_TABLE_SIZE</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper to generate the precomputed Circle base-2 table. </p>
+<p>Mapped from VDC_TABLE_2 to the unit circle. Not constexpr: std::cos/std<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e" title="Helper to generate a constexpr table of VdCorput&lt;Base&gt; values.">sin</a> lack portable constexpr support in C++20. </p><dl class="section return"><dt>Returns</dt><dd>std::array&lt;std::array&lt;double, 2&gt;, VDC_TABLE_SIZE&gt; of unit-circle points </dd></dl>
+
+</div>
+</div>
+<a id="a60a870bc61c910b91e1860ad3c08c547" name="a60a870bc61c910b91e1860ad3c08c547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60a870bc61c910b91e1860ad3c08c547">&#9670;&#160;</a></span>make_cos_pi_vdc2_table()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> make_cos_pi_vdc2_table </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::array</a>&lt;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a>, <a class="el" href="aberth_8hpp.html#a5df56885e2016818691d5be298e0324d">VDC_TABLE_SIZE</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper to generate the precomputed cos(pi * vdc2_table[i]) table. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::array&lt;double, VDC_TABLE_SIZE&gt; of cos(pi * vdc_value) values </dd></dl>
 
 </div>
 </div>

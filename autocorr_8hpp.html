@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.6</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.7</span>
    </div>
   </td>
  </tr>
@@ -90,13 +90,16 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="matrix2_8hpp_source.html">matrix2.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="rootfinding_8hpp_source.html">rootfinding.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="vector2_8hpp_source.html">vector2.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for autocorr.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="autocorr_8hpp__incl.svg" width="332" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="autocorr_8hpp__incl.svg" width="354" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="autocorr_8hpp__dep__incl.svg" width="186" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="autocorr_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -107,10 +110,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae38962d0566f4a0b235b8317ab6d1881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial guess for the parallel Bairstow method (specific for auto-correlation function)  <br /></td></tr>
 <tr class="separator:ae38962d0566f4a0b235b8317ab6d1881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30ec423608ed27d6dc4fa71ea3be1a35" id="r_a30ec423608ed27d6dc4fa71ea3be1a35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="autocorr_8hpp.html#a30ec423608ed27d6dc4fa71ea3be1a35">pbairstow_autocorr_st</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
-<tr class="memdesc:a30ec423608ed27d6dc4fa71ea3be1a35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multi-threading Bairstow's method (specific for auto-correlation function)  <br /></td></tr>
+<tr class="memdesc:a30ec423608ed27d6dc4fa71ea3be1a35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single-threading Bairstow's method (specific for auto-correlation function)  <br /></td></tr>
 <tr class="separator:a30ec423608ed27d6dc4fa71ea3be1a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaf897685a1493b99ffea965142f486a" id="r_abaf897685a1493b99ffea965142f486a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="autocorr_8hpp.html#abaf897685a1493b99ffea965142f486a">pbairstow_autocorr_mt</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
-<tr class="separator:abaf897685a1493b99ffea965142f486a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae116794767ddddcc756832372cb0d79c" id="r_ae116794767ddddcc756832372cb0d79c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="autocorr_8hpp.html#ae116794767ddddcc756832372cb0d79c">pbairstow_autocorr</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
 <tr class="separator:ae116794767ddddcc756832372cb0d79c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a270fcfedf802909b6740868b334c5497" id="r_a270fcfedf802909b6740868b334c5497"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="autocorr_8hpp.html#a270fcfedf802909b6740868b334c5497">extract_autocorr</a> (<a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vr</a>)</td></tr>
@@ -255,48 +256,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abaf897685a1493b99ffea965142f486a" name="abaf897685a1493b99ffea965142f486a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abaf897685a1493b99ffea965142f486a">&#9670;&#160;</a></span>pbairstow_autocorr_mt()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> pbairstow_autocorr_mt </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>coeffs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vrs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;&#160;</td>
-          <td class="paramname"><em>options</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a30ec423608ed27d6dc4fa71ea3be1a35" name="a30ec423608ed27d6dc4fa71ea3be1a35"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a30ec423608ed27d6dc4fa71ea3be1a35">&#9670;&#160;</a></span>pbairstow_autocorr_st()</h2>
 
@@ -337,16 +296,14 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Multi-threading Bairstow's method (specific for auto-correlation function) </p>
-<p>The function <code>pbairstow_autocorr</code> implements Bairstow's method for finding the roots of a palindromic (auto-correlation) polynomial using multi-threading.</p>
-<p>Each thread finds a quadratic factor \( x^2 - r_i x - q_i \) that respects the palindromic symmetry, where the roots appear in reciprocal pairs:  </p><p class="formulaDsp">
+<p>Single-threading Bairstow's method (specific for auto-correlation function) </p>
+<p>The function <code>pbairstow_autocorr_st</code> implements Bairstow's method for finding the roots of a palindromic (auto-correlation) polynomial using a single thread.</p>
+<p>Each iterate finds a quadratic factor \( x^2 - r_i x - q_i \) that respects the palindromic symmetry, where the roots appear in reciprocal pairs:  </p><p class="formulaDsp">
 \[
     \begin{bmatrix} \Delta r_i \\ \Delta q_i \end{bmatrix} = -J_i^{-1} \begin{bmatrix} P_i \\ Q_i
 \end{bmatrix}
 \]
 </p>
-<div class="dotgraph">
-<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_3.svg" width="1371" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>polynomial </td></tr>
