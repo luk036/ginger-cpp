@@ -39,8 +39,7 @@ namespace ginger {
          * @param[in] num_threads Number of worker threads. Defaults to hardware concurrency (min
          * 1).
          */
-        explicit thread_pool(size_t num_threads = std::thread::hardware_concurrency())
-        {
+        explicit thread_pool(size_t num_threads = std::thread::hardware_concurrency()) {
             if (num_threads == 0) {
                 num_threads = 1;
             }

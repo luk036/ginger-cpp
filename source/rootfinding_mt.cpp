@@ -1,12 +1,12 @@
 #include <algorithm>
-#include <cmath>              // for abs
-#include <cstddef>            // for size_t
-#include <future>             // for future
-#include <ginger/config.hpp>  // for Options
+#include <cmath>                      // for abs
+#include <cstddef>                    // for size_t
+#include <future>                     // for future
+#include <ginger/config.hpp>          // for Options
 #include <ginger/rootfinding_mt.hpp>  // for Vec2, delta_scalar, horner, pbairstow_even_mt
 #include <ginger/thread_pool.hpp>     // for get_thread_pool, thread_pool
-#include <utility>            // for pair
-#include <vector>             // for vector
+#include <utility>                    // for pair
+#include <vector>                     // for vector
 
 auto pbairstow_even_mt(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                        const Options& options) -> std::pair<unsigned int, bool> {
