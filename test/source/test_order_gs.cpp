@@ -5,11 +5,11 @@
 //   - suppression order within a job only causes machine-epsilon drift
 #include <doctest/doctest.h>
 
-#include <algorithm>              // for all_of
-#include <cmath>                  // for abs
-#include <ginger/config.hpp>      // for Options
-#include <ginger/rootfinding.hpp> // for delta_scalar, horner, initial_guess, pbairstow_even, suppress_old
-#include <vector>                 // for vector
+#include <algorithm>          // for all_of
+#include <cmath>              // for abs
+#include <ginger/config.hpp>  // for Options
+#include <ginger/rootfinding.hpp>  // for delta_scalar, horner, initial_guess, pbairstow_even, suppress_old
+#include <vector>                  // for vector
 
 using namespace ginger;
 
@@ -36,8 +36,8 @@ TEST_CASE("test gs order dependent iterations") {
     }
 
     // Gauss-Seidel is NOT order-independent: iteration counts differ.
-    const auto all_equal = std::all_of(niters.begin() + 1, niters.end(),
-                                       [&](auto n) { return n == niters[0]; });
+    const auto all_equal
+        = std::all_of(niters.begin() + 1, niters.end(), [&](auto n) { return n == niters[0]; });
     CHECK_FALSE(all_equal);
 }
 

@@ -1,14 +1,14 @@
 #include <algorithm>
-#include <atomic>                           // for atomic
-#include <cmath>                            // for abs
-#include <cstddef>                          // for size_t
-#include <future>                           // for future
-#include <ginger/config.hpp>                // for Options
-#include <ginger/robin.hpp>                 // for Robin
-#include <ginger/rootfinding_atomic.hpp>    // for Vec2, delta_scalar, horner, pbairstow_even_atomic
-#include <ginger/thread_pool.hpp>           // for get_thread_pool, thread_pool
-#include <utility>                          // for pair
-#include <vector>                           // for vector
+#include <atomic>                         // for atomic
+#include <cmath>                          // for abs
+#include <cstddef>                        // for size_t
+#include <future>                         // for future
+#include <ginger/config.hpp>              // for Options
+#include <ginger/robin.hpp>               // for Robin
+#include <ginger/rootfinding_atomic.hpp>  // for Vec2, delta_scalar, horner, pbairstow_even_atomic
+#include <ginger/thread_pool.hpp>         // for get_thread_pool, thread_pool
+#include <utility>                        // for pair
+#include <vector>                         // for vector
 
 auto pbairstow_even_atomic(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                            const Options& options) -> std::pair<unsigned int, bool> {

@@ -7,11 +7,11 @@
 // exercises the true multi-threaded Jacobi snapshot path.
 #include <doctest/doctest.h>
 
-#include <algorithm>  // for sort
-#include <complex>    // for complex
-#include <ginger/config.hpp>       // for Options
+#include <algorithm>                  // for sort
+#include <complex>                    // for complex
+#include <ginger/config.hpp>          // for Options
 #include <ginger/rootfinding_mt.hpp>  // for initial_guess, pbairstow_even_mt
-#include <vector>                   // for vector
+#include <vector>                     // for vector
 
 using namespace ginger;
 
@@ -53,7 +53,8 @@ static auto max_root_set_diff(const std::vector<std::pair<double, double>>& a,
 
 TEST_CASE("test jacobi mt order independent") {
     // Palindromic degree-12: 6 factors, exercises the true Jacobi path.
-    const auto h = std::vector<double>{1.0, 0.0, 2.0, 0.0, 3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 2.0, 0.0, 1.0};
+    const auto h
+        = std::vector<double>{1.0, 0.0, 2.0, 0.0, 3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 2.0, 0.0, 1.0};
     auto options = Options();
     options.tolerance = 1e-12;
 

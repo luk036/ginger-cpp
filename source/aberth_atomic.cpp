@@ -18,9 +18,9 @@ using AtomicComplex = std::atomic<Complex>;
 // Atomic core: one atomic working buffer built ONCE. Each job reads all slots
 // via .load() and writes only its own slot via .store() (single-writer,
 // multi-reader) -> asynchronous in-place updates, no per-iteration snapshots.
-template <typename F> static auto aberth_atomic_core(const vector<double>& coeffs,
-                                                     vector<Complex>& zs, const Options& options,
-                                                     ginger::thread_pool& pool, F& job_generator)
+template <typename F>
+static auto aberth_atomic_core(const vector<double>& coeffs, vector<Complex>& zs,
+                               const Options& options, ginger::thread_pool& pool, F& job_generator)
     -> std::pair<unsigned int, bool> {
     const auto num_roots = zs.size();
     // Build the atomic working buffer ONCE (whole-pair atomics: correctness over speed).

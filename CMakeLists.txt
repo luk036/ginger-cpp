@@ -58,11 +58,11 @@ include(${CPM_DOWNLOAD_LOCATION})
 # PackageProject.cmake will be used to make our target installable
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
-# fmt is a transitive dependency of spdlog. Prefer a system-installed fmt when available.
-# On MSVC, skip prebuilt system packages (e.g. conda): they are Release-only shared
-# libraries whose std::string ABI (_ITERATOR_DEBUG_LEVEL=0) mismatches Debug builds
-# (_ITERATOR_DEBUG_LEVEL=2), corrupting std::strings returned by fmt::format. Build fmt
-# from source on MSVC so the ABI always matches (same as CI's windows-latest runner).
+# fmt is a transitive dependency of spdlog. Prefer a system-installed fmt when available. On MSVC,
+# skip prebuilt system packages (e.g. conda): they are Release-only shared libraries whose
+# std::string ABI (_ITERATOR_DEBUG_LEVEL=0) mismatches Debug builds (_ITERATOR_DEBUG_LEVEL=2),
+# corrupting std::strings returned by fmt::format. Build fmt from source on MSVC so the ABI always
+# matches (same as CI's windows-latest runner).
 if(NOT MSVC)
   find_package(fmt CONFIG QUIET)
   if(fmt_FOUND)
@@ -84,8 +84,8 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
 # spdlog is used by the compiled logger source; prefer a system-installed spdlog when available.
-# SPDLOG_FMT_EXTERNAL is always set so spdlog uses the external fmt and avoids duplicate symbols.
-# On MSVC, build spdlog from source for the same std::string ABI reason as fmt.
+# SPDLOG_FMT_EXTERNAL is always set so spdlog uses the external fmt and avoids duplicate symbols. On
+# MSVC, build spdlog from source for the same std::string ABI reason as fmt.
 if(NOT MSVC)
   find_package(spdlog CONFIG QUIET)
   if(spdlog_FOUND)
@@ -155,9 +155,9 @@ target_include_directories(
 target_enable_warnings(${PROJECT_NAME})
 
 # The *_atomic root-finders use 16-byte std::atomic (std::atomic<std::complex<double>>,
-# std::atomic<Vec2>). GCC/Clang emit __atomic_load_16/__atomic_store_16 calls for these,
-# which live in libatomic where it exists (Linux/MinGW). macOS provides them via
-# compiler-rt, so libatomic must only be linked when the check proves it is available.
+# std::atomic<Vec2>). GCC/Clang emit __atomic_load_16/__atomic_store_16 calls for these, which live
+# in libatomic where it exists (Linux/MinGW). macOS provides them via compiler-rt, so libatomic must
+# only be linked when the check proves it is available.
 if(NOT MSVC)
   include(CheckCXXSourceCompiles)
   set(CMAKE_REQUIRED_LIBRARIES atomic)
