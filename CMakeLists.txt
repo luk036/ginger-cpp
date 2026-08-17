@@ -154,6 +154,32 @@ target_include_directories(
 
 target_enable_warnings(${PROJECT_NAME})
 
+# The *_atomic root-finders use 16-byte std::atomic (std::atomic<std::complex<double>>,
+# std::atomic<Vec2>). GCC/Clang emit __atomic_load_16/__atomic_store_16 calls for these,
+# which live in libatomic where it exists (Linux/MinGW). macOS provides them via
+# compiler-rt, so libatomic must only be linked when the check proves it is available.
+if(NOT MSVC)
+  include(CheckCXXSourceCompiles)
+  set(CMAKE_REQUIRED_LIBRARIES atomic)
+  check_cxx_source_compiles(
+    "
+#include <atomic>
+#include <complex>
+int main() {
+    std::atomic<std::complex<double>> a{};
+    a.store({1.0, 2.0});
+    (void)a.load();
+    return 0;
+}
+"
+    GINGER_NEEDS_LIBATOMIC
+  )
+  unset(CMAKE_REQUIRED_LIBRARIES)
+  if(GINGER_NEEDS_LIBATOMIC)
+    target_link_libraries(${PROJECT_NAME} PRIVATE atomic)
+  endif()
+endif()
+
 # ---- Create an installable target ----
 # this allows users to install and find the library via `find_package()`.
 

@@ -86,7 +86,7 @@ auto aberth_atomic(const vector<double>& coeffs, vector<Complex>& zs,
     fun::Robin<size_t> robin(num_zs);
 
     auto aberth_job_generator = [&](const vector<double>&, vector<AtomicComplex>& zs_ref) {
-        return [&, num_zs](size_t idx) -> double {
+        return [&](size_t idx) -> double {
             const auto zi = zs_ref[idx].load();
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
@@ -116,7 +116,7 @@ auto aberth_autocorr_atomic(const vector<double>& coeffs, vector<Complex>& zs,
     fun::Robin<size_t> robin(num_zs);
 
     auto aberth_job_generator = [&](const vector<double>&, vector<AtomicComplex>& zs_ref) {
-        return [&, num_zs](size_t idx) -> double {
+        return [&](size_t idx) -> double {
             const auto zi = zs_ref[idx].load();
             const auto P = horner_eval_c(coeffs, zi);
             const auto tol_i = std::abs(P);
