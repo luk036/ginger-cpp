@@ -60,10 +60,10 @@ extern auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<V
  * @return std::pair<unsigned int, bool>
  */
 extern auto pbairstow_autocorr_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                                  const Options& options) -> std::pair<unsigned int, bool>;
+                                  const ginger::Options& options) -> std::pair<unsigned int, bool>;
 
 inline auto pbairstow_autocorr(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                               const Options& options) -> std::pair<unsigned int, bool> {
+                               const ginger::Options& options) -> std::pair<unsigned int, bool> {
     return pbairstow_autocorr_st(coeffs, vrs, options);
 }
 

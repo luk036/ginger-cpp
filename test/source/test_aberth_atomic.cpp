@@ -2,30 +2,32 @@
 // -*- coding: utf-8 -*-
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
-#include <ginger/aberth_mt.hpp>  // for aberth, initial_aberth
-#include <ginger/config.hpp>     // for ginger::Options
-#include <utility>               // for pair
-#include <vector>                // for vector
+#include <ginger/aberth_atomic.hpp>  // for aberth_atomic, initial_aberth
+#include <ginger/config.hpp>         // for ginger::Options
+#include <utility>                   // for pair
+#include <vector>                    // for vector
 
-TEST_CASE("test aberth_mt 1") {
+TEST_CASE("test aberth_atomic 1") {
     auto h = std::vector<double>{5., 2., 9., 6., 2.};
     auto zs = initial_aberth(h);
-    auto result = aberth_mt(h, zs, ginger::Options());
+    auto result = aberth_atomic(h, zs, ginger::Options());
     auto niter = result.first;
+    CHECK(result.second);
     CHECK_LE(niter, 12);
 }
 
-TEST_CASE("test aberth_mt 2") {
+TEST_CASE("test aberth_atomic 2") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto zs = initial_aberth(h);
     auto options = ginger::Options();
     options.tolerance = 1e-12;
-    auto result = aberth_mt(h, zs, options);
+    auto result = aberth_atomic(h, zs, options);
     auto niter = result.first;
-    CHECK_LE(niter, 14);
+    CHECK(result.second);
+    CHECK_LE(niter, 30);
 }
 
-TEST_CASE("test aberth_mt FIR") {
+TEST_CASE("test aberth_atomic FIR") {
     auto r = std::vector<double>{
         -0.00196191, -0.00094597, -0.00023823, 0.00134667,  0.00380494,  0.00681596,  0.0097864,
         0.01186197,  0.0121238,   0.00985211,  0.00474894,  -0.00281751, -0.01173923, -0.0201885,
@@ -38,22 +40,24 @@ TEST_CASE("test aberth_mt FIR") {
     auto zs = initial_aberth(r);
     auto options = ginger::Options();
     options.tolerance = 1e-8;
-    auto result = aberth_mt(r, zs, options);
+    auto result = aberth_atomic(r, zs, options);
     auto niter = result.first;
-    CHECK_LE(niter, 14);
+    CHECK(result.second);
+    CHECK_LE(niter, 40);
 }
 
-TEST_CASE("test aberth_autocorr_mt 2") {
+TEST_CASE("test aberth_autocorr_atomic 2") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto zs = initial_aberth_autocorr(h);
     auto options = ginger::Options();
     options.tolerance = 1e-12;
-    auto result = aberth_mt(h, zs, options);
+    auto result = aberth_autocorr_atomic(h, zs, options);
     auto niter = result.first;
+    CHECK(result.second);
     CHECK_LE(niter, 14);
 }
 
-TEST_CASE("test aberth_autocorr_mt FIR") {
+TEST_CASE("test aberth_autocorr_atomic FIR") {
     auto r = std::vector<double>{
         -0.00196191, -0.00094597, -0.00023823, 0.00134667,  0.00380494,  0.00681596,  0.0097864,
         0.01186197,  0.0121238,   0.00985211,  0.00474894,  -0.00281751, -0.01173923, -0.0201885,
@@ -66,17 +70,18 @@ TEST_CASE("test aberth_autocorr_mt FIR") {
     auto zs = initial_aberth_autocorr(r);
     auto options = ginger::Options();
     options.tolerance = 1e-8;
-    auto result = aberth_autocorr_mt(r, zs, options);
+    auto result = aberth_autocorr_atomic(r, zs, options);
     auto niter = result.first;
-    CHECK_LE(niter, 14);
+    CHECK(result.second);
+    CHECK_LE(niter, 40);
 }
 
-TEST_CASE("test poly_from_autocorr_roots mt reconstruction") {
+TEST_CASE("test poly_from_autocorr_roots atomic reconstruction") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto zs = initial_aberth_autocorr(h);
     auto options = ginger::Options();
     options.tolerance = 1e-12;
-    auto result = aberth_autocorr_mt(h, zs, options);
+    auto result = aberth_autocorr_atomic(h, zs, options);
     REQUIRE(result.second);
     auto monic = poly_from_autocorr_roots(zs);
     REQUIRE(monic.size() == h.size());

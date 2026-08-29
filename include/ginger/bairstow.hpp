@@ -16,7 +16,9 @@ using Vec2 = ginger::Vector2<double>;
 using Mat2 = ginger::Matrix2<Vec2>;
 using Vec2Ref = ginger::Vector2<double&>;
 
-class Options;
+namespace ginger {
+    class Options;
+}
 
 /**
  * @brief Horner's rule (reference-based Vec2 version)
@@ -87,7 +89,7 @@ extern auto horner_ref(std::vector<double>& coeffs, std::vector<Vec2Ref>& vcoeff
  * element of the pair represents the number of iterations performed, and the second element
  * represents whether the method converged to a solution within the specified tolerance.
  */
-extern auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const Options& options)
+extern auto bairstow(const std::vector<double>& coeffs, Vec2& vr, const ginger::Options& options)
     -> std::pair<unsigned int, bool>;
 
 /**

@@ -3,7 +3,7 @@
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
 #include <ginger/autocorr_mt.hpp>  // for extract_autocorr, initial_autocorr, pbairstow_...
-#include <ginger/config.hpp>       // for Options
+#include <ginger/config.hpp>       // for ginger::Options
 #include <ginger/vector2.hpp>      // for vector2
 #include <utility>                 // for pair
 #include <vector>                  // for vector
@@ -13,7 +13,7 @@ using namespace ginger;
 TEST_CASE("test auto-corr mt 1") {
     auto r = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_autocorr_mt(r, vrs, options);
     auto niter = result.first;
@@ -35,7 +35,7 @@ TEST_CASE("test autocorr mt FIR") {
         -0.0201885,  -0.01173923, -0.00281751, 0.00474894,  0.00985211,  0.0121238,   0.01186197,
         0.0097864,   0.00681596,  0.00380494,  0.00134667,  -0.00023823, -0.00094597, -0.00196191};
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-4;
     auto result = pbairstow_autocorr_mt(r, vrs, options);
     auto found = result.second;
@@ -45,7 +45,7 @@ TEST_CASE("test autocorr mt FIR") {
 TEST_CASE("test poly_from_autocorr_factors mt reconstruction") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_autocorr(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_autocorr_mt(h, vrs, options);
     REQUIRE(result.second);
@@ -67,7 +67,7 @@ TEST_CASE("test poly_from_autocorr_factors mt fir") {
         -0.0201885,  -0.01173923, -0.00281751, 0.00474894,  0.00985211,  0.0121238,   0.01186197,
         0.0097864,   0.00681596,  0.00380494,  0.00134667,  -0.00023823, -0.00094597, -0.00196191};
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-4;
     auto result = pbairstow_autocorr_mt(r, vrs, options);
     REQUIRE(result.second);

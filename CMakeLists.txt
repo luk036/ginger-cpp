@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 project(
   Ginger
-  VERSION 1.1.7
+  VERSION 1.1.8
   LANGUAGES CXX
 )
 
@@ -58,12 +58,20 @@ include(${CPM_DOWNLOAD_LOCATION})
 # PackageProject.cmake will be used to make our target installable
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
-# fmt is a transitive dependency of spdlog; prefer a system-installed fmt when available.
-find_package(fmt CONFIG QUIET)
-if(fmt_FOUND)
-  message(STATUS "Found system fmt: ${fmt_DIR}")
-  set(CPM_fmt_ADDED YES)
-else()
+# fmt is a transitive dependency of spdlog. Prefer a system-installed fmt when available. On MSVC,
+# skip prebuilt system packages (e.g. conda): they are Release-only shared libraries whose
+# std::string ABI (_ITERATOR_DEBUG_LEVEL=0) mismatches Debug builds (_ITERATOR_DEBUG_LEVEL=2),
+# corrupting std::strings returned by fmt::format. Build fmt from source on MSVC so the ABI always
+# matches (same as CI's windows-latest runner).
+if(NOT MSVC)
+  find_package(fmt CONFIG QUIET)
+  if(fmt_FOUND)
+    message(STATUS "Found system fmt: ${fmt_DIR}")
+    set(CPM_fmt_ADDED YES)
+  endif()
+endif()
+
+if(NOT fmt_FOUND)
   CPMAddPackage(
     NAME fmt
     GIT_TAG 12.1.0
@@ -76,18 +84,23 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
 # spdlog is used by the compiled logger source; prefer a system-installed spdlog when available.
-# SPDLOG_FMT_EXTERNAL is always set so spdlog uses the external fmt and avoids duplicate symbols.
-find_package(spdlog CONFIG QUIET)
-if(spdlog_FOUND)
-  message(STATUS "Found system spdlog: ${spdlog_DIR}")
-  set(CPM_spdlog_ADDED YES)
-  # Some system spdlog packages (e.g. conda) only export the namespaced spdlog::spdlog target, while
-  # the Lds dependency queries the bare `spdlog` target for its interface definitions. Provide an
-  # alias so both work whichever spdlog is used.
-  if(NOT TARGET spdlog AND TARGET spdlog::spdlog)
-    add_library(spdlog ALIAS spdlog::spdlog)
+# SPDLOG_FMT_EXTERNAL is always set so spdlog uses the external fmt and avoids duplicate symbols. On
+# MSVC, build spdlog from source for the same std::string ABI reason as fmt.
+if(NOT MSVC)
+  find_package(spdlog CONFIG QUIET)
+  if(spdlog_FOUND)
+    message(STATUS "Found system spdlog: ${spdlog_DIR}")
+    set(CPM_spdlog_ADDED YES)
+    # Some system spdlog packages (e.g. conda) only export the namespaced spdlog::spdlog target,
+    # while the Lds dependency queries the bare `spdlog` target for its interface definitions.
+    # Provide an alias so both work whichever spdlog is used.
+    if(NOT TARGET spdlog AND TARGET spdlog::spdlog)
+      add_library(spdlog ALIAS spdlog::spdlog)
+    endif()
   endif()
-else()
+endif()
+
+if(NOT spdlog_FOUND)
   CPMAddPackage(
     NAME spdlog
     GIT_TAG v1.17.0
@@ -140,6 +153,32 @@ target_include_directories(
 )
 
 target_enable_warnings(${PROJECT_NAME})
+
+# The *_atomic root-finders use 16-byte std::atomic (std::atomic<std::complex<double>>,
+# std::atomic<Vec2>). GCC/Clang emit __atomic_load_16/__atomic_store_16 calls for these, which live
+# in libatomic where it exists (Linux/MinGW). macOS provides them via compiler-rt, so libatomic must
+# only be linked when the check proves it is available.
+if(NOT MSVC)
+  include(CheckCXXSourceCompiles)
+  set(CMAKE_REQUIRED_LIBRARIES atomic)
+  check_cxx_source_compiles(
+    "
+#include <atomic>
+#include <complex>
+int main() {
+    std::atomic<std::complex<double>> a{};
+    a.store({1.0, 2.0});
+    (void)a.load();
+    return 0;
+}
+"
+    GINGER_NEEDS_LIBATOMIC
+  )
+  unset(CMAKE_REQUIRED_LIBRARIES)
+  if(GINGER_NEEDS_LIBATOMIC)
+    target_link_libraries(${PROJECT_NAME} PRIVATE atomic)
+  endif()
+endif()
 
 # ---- Create an installable target ----
 # this allows users to install and find the library via `find_package()`.

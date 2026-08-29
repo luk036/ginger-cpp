@@ -3,7 +3,7 @@
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
 #include <ginger/aberth.hpp>  // for aberth, initial_aberth
-#include <ginger/config.hpp>  // for Options
+#include <ginger/config.hpp>  // for ginger::Options
 #include <utility>            // for pair
 #include <vector>             // for vector
 
@@ -12,7 +12,7 @@
 TEST_CASE("test aberth 1") {
     auto h = std::vector<double>{5., 2., 9., 6., 2.};
     auto zs = initial_aberth(h);
-    auto result = aberth(h, zs, Options());
+    auto result = aberth(h, zs, ginger::Options());
     auto niter = result.first;
     CHECK_LE(niter, 11);
 }
@@ -20,7 +20,7 @@ TEST_CASE("test aberth 1") {
 TEST_CASE("test aberth 2") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto zs = initial_aberth(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = aberth(h, zs, options);
     auto niter = result.first;
@@ -38,7 +38,7 @@ TEST_CASE("test aberth FIR") {
         0.0097864,   0.00681596,  0.00380494,  0.00134667,  -0.00023823, -0.00094597, -0.00196191,
     };
     auto zs = initial_aberth(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-8;
     auto result = aberth(r, zs, options);
     auto niter = result.first;
@@ -48,7 +48,7 @@ TEST_CASE("test aberth FIR") {
 // TEST_CASE("test aberth_autocorr 1") {
 //     auto h = std::vector<double>{5., 2., 9., 6., 2.};
 //     auto zs = initial_aberth_autocorr(h);
-//     auto result = aberth_autocorr(h, zs, Options());
+//     auto result = aberth_autocorr(h, zs, ginger::Options());
 //     auto niter = result.first;
 //     CHECK_LE(niter, 11);
 // }
@@ -56,7 +56,7 @@ TEST_CASE("test aberth FIR") {
 TEST_CASE("test aberth_autocorr 2") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto zs = initial_aberth_autocorr(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = aberth(h, zs, options);
     auto niter = result.first;
@@ -74,7 +74,7 @@ TEST_CASE("test aberth_autocorr FIR") {
         0.0097864,   0.00681596,  0.00380494,  0.00134667,  -0.00023823, -0.00094597, -0.00196191,
     };
     auto zs = initial_aberth_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-8;
     auto result = aberth_autocorr(r, zs, options);
     auto niter = result.first;
@@ -84,7 +84,7 @@ TEST_CASE("test aberth_autocorr FIR") {
 // TEST_CASE("test aberth_autocorr_mt 1") {
 //     auto h = std::vector<double>{5., 2., 9., 6., 2.};
 //     auto zs = initial_aberth_autocorr(h);
-//     auto result = aberth_autocorr_mt(h, zs, Options());
+//     auto result = aberth_autocorr_mt(h, zs, ginger::Options());
 //     auto niter = result.first;
 //     CHECK_LE(niter, 12);
 // }
@@ -92,7 +92,7 @@ TEST_CASE("test aberth_autocorr FIR") {
 TEST_CASE("test horners method") {
     auto r = std::vector<double>{10, 34, 75, 94, 150, 94, 75, 34, 10};
     auto zs = initial_aberth(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-8;
     auto result = aberth(r, zs, options);
     auto niter = result.first;
@@ -138,7 +138,7 @@ TEST_CASE("test poly_from_roots empty") {
 TEST_CASE("test poly_from_roots aberth reconstruction") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto zs = initial_aberth(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = aberth(h, zs, options);
     REQUIRE(result.second);  // must converge
@@ -153,7 +153,7 @@ TEST_CASE("test poly_from_roots aberth reconstruction") {
 TEST_CASE("test poly_from_roots aberth reconstruction monic") {
     auto h = std::vector<double>{1.0, 0.0, -1.0};
     auto zs = initial_aberth(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = aberth(h, zs, options);
     REQUIRE(result.second);
@@ -228,7 +228,7 @@ TEST_CASE("test poly_from_autocorr_roots empty") {
 TEST_CASE("test poly_from_autocorr_roots reconstruction") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto zs = initial_aberth_autocorr(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = aberth_autocorr(h, zs, options);
     REQUIRE(result.second);
@@ -250,7 +250,7 @@ TEST_CASE("test poly_from_autocorr_roots fir") {
         -0.0201885,  -0.01173923, -0.00281751, 0.00474894,  0.00985211,  0.0121238,   0.01186197,
         0.0097864,   0.00681596,  0.00380494,  0.00134667,  -0.00023823, -0.00094597, -0.00196191};
     auto zs = initial_aberth_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-8;
     auto result = aberth_autocorr(r, zs, options);
     REQUIRE(result.second);

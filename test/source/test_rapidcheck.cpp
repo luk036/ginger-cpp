@@ -25,7 +25,7 @@ void test_initial_guess_count() {
 }
 
 void test_options_defaults() {
-    Options options;
+    ginger::Options options;
     RC_ASSERT(options.max_iters > static_cast<unsigned int>(0));
     RC_ASSERT(options.tolerance > 0.0);
 }
@@ -55,7 +55,7 @@ void test_roots_of_unity() {
     coeffs[n] = -1.0;
 
     auto initial = initial_aberth(coeffs);
-    Options options;
+    ginger::Options options;
     std::pair<unsigned int, bool> result = aberth(coeffs, initial, options);
     bool converged = result.second;
 
@@ -71,8 +71,8 @@ TEST_CASE("Property-based test: Initial guess produces correct number of roots")
     rc::check("initial_aberth produces degree number of initial guesses", test_initial_guess_count);
 }
 
-TEST_CASE("Property-based test: Options default values are reasonable") {
-    rc::check("Options can be used with default values", test_options_defaults);
+TEST_CASE("Property-based test: ginger::Options default values are reasonable") {
+    rc::check("ginger::Options can be used with default values", test_options_defaults);
 }
 
 TEST_CASE("Property-based test: Bairstow method produces quadratic factors") {

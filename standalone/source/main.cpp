@@ -23,7 +23,7 @@ auto main(int argc, char** argv) -> int {
 
     const std::vector<double> coeffs{1.0, -3.0, 2.0};
     auto zs = initial_aberth(coeffs);
-    const auto [iters, converged] = aberth(coeffs, zs, Options{});
+    const auto [iters, converged] = aberth(coeffs, zs, ginger::Options{});
 
     std::cout << "Ginger: roots of x^2 - 3x + 2 (converged=" << std::boolalpha << converged
               << ", iters=" << iters << "):";
