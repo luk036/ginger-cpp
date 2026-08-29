@@ -7,7 +7,7 @@
 
 #include <algorithm>          // for all_of
 #include <cmath>              // for abs
-#include <ginger/config.hpp>  // for Options
+#include <ginger/config.hpp>  // for ginger::Options
 #include <ginger/rootfinding.hpp>  // for delta_scalar, horner, initial_guess, pbairstow_even, suppress_old
 #include <vector>                  // for vector
 
@@ -15,7 +15,7 @@ using namespace ginger;
 
 TEST_CASE("test gs order dependent iterations") {
     const auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
 
     const auto base = initial_guess(h);

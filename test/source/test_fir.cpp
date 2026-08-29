@@ -3,7 +3,7 @@
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
 #include <ginger/autocorr.hpp>     // for extract_autocorr, initial_autocorr
-#include <ginger/config.hpp>       // for Options
+#include <ginger/config.hpp>       // for ginger::Options
 #include <ginger/rootfinding.hpp>  // for horner, Options
 #include <utility>                 // for pair
 #include <vector>                  // for vector
@@ -37,7 +37,7 @@ TEST_CASE("test FIR") {
     // auto vA1h = horner(coeffs1, degree - 2, vrs[1]);
     // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-5;
     auto result = pbairstow_autocorr(r, vrs, options);
     // auto niter = result.first;

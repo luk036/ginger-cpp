@@ -3,11 +3,12 @@
 #include <complex>  // for complex, operator*, operator+
 #include <ginger/aberth.hpp>
 #include <ginger/config.hpp>
-#include <ginger/robin.hpp>  // for Robin
 #include <lds/lds.hpp>
 #include <limits>   // for numeric_limits
 #include <utility>  // for pair
 #include <vector>   // for vector, vector<>::reference, __v...
+
+#include "execution_policy.hpp"  // for ginger::detail::aberth_step, derivative_coeffs
 
 using std::vector;
 using Complex = std::complex<double>;
@@ -48,49 +49,11 @@ auto initial_aberth(const vector<double>& coeffs) -> vector<Complex> {
     return z0s;
 }
 
-// ST core — no std::future overhead, returns tolerance directly
-template <typename F> static auto aberth_st_core(const vector<double>& coeffs, vector<Complex>& zs,
-                                                 const Options& options, F& aberth_job_generator)
-    -> std::pair<unsigned int, bool> {
-    const auto num_roots = zs.size();
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        auto aberth_job = aberth_job_generator(coeffs, zs);
-        for (auto idx = 0U; idx != num_roots; ++idx) {
-            tolerance = std::max(tolerance, aberth_job(idx));
-        }
-        if (tolerance < options.tolerance) {
-            return {niter, true};
-        }
-    }
-    return {options.max_iters, false};
-}
-
-auto aberth(const vector<double>& coeffs, vector<Complex>& zs, const Options& options = Options())
-    -> std::pair<unsigned int, bool> {
-    const auto degree = coeffs.size() - 1;
-    auto coeffs1 = vector<double>(degree);
-    for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
-    }
-    const auto num_zs = zs.size();
-
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&, num_zs](size_t idx) -> double {
-            const auto zi = zs_ref[idx];
-            const auto P = horner_eval_c(coeffs, zi);
-            const auto tol_i = std::abs(P);
-            auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
-                if (jdx == idx) continue;
-                P1 -= P / (zi - zs_ref[jdx]);
-            }
-            zs_ref[idx] -= P / P1;
-            return tol_i;
-        };
-    };
-
-    return aberth_st_core(coeffs, zs, options, aberth_job_generator);
+auto aberth(const vector<double>& coeffs, vector<Complex>& zs,
+            const ginger::Options& options = ginger::Options()) -> std::pair<unsigned int, bool> {
+    auto coeffs1 = ginger::detail::derivative_coeffs(coeffs);
+    ginger::detail::aberth_step step{coeffs, coeffs1};
+    return ginger::detail::sequential_policy::run(zs, options, step);
 }
 
 /**
@@ -127,51 +90,12 @@ auto initial_aberth_autocorr(const vector<double>& coeffs) -> vector<Complex> {
     return z0s;
 }
 
-// ST core — no std::future overhead, returns tolerance directly
-template <typename F>
-static auto aberth_autocorr_st_core(const vector<double>& coeffs, vector<Complex>& zs,
-                                    const Options& options, F& aberth_job_generator)
-    -> std::pair<unsigned int, bool> {
-    const auto num_roots = zs.size();
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        auto aberth_job = aberth_job_generator(coeffs, zs);
-        for (auto idx = 0U; idx != num_roots; ++idx) {
-            tolerance = std::max(tolerance, aberth_job(idx));
-        }
-        if (tolerance < options.tolerance) {
-            return {niter, true};
-        }
-    }
-    return {options.max_iters, false};
-}
-
 auto aberth_autocorr(const vector<double>& coeffs, vector<Complex>& zs,
-                     const Options& options = Options()) -> std::pair<unsigned int, bool> {
-    const auto degree = coeffs.size() - 1;
-    auto coeffs1 = vector<double>(degree);
-    for (auto idx = 0U; idx != degree; ++idx) {
-        coeffs1[idx] = static_cast<double>(degree - idx) * coeffs[idx];
-    }
-    const auto num_zs = zs.size();
-
-    auto aberth_job_generator = [&](const vector<double>&, vector<Complex>& zs_ref) {
-        return [&, num_zs](size_t idx) -> double {
-            const auto zi = zs_ref[idx];
-            const auto P = horner_eval_c(coeffs, zi);
-            const auto tol_i = std::abs(P);
-            auto P1 = horner_eval_c(coeffs1, zi);
-            for (auto jdx = 0U; jdx < num_zs; ++jdx) {
-                if (jdx == idx) continue;
-                P1 -= P / (zi - zs_ref[jdx]);
-                P1 -= P / (zi - 1.0 / zs_ref[jdx]);
-            }
-            zs_ref[idx] -= P / P1;
-            return tol_i;
-        };
-    };
-
-    return aberth_autocorr_st_core(coeffs, zs, options, aberth_job_generator);
+                     const ginger::Options& options = ginger::Options())
+    -> std::pair<unsigned int, bool> {
+    auto coeffs1 = ginger::detail::derivative_coeffs(coeffs);
+    ginger::detail::aberth_autocorr_step step{coeffs, coeffs1};
+    return ginger::detail::sequential_policy::run(zs, options, step);
 }
 
 auto leja_order(const vector<Complex>& points) -> vector<Complex> {

@@ -11,6 +11,8 @@
 #include <utility>                 // for pair
 #include <vector>                  // for vector, vector<>::reference, __v...
 
+#include "execution_policy.hpp"  // for ginger::detail::autocorr_bairstow_step
+
 /**
  * The function calculates the initial autocorrelation values (specific for
  * auto-correlation function)
@@ -92,34 +94,10 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
  * @endverbatim
  */
 auto pbairstow_autocorr_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                           const Options& options) -> std::pair<unsigned int, bool> {
-    const auto num_roots = vrs.size();
+                           const ginger::Options& options) -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
-
-    for (auto niter = 0U; niter != options.max_iters; ++niter) {
-        auto tolerance = 0.0;
-        for (auto idx = 0U; idx != num_roots; ++idx) {
-            auto local_coeffs = coeffs;
-            const auto& vri = vrs[idx];
-            auto vA = horner(local_coeffs, degree, vri);
-            const auto tol_i = std::max(std::abs(vA.x()), std::abs(vA.y()));
-            if (tol_i < options.tol_ind) continue;
-            auto vA1 = horner(local_coeffs, degree - 2, vri);
-            for (auto jdx = 0U; jdx < num_roots; ++jdx) {
-                if (jdx == idx) continue;
-                const auto& vrj = vrs[jdx];
-                suppress_old(vA, vA1, vri, vrj);
-                const auto vrjn = ginger::Vector2<double>(-vrj.x(), 1.0) / vrj.y();
-                suppress_old(vA, vA1, vri, vrjn);
-            }
-            const auto vrin = ginger::Vector2<double>(-vri.x(), 1.0) / vri.y();
-            suppress_old(vA, vA1, vri, vrin);
-            vrs[idx] -= delta_scalar(vA, vri, vA1);
-            tolerance = std::max(tolerance, tol_i);
-        }
-        if (tolerance < options.tolerance) return {niter, true};
-    }
-    return {options.max_iters, false};
+    ginger::detail::autocorr_bairstow_step step{coeffs, degree, options};
+    return ginger::detail::sequential_policy::run(vrs, options, step);
 }
 
 /**
@@ -157,19 +135,6 @@ auto pbairstow_autocorr_st(const std::vector<double>& coeffs, std::vector<Vec2>&
  * Output: updated vr
  * @endverbatim
  */
-static auto roots_from_quadratic(const Vec2& vr)
-    -> std::pair<std::complex<double>, std::complex<double>> {
-    const auto r = vr.x();
-    const auto q = vr.y();
-    const auto disc = r * r + 4.0 * q;
-    if (disc >= 0.0) {
-        const auto sqrt_disc = std::sqrt(disc);
-        return {{(r + sqrt_disc) / 2.0, 0.0}, {(r - sqrt_disc) / 2.0, 0.0}};
-    }
-    const auto sqrt_disc = std::sqrt(-disc);
-    return {{r / 2.0, sqrt_disc / 2.0}, {r / 2.0, -sqrt_disc / 2.0}};
-}
-
 auto poly_from_autocorr_factors(const std::vector<Vec2>& vrs) -> std::vector<double> {
     if (vrs.empty()) {
         return {1.0};
@@ -180,7 +145,7 @@ auto poly_from_autocorr_factors(const std::vector<Vec2>& vrs) -> std::vector<dou
     std::vector<std::complex<double>> all_roots;
     all_roots.reserve(4 * vrs.size());
     for (const auto& vr : vrs) {
-        auto [r1, r2] = roots_from_quadratic(vr);
+        auto [r1, r2] = ginger::detail::roots_from_quadratic(vr);
         all_roots.push_back(r1);
         all_roots.push_back(r2);
         all_roots.push_back(1.0 / r1);

@@ -44,7 +44,7 @@
  * the maximum across threads), so tests should assert convergence, not a fixed count.
  */
 extern auto aberth_atomic(const std::vector<double>& coeffs, std::vector<std::complex<double>>& zs,
-                          const Options& options) -> std::pair<unsigned int, bool>;
+                          const ginger::Options& options) -> std::pair<unsigned int, bool>;
 
 /**
  * @brief Atomic Aberth-Ehrlich method (specifically for auto-correlation functions)
@@ -78,5 +78,5 @@ extern auto aberth_atomic(const std::vector<double>& coeffs, std::vector<std::co
  * count is the maximum across threads), so tests should assert convergence, not a fixed count.
  */
 extern auto aberth_autocorr_atomic(const std::vector<double>& coeffs,
-                                   std::vector<std::complex<double>>& zs, const Options& options)
-    -> std::pair<unsigned int, bool>;
+                                   std::vector<std::complex<double>>& zs,
+                                   const ginger::Options& options) -> std::pair<unsigned int, bool>;

@@ -4,7 +4,7 @@
 #include <fmt/format.h>       // for print
 
 #include <ginger/autocorr.hpp>     // for extract_autocorr, initial_autocorr
-#include <ginger/config.hpp>       // for Options
+#include <ginger/config.hpp>       // for ginger::Options
 #include <ginger/rootfinding.hpp>  // for horner, Options
 #include <ginger/vector2.hpp>      // for vector2
 #include <utility>                 // for pair
@@ -28,7 +28,7 @@ TEST_CASE("test auto-corr 1") {
     // auto vA1h = horner(coeffs1, degree - 2, vrs[1]);
     // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_autocorr(r, vrs, options);
     auto niter = result.first;
@@ -71,7 +71,7 @@ TEST_CASE("test autocorr FIR") {
     // auto vA1h = horner(coeffs1, degree - 2, vrs[1]);
     // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-4;
     auto result = pbairstow_autocorr(r, vrs, options);
     // auto niter = result.first;
@@ -98,7 +98,7 @@ TEST_CASE("test poly_from_autocorr_factors empty") {
 TEST_CASE("test poly_from_autocorr_factors reconstruction") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_autocorr(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_autocorr(h, vrs, options);
     REQUIRE(result.second);
@@ -120,7 +120,7 @@ TEST_CASE("test poly_from_autocorr_factors fir") {
         -0.0201885,  -0.01173923, -0.00281751, 0.00474894,  0.00985211,  0.0121238,   0.01186197,
         0.0097864,   0.00681596,  0.00380494,  0.00134667,  -0.00023823, -0.00094597, -0.00196191};
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-4;
     auto result = pbairstow_autocorr(r, vrs, options);
     REQUIRE(result.second);

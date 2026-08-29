@@ -10,7 +10,9 @@
 #include <utility>
 #include <vector>
 
-class Options;
+namespace ginger {
+    class Options;
+}
 
 /// @brief Helper to generate a constexpr table of VdCorput<Base> values
 /// @tparam N Number of values to generate
@@ -198,7 +200,7 @@ extern auto initial_aberth(const std::vector<double>& coeffs) -> std::vector<std
  * method converged to a solution within the specified tolerance.
  */
 extern auto aberth(const std::vector<double>& coeffs, std::vector<std::complex<double>>& zs,
-                   const Options& options) -> std::pair<unsigned int, bool>;
+                   const ginger::Options& options) -> std::pair<unsigned int, bool>;
 
 /**
  * @brief Initial guess for the Aberth-Ehrlich method (specifically for auto-correlation functions)
@@ -243,7 +245,7 @@ extern auto initial_aberth_autocorr(const std::vector<double>& coeffs)
  * represents whether the method converged to a solution within the specified tolerance.
  */
 extern auto aberth_autocorr(const std::vector<double>& coeffs,
-                            std::vector<std::complex<double>>& zs, const Options& options)
+                            std::vector<std::complex<double>>& zs, const ginger::Options& options)
     -> std::pair<unsigned int, bool>;
 
 /**

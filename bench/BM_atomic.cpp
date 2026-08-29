@@ -33,7 +33,7 @@ int main() {
 
         bench.run("Aberth_MT d8", [&] {
             auto zs = initial_aberth(degree8);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-12;
             auto result = aberth_mt(degree8, zs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -41,7 +41,7 @@ int main() {
 
         bench.run("Aberth_Atomic d8", [&] {
             auto zs = initial_aberth(degree8);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-12;
             auto result = aberth_atomic(degree8, zs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -58,7 +58,7 @@ int main() {
 
         bench.run("FIR_Aberth_MT", [&] {
             auto zs = initial_aberth(global_r);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-8;
             auto result = aberth_mt(global_r, zs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -66,7 +66,7 @@ int main() {
 
         bench.run("FIR_Aberth_Atomic", [&] {
             auto zs = initial_aberth(global_r);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-8;
             auto result = aberth_atomic(global_r, zs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -83,7 +83,7 @@ int main() {
 
         bench.run("PBairstow_MT d8", [&] {
             auto vrs = initial_guess(degree8);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-12;
             auto result = pbairstow_even_mt(degree8, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -91,7 +91,7 @@ int main() {
 
         bench.run("PBairstow_Atomic d8", [&] {
             auto vrs = initial_guess(degree8);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-12;
             auto result = pbairstow_even_atomic(degree8, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -108,7 +108,7 @@ int main() {
 
         bench.run("FIR_PBairstow_MT", [&] {
             auto vrs = initial_guess(global_r);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-6;
             auto result = pbairstow_even_mt(global_r, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -116,7 +116,7 @@ int main() {
 
         bench.run("FIR_PBairstow_Atomic", [&] {
             auto vrs = initial_guess(global_r);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-6;
             auto result = pbairstow_even_atomic(global_r, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);

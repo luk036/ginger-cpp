@@ -65,4 +65,4 @@
  * represents whether the method converged to a solution within the specified tolerance.
  */
 extern auto pbairstow_even_atomic(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                                  const Options& options) -> std::pair<unsigned int, bool>;
+                                  const ginger::Options& options) -> std::pair<unsigned int, bool>;

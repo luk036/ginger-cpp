@@ -13,7 +13,7 @@ TEST_CASE("Spdlogger integration test") {
     // Test with polynomial root finding
     std::vector<double> coeffs = {1.0, -6.0, 11.0, -6.0};  // (x-1)(x-2)(x-3)
     auto initial = initial_aberth(coeffs);
-    Options options;
+    ginger::Options options;
 
     ginger::log_with_spdlog("Starting polynomial root finding");
     auto [iters, converged] = aberth(coeffs, initial, options);

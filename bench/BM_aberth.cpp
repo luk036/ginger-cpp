@@ -29,7 +29,7 @@ int main() {
 
         bench.run("FIR_Aberth", [&] {
             auto vrs = initial_aberth(global_r);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-8;
             auto result = aberth(global_r, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -37,7 +37,7 @@ int main() {
 
         bench.run("Aberth_ST", [&] {
             auto vrs = initial_aberth(degree8);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-12;
             auto result = aberth(degree8, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -54,7 +54,7 @@ int main() {
 
         bench.run("FIR_Aberth_MT", [&] {
             auto vrs = initial_aberth(global_r);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-8;
             auto result = aberth_mt(global_r, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);
@@ -62,7 +62,7 @@ int main() {
 
         bench.run("Aberth_MT", [&] {
             auto vrs = initial_aberth(degree8);
-            Options opts;
+            ginger::Options opts;
             opts.tolerance = 1e-12;
             auto result = aberth_mt(degree8, vrs, opts);
             ankerl::nanobench::doNotOptimizeAway(result);

@@ -20,7 +20,9 @@ using Mat2 = ginger::Matrix2<Vec2>;
  * The code snippet defines a class called `Options` that represents the options for a specific
  * algorithm or function. It has two public member variables: `max_iters` and `tolerance`.
  */
-class Options;
+namespace ginger {
+    class Options;
+}
 
 /**
  * @brief Initial guess for the parallel Bairstow method
@@ -71,10 +73,10 @@ extern auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2>;
  * represents whether the method converged to a solution within the specified tolerance.
  */
 extern auto pbairstow_even_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                              const Options& options) -> std::pair<unsigned int, bool>;
+                              const ginger::Options& options) -> std::pair<unsigned int, bool>;
 
 inline auto pbairstow_even(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
-                           const Options& options) -> std::pair<unsigned int, bool> {
+                           const ginger::Options& options) -> std::pair<unsigned int, bool> {
     return pbairstow_even_st(coeffs, vrs, options);
 }
 

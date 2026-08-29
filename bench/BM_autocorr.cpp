@@ -12,7 +12,7 @@
 auto run_autocorr_st() {
     auto r = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_autocorr_st(r, vrs, options);
     return result;
@@ -21,7 +21,7 @@ auto run_autocorr_st() {
 auto run_pbairstow_st() {
     auto r = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_guess(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_even_st(r, vrs, options);
     return result;
@@ -30,7 +30,7 @@ auto run_pbairstow_st() {
 auto run_autocorr_mt() {
     auto r = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_autocorr_mt(r, vrs, options);
     return result;
@@ -39,7 +39,7 @@ auto run_autocorr_mt() {
 auto run_pbairstow_mt() {
     auto r = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_guess(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_even_mt(r, vrs, options);
     return result;
@@ -48,7 +48,7 @@ auto run_pbairstow_mt() {
 auto run_autocorr_atomic() {
     auto r = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_autocorr_atomic(r, vrs, options);
     return result;
@@ -66,7 +66,7 @@ static const auto global_r = std::vector<double>{
 auto run_fir_autocorr_mt() {
     auto r = global_r;
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-2;
     auto result = pbairstow_autocorr_mt(r, vrs, options);
     return result;
@@ -75,7 +75,7 @@ auto run_fir_autocorr_mt() {
 auto run_fir_autocorr_atomic() {
     auto r = global_r;
     auto vrs = initial_autocorr(r);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-2;
     auto result = pbairstow_autocorr_atomic(r, vrs, options);
     return result;

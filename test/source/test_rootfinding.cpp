@@ -3,7 +3,7 @@
 #define DOCTEST_CONFIG_NO_EXCEPTIONS_BUT_WITH_ALL_ASSERTS
 #include <doctest/doctest.h>  // for ResultBuilder, CHECK, TEST_CASE
 
-#include <ginger/config.hpp>       // for Options
+#include <ginger/config.hpp>       // for ginger::Options
 #include <ginger/rootfinding.hpp>  // for horner, initial_guess, pbairstow...
 #include <utility>                 // for pair
 #include <vector>                  // for vector
@@ -171,7 +171,7 @@ TEST_CASE("test root-finding 1") {
     // auto vA1h = horner(coeffs1, degree - 2, vrs[1]);
     // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
-    auto result = pbairstow_even(h, vrs, Options());
+    auto result = pbairstow_even(h, vrs, ginger::Options());
     auto niter = result.first;
     auto found = result.second;
     // fmt::print("{}, {}\n", niter, found);
@@ -195,7 +195,7 @@ TEST_CASE("test root-finding 2") {
     // auto vA1h = horner(coeffs1, degree - 2, vrs[1]);
     // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_even(h, vrs, options);
     auto niter = result.first;
@@ -226,7 +226,7 @@ TEST_CASE("test root-finding FIR") {
     // auto vA1h = horner(coeffs1, degree - 2, vrs[1]);
     // fmt::print("{}, {}\n", vA1h.x(), vA1h.y());
 
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_even(h, vrs, options);
     auto niter = result.first;
@@ -306,7 +306,7 @@ TEST_CASE("Polynomial Root Finding") {
     SUBCASE("Bairstow's Method") {
         std::vector<double> coeffs = {10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
         auto vrs = initial_guess(coeffs);
-        Options options;
+        ginger::Options options;
         options.max_iters = 100;
         options.tolerance = 1e-12;
 
@@ -381,7 +381,7 @@ TEST_CASE("test poly_from_quadratic_factors general factor") {
 TEST_CASE("test poly_from_quadratic_factors pbairstow reconstruction") {
     auto h = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
     auto vrs = initial_guess(h);
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
     auto result = pbairstow_even(h, vrs, options);
     REQUIRE(result.second);
@@ -399,7 +399,7 @@ TEST_CASE("test poly_from_quadratic_factors pbairstow reconstruction") {
 //         auto vrs = initial_guess(coeffs);
 //         CHECK(vrs.empty()); // Should handle zero polynomial
 //
-//         Options options;
+//         ginger::Options options;
 //         auto [niter, found] = pbairstow_even(coeffs, vrs, options);
 //         CHECK_EQ(found, true); // Technically correct for zero polynomial
 //     }
@@ -409,7 +409,7 @@ TEST_CASE("test poly_from_quadratic_factors pbairstow reconstruction") {
 //         auto vrs = initial_guess(coeffs);
 //         CHECK(vrs.empty()); // No roots to find
 //
-//         Options options;
+//         ginger::Options options;
 //         auto [niter, found] = pbairstow_even(coeffs, vrs, options);
 //         CHECK_EQ(found, true); // No iterations needed
 //     }

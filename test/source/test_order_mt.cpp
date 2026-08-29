@@ -9,7 +9,7 @@
 
 #include <algorithm>                  // for sort
 #include <complex>                    // for complex
-#include <ginger/config.hpp>          // for Options
+#include <ginger/config.hpp>          // for ginger::Options
 #include <ginger/rootfinding_mt.hpp>  // for initial_guess, pbairstow_even_mt
 #include <vector>                     // for vector
 
@@ -55,7 +55,7 @@ TEST_CASE("test jacobi mt order independent") {
     // Palindromic degree-12: 6 factors, exercises the true Jacobi path.
     const auto h
         = std::vector<double>{1.0, 0.0, 2.0, 0.0, 3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 2.0, 0.0, 1.0};
-    auto options = Options();
+    auto options = ginger::Options();
     options.tolerance = 1e-12;
 
     const auto base = initial_guess(h);
