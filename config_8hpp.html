@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.7</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.8</span>
    </div>
   </td>
  </tr>
@@ -81,21 +81,52 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">config.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Algorithm options (max iterations, tolerance)  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for config.hpp:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="config_8hpp__incl.svg" width="146" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="config_8hpp__dep__incl.svg" width="146" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 <p><a href="config_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOptions.html">Options</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classOptions.html" title="Options for convergence-based algorithms.">Options</a> for convergence-based algorithms.  <a href="classOptions.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classginger_1_1Options.html">ginger::Options</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceginger" id="r_namespaceginger"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html">ginger</a></td></tr>
+<tr class="memdesc:namespaceginger"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classginger_1_1Options.html">Options</a> for convergence-based algorithms. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a52e3561093b48f952042467b268627fd" id="r_a52e3561093b48f952042467b268627fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a52e3561093b48f952042467b268627fd">ginger::should_parallelize</a> (std::size_t <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">num_roots</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a></td></tr>
+<tr class="memdesc:a52e3561093b48f952042467b268627fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether <code>num_roots</code> should use the multi-threaded execution policy.  <br /></td></tr>
+<tr class="separator:a52e3561093b48f952042467b268627fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad09df7a51557711ac912dc9ecef2ba0f" id="r_ad09df7a51557711ac912dc9ecef2ba0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">constexpr</a> std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#ad09df7a51557711ac912dc9ecef2ba0f">ginger::PARALLEL_THRESHOLD</a> = 4</td></tr>
+<tr class="memdesc:ad09df7a51557711ac912dc9ecef2ba0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of roots above which the multi-threaded policies are used by default.  <br /></td></tr>
+<tr class="separator:ad09df7a51557711ac912dc9ecef2ba0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Algorithm options (max iterations, tolerance) </p>

@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.7</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.8</span>
    </div>
   </td>
  </tr>
@@ -78,15 +78,22 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">ginger Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classginger_1_1Options.html">Options</a> for convergence-based algorithms.  
+<a href="namespaceginger.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classginger_1_1Matrix2.html">Matrix2</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classginger_1_1Matrix2.html" title="Matrix2.">Matrix2</a>.  <a href="classginger_1_1Matrix2.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classginger_1_1Options.html">Options</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classginger_1_1thread__pool.html">thread_pool</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,15 +104,82 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classginger_1_1Vector2Ref.html" title="Vector2Ref.">Vector2Ref</a>.  <a href="classginger_1_1Vector2Ref.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:adc1dd883acfb702e35300f4c9a1b236e" id="r_adc1dd883acfb702e35300f4c9a1b236e"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a> { <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">automatic</a>
+, <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea6ec7489017b25b5fff20d353b6d2162e">sequential</a>
+, <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236eafeda7277ae217d7e6c1a212b0ad00eff">multi_threaded</a>
+, <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea23d33884d600e542d097cd3933df2ae4">atomic</a>
+ }</td></tr>
+<tr class="memdesc:adc1dd883acfb702e35300f4c9a1b236e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execution policy selection for the solver facades.  <a href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">More...</a><br /></td></tr>
+<tr class="separator:adc1dd883acfb702e35300f4c9a1b236e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a52e3561093b48f952042467b268627fd" id="r_a52e3561093b48f952042467b268627fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a52e3561093b48f952042467b268627fd">should_parallelize</a> (std::size_t <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">num_roots</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a></td></tr>
+<tr class="memdesc:a52e3561093b48f952042467b268627fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether <code>num_roots</code> should use the multi-threaded execution policy.  <br /></td></tr>
+<tr class="separator:a52e3561093b48f952042467b268627fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69846b64c89fbf72d7761600356d2366" id="r_a69846b64c89fbf72d7761600356d2366"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a69846b64c89fbf72d7761600356d2366">log_with_spdlog</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::string &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">message</a>)</td></tr>
 <tr class="memdesc:a69846b64c89fbf72d7761600356d2366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a message using spdlog.  <br /></td></tr>
 <tr class="separator:a69846b64c89fbf72d7761600356d2366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf2566967187b522c766aa43b434aa06" id="r_abf2566967187b522c766aa43b434aa06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#abf2566967187b522c766aa43b434aa06">solve_pbairstow_even</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>, <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">mode</a>=<a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a>) -&gt; std::pair&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
+<tr class="memdesc:abf2566967187b522c766aa43b434aa06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Facade for the parallel Bairstow method (even degree).  <br /></td></tr>
+<tr class="separator:abf2566967187b522c766aa43b434aa06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99358465b85d9b028f23013c6844e458" id="r_a99358465b85d9b028f23013c6844e458"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a99358465b85d9b028f23013c6844e458">solve_pbairstow_autocorr</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>, <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">mode</a>=<a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a>) -&gt; std::pair&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
+<tr class="memdesc:a99358465b85d9b028f23013c6844e458"><td class="mdescLeft">&#160;</td><td class="mdescRight">Facade for the parallel Bairstow method (auto-correlation).  <br /></td></tr>
+<tr class="separator:a99358465b85d9b028f23013c6844e458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d190cc76711013f9687de28c28fbbfe" id="r_a4d190cc76711013f9687de28c28fbbfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a4d190cc76711013f9687de28c28fbbfe">solve_aberth</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, std::vector&lt; std::complex&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">zs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>, <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">mode</a>=<a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a>) -&gt; std::pair&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
+<tr class="memdesc:a4d190cc76711013f9687de28c28fbbfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Facade for the Aberth-Ehrlich method.  <br /></td></tr>
+<tr class="separator:a4d190cc76711013f9687de28c28fbbfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace6bb39f7812ccafd299489edb625abe" id="r_ace6bb39f7812ccafd299489edb625abe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#ace6bb39f7812ccafd299489edb625abe">solve_aberth_autocorr</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, std::vector&lt; std::complex&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">zs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>, <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">mode</a>=<a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a>) -&gt; std::pair&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
+<tr class="memdesc:ace6bb39f7812ccafd299489edb625abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Facade for the Aberth-Ehrlich method (auto-correlation).  <br /></td></tr>
+<tr class="separator:ace6bb39f7812ccafd299489edb625abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b62cd679aed268f3e14dff01093e3b0" id="r_a3b62cd679aed268f3e14dff01093e3b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a3b62cd679aed268f3e14dff01093e3b0">get_thread_pool</a> () -&gt; <a class="el" href="classginger_1_1thread__pool.html">thread_pool</a> &amp;</td></tr>
 <tr class="memdesc:a3b62cd679aed268f3e14dff01093e3b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience accessor returning a singleton thread pool.  <br /></td></tr>
 <tr class="separator:a3b62cd679aed268f3e14dff01093e3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad09df7a51557711ac912dc9ecef2ba0f" id="r_ad09df7a51557711ac912dc9ecef2ba0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">constexpr</a> std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#ad09df7a51557711ac912dc9ecef2ba0f">PARALLEL_THRESHOLD</a> = 4</td></tr>
+<tr class="memdesc:ad09df7a51557711ac912dc9ecef2ba0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of roots above which the multi-threaded policies are used by default.  <br /></td></tr>
+<tr class="separator:ad09df7a51557711ac912dc9ecef2ba0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classginger_1_1Options.html">Options</a> for convergence-based algorithms. </p>
+<p><a class="el" href="classginger_1_1Options.html">Options</a>.</p>
+<p>Stores maximum iteration count, tolerance for global convergence, and per-root tolerance for convergence checks used by Bairstow and Aberth root-finding methods.</p>
+<p>The code snippet defines a class called <code><a class="el" href="classginger_1_1Options.html">Options</a></code> that represents the options for a specific algorithm or function. It has two public member variables: <code>max_iters</code> and <code>tolerance</code>. </p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="adc1dd883acfb702e35300f4c9a1b236e" name="adc1dd883acfb702e35300f4c9a1b236e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc1dd883acfb702e35300f4c9a1b236e">&#9670;&#160;</a></span>solve_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">enum</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">class</a> <a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">ginger::solve_mode</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execution policy selection for the solver facades. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8" name="adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8"></a>automatic&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="adc1dd883acfb702e35300f4c9a1b236ea6ec7489017b25b5fff20d353b6d2162e" name="adc1dd883acfb702e35300f4c9a1b236ea6ec7489017b25b5fff20d353b6d2162e"></a>sequential&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="adc1dd883acfb702e35300f4c9a1b236eafeda7277ae217d7e6c1a212b0ad00eff" name="adc1dd883acfb702e35300f4c9a1b236eafeda7277ae217d7e6c1a212b0ad00eff"></a>multi_threaded&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="adc1dd883acfb702e35300f4c9a1b236ea23d33884d600e542d097cd3933df2ae4" name="adc1dd883acfb702e35300f4c9a1b236ea23d33884d600e542d097cd3933df2ae4"></a>atomic&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a3b62cd679aed268f3e14dff01093e3b0" name="a3b62cd679aed268f3e14dff01093e3b0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b62cd679aed268f3e14dff01093e3b0">&#9670;&#160;</a></span>get_thread_pool()</h2>
@@ -160,6 +234,300 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a52e3561093b48f952042467b268627fd" name="a52e3561093b48f952042467b268627fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52e3561093b48f952042467b268627fd">&#9670;&#160;</a></span>should_parallelize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> ginger::should_parallelize </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>num_roots</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether <code>num_roots</code> should use the multi-threaded execution policy. </p>
+
+</div>
+</div>
+<a id="a4d190cc76711013f9687de28c28fbbfe" name="a4d190cc76711013f9687de28c28fbbfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d190cc76711013f9687de28c28fbbfe">&#9670;&#160;</a></span>solve_aberth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> ginger::solve_aberth </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::complex&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>zs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a>&#160;</td>
+          <td class="paramname"><em>mode</em> = <code><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::pair&lt;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Facade for the Aberth-Ehrlich method. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>Polynomial coefficients (highest degree first) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">zs</td><td>Root iterates </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">options</td><td>Convergence options </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Execution policy selector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;unsigned int, bool&gt; (iterations, converged) </dd></dl>
+
+</div>
+</div>
+<a id="ace6bb39f7812ccafd299489edb625abe" name="ace6bb39f7812ccafd299489edb625abe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6bb39f7812ccafd299489edb625abe">&#9670;&#160;</a></span>solve_aberth_autocorr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> ginger::solve_aberth_autocorr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::complex&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>zs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a>&#160;</td>
+          <td class="paramname"><em>mode</em> = <code><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::pair&lt;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Facade for the Aberth-Ehrlich method (auto-correlation). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>Polynomial coefficients (highest degree first) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">zs</td><td>Root iterates </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">options</td><td>Convergence options </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Execution policy selector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;unsigned int, bool&gt; (iterations, converged) </dd></dl>
+
+</div>
+</div>
+<a id="a99358465b85d9b028f23013c6844e458" name="a99358465b85d9b028f23013c6844e458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99358465b85d9b028f23013c6844e458">&#9670;&#160;</a></span>solve_pbairstow_autocorr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> ginger::solve_pbairstow_autocorr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vrs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a>&#160;</td>
+          <td class="paramname"><em>mode</em> = <code><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::pair&lt;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Facade for the parallel Bairstow method (auto-correlation). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>Polynomial coefficients (highest degree first) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">vrs</td><td>Quadratic factor iterates </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">options</td><td>Convergence options </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Execution policy selector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;unsigned int, bool&gt; (iterations, converged) </dd></dl>
+
+</div>
+</div>
+<a id="abf2566967187b522c766aa43b434aa06" name="abf2566967187b522c766aa43b434aa06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf2566967187b522c766aa43b434aa06">&#9670;&#160;</a></span>solve_pbairstow_even()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> ginger::solve_pbairstow_even </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vrs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">Options</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236e">solve_mode</a>&#160;</td>
+          <td class="paramname"><em>mode</em> = <code><a class="el" href="namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236ea2bd9c0ed00116be1258e0cc66617d7c8">solve_mode::automatic</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::pair&lt;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Facade for the parallel Bairstow method (even degree). </p>
+<p>Selects the execution policy: <code>automatic</code> (default) dispatches to the multi-threaded variant when <code>should_parallelize(vrs.size())</code> holds, otherwise to the single-threaded variant.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>Polynomial coefficients (highest degree first) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">vrs</td><td>Quadratic factor iterates </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">options</td><td>Convergence options </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Execution policy selector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;unsigned int, bool&gt; (iterations, converged) </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ad09df7a51557711ac912dc9ecef2ba0f" name="ad09df7a51557711ac912dc9ecef2ba0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad09df7a51557711ac912dc9ecef2ba0f">&#9670;&#160;</a></span>PARALLEL_THRESHOLD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">constexpr</a> std::size_t ginger::PARALLEL_THRESHOLD = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of roots above which the multi-threaded policies are used by default. </p>
 
 </div>
 </div>

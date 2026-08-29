@@ -1,5 +1,11 @@
 <map id="ginger/aberth.hpp" name="ginger/aberth.hpp">
-<area shape="rect" id="Node000001" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding." alt="" coords="18,5,155,31"/>
-<area shape="rect" id="Node000002" href="$aberth__mt_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (MT)" alt="" coords="5,79,168,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,44,89,79,84,79,84,44"/>
+<area shape="rect" id="Node000001" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding." alt="" coords="163,5,301,31"/>
+<area shape="rect" id="Node000002" href="$aberth__atomic_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (atomic)" alt="" coords="5,79,195,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,39,123,81,120,76,198,35"/>
+<area shape="rect" id="Node000003" href="$solve_8hpp.html" title="Facade entry points that auto&#45;select the execution policy." alt="" coords="167,152,297,177"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="235,45,235,152,229,152,229,45"/>
+<area shape="rect" id="Node000004" href="$aberth__mt_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (MT)" alt="" coords="269,79,432,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="264,35,333,76,330,81,262,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="134,108,212,149,209,154,132,113"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="321,113,253,154,250,149,318,109"/>
 </map>

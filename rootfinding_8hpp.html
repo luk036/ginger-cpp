@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.7</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.8</span>
    </div>
   </td>
  </tr>
@@ -81,6 +81,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">rootfinding.hpp File Reference</div></div>
@@ -101,11 +102,17 @@ Include dependency graph for rootfinding.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="rootfinding_8hpp__dep__incl.svg" width="334" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="rootfinding_8hpp__dep__incl.svg" width="768" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="rootfinding_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceginger" id="r_namespaceginger"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html">ginger</a></td></tr>
+<tr class="memdesc:namespaceginger"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classginger_1_1Options.html">Options</a> for convergence-based algorithms. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ae19467d9b2dbbd57d23a49734c6354b8" id="r_ae19467d9b2dbbd57d23a49734c6354b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> = <a class="el" href="classginger_1_1Vector2.html">ginger::Vector2</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt;</td></tr>
@@ -118,11 +125,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a08b40b6a19b0b89e0e473d77c0d3fb69" id="r_a08b40b6a19b0b89e0e473d77c0d3fb69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a08b40b6a19b0b89e0e473d77c0d3fb69">initial_guess</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt;</td></tr>
 <tr class="memdesc:a08b40b6a19b0b89e0e473d77c0d3fb69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial guess for the parallel Bairstow method.  <br /></td></tr>
 <tr class="separator:a08b40b6a19b0b89e0e473d77c0d3fb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf5413c04c6753540539a782783b4ac3" id="r_abf5413c04c6753540539a782783b4ac3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#abf5413c04c6753540539a782783b4ac3">pbairstow_even_st</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
-<tr class="memdesc:abf5413c04c6753540539a782783b4ac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single-threading Bairstow's method (even degree only)  <br /></td></tr>
-<tr class="separator:abf5413c04c6753540539a782783b4ac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0427aa9643759c3320b425c17a5e138c" id="r_a0427aa9643759c3320b425c17a5e138c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a0427aa9643759c3320b425c17a5e138c">pbairstow_even</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
-<tr class="separator:a0427aa9643759c3320b425c17a5e138c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295bfa4046757a4b1d15679d18fc25e4" id="r_a295bfa4046757a4b1d15679d18fc25e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#a295bfa4046757a4b1d15679d18fc25e4">pbairstow_even_st</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">ginger::Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
+<tr class="memdesc:a295bfa4046757a4b1d15679d18fc25e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single-threading Bairstow's method (even degree only)  <br /></td></tr>
+<tr class="separator:a295bfa4046757a4b1d15679d18fc25e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfd1b18b07589b720c9245be267a0305" id="r_acfd1b18b07589b720c9245be267a0305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#acfd1b18b07589b720c9245be267a0305">pbairstow_even</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vrs</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">ginger::Options</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">options</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::pair</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">unsigned</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">int</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a> &gt;</td></tr>
+<tr class="separator:acfd1b18b07589b720c9245be267a0305"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa05afc70e0a790f77aae8d4155d04cc9" id="r_aa05afc70e0a790f77aae8d4155d04cc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rootfinding_8hpp.html#aa05afc70e0a790f77aae8d4155d04cc9">horner</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::vector</a>&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs1</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">std::size_t</a> <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">degree</a>, <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a> &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">vr</a>) -&gt; <a class="el" href="bairstow_8hpp.html#ae19467d9b2dbbd57d23a49734c6354b8">Vec2</a></td></tr>
 <tr class="memdesc:aa05afc70e0a790f77aae8d4155d04cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Horner's rule.  <br /></td></tr>
 <tr class="separator:aa05afc70e0a790f77aae8d4155d04cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -509,8 +516,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0427aa9643759c3320b425c17a5e138c" name="a0427aa9643759c3320b425c17a5e138c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0427aa9643759c3320b425c17a5e138c">&#9670;&#160;</a></span>pbairstow_even()</h2>
+<a id="acfd1b18b07589b720c9245be267a0305" name="acfd1b18b07589b720c9245be267a0305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfd1b18b07589b720c9245be267a0305">&#9670;&#160;</a></span>pbairstow_even()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -533,7 +540,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">ginger::Options</a> &amp;&#160;</td>
           <td class="paramname"><em>options</em>&#160;</td>
         </tr>
         <tr>
@@ -551,8 +558,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abf5413c04c6753540539a782783b4ac3" name="abf5413c04c6753540539a782783b4ac3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf5413c04c6753540539a782783b4ac3">&#9670;&#160;</a></span>pbairstow_even_st()</h2>
+<a id="a295bfa4046757a4b1d15679d18fc25e4" name="a295bfa4046757a4b1d15679d18fc25e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295bfa4046757a4b1d15679d18fc25e4">&#9670;&#160;</a></span>pbairstow_even_st()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -575,7 +582,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classOptions.html">Options</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> <a class="el" href="classginger_1_1Options.html">ginger::Options</a> &amp;&#160;</td>
           <td class="paramname"><em>options</em>&#160;</td>
         </tr>
         <tr>
@@ -604,7 +611,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>The <code>coeffs</code> parameter is a vector representing the coefficients of the polynomial. Each element of the vector corresponds to the coefficient of a term in the polynomial, starting from the highest degree term and ending with the constant term. For example, if the polynomial is <code>3x^2 + 2x + 1</code>, the coefficients vector would be <code>{3, 2, 1}</code>. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">vrs</td><td><code>vrs</code> is a vector of iterates, which represents the initial guesses for the roots of the polynomial. Bairstow's method will update these iterates iteratively until the desired tolerance is reached or the maximum number of iterations is reached. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">options</td><td>The <code>options</code> parameter is an object of type <code><a class="el" href="classOptions.html" title="Options for convergence-based algorithms.">Options</a></code> which contains the maximum number of iterations (<code>max_iters</code>) and the tolerance (<code>tolerance</code>). These options are used to control the convergence criteria for Bairstow's method.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">options</td><td>The <code>options</code> parameter is an object of type <code>Options</code> which contains the maximum number of iterations (<code>max_iters</code>) and the tolerance (<code>tolerance</code>). These options are used to control the convergence criteria for Bairstow's method.</td></tr>
   </table>
   </dd>
 </dl>

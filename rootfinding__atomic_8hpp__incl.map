@@ -1,0 +1,15 @@
+<map id="ginger/rootfinding_atomic.hpp" name="ginger/rootfinding_atomic.hpp">
+<area shape="rect" id="Node000001" title="Parallel Bairstow root&#45;finding methods for real polynomials (atomic)" alt="" coords="38,5,176,45"/>
+<area shape="rect" id="Node000002" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="47,93,167,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,46,110,79,104,79,104,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="34,240,94,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="73,121,39,140,24,152,12,168,8,184,14,200,25,216,39,229,35,233,21,219,9,202,3,184,7,166,20,149,36,135,70,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="22,167,85,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="100,121,72,157,68,154,96,117"/>
+<area shape="rect" id="Node000005" href="$matrix2_8hpp.html" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="110,167,211,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="118,117,146,154,141,157,114,121"/>
+<area shape="rect" id="Node000006" href="$vector2_8hpp.html" title=" " alt="" coords="155,240,254,265"/>
+<area shape="poly" id="edge7_Node000002_Node000006" title=" " alt="" coords="155,116,194,134,211,148,225,165,231,181,231,198,221,228,216,226,226,197,226,182,221,168,208,152,191,139,153,121"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="146,194,93,234,90,229,143,190"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="170,191,192,227,188,230,165,194"/>
+</map>

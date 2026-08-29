@@ -9,6 +9,6 @@ var searchData=
   ['thread_5fpool_6',['thread_pool',['../classginger_1_1thread__pool.html',1,'ginger::thread_pool'],['../classginger_1_1thread__pool.html#a1f7c572c7a7475eefbab8dbb1d11a5f0',1,'ginger::thread_pool::thread_pool(size_t num_threads=std::thread::hardware_concurrency())'],['../classginger_1_1thread__pool.html#aaa14dfb4297a8e9a878fe7bfd7beaec2',1,'ginger::thread_pool::thread_pool(const thread_pool &amp;)=delete'],['../classginger_1_1thread__pool.html#a207bb73d6ebb19fa20037651401bcef4',1,'ginger::thread_pool::thread_pool(thread_pool &amp;&amp;)=delete']]],
   ['thread_5fpool_2ehpp_7',['thread_pool.hpp',['../thread__pool_8hpp.html',1,'']]],
   ['to_20your_20needs_8',['Adjust the template to your needs',['../index.html#autotoc_md3',1,'']]],
-  ['tol_5find_9',['tol_ind',['../classOptions.html#a95c1354e74bb46437ce0563b7a9f92aa',1,'Options']]],
-  ['tolerance_10',['tolerance',['../classOptions.html#ac679b1118fdd146896bcd2cf5f35460f',1,'Options']]]
+  ['tol_5find_9',['tol_ind',['../classginger_1_1Options.html#a0e0858b95a5aef8e23f7a3a129f3aa4a',1,'ginger::Options']]],
+  ['tolerance_10',['tolerance',['../classginger_1_1Options.html#ae7ddc781b3220ebb8fd7a7b6a06ca717',1,'ginger::Options']]]
 ];

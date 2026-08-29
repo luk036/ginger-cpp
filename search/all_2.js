@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['bairstow_0',['bairstow',['../bairstow_8hpp.html#a2b3b9e306498b28cffdd6e124f94659b',1,'bairstow.hpp']]],
+  ['bairstow_0',['bairstow',['../bairstow_8hpp.html#a1461d787e55b8a684c23918d2ce08f1d',1,'bairstow.hpp']]],
   ['bairstow_2ehpp_1',['bairstow.hpp',['../bairstow_8hpp.html',1,'']]],
   ['begin_2',['begin',['../structfun_1_1detail_1_1RobinIterableWrapper.html#ad58855b452600f217b04744685ca04b7',1,'fun::detail::RobinIterableWrapper']]],
   ['build_20and_20run_20test_20suite_3',['Build and run test suite',['../index.html#autotoc_md5',1,'']]],

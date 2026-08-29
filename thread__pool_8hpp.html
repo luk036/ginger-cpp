@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.7</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.8</span>
    </div>
   </td>
  </tr>
@@ -112,6 +112,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceginger" id="r_namespaceginger"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html">ginger</a></td></tr>
+<tr class="memdesc:namespaceginger"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classginger_1_1Options.html">Options</a> for convergence-based algorithms. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -126,7 +127,7 @@ Functions</h2></td></tr>
 <p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classginger_1_1thread__pool.html">ginger::thread_pool</a> <a class="code hl_function" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">pool</a>;</div>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">future</a> = <a class="code hl_function" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">pool</a>.<a class="code hl_function" href="classginger_1_1thread__pool.html#a810140b0a87681e96ead8d45554fbeb2">enqueue</a>([] { <span class="keywordflow">return</span> 42; });</div>
 <div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">result</a> = <a class="code hl_function" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">future</a>.get();</div>
-<div class="ttc" id="aaberth_8hpp_html_a19dbc1f926fdf85539fc193bc8c7b54e"><div class="ttname"><a href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">make_vdc_table</a></div><div class="ttdeci">constexpr auto make_vdc_table() -&gt; std::array&lt; double, N &gt;</div><div class="ttdoc">Helper to generate a constexpr table of VdCorput&lt;Base&gt; values.</div><div class="ttdef"><b>Definition</b> aberth.hpp:19</div></div>
+<div class="ttc" id="aaberth_8hpp_html_a19dbc1f926fdf85539fc193bc8c7b54e"><div class="ttname"><a href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">make_vdc_table</a></div><div class="ttdeci">constexpr auto make_vdc_table() -&gt; std::array&lt; double, N &gt;</div><div class="ttdoc">Helper to generate a constexpr table of VdCorput&lt;Base&gt; values.</div><div class="ttdef"><b>Definition</b> aberth.hpp:21</div></div>
 <div class="ttc" id="aclassginger_1_1thread__pool_html"><div class="ttname"><a href="classginger_1_1thread__pool.html">ginger::thread_pool</a></div><div class="ttdef"><b>Definition</b> thread_pool.hpp:35</div></div>
 <div class="ttc" id="aclassginger_1_1thread__pool_html_a810140b0a87681e96ead8d45554fbeb2"><div class="ttname"><a href="classginger_1_1thread__pool.html#a810140b0a87681e96ead8d45554fbeb2">ginger::thread_pool::enqueue</a></div><div class="ttdeci">auto enqueue(F &amp;&amp;task) -&gt; std::future&lt; std::invoke_result_t&lt; std::decay_t&lt; F &gt; &gt; &gt;</div><div class="ttdef"><b>Definition</b> thread_pool.hpp:79</div></div>
 </div><!-- fragment --><p>The destructor waits for all pending tasks to finish and joins all worker threads. It is safe to destroy the pool while tasks are still running — remaining tasks are abandoned. </p>

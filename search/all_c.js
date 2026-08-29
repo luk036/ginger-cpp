@@ -8,6 +8,7 @@ var searchData=
   ['mat2_5',['mat2',['../bairstow_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08',1,'Mat2:&#160;bairstow.hpp'],['../rootfinding_8hpp.html#a09dcc1516e32f64b1b52dad53b675f08',1,'Mat2:&#160;rootfinding.hpp']]],
   ['matrix2_6',['matrix2',['../classginger_1_1Matrix2.html',1,'ginger::Matrix2&lt; T1, T2 &gt;'],['../classginger_1_1Matrix2.html#a4fbb706f2db55808a0480adf6d7d902f',1,'ginger::Matrix2::Matrix2()']]],
   ['matrix2_2ehpp_7',['matrix2.hpp',['../matrix2_8hpp.html',1,'']]],
-  ['max_5fiters_8',['max_iters',['../classOptions.html#a66daa7efe88014eae430dabc2d899507',1,'Options']]],
-  ['mdot_9',['mdot',['../classginger_1_1Matrix2.html#a7ad2d4085f3e7651aab87bd51c150f50',1,'ginger::Matrix2']]]
+  ['max_5fiters_8',['max_iters',['../classginger_1_1Options.html#abdc8bbcfaf36d6f16085628ad32f404b',1,'ginger::Options']]],
+  ['mdot_9',['mdot',['../classginger_1_1Matrix2.html#a7ad2d4085f3e7651aab87bd51c150f50',1,'ginger::Matrix2']]],
+  ['multi_5fthreaded_10',['multi_threaded',['../namespaceginger.html#adc1dd883acfb702e35300f4c9a1b236eafeda7277ae217d7e6c1a212b0ad00eff',1,'ginger']]]
 ];

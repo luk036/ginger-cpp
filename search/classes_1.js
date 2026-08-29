@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['options_0',['Options',['../classOptions.html',1,'']]]
+  ['options_0',['Options',['../classginger_1_1Options.html',1,'ginger']]]
 ];
