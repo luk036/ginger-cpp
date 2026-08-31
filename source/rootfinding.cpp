@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <cmath>              // for abs, acos, cos, pow
 #include <complex>            // for complex
 #include <cstddef>            // for size_t
@@ -11,10 +10,6 @@
 #include <vector>                  // for vector, vector<>::reference, __v...
 
 #include "execution_policy.hpp"  // for ginger::detail::even_bairstow_step
-
-#ifndef M_PI
-constexpr double M_PI = 3.14159265358979323846264338327950288;
-#endif
 
 /**
  * The function `horner` implements the Horner's method for evaluating a
@@ -228,7 +223,7 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
 auto pbairstow_even_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                        const ginger::Options& options) -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
-    ginger::detail::even_bairstow_step step{coeffs, degree, options};
+    ginger::detail::even_bairstow_step step{.coeffs=coeffs, .degree=degree, .options=options};
     return ginger::detail::sequential_policy::run(vrs, options, step);
 }
 
