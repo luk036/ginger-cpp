@@ -223,7 +223,7 @@ auto initial_guess(std::vector<double> coeffs) -> std::vector<Vec2> {
 auto pbairstow_even_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                        const ginger::Options& options) -> std::pair<unsigned int, bool> {
     const auto degree = coeffs.size() - 1;
-    ginger::detail::even_bairstow_step step{.coeffs=coeffs, .degree=degree, .options=options};
+    ginger::detail::even_bairstow_step step{.coeffs = coeffs, .degree = degree, .options = options};
     return ginger::detail::sequential_policy::run(vrs, options, step);
 }
 
