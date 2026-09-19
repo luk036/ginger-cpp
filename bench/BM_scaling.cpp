@@ -109,6 +109,17 @@ int main() {
                     factor_residual(coeffs, local), ms);
     }
 
+    {
+        auto coeffs = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
+        for (auto& c : coeffs) {
+            c *= 1e6;
+        }
+        auto zs = initial_aberth(coeffs);
+        const auto [niter, ok] = aberth(coeffs, zs, ginger::Options{});
+        std::printf("\naberth scaled-deg8 (x1e6): niter=%-4u conv=%d rel.resid=%.3e\n", niter,
+                    static_cast<int>(ok), poly_residual(coeffs, zs));
+    }
+
     std::printf("\n%-10s %6s %12s\n", "leja", "n", "ms");
     for (const auto n : {50U, 100U, 200U, 400U}) {
         std::mt19937 rng(7);

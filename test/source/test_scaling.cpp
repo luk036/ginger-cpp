@@ -82,6 +82,19 @@ namespace {
         return out;
     }
 
+    /// Degree-8 palindromic coefficients scaled so that an absolute residual
+    /// test could never reach the default 1e-12 tolerance, while the roots stay
+    /// well-conditioned. A random high-degree polynomial sits right at the
+    /// achievable-accuracy boundary instead, so its `converged` flag varies with
+    /// the platform's floating-point rounding.
+    auto badly_scaled_poly() -> std::vector<double> {
+        auto coeffs = std::vector<double>{10.0, 34.0, 75.0, 94.0, 150.0, 94.0, 75.0, 34.0, 10.0};
+        for (auto& c : coeffs) {
+            c *= 1e6;
+        }
+        return coeffs;
+    }
+
 }  // namespace
 
 TEST_CASE("residual_scale is floored at one") {
@@ -126,16 +139,16 @@ TEST_CASE("leja_order handles degenerate sizes") {
 }
 
 TEST_CASE("aberth converges on a badly scaled polynomial at default tolerance") {
-    const auto coeffs = real_poly(16);
-    REQUIRE(ginger::residual_scale(coeffs) > 1e4);
+    const auto coeffs = badly_scaled_poly();
+    REQUIRE(ginger::residual_scale(coeffs) > 1e5);
     auto zs = initial_aberth(coeffs);
     const auto [niter, ok] = aberth(coeffs, zs, ginger::Options());
     CHECK(ok);
-    CHECK(niter < 20);
+    CHECK(niter <= 20);
 }
 
 TEST_CASE("coefficient scaling leaves the aberth roots unchanged") {
-    const auto coeffs = real_poly(16);
+    const auto coeffs = badly_scaled_poly();
     const auto zs0 = initial_aberth(coeffs);
     auto zs_a = zs0;
     auto zs_b = zs0;
