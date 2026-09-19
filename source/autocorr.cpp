@@ -95,8 +95,7 @@ auto initial_autocorr(const std::vector<double>& coeffs) -> std::vector<Vec2> {
  */
 auto pbairstow_autocorr_st(const std::vector<double>& coeffs, std::vector<Vec2>& vrs,
                            const ginger::Options& options) -> std::pair<unsigned int, bool> {
-    const auto degree = coeffs.size() - 1;
-    ginger::detail::autocorr_bairstow_step step{coeffs, degree, options};
+    ginger::detail::autocorr_bairstow_step step{coeffs, options};
     return ginger::detail::sequential_policy::run(vrs, options, step);
 }
 

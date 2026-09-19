@@ -13,15 +13,13 @@ using Complex = std::complex<double>;
 auto aberth_mt(const vector<double>& coeffs, vector<Complex>& zs,
                const ginger::Options& options = ginger::Options())
     -> std::pair<unsigned int, bool> {
-    auto coeffs1 = ginger::detail::derivative_coeffs(coeffs);
-    ginger::detail::aberth_step step{coeffs, coeffs1};
+    ginger::detail::aberth_step step{coeffs};
     return ginger::detail::jacobi_mt_policy::run(zs, options, step);
 }
 
 auto aberth_autocorr_mt(const vector<double>& coeffs, vector<Complex>& zs,
                         const ginger::Options& options = ginger::Options())
     -> std::pair<unsigned int, bool> {
-    auto coeffs1 = ginger::detail::derivative_coeffs(coeffs);
-    ginger::detail::aberth_autocorr_step step{coeffs, coeffs1};
+    ginger::detail::aberth_autocorr_step step{coeffs};
     return ginger::detail::jacobi_mt_policy::run(zs, options, step);
 }

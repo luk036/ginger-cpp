@@ -13,15 +13,13 @@ using Complex = std::complex<double>;
 auto aberth_atomic(const vector<double>& coeffs, vector<Complex>& zs,
                    const ginger::Options& options = ginger::Options())
     -> std::pair<unsigned int, bool> {
-    auto coeffs1 = ginger::detail::derivative_coeffs(coeffs);
-    ginger::detail::aberth_step step{coeffs, coeffs1};
+    ginger::detail::aberth_step step{coeffs};
     return ginger::detail::atomic_decoupled_policy::run(zs, options, step);
 }
 
 auto aberth_autocorr_atomic(const vector<double>& coeffs, vector<Complex>& zs,
                             const ginger::Options& options = ginger::Options())
     -> std::pair<unsigned int, bool> {
-    auto coeffs1 = ginger::detail::derivative_coeffs(coeffs);
-    ginger::detail::aberth_autocorr_step step{coeffs, coeffs1};
+    ginger::detail::aberth_autocorr_step step{coeffs};
     return ginger::detail::atomic_decoupled_policy::run(zs, options, step);
 }

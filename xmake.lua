@@ -104,6 +104,16 @@ if is_plat("linux", "macosx") then
 	add_syslinks("pthread")
 end
 
+target("test_scaling")
+set_languages("c++20")
+set_kind("binary")
+add_deps("Ginger")
+add_files("bench/BM_scaling.cpp")
+add_packages("fmt", "spdlog")
+if is_plat("linux", "macosx") then
+	add_syslinks("pthread")
+end
+
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
 -- ## FAQ
