@@ -102,8 +102,8 @@ auto leja_order(const vector<Complex>& points) -> vector<Complex> {
     // Greedy Leja ordering. Maintaining the running minimum distance to the
     // selected set turns the naive O(n^3) rescan into O(n^2).
     auto remaining = points;
-    std::sort(remaining.begin(), remaining.end(),
-              [](const Complex& a, const Complex& b) { return std::abs(a) < std::abs(b); });
+    std::ranges::sort(remaining,
+                      [](const Complex& a, const Complex& b) { return std::abs(a) < std::abs(b); });
     vector<Complex> result;
     result.reserve(remaining.size());
     result.push_back(remaining.front());
@@ -128,9 +128,7 @@ auto leja_order(const vector<Complex>& points) -> vector<Complex> {
         result.push_back(chosen);
         for (auto i = size_t{0}; i < remaining.size(); ++i) {
             const auto dist = std::abs(remaining[i] - chosen);
-            if (dist < dists[i]) {
-                dists[i] = dist;
-            }
+            dists[i] = std::min(dist, dists[i]);
         }
     }
     return result;
