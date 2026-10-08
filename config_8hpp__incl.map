@@ -1,5 +1,11 @@
 <map id="ginger/config.hpp" name="ginger/config.hpp">
-<area shape="rect" id="Node000001" title="Algorithm options (max iterations, tolerance)" alt="" coords="5,5,140,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="37,79,108,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,31,75,65,70,65,70,31"/>
+<area shape="rect" id="Node000001" title="Algorithm options (max iterations, tolerance)" alt="" coords="125,5,259,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,91,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,33,85,75,83,70,168,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="115,79,178,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,32,164,69,159,66,182,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="202,79,273,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="202,30,225,66,220,69,197,32"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="297,79,359,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="215,28,295,70,293,75,213,33"/>
 </map>

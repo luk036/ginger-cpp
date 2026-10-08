@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.9</span>
+   <div id="projectname">Ginger<span id="projectnumber">&#160;1.1.10</span>
    </div>
   </td>
  </tr>
@@ -119,6 +119,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a52e3561093b48f952042467b268627fd" id="r_a52e3561093b48f952042467b268627fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a52e3561093b48f952042467b268627fd">should_parallelize</a> (std::size_t <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">num_roots</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">bool</a></td></tr>
 <tr class="memdesc:a52e3561093b48f952042467b268627fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether <code>num_roots</code> should use the multi-threaded execution policy.  <br /></td></tr>
 <tr class="separator:a52e3561093b48f952042467b268627fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9406e2fbdf6240b0aaabc2d5b77813a0" id="r_a9406e2fbdf6240b0aaabc2d5b77813a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a9406e2fbdf6240b0aaabc2d5b77813a0">residual_scale</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">coeffs</a>) -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a></td></tr>
+<tr class="memdesc:a9406e2fbdf6240b0aaabc2d5b77813a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalisation factor making the convergence test scale-invariant.  <br /></td></tr>
+<tr class="separator:a9406e2fbdf6240b0aaabc2d5b77813a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69846b64c89fbf72d7761600356d2366" id="r_a69846b64c89fbf72d7761600356d2366"><td class="memItemLeft" align="right" valign="top"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceginger.html#a69846b64c89fbf72d7761600356d2366">log_with_spdlog</a> (<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::string &amp;<a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">message</a>)</td></tr>
 <tr class="memdesc:a69846b64c89fbf72d7761600356d2366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a message using spdlog.  <br /></td></tr>
 <tr class="separator:a69846b64c89fbf72d7761600356d2366"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,6 +237,43 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a9406e2fbdf6240b0aaabc2d5b77813a0" name="a9406e2fbdf6240b0aaabc2d5b77813a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9406e2fbdf6240b0aaabc2d5b77813a0">&#9670;&#160;</a></span>residual_scale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">auto</a> ginger::residual_scale </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">const</a> std::vector&lt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coeffs</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="aberth_8hpp.html#a19dbc1f926fdf85539fc193bc8c7b54e">double</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalisation factor making the convergence test scale-invariant. </p>
+<p>At a root, |P(z)| has a floating-point floor proportional to the coefficient magnitudes. A fixed <em>absolute</em> tolerance is therefore unreachable for badly scaled polynomials, and the solver burns every iteration up to <code>max_iters</code> even though the roots are already accurate. Dividing the coefficients by this factor (roots are invariant under the scaling P -&gt; P/s) makes <code><a class="el" href="classginger_1_1Options.html#ae7ddc781b3220ebb8fd7a7b6a06ca717">Options::tolerance</a></code> a relative measure.</p>
+<p>The factor is floored at 1.0 so the historical absolute test is never made <em>stricter</em> for well-scaled polynomials.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">coeffs</td><td>Polynomial coefficients (highest degree first) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Scale factor, at least 1.0 </dd></dl>
 
 </div>
 </div>
