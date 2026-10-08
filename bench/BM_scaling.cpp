@@ -53,8 +53,8 @@ static auto poly_residual(const std::vector<double>& coeffs,
     return worst;
 }
 
-static auto factor_residual(const std::vector<double>& coeffs,
-                            const std::vector<Vec2>& vrs) -> double {
+static auto factor_residual(const std::vector<double>& coeffs, const std::vector<Vec2>& vrs)
+    -> double {
     const auto s = scaled(coeffs);
     const auto degree = s.size() - 1;
     auto worst = 0.0;
