@@ -84,6 +84,16 @@ namespace ginger::detail {
         return coeffs1;
     }
 
+    /// @brief Coefficients divided by ginger::residual_scale; roots are invariant.
+    inline auto scaled_coeffs(const std::vector<double>& coeffs) -> std::vector<double> {
+        const auto scale = ginger::residual_scale(coeffs);
+        auto out = coeffs;
+        for (auto& coeff : out) {
+            coeff /= scale;
+        }
+        return out;
+    }
+
     /// @brief Roots of a quadratic factor x^2 - r x - q (real or complex pair).
     /// @param[in] vr Quadratic factor (r, q)
     /// @return The two roots
@@ -105,9 +115,12 @@ namespace ginger::detail {
     /// Reads the current factor via `get(idx)`, suppresses all other factors via
     /// the neighbor iterable, and writes the corrected factor via `set(value)`.
     struct even_bairstow_step {
-        const std::vector<double>& coeffs;
+        std::vector<double> coeffs;  // scaled: makes Options::tolerance relative
         std::size_t degree;
         const Options& options;
+
+        even_bairstow_step(const std::vector<double>& raw_coeffs, const Options& opts)
+            : coeffs(scaled_coeffs(raw_coeffs)), degree(raw_coeffs.size() - 1), options(opts) {}
 
         template <typename Get, typename Set, typename Neighbors>
         auto operator()(std::size_t idx, Get&& get, Set&& set, Neighbors&& neighbors) const
@@ -131,9 +144,12 @@ namespace ginger::detail {
     /// image (-vrj.x, 1) / vrj.y; the factor itself also suppresses its own
     /// reciprocal image.
     struct autocorr_bairstow_step {
-        const std::vector<double>& coeffs;
+        std::vector<double> coeffs;  // scaled: makes Options::tolerance relative
         std::size_t degree;
         const Options& options;
+
+        autocorr_bairstow_step(const std::vector<double>& raw_coeffs, const Options& opts)
+            : coeffs(scaled_coeffs(raw_coeffs)), degree(raw_coeffs.size() - 1), options(opts) {}
 
         template <typename Get, typename Set, typename Neighbors>
         auto operator()(std::size_t idx, Get&& get, Set&& set, Neighbors&& neighbors) const
@@ -159,8 +175,11 @@ namespace ginger::detail {
 
     /// @brief One Aberth-Ehrlich correction for a single root.
     struct aberth_step {
-        const std::vector<double>& coeffs;
-        const std::vector<double>& coeffs1;  // derivative coefficients of coeffs
+        std::vector<double> coeffs;   // scaled: makes Options::tolerance relative
+        std::vector<double> coeffs1;  // derivative coefficients of coeffs
+
+        explicit aberth_step(const std::vector<double>& raw_coeffs)
+            : coeffs(scaled_coeffs(raw_coeffs)), coeffs1(derivative_coeffs(coeffs)) {}
 
         template <typename Get, typename Set, typename Neighbors>
         auto operator()(std::size_t idx, Get&& get, Set&& set, Neighbors&& neighbors) const
@@ -180,8 +199,11 @@ namespace ginger::detail {
     /// @brief One Aberth-Ehrlich correction for a palindromic (autocorr) root;
     /// each neighbor root contributes both zj and its reciprocal 1/zj.
     struct aberth_autocorr_step {
-        const std::vector<double>& coeffs;
-        const std::vector<double>& coeffs1;  // derivative coefficients of coeffs
+        std::vector<double> coeffs;   // scaled: makes Options::tolerance relative
+        std::vector<double> coeffs1;  // derivative coefficients of coeffs
+
+        explicit aberth_autocorr_step(const std::vector<double>& raw_coeffs)
+            : coeffs(scaled_coeffs(raw_coeffs)), coeffs1(derivative_coeffs(coeffs)) {}
 
         template <typename Get, typename Set, typename Neighbors>
         auto operator()(std::size_t idx, Get&& get, Set&& set, Neighbors&& neighbors) const

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 project(
   Ginger
-  VERSION 1.1.9
+  VERSION 1.1.10
   LANGUAGES CXX
 )
 
@@ -112,7 +112,7 @@ endif()
 # lds provides the van der Corput / low-discrepancy generators used by the Aberth initial guesses.
 CPMAddPackage(
   NAME Lds
-  GIT_TAG v1.2.5
+  GIT_TAG v1.2.6
   GITHUB_REPOSITORY luk036/lds-cpp
   OPTIONS "LDS_BUILD_TESTS OFF" "LDS_BUILD_STANDALONE OFF"
 )
