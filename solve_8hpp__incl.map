@@ -1,58 +1,58 @@
 <map id="ginger/solve.hpp" name="ginger/solve.hpp">
-<area shape="rect" id="Node000001" title="Facade entry points that auto&#45;select the execution policy." alt="" coords="452,5,583,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="87,225,166,251"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="452,22,363,25,265,34,177,52,145,65,123,80,114,95,108,111,105,146,110,182,119,211,114,213,105,183,100,147,103,110,109,92,119,77,142,60,176,47,264,29,363,20,452,17"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="638,372,698,397"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="452,27,263,47,170,62,105,81,67,96,36,111,25,119,16,130,10,145,8,163,8,239,13,261,28,280,51,297,82,313,163,338,260,356,364,368,465,375,624,381,624,386,465,381,363,373,259,361,162,343,80,318,48,302,24,284,8,263,3,240,3,163,5,143,11,128,21,116,34,106,65,91,103,76,169,57,263,42,451,22"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="530,299,593,324"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="516,32,501,94,497,135,501,177,523,237,549,286,544,288,518,239,496,178,492,135,496,93,511,30"/>
-<area shape="rect" id="Node000005" href="$aberth_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding." alt="" coords="186,152,278,177"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="452,22,366,26,270,35,186,52,155,65,134,80,129,89,128,98,139,115,161,131,188,144,185,149,158,135,135,119,123,99,124,88,130,77,152,60,184,47,270,30,366,20,452,17"/>
-<area shape="rect" id="Node000007" href="$aberth__atomic_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (atomic)" alt="" coords="144,79,288,104"/>
-<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="470,33,278,78,277,73,468,28"/>
-<area shape="rect" id="Node000008" href="$aberth__mt_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (MT)" alt="" coords="312,79,429,104"/>
-<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="495,33,408,75,406,70,493,28"/>
-<area shape="rect" id="Node000009" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)" alt="" coords="510,152,613,177"/>
-<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="523,30,556,138,551,140,518,32"/>
-<area shape="rect" id="Node000010" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="747,225,867,251"/>
-<area shape="poly" id="edge32_Node000001_Node000010" title=" " alt="" coords="583,18,663,22,752,32,830,49,859,61,879,77,886,90,885,104,869,127,834,154,821,183,814,212,808,211,816,181,830,150,865,123,880,102,881,91,875,80,857,66,828,54,751,37,663,27,583,23"/>
-<area shape="rect" id="Node000013" href="$autocorr__atomic_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (atomic)" alt="" coords="555,79,711,104"/>
-<area shape="poly" id="edge23_Node000001_Node000013" title=" " alt="" coords="537,28,604,69,601,74,535,33"/>
-<area shape="rect" id="Node000014" href="$autocorr__mt_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (MT)" alt="" coords="735,79,865,104"/>
-<area shape="poly" id="edge25_Node000001_Node000014" title=" " alt="" coords="563,28,742,73,741,78,562,33"/>
-<area shape="rect" id="Node000015" href="$config_8hpp.html" title="Algorithm options (max iterations, tolerance)" alt="" coords="941,79,1030,104"/>
-<area shape="poly" id="edge27_Node000001_Node000015" title=" " alt="" coords="583,26,922,76,928,77,927,82,921,81,582,31"/>
-<area shape="rect" id="Node000019" href="$rootfinding__atomic_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (atomic)" alt="" coords="1135,152,1307,177"/>
-<area shape="poly" id="edge33_Node000001_Node000019" title=" " alt="" coords="583,17,675,21,791,30,918,48,1043,76,1125,108,1192,143,1189,147,1123,113,1042,81,917,53,790,36,675,26,583,23"/>
-<area shape="rect" id="Node000020" href="$rootfinding__mt_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (MT)" alt="" coords="1229,79,1374,104"/>
-<area shape="poly" id="edge35_Node000001_Node000020" title=" " alt="" coords="583,23,1215,80,1214,85,583,28"/>
-<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="217,180,156,220,154,215,214,175"/>
-<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="237,177,249,212,260,232,274,249,315,280,361,306,409,327,458,344,551,366,625,377,624,382,550,372,457,349,407,332,358,311,312,285,270,253,255,235,244,215,232,178"/>
-<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="242,176,269,213,289,232,311,248,363,273,418,289,471,299,516,305,516,310,470,305,417,294,361,278,308,253,285,236,265,216,237,180"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="321,225,413,251"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="255,175,334,216,331,221,252,180"/>
-<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="221,104,229,138,224,139,216,105"/>
-<area shape="poly" id="edge12_Node000008_Node000005" title=" " alt="" coords="350,106,268,148,266,143,347,102"/>
-<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="569,177,659,358,654,361,565,179"/>
-<area shape="poly" id="edge15_Node000009_Node000004" title=" " alt="" coords="564,178,564,285,559,285,559,178"/>
-<area shape="poly" id="edge16_Node000009_Node000010" title=" " alt="" coords="601,175,755,219,753,224,600,180"/>
-<area shape="poly" id="edge17_Node000010_Node000003" title=" " alt="" coords="796,253,746,301,689,363,685,360,742,297,792,249"/>
-<area shape="poly" id="edge18_Node000010_Node000004" title=" " alt="" coords="768,253,606,300,605,295,767,248"/>
-<area shape="rect" id="Node000011" href="$matrix2_8hpp.html" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="756,299,857,324"/>
-<area shape="poly" id="edge19_Node000010_Node000011" title=" " alt="" coords="809,251,809,285,804,285,804,251"/>
-<area shape="rect" id="Node000012" href="$vector2_8hpp.html" title=" " alt="" coords="801,372,900,397"/>
-<area shape="poly" id="edge22_Node000010_Node000012" title=" " alt="" coords="827,249,852,269,872,298,876,314,875,330,866,360,861,359,870,330,870,314,867,300,848,273,824,253"/>
-<area shape="poly" id="edge20_Node000011_Node000003" title=" " alt="" coords="786,326,704,368,702,363,783,322"/>
-<area shape="poly" id="edge21_Node000011_Node000012" title=" " alt="" coords="816,323,839,359,834,362,812,326"/>
-<area shape="poly" id="edge24_Node000013_Node000009" title=" " alt="" coords="623,106,585,144,581,140,620,102"/>
-<area shape="poly" id="edge26_Node000014_Node000009" title=" " alt="" coords="762,107,614,151,612,145,761,101"/>
-<area shape="poly" id="edge31_Node000015_Node000004" title=" " alt="" coords="952,107,896,127,833,154,696,229,592,293,589,289,694,224,831,150,894,123,950,102"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="844,152,929,177"/>
-<area shape="poly" id="edge28_Node000015_Node000016" title=" " alt="" coords="971,106,915,146,912,142,968,102"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="954,152,1017,177"/>
-<area shape="poly" id="edge29_Node000015_Node000017" title=" " alt="" coords="988,104,988,138,983,138,983,104"/>
-<area shape="rect" id="Node000018" title=" " alt="" coords="1041,152,1111,177"/>
-<area shape="poly" id="edge30_Node000015_Node000018" title=" " alt="" coords="1002,102,1052,141,1049,145,998,106"/>
-<area shape="poly" id="edge34_Node000019_Node000010" title=" " alt="" coords="1155,180,881,227,880,221,1154,175"/>
-<area shape="poly" id="edge36_Node000020_Node000010" title=" " alt="" coords="1312,103,1328,139,1330,160,1322,179,1299,191,1259,201,1140,218,1002,229,880,236,880,231,1002,224,1140,212,1258,196,1297,186,1318,176,1325,159,1323,140,1307,105"/>
+<area shape="rect" id="Node000001" title="Facade entry points that auto&#45;select the execution policy." alt="" coords="451,5,581,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="88,232,165,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="448,22,362,27,264,36,176,54,143,67,122,83,112,98,106,114,103,150,109,186,118,218,113,218,104,187,98,150,101,113,108,95,118,79,141,62,174,49,263,31,362,21,453,19"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="633,384,692,411"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="449,27,261,48,167,64,101,84,64,100,35,115,15,136,10,150,8,169,8,247,13,269,27,288,50,305,81,321,160,346,256,365,359,378,459,386,620,396,615,396,459,392,358,383,255,370,159,351,79,326,48,310,24,292,8,271,3,248,3,169,5,149,11,133,32,111,62,95,99,78,166,59,260,43,453,23"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="526,308,588,336"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="513,31,498,99,493,141,497,184,518,244,544,296,539,294,513,246,492,185,488,141,492,98,510,35"/>
+<area shape="rect" id="Node000005" href="$aberth_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding." alt="" coords="186,157,278,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="448,22,365,27,270,37,186,55,155,67,134,83,129,92,128,100,138,117,159,134,186,149,181,151,156,138,134,121,123,101,124,90,130,79,152,63,184,50,269,32,365,22,453,20"/>
+<area shape="rect" id="Node000007" href="$aberth__atomic_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (atomic)." alt="" coords="144,81,288,109"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="460,35,286,79,284,74,464,32"/>
+<area shape="rect" id="Node000008" href="$aberth__mt_8hpp.html" title="Aberth&#45;Ehrlich method for polynomial root&#45;finding (MT)." alt="" coords="311,81,428,109"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="488,35,410,76,407,72,492,32"/>
+<area shape="rect" id="Node000009" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)." alt="" coords="506,157,608,184"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="521,31,552,142,547,141,518,35"/>
+<area shape="rect" id="Node000010" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="742,232,861,260"/>
+<area shape="poly" id="edge32_Node000001_Node000010" title=" " alt="" coords="581,19,661,24,748,34,825,51,854,64,874,79,881,94,880,108,863,133,829,158,816,188,808,219,804,216,811,186,825,155,859,129,875,106,876,95,870,83,851,68,823,57,747,39,660,29,582,25"/>
+<area shape="rect" id="Node000013" href="$autocorr__atomic_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (atomic)." alt="" coords="553,81,708,109"/>
+<area shape="poly" id="edge23_Node000001_Node000013" title=" " alt="" coords="537,31,600,72,595,73,536,36"/>
+<area shape="rect" id="Node000014" href="$autocorr__mt_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (MT)." alt="" coords="732,81,860,109"/>
+<area shape="poly" id="edge25_Node000001_Node000014" title=" " alt="" coords="566,31,734,76,729,77,566,36"/>
+<area shape="rect" id="Node000015" href="$config_8hpp.html" title="Algorithm options (max iterations, tolerance)." alt="" coords="934,81,1023,109"/>
+<area shape="poly" id="edge27_Node000001_Node000015" title=" " alt="" coords="581,27,916,78,922,81,917,82,916,84,581,32"/>
+<area shape="rect" id="Node000019" href="$rootfinding__atomic_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (atomic)." alt="" coords="1126,157,1298,184"/>
+<area shape="poly" id="edge33_Node000001_Node000019" title=" " alt="" coords="581,18,672,22,786,32,912,50,1035,78,1115,110,1181,148,1176,148,1112,115,1034,84,911,55,786,37,672,27,582,24"/>
+<area shape="rect" id="Node000020" href="$rootfinding__mt_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (MT)." alt="" coords="1218,81,1363,109"/>
+<area shape="poly" id="edge35_Node000001_Node000020" title=" " alt="" coords="581,24,1205,83,1201,87,581,29"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="211,187,159,225,156,221,215,183"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="235,182,248,221,258,241,273,258,313,290,357,316,404,338,452,355,544,378,620,392,615,392,543,383,451,360,402,343,355,321,310,294,269,262,254,244,243,223,233,187"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="240,182,269,221,288,241,309,258,360,282,414,299,466,309,513,318,508,318,465,315,413,304,358,287,307,262,284,245,264,224,239,187"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="320,232,411,260"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="256,182,331,224,326,225,256,188"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="220,107,229,142,223,141,218,112"/>
+<area shape="poly" id="edge12_Node000008_Node000005" title=" " alt="" coords="343,111,271,151,268,147,347,108"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="565,182,653,370,647,369,562,187"/>
+<area shape="poly" id="edge15_Node000009_Node000004" title=" " alt="" coords="559,183,560,293,555,291,555,186"/>
+<area shape="poly" id="edge16_Node000009_Node000010" title=" " alt="" coords="601,182,746,227,741,228,601,188"/>
+<area shape="poly" id="edge17_Node000010_Node000003" title=" " alt="" coords="789,259,741,310,684,374,682,369,737,306,785,262"/>
+<area shape="poly" id="edge18_Node000010_Node000004" title=" " alt="" coords="760,260,604,309,603,304,755,261"/>
+<area shape="rect" id="Node000011" href="$matrix2_8hpp.html" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="751,308,852,336"/>
+<area shape="poly" id="edge19_Node000010_Node000011" title=" " alt="" coords="803,259,803,294,799,291,800,263"/>
+<area shape="rect" id="Node000012" href="$vector2_8hpp.html" title=" " alt="" coords="796,384,894,411"/>
+<area shape="poly" id="edge22_Node000010_Node000012" title=" " alt="" coords="823,258,847,279,866,307,870,323,870,340,861,372,857,368,865,339,865,324,862,309,843,283,821,263"/>
+<area shape="poly" id="edge20_Node000011_Node000003" title=" " alt="" coords="779,336,701,379,700,374,774,337"/>
+<area shape="poly" id="edge21_Node000011_Node000012" title=" " alt="" coords="811,334,832,371,827,369,808,339"/>
+<area shape="poly" id="edge24_Node000013_Node000009" title=" " alt="" coords="620,108,583,148,579,143,615,111"/>
+<area shape="poly" id="edge26_Node000014_Node000009" title=" " alt="" coords="751,110,615,154,614,149,756,108"/>
+<area shape="poly" id="edge31_Node000015_Node000004" title=" " alt="" coords="944,108,887,133,828,159,694,234,590,301,588,297,691,230,825,154,885,128,939,110"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="839,157,924,184"/>
+<area shape="poly" id="edge28_Node000015_Node000016" title=" " alt="" coords="964,108,912,150,909,145,959,110"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="948,157,1010,184"/>
+<area shape="poly" id="edge29_Node000015_Node000017" title=" " alt="" coords="980,107,981,143,976,139,977,111"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="1033,157,1103,184"/>
+<area shape="poly" id="edge30_Node000015_Node000018" title=" " alt="" coords="995,107,1043,147,1038,146,994,112"/>
+<area shape="poly" id="edge34_Node000019_Node000010" title=" " alt="" coords="1135,185,877,234,876,229,1141,184"/>
+<area shape="poly" id="edge36_Node000020_Node000010" title=" " alt="" coords="1301,107,1318,145,1320,167,1311,186,1289,198,1249,208,1133,225,997,237,877,244,876,239,997,231,1133,219,1248,203,1287,193,1307,183,1315,166,1313,147,1298,112"/>
 </map>

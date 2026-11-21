@@ -1,24 +1,24 @@
 <map id="ginger/matrix2.hpp" name="ginger/matrix2.hpp">
-<area shape="rect" id="Node000001" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="370,5,517,31"/>
-<area shape="rect" id="Node000002" href="$bairstow_8hpp.html" title="Bairstow&#39;s root&#45;finding method with reference&#45;based vectors." alt="" coords="277,79,428,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,41,369,81,366,76,416,37"/>
-<area shape="rect" id="Node000003" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="453,79,618,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="470,37,522,76,519,81,467,41"/>
-<area shape="rect" id="Node000004" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)" alt="" coords="233,159,381,185"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="490,111,341,162,340,157,488,106"/>
-<area shape="rect" id="Node000006" href="$solve_8hpp.html" title="Facade entry points that auto&#45;select the execution policy." alt="" coords="367,328,498,353"/>
-<area shape="poly" id="edge13_Node000003_Node000006" title=" " alt="" coords="531,118,508,192,472,281,443,329,439,327,468,279,503,191,526,117"/>
-<area shape="rect" id="Node000008" href="$rootfinding__atomic_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (atomic)" alt="" coords="533,240,671,280"/>
-<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="547,116,597,239,592,241,542,118"/>
-<area shape="rect" id="Node000009" href="$rootfinding__mt_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (MT)" alt="" coords="625,152,763,192"/>
-<area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="572,108,657,149,654,154,570,112"/>
-<area shape="rect" id="Node000005" href="$autocorr__atomic_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (atomic)" alt="" coords="5,247,207,273"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="269,193,134,250,132,245,267,188"/>
-<area shape="poly" id="edge8_Node000004_Node000006" title=" " alt="" coords="291,197,278,216,269,237,265,259,272,279,291,298,315,313,341,324,368,331,366,336,339,329,312,318,288,303,268,281,260,259,263,236,274,213,286,194"/>
-<area shape="rect" id="Node000007" href="$autocorr__mt_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (MT)" alt="" coords="283,247,457,273"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="326,194,363,245,359,248,322,197"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="167,273,386,325,384,331,166,278"/>
-<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="390,282,425,326,421,329,386,285"/>
-<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="550,288,459,330,457,325,548,283"/>
-<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="702,206,702,244,696,264,685,282,655,301,607,316,499,335,498,330,606,311,652,296,681,278,691,262,696,244,697,205"/>
+<area shape="rect" id="Node000001" title="2x2 matrix template for polynomial root&#45;finding" alt="" coords="366,5,512,33"/>
+<area shape="rect" id="Node000002" href="$bairstow_8hpp.html" title="Bairstow&#39;s root&#45;finding method with reference&#45;based vectors." alt="" coords="274,81,423,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="409,45,366,83,363,78,413,41"/>
+<area shape="rect" id="Node000003" href="$rootfinding_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials." alt="" coords="447,81,612,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="467,41,516,81,511,81,467,46"/>
+<area shape="rect" id="Node000004" href="$autocorr_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)." alt="" coords="232,165,379,193"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="477,116,342,167,340,162,482,113"/>
+<area shape="rect" id="Node000006" href="$solve_8hpp.html" title="Facade entry points that auto&#45;select the execution policy." alt="" coords="364,342,493,370"/>
+<area shape="poly" id="edge13_Node000003_Node000006" title=" " alt="" coords="525,122,503,202,468,295,439,344,436,339,463,293,498,201,521,125"/>
+<area shape="rect" id="Node000008" href="$rootfinding__atomic_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (atomic)." alt="" coords="528,249,664,294"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="541,121,591,250,585,248,538,125"/>
+<area shape="rect" id="Node000009" href="$rootfinding__mt_8hpp.html" title="Parallel Bairstow root&#45;finding methods for real polynomials (MT)." alt="" coords="619,157,755,201"/>
+<area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="569,114,648,156,642,156,568,119"/>
+<area shape="rect" id="Node000005" href="$autocorr__atomic_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (atomic)." alt="" coords="5,258,206,286"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="261,202,136,260,133,255,264,197"/>
+<area shape="poly" id="edge8_Node000004_Node000006" title=" " alt="" coords="287,204,275,227,266,249,263,272,270,293,289,312,312,327,338,338,366,348,360,347,336,343,310,332,285,316,266,295,258,272,261,248,270,224,283,207"/>
+<area shape="rect" id="Node000007" href="$autocorr__mt_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (MT)." alt="" coords="280,258,454,286"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="324,203,361,258,355,257,322,208"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="173,287,378,340,375,343,172,292"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="387,296,421,343,416,341,385,301"/>
+<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="541,301,456,344,454,339,536,302"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="695,215,695,257,689,278,678,296,648,315,601,330,494,350,493,345,600,325,646,310,674,292,684,275,690,256,692,219"/>
 </map>

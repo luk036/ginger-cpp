@@ -1,11 +1,11 @@
 <map id="ginger/autocorr.hpp" name="ginger/autocorr.hpp">
-<area shape="rect" id="Node000001" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)" alt="" coords="171,5,319,31"/>
-<area shape="rect" id="Node000002" href="$autocorr__atomic_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (atomic)" alt="" coords="5,79,207,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,39,130,81,127,76,209,34"/>
-<area shape="rect" id="Node000003" href="$solve_8hpp.html" title="Facade entry points that auto&#45;select the execution policy." alt="" coords="179,152,310,177"/>
-<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="247,45,247,152,242,152,242,45"/>
-<area shape="rect" id="Node000004" href="$autocorr__mt_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (MT)" alt="" coords="283,79,457,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="278,35,351,76,348,81,275,40"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,108,223,149,221,154,139,113"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="339,113,266,154,264,149,337,108"/>
+<area shape="rect" id="Node000001" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials)." alt="" coords="169,5,316,33"/>
+<area shape="rect" id="Node000002" href="$autocorr__atomic_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (atomic)." alt="" coords="5,81,206,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,42,131,83,128,78,207,39"/>
+<area shape="rect" id="Node000003" href="$solve_8hpp.html" title="Facade entry points that auto&#45;select the execution policy." alt="" coords="178,157,308,184"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="245,47,245,157,240,155,241,50"/>
+<area shape="rect" id="Node000004" href="$autocorr__mt_8hpp.html" title="Auto&#45;correlation polynomial root&#45;finding (palindromic polynomials) (MT)." alt="" coords="280,81,454,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="279,39,348,80,342,81,278,44"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="144,114,221,155,216,157,143,119"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="334,116,266,159,264,154,329,118"/>
 </map>

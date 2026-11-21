@@ -4,7 +4,7 @@ var searchData=
   ['circle2_5ftable_5fy_1',['circle2_table_y',['../aberth_8hpp.html#affd1da0d6cc9adb6c59d3dcaea28333a',1,'aberth.hpp']]],
   ['clang_20format_2',['Run clang-format',['../index.html#autotoc_md6',1,'']]],
   ['config_2ehpp_3',['config.hpp',['../config_8hpp.html',1,'']]],
-  ['constexpr14_4',['constexpr14',['../matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46',1,'CONSTEXPR14:&#160;matrix2.hpp'],['../vector2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46',1,'CONSTEXPR14:&#160;vector2.hpp'],['../vector2__ref_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46',1,'CONSTEXPR14:&#160;vector2_ref.hpp']]],
+  ['constexpr14_4',['CONSTEXPR14',['../matrix2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46',1,'CONSTEXPR14:&#160;matrix2.hpp'],['../vector2_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46',1,'CONSTEXPR14:&#160;vector2.hpp'],['../vector2__ref_8hpp.html#a46d983a6cf6b8e418426de1b7e33dc46',1,'CONSTEXPR14:&#160;vector2_ref.hpp']]],
   ['cos_5fpi_5fvdc2_5',['cos_pi_vdc2',['../aberth_8hpp.html#a1c3adaa1ce358830073cbfb8e17b55fe',1,'aberth.hpp']]],
   ['cpp_6',['🫚 ginger-cpp',['../index.html#autotoc_md0',1,'']]],
   ['cpp_20documentation_7',['ginger-cpp Documentation',['../about.html#doc',1,'']]],
