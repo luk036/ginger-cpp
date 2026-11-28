@@ -1,183 +1,88 @@
 add_rules("mode.debug", "mode.release", "mode.coverage")
-add_requires("doctest", { alias = "doctest" })
-add_requires("fmt", { alias = "fmt" })
-add_requires("nanobench", { alias = "nanobench" })
-add_requires("spdlog", { alias = "spdlog" })
+add_requires("doctest", "fmt", "nanobench", "spdlog")
+
+set_languages("c++20")
+add_includedirs("include")
+
+if is_plat("linux", "macosx") then
+    add_syslinks("pthread")
+end
 
 if is_mode("coverage") then
-	add_cxflags("-ftest-coverage", "-fprofile-arcs", { force = true })
+    add_cxflags("-ftest-coverage", "-fprofile-arcs", {force = true})
 end
 
 if is_plat("linux") then
-	set_warnings("all", "error")
-	-- add_cxflags("-Wconversion", {force = true})
-	-- Check if we're on Termux/Android
-	local termux_prefix = os.getenv("PREFIX")
-	if termux_prefix then
+    set_warnings("all", "error")
+    -- Termux/Android ships its libc++ headers under $PREFIX
+    local prefix = os.getenv("PREFIX")
+    if prefix then
         add_cxflags("-Wno-unused-command-line-argument", {force = true})
-		add_sysincludedirs(termux_prefix .. "/include/c++/v1", { public = true })
-		add_sysincludedirs(termux_prefix .. "/include", { public = true })
-	end
-	if is_mode("release") then
-		add_cxflags("-march=native", "-ffast-math", { force = true })
-	end
+        add_sysincludedirs(prefix .. "/include/c++/v1", prefix .. "/include", {public = true})
+    end
+    if is_mode("release") then
+        add_cxflags("-march=native", "-ffast-math", {force = true})
+    end
 elseif is_plat("macosx") then
-	if is_mode("release") then
-		add_cxflags("-march=native", "-ffast-math", { force = true })
-	end
+    if is_mode("release") then
+        add_cxflags("-march=native", "-ffast-math", {force = true})
+    end
 elseif is_plat("windows") then
-	add_cxflags("/EHsc /utf-8 /W4 /WX /wd4702", { force = true })
-	add_ldflags("/FORCE:MULTIPLE", { force = true })
-	if is_mode("release") then
-		add_cxflags("/arch:AVX2", "/fp:fast", { force = true })
-	end
+    add_cxflags("/EHsc /utf-8 /W4 /WX /wd4702", {force = true})
+    add_ldflags("/FORCE:MULTIPLE", {force = true})
+    if is_mode("release") then
+        add_cxflags("/arch:AVX2", "/fp:fast", {force = true})
+    end
 end
 
 target("Ginger")
-set_languages("c++20")
-set_kind("static")
--- aberth.hpp publicly includes <lds/lds.hpp>, so the Lds include dir must be public
-add_includedirs("../lds-cpp/include", { public = true })
-add_includedirs("include", { public = true })
-add_files("source/*.cpp")
-add_packages("fmt", "spdlog")
+    set_kind("static")
+    -- aberth.hpp publicly includes <lds/lds.hpp>, so the Lds include dir must be public
+    add_includedirs("../lds-cpp/include", {public = true})
+    add_files("source/*.cpp")
+    add_packages("fmt", "spdlog")
 
 target("test_ginger")
-set_languages("c++20")
-set_kind("binary")
-add_deps("Ginger")
-add_files("test/source/*.cpp")
-add_packages("doctest", "fmt", "spdlog")
-if is_plat("linux", "macosx") then
-	add_syslinks("pthread")
-	-- target:add("links", "pthread", "m", "dl")
-end
-add_tests("default")
--- Check if rapidcheck was built by CMake
-local rapidcheck_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-src")
-local rapidcheck_lib_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-build")
-local rapidcheck_lib = nil
+    add_deps("Ginger")
+    add_files("test/source/*.cpp")
+    add_packages("doctest", "fmt", "spdlog")
+    add_tests("default")
 
-if is_plat("windows") then
-	rapidcheck_lib_dir = path.join(rapidcheck_lib_dir, "Release")
-	rapidcheck_lib = path.join(rapidcheck_lib_dir, "rapidcheck.lib")
-else
-	rapidcheck_lib = path.join(rapidcheck_lib_dir, "librapidcheck.a")
-end
+    -- rapidcheck is optionally provided by a CMake build
+    local rapidcheck_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-src")
+    local rapidcheck_lib_dir = path.join(os.projectdir(), "build", "_deps", "rapidcheck-build")
+    local rapidcheck_lib = nil
 
-if os.isdir(rapidcheck_dir) and os.isfile(rapidcheck_lib) then
-	add_includedirs(path.join(rapidcheck_dir, "include"))
-	add_linkdirs(rapidcheck_lib_dir)
-	add_links("rapidcheck")
-	add_defines("RAPIDCHECK_H")
-end
+    if is_plat("windows") then
+        rapidcheck_lib_dir = path.join(rapidcheck_lib_dir, "Release")
+        rapidcheck_lib = path.join(rapidcheck_lib_dir, "rapidcheck.lib")
+    else
+        rapidcheck_lib = path.join(rapidcheck_lib_dir, "librapidcheck.a")
+    end
+
+    if os.isdir(rapidcheck_dir) and os.isfile(rapidcheck_lib) then
+        add_includedirs(path.join(rapidcheck_dir, "include"))
+        add_linkdirs(rapidcheck_lib_dir)
+        add_links("rapidcheck")
+        add_defines("RAPIDCHECK_H")
+    end
 
 target("test_fir")
-set_languages("c++20")
-set_kind("binary")
-add_deps("Ginger")
-add_files("bench/BM_fir.cpp")
-add_packages("nanobench", "fmt", "spdlog")
-if is_plat("linux", "macosx") then
-	add_syslinks("pthread")
-	-- target:add("links", "pthread", "m", "dl")
-end
+    add_deps("Ginger")
+    add_files("bench/BM_fir.cpp")
+    add_packages("nanobench", "fmt", "spdlog")
 
 target("test_autocorr")
-set_languages("c++20")
-set_kind("binary")
-add_deps("Ginger")
-add_files("bench/BM_autocorr.cpp")
-add_packages("nanobench", "fmt", "spdlog")
-if is_plat("linux", "macosx") then
-	add_syslinks("pthread")
-	-- target:add("links", "pthread", "m", "dl")
-end
+    add_deps("Ginger")
+    add_files("bench/BM_autocorr.cpp")
+    add_packages("nanobench", "fmt", "spdlog")
 
 target("test_aberth")
-set_languages("c++20")
-set_kind("binary")
-add_deps("Ginger")
-add_files("bench/BM_aberth.cpp")
-add_packages("nanobench", "fmt", "spdlog")
-if is_plat("linux", "macosx") then
-	add_syslinks("pthread")
-end
+    add_deps("Ginger")
+    add_files("bench/BM_aberth.cpp")
+    add_packages("nanobench", "fmt", "spdlog")
 
 target("test_scaling")
-set_languages("c++20")
-set_kind("binary")
-add_deps("Ginger")
-add_files("bench/BM_scaling.cpp")
-add_packages("fmt", "spdlog")
-if is_plat("linux", "macosx") then
-	add_syslinks("pthread")
-end
-
--- If you want to known more usage about xmake, please see https://xmake.io
---
--- ## FAQ
---
--- You can enter the project directory firstly before building project.
---
---   $ cd projectdir
---
--- 1. How to build project?
---
---   $ xmake
---
--- 2. How to configure project?
---
---   $ xmake f -p [macosx|linux|iphoneos ..] -a [x86_64|i386|arm64 ..] -m [debug|release]
---
--- 3. Where is the build output directory?
---
---   The default output directory is `./build` and you can configure the output directory.
---
---   $ xmake f -o outputdir
---   $ xmake
---
--- 4. How to run and debug target after building project?
---
---   $ xmake run [targetname]
---   $ xmake run -d [targetname]
---
--- 5. How to install target to the system directory or other output directory?
---
---   $ xmake install
---   $ xmake install -o installdir
---
--- 6. Add some frequently-used compilation flags in xmake.lua
---
--- @code
---    -- add debug and release modes
---    add_rules("mode.debug", "mode.release")
---
---    -- add macro defination
---    add_defines("NDEBUG", "_GNU_SOURCE=1")
---
---    -- set warning all as error
---    set_warnings("all", "error")
---
---    -- set language: c99, c++11
---    set_languages("c99", "c++11")
---
---    -- set optimization: none, faster, fastest, smallest
---    set_optimize("fastest")
---
---    -- add include search directories
---    add_includedirs("/usr/include", "/usr/local/include")
---
---    -- add link libraries and search directories
---    add_links("tbox")
---    add_linkdirs("/usr/local/lib", "/usr/lib")
---
---    -- add system link libraries
---    add_syslinks("z", "pthread")
---
---    -- add compilation and link flags
---    add_cxflags("-stdnolib", "-fno-strict-aliasing")
---    add_ldflags("-L/usr/local/lib", "-lpthread", {force = true})
---
--- @endcode
---
+    add_deps("Ginger")
+    add_files("bench/BM_scaling.cpp")
+    add_packages("fmt", "spdlog")
